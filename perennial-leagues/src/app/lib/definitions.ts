@@ -21,3 +21,16 @@ export interface Summary {
     data: Date;
     durata: number;
 }
+
+export interface Team {
+    squadra: string;
+    stats:{
+        regni: number;
+        durataCombinata: number;
+        durataMedia: number;
+      };
+    colors: {
+        primary: string;
+        secondary: string;
+    };
+}
