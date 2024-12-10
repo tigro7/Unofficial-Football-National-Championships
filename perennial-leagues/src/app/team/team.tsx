@@ -115,34 +115,34 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni}: {squadra
     <div className="flex justify-around mb-6">
       <div className="text-center" style={{ color: colors.primary }}>
         <p className="text-xl font-semibold">Il più lungo</p>
-        <p className="text-3xl">{timeLineData.reduce((prev, curr) =>{
+        <p className="text-3xl">{timeLineData.filter(regno => regno.team).reduce((prev, curr) =>{
           return prev.duration > curr.duration ? prev : curr;
         }).duration} giorni</p>
         <p className="text-sm italic mt-2">Inizio: {
           (new Date(
-          timeLineData.reduce((prev, curr) =>{
+          timeLineData.filter(regno => regno.team).reduce((prev, curr) =>{
           return prev.duration > curr.duration ? prev : curr;
         }).start)).toLocaleDateString()
         } Fine: {
           (new Date(
-          timeLineData.reduce((prev, curr) =>{
+          timeLineData.filter(regno => regno.team).reduce((prev, curr) =>{
           return prev.duration > curr.duration ? prev : curr;
         }).end)).toLocaleDateString()
         }</p>
       </div>
       <div className="text-center" style={{ color: colors.primary }}>
         <p className="text-xl font-semibold">Il più corto</p>
-        <p className="text-3xl">{timeLineData.reduce((prev, curr) =>{
+        <p className="text-3xl">{timeLineData.filter(regno => regno.team).reduce((prev, curr) =>{
           return prev.duration < curr.duration ? prev : curr;
         }).duration} giorni</p>
         <p className="text-sm italic mt-2">Inizio: {
           (new Date(
-          timeLineData.reduce((prev, curr) =>{
+          timeLineData.filter(regno => regno.team).reduce((prev, curr) =>{
           return prev.duration < curr.duration ? prev : curr;
         }).start)).toLocaleDateString()
         } Fine: {
           (new Date(
-          timeLineData.reduce((prev, curr) =>{
+          timeLineData.filter(regno => regno.team).reduce((prev, curr) =>{
           return prev.duration < curr.duration ? prev : curr;
         }).end)).toLocaleDateString()
         }</p>

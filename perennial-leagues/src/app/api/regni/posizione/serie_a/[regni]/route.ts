@@ -3,7 +3,14 @@
 import { db } from "@vercel/postgres";
 import { NextResponse } from 'next/server';
 
-export async function getPosizioneRegniSerieA(regni: number) {
+export async function GET(request: Request, {params,}: {params: Promise<{ regni: number }>}) {
+
+    const regni = (await params).regni;
+  
+    if (isNaN(regni)) {
+      return NextResponse.json({ error: 'Parametro regni mancante o non valido' }, { status: 400 });
+    }
+    
     try {
         const client = await db.connect();
         const rows =  await client.sql`WITH ranked_squads AS (

@@ -3,7 +3,7 @@
 import { db } from "@vercel/postgres";
 import { NextResponse } from 'next/server';
 
-export async function getStartDateSerieA() {
+export async function GET() {
 
     try {
         const client = await db.connect();

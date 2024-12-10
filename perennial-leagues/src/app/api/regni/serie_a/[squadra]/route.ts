@@ -3,9 +3,13 @@
 import { db } from "@vercel/postgres";
 import { NextResponse } from 'next/server';
 
-export async function getRegniSerieA(squadra: string) {
+export async function GET(request: Request, {params,}: {params: Promise<{ squadra: string }>}) {
 
-    squadra = squadra.toLowerCase();
+    const squadra = (await params).squadra.toLowerCase();
+  
+    if (squadra == undefined || squadra == '') {
+        return NextResponse.json({ error: 'Parametro squadra mancante o non valido' }, { status: 400 });
+    }
 
     try {
         const client = await db.connect();

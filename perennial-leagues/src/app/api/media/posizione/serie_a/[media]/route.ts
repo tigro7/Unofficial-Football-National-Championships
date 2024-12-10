@@ -3,7 +3,14 @@
 import { db } from "@vercel/postgres";
 import { NextResponse } from 'next/server';
 
-export async function getPosizioneMediaSerieA(media: number) {
+export async function GET(request: Request, {params,}: {params: Promise<{ media: number }>}) {
+
+    const media = (await params).media;
+  
+    if (isNaN(media)) {
+      return NextResponse.json({ error: 'Parametro media mancante o non valido' }, { status: 400 });
+    }
+    
     try {
         const client = await db.connect();
         const rows =  await client.sql`WITH ranked_squads AS (
