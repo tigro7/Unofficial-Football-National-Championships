@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Timeline = ({regni, primaryColor, secondaryColor}: { regni: { start: string; end: string; team: boolean; duration: number }[]; primaryColor: string; secondaryColor: string;}) => {
+const TimelineChart = ({regni, primaryColor, secondaryColor}: { regni: { start: string; end: string; team: boolean; duration: number }[]; primaryColor: string; secondaryColor: string;}) => {
   const [tooltip, setTooltip] = useState<{ visible: boolean; content: string; position: number | null }>({
     visible: false,
     content: "",
@@ -99,4 +99,4 @@ const Timeline = ({regni, primaryColor, secondaryColor}: { regni: { start: strin
   );
 };
 
-export default Timeline;
+export default TimelineChart;

@@ -7,7 +7,7 @@ const TeamPage = async ({params,}: {params: Promise<{ name: string }>}) => {
     const host = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'; // URL di base
 
     const squadra = (await params).name;
-    const response = await fetch(`${host}/api/squadre/${squadra}`);
+    const response = await fetch(`${host}/api/squadre/squadra/${squadra}`);
 
     if (!response.ok) {
         throw new Error("Failed to fetch team data");

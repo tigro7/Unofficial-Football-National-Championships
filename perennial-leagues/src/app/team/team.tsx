@@ -2,7 +2,7 @@
 
 import "@/app/utils/setupCharts";
 import Jersey from "../components/Jersey";
-import Timeline from "../components/Timeline";
+import TimelineChart from "../components/TimelineChart";
 
 const generateTimeline = (regni: { start: string; end: string }[], startDate: string) => {
   const timeline = [];
@@ -76,9 +76,9 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni}: {squadra
   const timeLineData = generateTimeline(regni, startDate);
 
   return(
-    <div className="container mx-auto mt-8 p-4 border-4" style={{ borderColor: colors.primary }}>
+    <div className="container mx-auto mt-8 p-4 border-4 rounded-xl" style={{ borderColor: colors.primary }}>
     {/* Nome della Squadra */}
-    <h1 className="text-4xl font-bold text-center mb-6" style={{ color: colors.primary }}>
+    <h1 className="text-4xl font-bold text-center mb-6 rounded-xl" style={{ color: colors.primary, backgroundColor: colors.secondary}}>
       {`${squadra.charAt(0).toUpperCase()}${squadra.slice(1)}`}
     </h1>
 
@@ -154,7 +154,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni}: {squadra
     </div>
 
     <div className="py-10">     
-       <Timeline regni={timeLineData} primaryColor={colors.primary} secondaryColor={colors.secondary}/>
+       <TimelineChart regni={timeLineData} primaryColor={colors.primary} secondaryColor={colors.secondary}/>
     </div>
 
     </div>
