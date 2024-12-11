@@ -66,97 +66,64 @@ const generateTimeline = (regni: { start: string; end: string }[], startDate: st
   return timeline;
 };
 
+const containerStat = (color: string, statname: string, statvalue: number | string, valpre: string | null, valpost: string | null, statpos: number | string, pospre: string | null, pospost: string | null) => {
+  const podium = [{position: 1, color: 'gold'}, {position: 2, color: 'silver'}, {position: 3, color: 'bronze'}];
+  const statColor = podium.find(pos => pos.position == statpos)?.color || color;
+  return(      
+  <div className="text-center" style={{ 
+    color: statColor, 
+    /*border: `2px solid ${statColor}`*/
+   }}>
+    <p className="text-xl font-semibold">{statname}</p>
+    <p className="text-3xl">{valpre}{statvalue}{valpost}</p>
+    <p className="text-sm italic mt-2">{pospre}{statpos}{pospost}</p>
+  </div>
+  )
+}
 
-const Squadra = ({squadra, stats, colors, regni, startDate, posizioni}: {squadra: string, stats: {regni: number, durataCombinata: number, durataMedia: number}, colors: {primary: string, secondary: string}, regni:{ start: string, end: string }[], startDate: string, posizioni: {regni: number, durata: number, media: number}}) => {
+
+const Squadra = ({squadra, stats, colors, regni, startDate, posizioni}: 
+  {squadra: string, stats: {regni: number, durataCombinata: number, durataMedia: number}, colors: {primary: string, secondary: string}, regni:{ start: string, end: string }[], startDate: string, posizioni: {regni: number, durata: number, media: number}}) => {
 
   if (!squadra || !stats || !colors) {
     return <div>Errore: dati non disponibili</div>;
   }
 
   const timeLineData = generateTimeline(regni, startDate);
+  const longestReign = timeLineData.filter(regno => regno.team).reduce((prev, curr) =>{return prev.duration > curr.duration ? prev : curr;})
+  const shortestReign = timeLineData.filter(regno => regno.team).reduce((prev, curr) =>{return prev.duration < curr.duration ? prev : curr;})
 
   return(
     <div className="container mx-auto mt-8 p-4 border-4 rounded-xl" style={{ borderColor: colors.primary }}>
-    {/* Nome della Squadra */}
-    <h1 className="text-4xl font-bold text-center mb-6 rounded-xl" style={{ color: colors.primary, backgroundColor: colors.secondary}}>
-      {`${squadra.charAt(0).toUpperCase()}${squadra.slice(1)}`}
-    </h1>
+      {/* Nome della Squadra */}
+      <h1 className="text-4xl font-bold text-center mb-6 rounded-xl" style={{ color: colors.primary, backgroundColor: colors.secondary}}>
+        {`${squadra.charAt(0).toUpperCase()}${squadra.slice(1)}`}
+      </h1>
 
-    {/* Stats e Posizioni */}
-    <div className="flex justify-around mb-6">
-      <div className="text-center" style={{ color: colors.primary }}>
-        <p className="text-xl font-semibold">Regni</p>
-        <p className="text-3xl">{stats.regni}</p>
-        <p className="text-sm italic mt-2">{posizioni.regni}° nella classifica totale</p>
+      {/* Stats e Posizioni */}
+      <div className="flex justify-around mb-6">
+        {containerStat(colors.primary, 'Regni', stats.regni, '', '', posizioni.regni, '', '° nella classifica totale')}
+        {containerStat(colors.primary, 'Durata Combinata', stats.durataCombinata, '', ' giorni', posizioni.durata, '', '° nella classifica totale')}
+        {containerStat(colors.primary, 'Durata Media', stats.durataMedia, '', ' giorni', posizioni.media, '', '° nella classifica totale')}
       </div>
-      <div className="text-center" style={{ color: colors.primary }}>
-        <p className="text-xl font-semibold">Durata Combinata</p>
-        <p className="text-3xl">{stats.durataCombinata} giorni</p>
-        <p className="text-sm italic mt-2">{posizioni.durata}° nella classifica totale</p>
-      </div>
-      <div className="text-center" style={{ color: colors.primary }}>
-        <p className="text-xl font-semibold">Durata Media</p>
-        <p className="text-3xl">{stats.durataMedia} giorni</p>
-        <p className="text-sm italic mt-2">{posizioni.media}° nella classifica totale</p>
-      </div>
-    </div>
-    <div className="flex justify-around mb-6">
-      <div className="text-center" style={{ color: colors.secondary }}>
-        <p className="text-xl font-semibold">Primo</p>
-        <p className="text-3xl">1</p>
-        <p className="text-sm italic mt-2">Inizio: {(new Date(regni[0].start)).toLocaleDateString()} Fine: {(new Date(regni[0].end)).toLocaleDateString()}</p>
-      </div>
-      <div className="text-center" style={{ color: colors.secondary }}>
-        <p className="text-xl font-semibold">Ultimo</p>
-        <p className="text-3xl">{regni.length}</p>
-        <p className="text-sm italic mt-2">Inizio: {(new Date(regni[regni.length - 1].start)).toLocaleDateString()} Fine: {(new Date(regni[regni.length - 1].end)).toLocaleDateString()}</p>
-      </div>
-    </div>
-    <div className="flex justify-around mb-6">
-      <div className="text-center" style={{ color: colors.primary }}>
-        <p className="text-xl font-semibold">Il più lungo</p>
-        <p className="text-3xl">{timeLineData.filter(regno => regno.team).reduce((prev, curr) =>{
-          return prev.duration > curr.duration ? prev : curr;
-        }).duration} giorni</p>
-        <p className="text-sm italic mt-2">Inizio: {
-          (new Date(
-          timeLineData.filter(regno => regno.team).reduce((prev, curr) =>{
-          return prev.duration > curr.duration ? prev : curr;
-        }).start)).toLocaleDateString()
-        } Fine: {
-          (new Date(
-          timeLineData.filter(regno => regno.team).reduce((prev, curr) =>{
-          return prev.duration > curr.duration ? prev : curr;
-        }).end)).toLocaleDateString()
-        }</p>
-      </div>
-      <div className="text-center" style={{ color: colors.primary }}>
-        <p className="text-xl font-semibold">Il più corto</p>
-        <p className="text-3xl">{timeLineData.filter(regno => regno.team).reduce((prev, curr) =>{
-          return prev.duration < curr.duration ? prev : curr;
-        }).duration} giorni</p>
-        <p className="text-sm italic mt-2">Inizio: {
-          (new Date(
-          timeLineData.filter(regno => regno.team).reduce((prev, curr) =>{
-          return prev.duration < curr.duration ? prev : curr;
-        }).start)).toLocaleDateString()
-        } Fine: {
-          (new Date(
-          timeLineData.filter(regno => regno.team).reduce((prev, curr) =>{
-          return prev.duration < curr.duration ? prev : curr;
-        }).end)).toLocaleDateString()
-        }</p>
-      </div>
-    </div>
 
-    <div className="flex justify-center mb-6">
-      <Jersey colors={colors} />
-    </div>
+      <div className="flex justify-around mb-6">
+        {containerStat(colors.secondary, 'Primo', 1, '', '', ' ', `Inizio: ${(new Date(regni[0].start)).toLocaleDateString()}`, `Fine: ${(new Date(regni[0].end)).toLocaleDateString()}`)}
+        {containerStat(colors.secondary, 'Ultimo', regni.length, '', '', ' ', `Inizio: ${(new Date(regni[regni.length - 1].start)).toLocaleDateString()}`, `Fine: ${(new Date(regni[regni.length - 1].end)).toLocaleDateString()}`)}
+      </div>
+      
+      <div className="flex justify-around mb-6">
+        {containerStat(colors.primary, 'Il più lungo', longestReign.duration, '', ' giorni', ' ', `Inizio: ${(new Date(longestReign.start)).toLocaleDateString()}`, `Fine: ${(new Date(longestReign.end)).toLocaleDateString()}`)}
+        {containerStat(colors.primary, 'Il più corto', shortestReign.duration, '', ' giorni', ' ', `Inizio: ${(new Date(shortestReign.start)).toLocaleDateString()}`, `Fine: ${(new Date(shortestReign.end)).toLocaleDateString()}`)}
+      </div>
 
-    <div className="py-10">     
-       <TimelineChart regni={timeLineData} primaryColor={colors.primary} secondaryColor={colors.secondary}/>
-    </div>
+      <div className="flex justify-center mb-6">
+        <Jersey colors={colors} />
+      </div>
 
+      <div className="py-10">     
+        <TimelineChart regni={timeLineData} primaryColor={colors.primary} secondaryColor={colors.secondary}/>
+      </div>
     </div>
   );
 }

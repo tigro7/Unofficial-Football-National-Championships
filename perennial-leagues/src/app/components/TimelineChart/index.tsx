@@ -34,6 +34,11 @@ const TimelineChart = ({regni, primaryColor, secondaryColor}: { regni: { start: 
     });
   };
 
+  const getDateForLink = (start: string) => {
+    const localDate = new Date(start).toLocaleDateString();
+    return localDate.split('/').reverse().join('-');
+  };
+
   // Calcola le date significative per l'asse delle X (anniversari ogni 5 o 10 anni)
   const significantDates = [];
   const startYear = new Date(startDate).getFullYear();
@@ -54,6 +59,7 @@ const TimelineChart = ({regni, primaryColor, secondaryColor}: { regni: { start: 
           const percentage = calcPercentage(regno.duration);
           const leftPosition = `${index === 0 ? 0 : regni.slice(0, index).reduce((sum, r) => sum + calcPercentage(r.duration), 0)}%`;
           const indiceDelRegno = reignIndex;
+
           return (
             <div key={index}
               className={`absolute h-2 z-10`}
@@ -64,6 +70,7 @@ const TimelineChart = ({regni, primaryColor, secondaryColor}: { regni: { start: 
               }}
               onMouseEnter={() => (regno.team ? showTooltip(regno.start, regno.end, parseFloat(leftPosition), indiceDelRegno) : null)}
               onMouseLeave={hideTooltip}
+              onClick={() => {window.location.href = `/match/${getDateForLink(regno.start)}/serie_a`}}
             />
           );
         })}

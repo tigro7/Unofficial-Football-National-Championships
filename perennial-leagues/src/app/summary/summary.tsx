@@ -12,7 +12,7 @@ const MatchList = ({league}: {league: string}) => {
     ];
 
     return(
-        <DataViewer url={`/api/summary/${league}`} dataProps={dataProperties} keyProp={'data'} crud="R">
+        <DataViewer url={`/api/matches/${league}`} dataProps={dataProperties} keyProp={'data'} crud="R">
             <></>
         </DataViewer>
     )

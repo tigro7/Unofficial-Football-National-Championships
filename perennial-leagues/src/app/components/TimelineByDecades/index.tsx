@@ -23,6 +23,10 @@ const TimelineByDecades = ({ segments }: {segments :{ start: Date, end: Date,
     const hideTooltip = () => {
         setTooltip({visible: false, content: "", position: null, index: null, squadra: null});
     };
+
+    const openSquadPage = (squadra: string) => {
+        window.location.href = `/team/${squadra}`;
+    };
     
     return(
         <div className="relative w-full">
@@ -64,6 +68,7 @@ const TimelineByDecades = ({ segments }: {segments :{ start: Date, end: Date,
                                             }}
                                             onMouseEnter={() => showTooltip(regno.start, regno.end, parseFloat(leftPosition), indiceDelRegno, segIndex, regno.squadra, regno.realduration, regno.startsbefore, regno.endsafter)}
                                             onMouseLeave={hideTooltip}
+                                            onClick={() => openSquadPage(regno.squadra)}
                                         />
                                     );
                                 })}

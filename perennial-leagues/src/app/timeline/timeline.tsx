@@ -2,6 +2,7 @@
 
 import Jersey from "../components/Jersey";
 import TimelineByDecades from "../components/TimelineByDecades";
+import TeamLink from "../components/TeamLink";
 
 const maxDate = (date1: Date, date2: Date) => {
   return date1 > date2 ? date1 : date2;
@@ -60,7 +61,45 @@ const generateTimelineByDecade = (squadre: {squadra: string, colors: {primary: s
   
     return segments; // Ordina i segmenti dal più vecchio al più recente
   };
-  
+
+
+const containerStat = (color: string, statname: string, statvalue: React.ReactNode, description: string) => {
+  return (
+    <div className="text-center" style={{ color }}>
+      <p className="text-xl font-semibold">{statname}</p>
+      <p className="text-3xl">{statvalue}</p>
+      <p className="text-sm italic mt-2">{description}</p>
+    </div>
+  );
+};
+
+function calculateDateDifference(startDate: Date, endDate: Date) {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+
+  let years = end.getFullYear() - start.getFullYear();
+  let months = end.getMonth() - start.getMonth();
+  let days = end.getDate() - start.getDate();
+  let hours = end.getHours() - start.getHours();
+
+  if (hours < 0) {
+    hours += 24;
+    days--;
+  }
+
+  if (days < 0) {
+    const previousMonth = new Date(end.getFullYear(), end.getMonth(), 0);
+    days += previousMonth.getDate();
+    months--;
+  }
+
+  if (months < 0) {
+    months += 12;
+    years--;
+  }
+
+  return { years, months, days, hours };
+}
   
 
 const Timeline = ({squadre, regni, startDate}: {squadre: {squadra: string, colors: {primary: string, secondary: string}}[], regni:{ start: string, end: string, squadra: string}[], startDate: string}) => {
@@ -77,57 +116,51 @@ const Timeline = ({squadre, regni, startDate}: {squadre: {squadra: string, color
 
     const longestReign = regni.reduce((prev, curr) => (duration(prev) > duration(curr) ? prev : curr));
     const shortestReign = regni.reduce((prev, curr) => (duration(prev) < duration(curr) ? prev : curr));
+    const longChamp = squadre.find(squadra => squadra.squadra == longestReign.squadra);
+    const shortChamp = squadre.find(squadra => squadra.squadra == shortestReign.squadra);
+    const actualChamp = squadre.find(squadra => squadra.squadra == attualeCampione);
+    
+    const totalSpan = calculateDateDifference(new Date(startDate), new Date());
   
     return(
         <div className="container mx-auto mt-8 p-4 border-4 border-gold">
             {/* Titolo */}
             <h1 className="text-4xl font-bold text-center mb-6">
-                Cronologia dei Regni
+              Cronologia dei Regni
             </h1>
 
             {/* Stats Generali */}
             <div className="flex justify-around mb-6">
-                <div className="text-center">
-                    <p className="text-xl font-semibold">Totale Regni</p>
-                    <p className="text-3xl">{regni.length}</p>
-                </div>
-                <div className="text-center">
-                    <p className="text-xl font-semibold">Durata Totale</p>
-                    <p className="text-3xl">{Math.floor((new Date().getTime() - new Date(startDate).getTime()) / (1000 * 60 * 60 * 24))} giorni</p>
-                </div>
-                <div className="text-center">
-                    <p className="text-xl font-semibold">Durata Media</p>
-                    <p className="text-3xl">{Math.floor(((new Date().getTime() - new Date(startDate).getTime()) / (1000 * 60 * 60 * 24))/regni.length)} giorni</p>
-                </div>
+              {containerStat('black', 'Campioni', regni.length, `Squadre: ${squadre.length}`)}
+              {containerStat('black', 'Durata Totale', `${totalSpan.years} Anni`, `${totalSpan.months} Mesi, ${totalSpan.days} Giorni, ${totalSpan.hours} Ore`)}
+              {containerStat('black', 'Durata Media', `${Math.floor(((new Date().getTime() - new Date(startDate).getTime()) / (1000 * 60 * 60 * 24))/regni.length)} Giorni`, 'Circa 10 partite')}
             </div>
 
             {/* Il più lungo e il più corto */}
             <div className="flex justify-around mb-6">
-                <div className="text-center" style={{ color: squadre.find(squadra => squadra.squadra == longestReign.squadra)?.colors.primary }}>
-                    <p className="text-xl font-semibold">Regno più lungo</p>
-                    <p className="text-3xl">
-                        {duration(longestReign)} giorni
-                    </p>
-                    <p className="text-sm italic mt-2">Inizio: {(new Date(longestReign.start)).toLocaleDateString()} Fine: {(new Date(longestReign.end)).toLocaleDateString()}</p>
-                </div>
-                <div className="text-center" style={{ color: squadre.find(squadra => squadra.squadra == shortestReign.squadra)?.colors.primary }}>
-                    <p className="text-xl font-semibold">Regno più corto</p>
-                    <p className="text-3xl">
-                        {duration(shortestReign)} giorni
-                    </p>
-                    <p className="text-sm italic mt-2">Inizio: {(new Date(shortestReign.start)).toLocaleDateString()} Fine: {(new Date(shortestReign.end)).toLocaleDateString()}</p>
-                </div>
+              {containerStat(
+                longChamp?.colors.primary || 'black',
+                'Regno più lungo', 
+                <> <TeamLink teamName={longChamp?.squadra || ''} />: {duration(longestReign)} Giorni </>, 
+                `Inizio: ${(new Date(longestReign.start)).toLocaleDateString()} Fine: ${(new Date(longestReign.end)).toLocaleDateString()}`
+              )}
+              {containerStat(
+                shortChamp?.colors.primary || 'black', 
+                'Regno più corto', 
+                <> <TeamLink teamName={shortChamp?.squadra || ''} />: {duration(shortestReign)} Giorni </>, 
+                `Inizio: ${(new Date(shortestReign.start)).toLocaleDateString()} Fine: ${(new Date(shortestReign.end)).toLocaleDateString()}`
+              )}
             </div>
 
             {/* Campione Attuale */}
             <div className="flex flex-col items-center mb-6">
-                <p className="text-xl font-semibold text-center" style={{ color: squadre.find(squadra => squadra.squadra == attualeCampione)?.colors.primary }}>
+                <p className="text-xl font-semibold text-center" style={{ color: actualChamp?.colors.primary }}>
                     Campione Attuale
                 </p>
-                <p className="text-3xl font-bold" style={{ color: squadre.find(squadra => squadra.squadra == attualeCampione)?.colors.secondary }}>
-                    {attualeCampione}
+                <p className="text-3xl font-bold" style={{ color: actualChamp?.colors.secondary }}>
+                    <TeamLink teamName={actualChamp?.squadra || ''} />
                 </p>
-                <Jersey colors={squadre.find(squadra => squadra.squadra == attualeCampione)?.colors || {primary: '#000000', secondary: '#ffffff'}} />
+                <Jersey colors={actualChamp?.colors || {primary: '#000000', secondary: '#ffffff'}} />
             </div>
 
             <div className="py-10">     
