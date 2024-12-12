@@ -42,6 +42,7 @@ const TeamPage = async ({params,}: {params: Promise<{ name: string, league: stri
                 }}
                 regni={regni}
                 startDate={startDate}
+                league={league}
             />
         </ErrorBoundary>
     );

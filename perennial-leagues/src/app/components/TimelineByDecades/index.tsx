@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const TimelineByDecades = ({ segments }: {segments :{ start: Date, end: Date, 
-    regni: { colors: { primary: string; secondary: string; }; duration: number; start: string; end: string; squadra: string; realduration: number; startsbefore: boolean; endsafter: boolean}[];}[]}) => {
+const TimelineByDecades = ({ segments, league = "serie_a" }: {segments :{ start: Date, end: Date, 
+    regni: { colors: { primary: string; secondary: string; }; duration: number; start: string; end: string; squadra: string; realduration: number; startsbefore: boolean; endsafter: boolean}[];}[]; league: string}) => {
     
     const [tooltip, setTooltip] = useState<{visible: boolean; content: string; position: number | null; index: number | null; squadra: string | null}>({visible: false, content: "", position: null, index: null, squadra: null});
     
@@ -25,7 +25,7 @@ const TimelineByDecades = ({ segments }: {segments :{ start: Date, end: Date,
     };
 
     const openSquadPage = (squadra: string) => {
-        window.location.href = `/team/${squadra}`;
+        window.location.href = `/${league}/team/${squadra}`;
     };
     
     return(

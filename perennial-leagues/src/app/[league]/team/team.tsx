@@ -67,8 +67,8 @@ const generateTimeline = (regni: { start: string; end: string }[], startDate: st
   return timeline;
 };
 
-const Squadra = ({squadra, stats, colors, regni, startDate, posizioni}: 
-  {squadra: string, stats: {regni: number, durataCombinata: number, durataMedia: number}, colors: {primary: string, secondary: string}, regni:{ start: string, end: string }[], startDate: string, posizioni: {regni: number, durata: number, media: number}}) => {
+const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = "serie_a"}: 
+  {squadra: string, stats: {regni: number, durataCombinata: number, durataMedia: number}, colors: {primary: string, secondary: string}, regni:{ start: string, end: string }[], startDate: string, posizioni: {regni: number, durata: number, media: number}, league: string}) => {
 
   if (!squadra || !stats || !colors) {
     return <div>Errore: dati non disponibili</div>;
@@ -120,7 +120,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni}:
       </div>
 
       <div className="py-10">     
-        <TimelineChart regni={timeLineData} primaryColor={colors.primary} secondaryColor={colors.secondary}/>
+        <TimelineChart regni={timeLineData} primaryColor={colors.primary} secondaryColor={colors.secondary} league={league}/>
       </div>
     </div>
   );

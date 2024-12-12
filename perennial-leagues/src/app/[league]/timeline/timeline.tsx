@@ -163,7 +163,7 @@ const Timeline = ({squadre, regni, startDate, league = "serie_a"}: {squadre: {sq
             </div>
 
             <div className="py-10">     
-                <TimelineByDecades segments={timeLineData}/>
+                <TimelineByDecades segments={timeLineData} league={league}/>
             </div>
 
         </div>
