@@ -100,7 +100,6 @@ const DataViewer = ({url, dataProps, itemsPerPage = 25, keyProp, keyProps = ["ke
     };
     const sorted = [...filteredData].sort(sortMethods[sortState].method);
     setFilteredData(sorted);
-    console.debug("updated filtered data")
   }, [filterState, filterField.length, data, sortState]);
 
   useEffect(() => {

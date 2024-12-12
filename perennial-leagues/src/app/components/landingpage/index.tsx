@@ -12,7 +12,7 @@ const LandingPage = () => {
     const fetchNextMatch = async () => {
       try {
         const host = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'; // URL di base
-        const response = await fetch(`${host}/api/matches/serie_a/last`);
+        const response = await fetch(`${host}/api/serie_a/matches/last`);
         const data = (await response.json())[0];
 
         // Format the date
@@ -34,13 +34,6 @@ const LandingPage = () => {
 
   return (
     <div className="container mx-auto mt-8 p-4">
-      {/* Header con il link per tornare alla Home */}
-      <header className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold">Campionato d&apos;Italia non ufficiale</h1>
-        <Link href="/" className="text-lg text-blue-600 hover:underline">
-            Home
-        </Link>
-      </header>
 
       {/* Contenuto principale */}
       <div className="flex flex-col items-center">
@@ -50,7 +43,7 @@ const LandingPage = () => {
           <>
             {/* Link al prossimo match */}
             <Link
-              href={`/match/${nextMatchDate}/serie_a`}
+              href={`/serie_a/match/${nextMatchDate}`}
               className="w-full max-w-md p-6 mb-6 text-center bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition-all"
             >
               Prossima difesa del titolo
@@ -61,7 +54,7 @@ const LandingPage = () => {
         )}
 
         {/* Link alla cronologia */}
-        <Link href="/timeline/serie_a" className="w-full max-w-md p-6 text-center bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition-all">
+        <Link href="/serie_a/timeline" className="w-full max-w-md p-6 text-center bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition-all">
             Cronologia dei Regni
         </Link>
       </div>
