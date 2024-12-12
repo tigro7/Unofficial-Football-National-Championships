@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const TimelineChart = ({regni, primaryColor, secondaryColor}: { regni: { start: string; end: string; team: boolean; duration: number }[]; primaryColor: string; secondaryColor: string;}) => {
+const TimelineChart = ({regni, primaryColor, secondaryColor, league = "serie_a"}: { regni: { start: string; end: string; team: boolean; duration: number }[]; primaryColor: string; secondaryColor: string; league: string;}) => {
   const [tooltip, setTooltip] = useState<{ visible: boolean; content: string; position: number | null }>({
     visible: false,
     content: "",
@@ -70,7 +70,7 @@ const TimelineChart = ({regni, primaryColor, secondaryColor}: { regni: { start: 
               }}
               onMouseEnter={() => (regno.team ? showTooltip(regno.start, regno.end, parseFloat(leftPosition), indiceDelRegno) : null)}
               onMouseLeave={hideTooltip}
-              onClick={() => {window.location.href = `/match/${getDateForLink(regno.start)}/serie_a`}}
+              onClick={() => {window.location.href = `/${league}/match/${getDateForLink(regno.start)}`}}
             />
           );
         })}
