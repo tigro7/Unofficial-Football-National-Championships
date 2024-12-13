@@ -159,7 +159,7 @@ const Timeline = ({squadre, regni, startDate, league = "serie_a"}: {squadre: {sq
                 <p className="text-3xl font-bold" style={{ color: actualChamp?.colors.secondary }}>
                     <TeamLink league={league} teamName={actualChamp?.squadra || ''} />
                 </p>
-                <Jersey colors={actualChamp?.colors || {primary: '#000000', secondary: '#ffffff'}} />
+                <Jersey colors={actualChamp?.colors || {primary: '#000000', secondary: '#ffffff'}} icon={null}/>
             </div>
 
             <div className="py-10">     

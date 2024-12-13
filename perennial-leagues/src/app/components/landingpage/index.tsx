@@ -38,7 +38,9 @@ const LandingPage = () => {
       {/* Contenuto principale */}
       <div className="flex flex-col items-center">
         {isLoading ? (
-          <p>Caricamento...</p>
+          <div className="w-full max-w-md p-6 mb-6 text-center bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-grey-600 transition-all">
+            Prossima difesa del titolo
+          </div>
         ) : nextMatchDate ? (
           <>
             {/* Link al prossimo match */}
