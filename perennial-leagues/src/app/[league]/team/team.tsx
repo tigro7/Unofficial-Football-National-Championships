@@ -116,7 +116,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
       </div>
 
       <div className="flex justify-center mb-6">
-        <Jersey colors={colors} />
+        <Jersey colors={colors} icon={null} />
       </div>
 
       <div className="py-10">     
