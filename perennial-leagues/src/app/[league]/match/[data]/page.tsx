@@ -14,16 +14,12 @@ const Page = async ({params,}: {params: Promise<{ data: string, league: string}>
     }
     const matchData = (await response.json())[0];
 
-    /* per la logica del db attuale vince sempre lo sfidante quindi per determinare home e away bisogna vedere chi ha segnato più goal */
-    const teamHomeNome = matchData.risultato.charAt(0) < matchData.risultato.charAt(2) ? matchData.detentore : matchData.sfidante;
-    const teamAwayNome = matchData.sfidante === teamHomeNome ? matchData.detentore : matchData.sfidante;
+    const teamHome = (await (await fetch(`${host}/api/${league}/squadre/${matchData.home}`)).json())[0];
+    const teamAway = (await (await fetch(`${host}/api/${league}/squadre/${matchData.away}`)).json())[0];
 
-    const teamHome = (await (await fetch(`${host}/api/${league}/squadre/${teamHomeNome}`)).json())[0];
-    const teamAway = (await (await fetch(`${host}/api/${league}/squadre/${teamAwayNome}`)).json())[0];
-
-    const homeH2H = (await (await fetch(`${host}/api/${league}/matches/h2h/${teamAway.squadra}/${teamHome.squadra}/${data}`)).json())[0];
-    const awayH2H = (await (await fetch(`${host}/api/${league}/matches/h2h/${teamHome.squadra}/${teamAway.squadra}/${data}`)).json())[0];
-    const drawH2H = 0; /*quando saranno implementate le difese del titolo recuperare il numero di pareggi*/
+    const homeH2H = (await (await fetch(`${host}/api/${league}/matches/h2h/${teamHome.squadra}/${teamAway.squadra}/${data}`)).json())[0];
+    const awayH2H = (await (await fetch(`${host}/api/${league}/matches/h2h/${teamAway.squadra}/${teamHome.squadra}/${data}`)).json())[0];
+    const drawH2H = (await (await fetch(`${host}/api/${league}/matches/draw/${teamHome.squadra}/${teamAway.squadra}/${data}`)).json())[0];
 
     const nextDate = (await (await fetch(`${host}/api/${league}/matches/${data}/next`)).json())[0];
     const previousDate = (await (await fetch(`${host}/api/${league}/matches/${data}/previous`)).json())[0];
@@ -34,7 +30,9 @@ const Page = async ({params,}: {params: Promise<{ data: string, league: string}>
                 matchInfo={{
                     date: matchData.data, 
                     location: matchData.luogo || 'Non specificato', 
-                    score: matchData.risultato || 'Non disputato'
+                    score: matchData.risultato || 'Non disputato',
+                    outcome: matchData.outcome,
+                    detentore: matchData.detentore
                 }} 
                 teamHome={{ 
                     name: teamHome.squadra, 
@@ -51,7 +49,7 @@ const Page = async ({params,}: {params: Promise<{ data: string, league: string}>
                     } 
                 }} 
                 stats={{
-                    headToHead: {home: homeH2H.h2h, away: awayH2H.h2h, draw: drawH2H}, 
+                    headToHead: {home: homeH2H.h2h, away: awayH2H.h2h, draw: drawH2H.draws}, 
                     teamHomeTitles: teamHome.regni,
                     teamAwayTitles: teamAway.regni
                 }}

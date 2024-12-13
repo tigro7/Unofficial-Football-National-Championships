@@ -1,4 +1,7 @@
-const Jersey = ({ colors }: { colors: { primary: string; secondary: string } }) => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+
+const Jersey = ({ colors, icon }: { colors: { primary: string; secondary: string;}, icon: string | null }) => {
   const primaryColor = colors.primary || "#000000"; // Default nero
   const secondaryColor = colors.secondary || "#FFFFFF"; // Default bianco
 
@@ -9,7 +12,9 @@ const Jersey = ({ colors }: { colors: { primary: string; secondary: string } }) 
         background: `linear-gradient(45deg, ${primaryColor} 50%, ${secondaryColor} 50%)`,
       }}
     >
-      <p className="text-center text-white font-bold pt-12" />
+      <p className="text-center text-white font-bold pt-12" >
+        {icon && <FontAwesomeIcon icon={fas[icon]} />}
+      </p>
     </div>
   );
 };

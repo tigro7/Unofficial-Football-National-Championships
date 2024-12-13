@@ -2,6 +2,8 @@
 
 import Jersey from "@/app/components/Jersey";
 import TeamLink from "@/app/components/TeamLink";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const containerStat = (color: string, statname: string, statvalue: number | string, description: string) => {
   return (
@@ -19,13 +21,16 @@ const getDateForLink = (date: string) => {
 };
 
 const Match = ({ matchInfo, teamHome, teamAway, stats, dates, league = "serie_a"}: { 
-  matchInfo: { date: string, location: string, score?: string }, 
+  matchInfo: { date: string, location: string, score?: string, outcome: string, detentore: string }, 
   teamHome: { name: string, colors: { primary: string, secondary: string } }, 
   teamAway: { name: string, colors: { primary: string, secondary: string } }, 
   stats: { headToHead: {home: number, away: number, draw: number}, teamHomeTitles: number, teamAwayTitles: number },
   dates: { previous: string, next: string },
   league: string
 }) => {
+    const iconHome = matchInfo.detentore === teamHome.name ? 'faCrown' : matchInfo.detentore === teamAway.name && matchInfo.outcome === 's' ? 'faFlag' : null;
+    const iconAway = matchInfo.detentore === teamAway.name ? 'faCrown' : matchInfo.detentore === teamHome.name && matchInfo.outcome === 's' ? 'faFlag' : null;
+    const iconMatch = matchInfo.outcome === 'd' ? 'faHandshake' : matchInfo.outcome === 's' ? 'faTrophy' : matchInfo.outcome === 'v' ? 'faShieldHalved' : 'faCalendar';
 
     return (
         <div className="container mx-auto mt-8 p-4 border-4 rounded-xl" style={{ borderColor: teamHome.colors.primary }}>
@@ -36,23 +41,26 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, dates, league = "serie_a"
                 <h2 className="text-2xl font-bold" style={{ color: teamHome.colors.primary }}>
                     <TeamLink league={league} teamName={teamHome.name} />
                 </h2>
-                <Jersey colors={teamHome.colors} />
+                <Jersey colors={teamHome.colors} icon={iconHome}/>
             </div>
 
             {/* Dettagli del Match */}
             <div className="text-center">
                 <h1 className="text-3xl font-bold mb-2">Match</h1>
                 <p className="text-lg italic">
-                    <a href={`/${league}/match/${getDateForLink(dates.previous)}`}>{'<'}</a>
+                    {dates.previous && <a href={`/${league}/match/${getDateForLink(dates.previous)}`}>{'<-  '}</a>}
                     {new Date(matchInfo.date).toLocaleDateString()}
-                    <a href={`/${league}/match/${getDateForLink(dates.next)}`}>{'>'}</a>
+                    {dates.next && <a href={`/${league}/match/${getDateForLink(dates.next)}`}>{'  ->'}</a>}
                 </p>
                 <p className="text-lg">{matchInfo.location}</p>
                 {matchInfo.score && (
-                <p className="text-2xl font-bold mt-2" style={{ color: teamHome.colors.primary }}>
-                    {matchInfo.score}
-                </p>
+                    
+                        <p className="text-2xl font-bold mt-2" style={{ color: teamHome.colors.primary }}>
+                            {matchInfo.score}
+                        </p>
+                    
                 )}
+                <FontAwesomeIcon icon={fas[iconMatch]} className="text-4xl mt-2" />
             </div>
 
             {/* Squadra B */}
@@ -60,7 +68,7 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, dates, league = "serie_a"
                 <h2 className="text-2xl font-bold" style={{ color: teamAway.colors.primary }}>
                     <TeamLink league={league} teamName={teamAway.name} />
                 </h2>
-                <Jersey colors={teamAway.colors} />
+                <Jersey colors={teamAway.colors} icon={iconAway}/>
             </div>
             </div>
 
