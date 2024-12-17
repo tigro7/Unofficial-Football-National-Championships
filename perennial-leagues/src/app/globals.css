@@ -49,3 +49,19 @@ body {
 .border-bronze {
   border-color: #CD7F32;
 }
+
+.bg-primary{
+  background-color: #25424c; /* Colore primario */
+}
+
+.bg-secondary{
+  background-color: #6da48f; /* Colore secondario */
+}
+
+.bg-tertiary{
+  background-color: #c5cbc7; /* Colore terziario */
+}
+
+.bg-highlights{
+  background-color: #fff0c2; /* Colore highlights */
+}
