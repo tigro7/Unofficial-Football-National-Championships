@@ -105,15 +105,15 @@ const updateStats = async (
     const centuryClub = await client.sql`SELECT matches.detentore, MAX(matches.data) as data, matches.league, cen_club.durata, cen_club.tier FROM matches 
                                             JOIN (
                                                 SELECT squadra, league, durata,
-                                                CASE WHEN durata > 3650 THEN 'gold'
-                                                    WHEN durata > 1826 THEN 'silver'
-                                                    ELSE 'bronze' 
+                                                CASE WHEN durata > 3650 THEN 'Gold'
+                                                    WHEN durata > 1826 THEN 'Silver'
+                                                    ELSE 'Bronze' 
                                                 END AS tier FROM squadre WHERE durata > 365) cen_club
                                             ON matches.detentore = cen_club.squadra 
                                             WHERE matches.detentore = ${detentoreName} AND matches.league = ${league}
                                             GROUP BY matches.detentore, matches.league, cen_club.durata, cen_club.tier`;
     console.info('centuryClub:', centuryClub?.rowCount);
-    const centuryClubStat = `Century Club ${centuryClub?.rows[0].tier}`;
+    const centuryClubStat = `Century Club - ${centuryClub?.rows[0].tier}`;
     if (centuryClub?.rowCount && centuryClub?.rowCount > 0) {
         if (await client.sql`SELECT * FROM stats WHERE league = ${league} AND statistica LIKE 'Century Club%' AND squadra = ${detentoreName}`) {
             await client.sql`UPDATE stats SET data = ${centuryClub.rows[0].data}, statistica = ${centuryClubStat}, valore = ${centuryClub.rows[0].durata}
@@ -154,7 +154,7 @@ const updateStats = async (
     //8. title traveller
 
     //9. sleeping giant
-    const sleepingGiant = await client.sql`SELECT t2.*
+    const sleepingGiant = await client.sql`SELECT t2.*, t2.data - t1.data as sleep_duration
                                             FROM matches AS t1
                                             JOIN matches AS t2
                                             ON t1.detentore = t2.detentore
@@ -169,11 +169,11 @@ const updateStats = async (
                                                 AND t3."data" > t1.data
                                                 AND t3.data < t2.data
                                             )
-                                            GROUP BY t2."data", t2.league
+                                            GROUP BY t2."data", t2.league, t2.data - t1.data
                                             ORDER BY t2.data ASC`;
     if (sleepingGiant?.rowCount && sleepingGiant?.rowCount > 0) {
-        await client.sql`INSERT INTO stats (squadra, DATA, league, statistica) 
-        VALUES (${detentoreName}, ${data}, ${league}, 'Sleeping Gianta')`;
+        await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore) 
+        VALUES (${detentoreName}, ${data}, ${league}, 'Sleeping Giant', ${sleepingGiant.rows[0].sleep_duration})`;
     }
 
     console.info('sleepingGiant:', sleepingGiant?.rowCount);
@@ -184,11 +184,11 @@ const updateStats = async (
     //1. Iron legacy
     const ironLegacy = await client.sql`SELECT matches.detentore, MAX(matches.data) as data, matches.league, iron.regni, iron.tier FROM matches JOIN (
                                             SELECT squadra, league, regni,
-                                            CASE WHEN regni > 100 THEN 'platinum'
-                                                WHEN regni > 50 THEN 'gold'
-                                                WHEN regni > 25 THEN 'silver'
-                                                WHEN regni > 15 THEN 'bronze'
-                                                ELSE 'iron' 
+                                            CASE WHEN regni > 100 THEN 'Platinum'
+                                                WHEN regni > 50 THEN 'Gold'
+                                                WHEN regni > 25 THEN 'Silver'
+                                                WHEN regni > 15 THEN 'Bronze'
+                                                ELSE 'Iron' 
                                             END AS tier FROM squadre WHERE regni > 10) iron
                                             ON matches.detentore = iron.squadra 
                                             WHERE matches.detentore = ${detentoreName} AND matches.league = ${league}
@@ -255,8 +255,7 @@ const updateStats = async (
     }
 
     //5. All-time rivals
-    const allTimeRivals = await client.sql`
-                                            SELECT matches.detentore, all_time.sfidante, MAX(matches.data) as data, matches.league, all_time.tot FROM matches 
+    const allTimeRivals = await client.sql`SELECT matches.detentore, all_time.sfidante, MAX(matches.data) as data, matches.league, all_time.tot FROM matches 
                                             JOIN (
                                                 SELECT * FROM (SELECT COUNT(*) AS tot, detentore, sfidante FROM matches WHERE outcome = 's' GROUP BY detentore, sfidante) t
                                                 WHERE t.tot >= 5) all_time

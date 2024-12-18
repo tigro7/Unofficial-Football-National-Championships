@@ -4,6 +4,8 @@ import "@/app/utils/setupCharts";
 import Jersey from "@/app/components/Jersey";
 import TimelineChart from "@/app/components/TimelineChart";
 import StatContainer from "@/app/components/StatContainer";
+import TeamStats from "@/app/components/TeamStats";
+import { useEffect, useState } from "react";
 
 const generateTimeline = (regni: { start: string; end: string }[], startDate: string) => {
   const timeline = [];
@@ -70,6 +72,22 @@ const generateTimeline = (regni: { start: string; end: string }[], startDate: st
 const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = "serie_a"}: 
   {squadra: string, stats: {regni: number, durataCombinata: number, durataMedia: number}, colors: {primary: string, secondary: string}, regni:{ start: string, end: string }[], startDate: string, posizioni: {regni: number, durata: number, media: number}, league: string}) => {
 
+  const [iconStats, setStats] = useState([]);
+
+    useEffect(() => {
+      const fetchStats = async () => {
+        try {
+          const response = await fetch(`/api/${league}/stats/${squadra}`);
+          const data = await response.json();
+          setStats(data);
+        } catch (error) {
+          console.error("Errore nel caricamento delle statistiche", error);
+        }
+      };
+  
+      fetchStats();
+  }, [league, squadra]);
+
   if (!squadra || !stats || !colors) {
     return <div>Errore: dati non disponibili</div>;
   }
@@ -93,15 +111,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
       </div>
 
       <div className="flex justify-around mb-6">
-        <StatContainer statName="Primo" statValue={1} color={colors.secondary} position={' '} 
-          positionPrefix={`Inizio: ${(new Date(regni[0].start)).toLocaleDateString()}`} 
-          positionSuffix={`Fine: ${(new Date(regni[0].end)).toLocaleDateString()}`}
-        />
-        <StatContainer statName="Ultimo" statValue={regni.length} color={colors.secondary} position={' '}
-          positionPrefix={`Inizio: ${(new Date(regni[regni.length - 1].start)).toLocaleDateString()}`}
-          positionSuffix={`Fine: ${(new Date(regni[regni.length - 1].end)).toLocaleDateString()}`}
-        />
-
+        <TeamStats stats={iconStats} />
       </div>
       
       <div className="flex justify-around mb-6">

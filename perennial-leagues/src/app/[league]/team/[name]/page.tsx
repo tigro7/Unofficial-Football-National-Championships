@@ -18,9 +18,9 @@ const TeamPage = async ({params,}: {params: Promise<{ name: string, league: stri
     const regni = await fetch (`${host}/api/${league}/regni/${teamData.squadra}`).then(res => res.json());
     const startDate = await fetch (`${host}/api/${league}/start`).then(res => res.json()).then(data => data[0].data);
 
-    const posizioneRegni = await fetch (`${host}/api/${league}/regni/posizione/${teamData.regni}`).then(res => res.json()).then(data => data[0].position);
-    const posizioneDurata = await fetch (`${host}/api/${league}/durata/posizione/${teamData.durata}`).then(res => res.json()).then(data => data[0].position);
-    const posizioneMedia = await fetch (`${host}/api/${league}/media/posizione/${teamData.media}`).then(res => res.json()).then(data => data[0].position);
+    const posizioneRegni = teamData.position_regni;
+    const posizioneDurata = teamData.position_durata;
+    const posizioneMedia = teamData.position_media;
 
     return (
         <ErrorBoundary>
