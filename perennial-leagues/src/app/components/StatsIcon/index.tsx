@@ -1,12 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import statsMap from "@/app/utils/statsMap";
 
-interface StatsIconProps {
-  statName: string;
-  statTitle?: string;
-}
-
-const StatsIcon: React.FC<StatsIconProps> = ({ statName, statTitle}) => {
+const StatsIcon = ({ statName, statTitle} : {
+    statName: string;
+    statTitle?: string;
+  }) => {
     const icon = Object.keys(statsMap).find((key) => statName.toLowerCase().includes(key.toLowerCase())) || "Question Circle";
     return (
         //gestisci il colore in base ai colori della squadra, tranne nel caso in cui in statName vi sia Iron, Bronze, Silver o Gold

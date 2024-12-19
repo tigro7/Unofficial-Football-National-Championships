@@ -16,18 +16,34 @@ export async function GET(request: Request, {params,}: {params: Promise<{league:
 
         const regni : {squadra: string, start: string, end: string }[] = [];
         let currentStart: string | null = null;
+        let currentDetentore: string | null = null;
 
         for (const match of matches) {
-            if (currentStart == null) {
+            // Inizializzazione del primo regno
+            if (currentDetentore == null && currentStart == null) {
+                currentDetentore = match.detentore;
                 currentStart = match.data;
-            }else if (currentStart) {
-                regni.push({squadra: match.sfidante.toLowerCase(), start: currentStart, end: match.data });
-                currentStart = null;
+            }else if (currentDetentore != null && match.outcome === "s") {
+                if (currentStart) {
+                    regni.push({
+                        squadra: currentDetentore.toLowerCase(),
+                        start: currentStart,
+                        end: match.data,
+                    });
+                }
+                // Aggiorna il detentore e il nuovo inizio del regno
+                currentDetentore = match.detentore;
+                currentStart = match.data;
             }
         }
-
-        if (currentStart) {
-            regni.push({squadra: matches[matches.length - 1].detentore.toLowerCase(), start: currentStart, end: new Date().toISOString() });
+        
+        // Aggiungi l'ultimo regno se esiste
+        if (currentStart && currentDetentore) {
+            regni.push({
+                squadra: currentDetentore.toLowerCase(),
+                start: currentStart,
+                end: new Date().toISOString(),
+            });
         }
     
         return NextResponse.json(regni, { status: 200 });

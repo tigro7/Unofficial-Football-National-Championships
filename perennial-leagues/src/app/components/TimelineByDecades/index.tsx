@@ -27,12 +27,13 @@ const TimelineByDecades = ({ segments, league = "serie_a" }: {segments :{ start:
     const openSquadPage = (squadra: string) => {
         window.location.href = `/${league}/team/${squadra}`;
     };
+
+    let regniACavallo = segments.reduce((sum, segment) => sum + segment.regni.reduce((sum, regno) => sum + (regno.startsbefore ? 1 : 0), 0 ), 0);
     
     return(
         <div className="relative w-full">
             {segments.map((segment, index) => {
                 const totalDuration = segment.regni.reduce((sum, regno) => sum + regno.duration, 0);
-                let regniACavallo = 0;
                 const segIndex = index;
                 let previousLeftPosition = 0;
                 return (
@@ -47,7 +48,7 @@ const TimelineByDecades = ({ segments, league = "serie_a" }: {segments :{ start:
                             <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-300 z-10">
                                 {segment.regni.map((regno, index) => {
                                     if (regno.startsbefore) {
-                                        regniACavallo++;
+                                        regniACavallo--;
                                     }
                                     const percentage = (regno.duration / totalDuration) * 100;
                                     const leftPosition = `${previousLeftPosition}%`;
@@ -55,7 +56,7 @@ const TimelineByDecades = ({ segments, league = "serie_a" }: {segments :{ start:
                                     const totalSegments = segments.reduce((sum, segment) => sum + segment.regni.length, 0);
                                     const previousSegmentSum = segIndex > 0 ? segments.slice(0, segIndex).reduce((sum, segment) => sum + segment.regni.length, 0) : 0;
                                     const indiceUltimoNelSegmento = totalSegments - previousSegmentSum;
-                                    const indiceDelRegno = indiceUltimoNelSegmento - (segment.regni.length - index) + 1 - regniACavallo;
+                                    const indiceDelRegno = indiceUltimoNelSegmento - (segment.regni.length - index) - regniACavallo + (segIndex == segments.length - 1 ? 1 : 0);
                                     return (
                                         <div key={index} className="absolute h-2 z-10"
                                             style={{

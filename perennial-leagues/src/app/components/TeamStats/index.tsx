@@ -1,30 +1,28 @@
-import React from "react";
 import StatsIcon from "../StatsIcon";
 import statsMap from "@/app/utils/statsMap";
 
-interface StatRecord {
-  squadra: string;
-  data: string;
-  league: string;
-  statistica: string;
-  valore: string | null;
-}
-
-interface TeamStatsProps {
-  stats: StatRecord[];
-  match?: boolean;
-}
-
-const TeamStats: React.FC<TeamStatsProps> = ({ stats, match = false }) => {
+const TeamStats = ({ stats, match = false } : {
+    stats: {
+        squadra: string;
+        data: string;
+        league: string;
+        statistica: string;
+        valore: string | null;
+      }[];
+    match?: boolean;
+  }) => {
     return (
         <div className="team-stats-container m-5 w-full">
             <div className="stats-grid grid grid-cols-[repeat(auto-fill,_minmax(150px,_1fr))] gap-5">
                 {stats.map((stat, index) => {
-                    const statInfo = statsMap[Object.keys(statsMap).find((key) => stat.statistica.toLowerCase().includes(key.toLowerCase())) || "Question Circle"];
+                    // Trova informazioni relative alla statistica
+                    const statKey = Object.keys(statsMap).find((key) => stat.statistica.toLowerCase().includes(key.toLowerCase())) || "Question Circle";
+                    const statInfo = statsMap[statKey];
                     const valueProcessor = statInfo.valueProcessor;
                     const localeDate = new Date(stat.data).toLocaleDateString();
+                    
                     return (
-                        <div key={index} className="stat-item text-center p-3 border border-gray-300 rounded-lg shadow-sm"
+                        <div key={index} className="text-center shadow-md rounded-md p-2"
                             onClick={(event) => {
                                     if (match){
                                         event.preventDefault();
@@ -33,11 +31,11 @@ const TeamStats: React.FC<TeamStatsProps> = ({ stats, match = false }) => {
                                     window.location.href = `/${stat.league}/match/${localeDate.split('/').reverse().join('-')}`;
                                 }}>
                             <StatsIcon statName={stat.statistica} statTitle={statInfo.title} />
-                            <div className="stat-details font-semibold text-lg">
-                                <p>{stat.statistica}</p>
-                                <p>{localeDate}</p>
-                                {stat.valore  && 
-                                    <p>
+                            <div>
+                                <p className="text-xl font-semibold">{stat.statistica}</p>
+                                <p className="text-sm italic mt-2">{localeDate}</p>
+                                {stat.valore !== null && 
+                                    <p className="text-lg mt-2">
                                         {valueProcessor ? valueProcessor(Number(stat.valore)) : stat.valore}
                                     </p>
                                 }

@@ -26,12 +26,16 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
     "Back to Back": {
       icon: faRotateRight,
       title: "Regain the title after losing it in less than 2 months",
+      valueProcessor: (value) => {
+        if (value === null) return "";
+        return daysToYears(value);
+      }
     },
     "Longest Reign": {
       icon: faCrown,
       title: "Longest time holding the title",
       valueProcessor: (value) => {
-        if (!value) return "";
+        if (value === null) return "";
         return daysToYears(value);
       },
     },
@@ -39,7 +43,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
       icon: faHourglassEnd,
       title: "Shortest time holding the title",
       valueProcessor: (value) => {
-        if (!value) return "";
+        if (value === null) return "";
         return daysToYears(value);
       },
     },
@@ -47,7 +51,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
       icon: faMountain,
       title: "Win the title after a long period of inactivity (at least 10 years)",
       valueProcessor: (value) => {
-        if (!value) return "";
+        if (value === null) return "";
         return daysToYears(value);
       },
     },
@@ -55,7 +59,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
       icon: faMedal,
       title: "Hold the title for at least 1 year combined",
       valueProcessor: (value) => {
-        if (!value) return "";
+        if (value === null) return "";
         return daysToYears(value);
       },
     },
@@ -63,7 +67,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
       icon: faStar,
       title: "Hold the title for at least 5 years combined",
       valueProcessor: (value) => {
-        if (!value) return "";
+        if (value === null) return "";
         return daysToYears(value);
       },
     },
@@ -71,7 +75,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
       icon: faTrophy,
       title:"Hold the title for at least 10 years combined",
       valueProcessor: (value) => {
-        if (!value) return "";
+        if (value === null) return "";
         return daysToYears(value);
       },
     },
@@ -114,7 +118,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
       icon: faBuildingColumns,
       title: "Hold the title for at least 1 year in a decade",
       valueProcessor: (value) => {
-        if (!value) return "";
+        if (value === null) return "";
         return daysToYears(value);
       },
     },
@@ -129,13 +133,17 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
       icon: faChessKing,
       title: "Win the title from the longest reigning champion (first 10 reigns)",
       valueProcessor: (value) => {
-        if (!value) return "";
+        if (value === null) return "";
         return `Reign had lasted for ${daysToYears(value)}`;
       },
     },
     "Title Avenger": {
       icon: faUndo,
       title: "Win the title back from the same opponent",
+      valueProcessor: (value) => {
+        if (value === null) return "";
+        return value == 0 ? `Won back without changing hands` : `After ${value} reigns`;
+      }
     },
     "Question Circle": {
       icon: faQuestionCircle,
