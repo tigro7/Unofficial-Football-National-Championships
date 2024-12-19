@@ -12,12 +12,11 @@ const Jersey = ({ colors, icon }: { colors: { primary: string; secondary: string
         background: `linear-gradient(45deg, ${primaryColor} 50%, ${secondaryColor} 50%)`,
       }}
     >
-      {icon && <p className="text-center bg-black/10 relative top-8 left-8 w-16 h-16 pt-4 rounded-full" >
-         <FontAwesomeIcon icon={fas[icon]} size="2x" 
-        style={{ color: icon === 'faCrown' ? 'gold' : 'white', }}
-        border={icon === 'faCrown' && (primaryColor === '#FFD700' || secondaryColor) === '#FFD700' ? true : icon === 'faFlag' && (primaryColor === '#FFFFFF' || secondaryColor === '#FFFFFF') ? true : false}
-        />
-      </p>}
+      {icon && 
+        <p className="text-center bg-black/10 relative top-8 left-8 w-16 h-16 pt-4 rounded-full" >
+          <FontAwesomeIcon icon={fas[icon]} size="2x" style={{ color: icon === 'faCrown' ? 'gold' : 'white', }}/>
+        </p>
+      }
     </div>
   );
 };
