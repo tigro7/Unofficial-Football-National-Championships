@@ -187,7 +187,12 @@ const updateStats = async (
 
     console.info('sleepingGiant:', sleepingGiant?.rowCount);
 
-    //10. millenial/boomer già definita
+    //10. millenial/boomer
+    //se boomer rimuovi stats, se non sono presenti regni aggiunti millenial
+    await client.sql`DELETE FROM stats WHERE league = ${league} AND squadra = ${detentoreName} AND statistica LIKE 'Boomer'`;
+    if (teamFromDB?.rows[0]?.regni === 0) {
+        await client.sql`INSERT INTO stats (squadra, DATA, league, statistica) VALUES (${detentoreName}, ${data}, ${league}, 'Millenial')`;
+    }
 
     //LIVELLO 3
     //1. Iron legacy

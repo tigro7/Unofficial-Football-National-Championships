@@ -3,7 +3,6 @@ import {
   faCrown,
   faHourglassEnd,
   faMountain,
-  //faShield,
   faMedal,
   faStar,
   faTrophy,
@@ -13,6 +12,8 @@ import {
   faChessKing,
   faUndo,
   faQuestionCircle,
+  faBabyCarriage,
+  faPersonCane,
 } from "@fortawesome/free-solid-svg-icons";
 
 const daysToYears = (days: number) => {
@@ -144,6 +145,14 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
         if (value === null) return "";
         return value == 0 ? `Won it back without changing hands` : `After ${value} reigns`;
       }
+    },
+    "Millenial": {
+      icon: faBabyCarriage,
+      title: "Win the first title after 2000",
+    },
+    "Boomer": {
+      icon: faPersonCane,
+      title: "Win the first title before 1945",
     },
     "Question Circle": {
       icon: faQuestionCircle,
