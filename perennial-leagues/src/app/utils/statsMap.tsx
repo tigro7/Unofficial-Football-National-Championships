@@ -142,7 +142,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
       title: "Win the title back from the same opponent",
       valueProcessor: (value) => {
         if (value === null) return "";
-        return value == 0 ? `Won back without changing hands` : `After ${value} reigns`;
+        return value == 0 ? `Won it back without changing hands` : `After ${value} reigns`;
       }
     },
     "Question Circle": {
