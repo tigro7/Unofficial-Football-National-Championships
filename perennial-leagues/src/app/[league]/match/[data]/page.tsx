@@ -16,10 +16,12 @@ const Page = async ({params,}: {params: Promise<{ data: string, league: string}>
 
     const teamHome = (await (await fetch(`${host}/api/${league}/squadre/${matchData.home}`)).json())[0];
     const teamAway = (await (await fetch(`${host}/api/${league}/squadre/${matchData.away}`)).json())[0];
+    const homeReigns = (await (await fetch(`${host}/api/${league}/regni/${matchData.home}/${data}`)).json())[0].regni;
+    const awayReigns = (await (await fetch(`${host}/api/${league}/regni/${matchData.away}/${data}`)).json())[0].regni;
 
-    const homeH2H = (await (await fetch(`${host}/api/${league}/matches/h2h/${teamHome.squadra}/${teamAway.squadra}/${data}`)).json())[0];
-    const awayH2H = (await (await fetch(`${host}/api/${league}/matches/h2h/${teamAway.squadra}/${teamHome.squadra}/${data}`)).json())[0];
-    const drawH2H = (await (await fetch(`${host}/api/${league}/matches/draw/${teamHome.squadra}/${teamAway.squadra}/${data}`)).json())[0];
+    const h2h = (await (await fetch(`${host}/api/${league}/matches/h2h/${teamHome.squadra}/${teamAway.squadra}/${data}`)).json())[0];
+    //const awayH2H = (await (await fetch(`${host}/api/${league}/matches/h2h/${teamAway.squadra}/${teamHome.squadra}/${data}`)).json())[0];
+    //const drawH2H = (await (await fetch(`${host}/api/${league}/matches/draw/${teamHome.squadra}/${teamAway.squadra}/${data}`)).json())[0];
 
     const nextDate = (await (await fetch(`${host}/api/${league}/matches/${data}/next`)).json())[0];
     const previousDate = (await (await fetch(`${host}/api/${league}/matches/${data}/previous`)).json())[0];
@@ -49,9 +51,9 @@ const Page = async ({params,}: {params: Promise<{ data: string, league: string}>
                     } 
                 }} 
                 stats={{
-                    headToHead: {home: homeH2H.h2h, away: awayH2H.h2h, draw: drawH2H.draws}, 
-                    teamHomeTitles: teamHome.regni,
-                    teamAwayTitles: teamAway.regni
+                    headToHead: {home: h2h.wond, away: h2h.wons, draw: h2h.draw}, 
+                    teamHomeTitles: homeReigns,
+                    teamAwayTitles: awayReigns
                 }}
                 dates={{
                     previous: previousDate?.data || '',

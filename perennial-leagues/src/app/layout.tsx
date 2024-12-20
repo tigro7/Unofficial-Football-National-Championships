@@ -29,7 +29,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/ufnc.ico" sizes="any" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-secondary`}>
         <Layout>
           {children}
         </Layout>

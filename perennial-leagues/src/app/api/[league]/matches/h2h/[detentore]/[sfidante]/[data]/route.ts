@@ -14,7 +14,31 @@ export async function GET(request: Request, {params,}: {params: Promise<{ detent
 
     try {
         const client = await db.connect();
-        const parametricQuery = `SELECT COUNT(*) as H2H FROM matches WHERE (outcome = 's' OR outcome = 'v') AND LOWER(detentore) = $1 AND LOWER(sfidante) = $2 AND league = $3 ${data ? `AND data < $4` : ''}`;
+        const parametricQuery = `SELECT 
+                                    (SELECT COUNT(*) 
+                                    FROM matches 
+                                    WHERE (outcome = 's' OR outcome = 'v') 
+                                    AND LOWER(detentore) = $1
+                                    AND LOWER(sfidante) = $2
+                                    AND league = $3
+                                    ${data ? `AND data < $4` : ''}) AS wond,
+                                    
+                                    (SELECT COUNT(*) 
+                                    FROM matches 
+                                    WHERE outcome = 'p' 
+                                    AND LOWER(detentore) = $1
+                                    AND LOWER(sfidante) = $2
+                                    AND league = $3 
+                                    ${data ? `AND data < $4` : ''}) AS draw,
+                                    
+                                    (SELECT COUNT(*) 
+                                    FROM matches 
+                                    WHERE (outcome = 's' OR outcome = 'v') 
+                                    AND LOWER(detentore) = $2
+                                    AND LOWER(sfidante) = 'milan' 
+                                    AND league = $3 
+                                    ${data ? `AND data < $4` : ''}) AS wons`;
+        //const parametricQuery = `SELECT COUNT(*) as H2H FROM matches WHERE (outcome = 's' OR outcome = 'v') AND LOWER(detentore) = $1 AND LOWER(sfidante) = $2 AND league = $3 ${data ? `AND data < $4` : ''}`;
         const values = data ? [detentore.toLowerCase(), sfidante.toLowerCase(), league, data] : [detentore.toLowerCase(), sfidante.toLowerCase(), league];
         const rows = await client.query(parametricQuery, values);
 

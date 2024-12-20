@@ -11,7 +11,7 @@ const generateTimeline = (regni: { start: string; end: string }[], startDate: st
   const timeline = [];
   const today = new Date().toISOString();
 
-  // Aggiungere un regno vuoto all'inizio, se necessario
+  // Aggiungere un regno vuoto all'Started, se necessario
   if (new Date(startDate).getTime() < new Date(regni[0].start).getTime()) {
     timeline.push({
       start: startDate,
@@ -53,7 +53,7 @@ const generateTimeline = (regni: { start: string; end: string }[], startDate: st
     }
   }
 
-  // Aggiungere un regno vuoto alla fine, se necessario
+  // Aggiungere un regno vuoto alla Ended, se necessario
   if (new Date(today).getTime() > new Date(regni[regni.length - 1].end).getTime()) {
     timeline.push({
       start: regni[regni.length - 1].end,
@@ -96,18 +96,26 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
   const longestReign = timeLineData.filter(regno => regno.team).reduce((prev, curr) =>{return prev.duration > curr.duration ? prev : curr;})
   const shortestReign = timeLineData.filter(regno => regno.team).reduce((prev, curr) =>{return prev.duration < curr.duration ? prev : curr;})
 
+  const numeralSuffix = (num: number) => {
+    const lastDigit = num.toString().slice(-1);
+    if (lastDigit === '1') return "st";
+    if (lastDigit === '2') return "nd";
+    if (lastDigit === '3') return "rd";
+    return "th";
+  }
+
   return(
-    <div className="container mx-auto mt-8 p-4 border-4 rounded-xl" style={{ borderColor: colors.primary }}>
+    <div className="container mx-auto mt-8 p-4 border-4 rounded-xl shadow-md bg-slate-50">
       {/* Nome della Squadra */}
-      <h1 className="text-4xl font-bold text-center mb-6 rounded-xl" style={{ color: colors.primary, backgroundColor: colors.secondary}}>
+      <h1 className="text-4xl font-bold text-center mb-6 rounded-xl">
         {`${squadra.charAt(0).toUpperCase()}${squadra.slice(1)}`}
       </h1>
 
       {/* Stats e Posizioni */}
       <div className="flex justify-around mb-6">
-        <StatContainer statName="Regni" statValue={stats.regni} position={posizioni.regni} positionSuffix="° nella classifica totale" color={colors.primary} />
-        <StatContainer statName="Durata Combinata" statValue={stats.durataCombinata} valueSuffix=" giorni" position={posizioni.durata} positionSuffix="° nella classifica totale" color={colors.primary} />
-        <StatContainer statName="Durata Media" statValue={stats.durataMedia} valueSuffix=" giorni" position={posizioni.media} positionSuffix="° nella classifica totale" color={colors.primary} />
+        <StatContainer statName="Total Titles" statValue={stats.regni} position={posizioni.regni} positionSuffix={`${numeralSuffix(posizioni.regni)} overall`} color={"#000000"} />
+        <StatContainer statName="Combined Duration" statValue={stats.durataCombinata} valueSuffix=" days" position={posizioni.durata} positionSuffix={`${numeralSuffix(posizioni.durata)} overall`} color={"#000000"} />
+        <StatContainer statName="Average Duration" statValue={stats.durataMedia} valueSuffix=" days" position={posizioni.media} positionSuffix={`${numeralSuffix(posizioni.media)} overall`} color={"#000000"} />
       </div>
 
       <div className="flex justify-around mb-6">
@@ -115,13 +123,13 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
       </div>
       
       <div className="flex justify-around mb-6">
-        <StatContainer statName="Il più lungo" statValue={longestReign.duration} valueSuffix=" giorni" color={colors.primary}
-          position={' '} positionPrefix={`Inizio: ${(new Date(longestReign.start)).toLocaleDateString()}`}
-          positionSuffix={`Fine: ${(new Date(longestReign.end)).toLocaleDateString()}`}
+        <StatContainer statName="Longest Reign" statValue={longestReign.duration} valueSuffix=" days" color={"#000000"}
+          position={' '} positionPrefix={`Started: ${(new Date(longestReign.start)).toLocaleDateString()}`}
+          positionSuffix={`Ended: ${(new Date(longestReign.end)).toLocaleDateString()}`}
         />
-        <StatContainer statName="Il più corto" statValue={shortestReign.duration} valueSuffix=" giorni" color={colors.primary}
-          position={' '} positionPrefix={`Inizio: ${(new Date(shortestReign.start)).toLocaleDateString()}`}
-          positionSuffix={`Fine: ${(new Date(shortestReign.end)).toLocaleDateString()}`}
+        <StatContainer statName="Shortest Reign" statValue={shortestReign.duration} valueSuffix=" days" color={"#000000"}
+          position={' '} positionPrefix={`Started: ${(new Date(shortestReign.start)).toLocaleDateString()}`}
+          positionSuffix={`Ended: ${(new Date(shortestReign.end)).toLocaleDateString()}`}
         />
       </div>
 
@@ -130,7 +138,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
       </div>
 
       <div className="py-10">     
-        <TimelineChart regni={timeLineData} primaryColor={colors.primary} secondaryColor={colors.secondary} league={league}/>
+        <TimelineChart regni={timeLineData} primaryColor={"#000000"} secondaryColor={colors.secondary} league={league}/>
       </div>
     </div>
   );

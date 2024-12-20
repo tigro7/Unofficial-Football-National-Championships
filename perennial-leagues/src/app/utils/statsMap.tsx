@@ -152,7 +152,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
     },
     "Boomer": {
       icon: faPersonCane,
-      title: "Win the first title before 1945",
+      title: "Win the last title before 1945",
     },
     "Question Circle": {
       icon: faQuestionCircle,

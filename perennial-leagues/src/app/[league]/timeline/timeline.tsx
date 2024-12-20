@@ -122,7 +122,7 @@ const Timeline = ({squadre, regni, startDate, league = "serie_a"}: {squadre: {sq
     const totalSpan = calculateDateDifference(new Date(startDate), new Date());
   
     return(
-        <div className="container mx-auto mt-8 p-4 border-4 border-gold">
+        <div className="container mx-auto mt-8 p-4 border-4 border-gold bg-slate-50">
             {/* Titolo */}
             <h1 className="text-4xl font-bold text-center mb-6">
               Cronologia dei Regni
@@ -138,13 +138,13 @@ const Timeline = ({squadre, regni, startDate, league = "serie_a"}: {squadre: {sq
             {/* Il più lungo e il più corto */}
             <div className="flex justify-around mb-6">
               {containerStat(
-                longChamp?.colors.primary || 'black',
+                'black',
                 'Regno più lungo', 
                 <> <TeamLink league={league} teamName={longChamp?.squadra || ''} />: {duration(longestReign)} Giorni </>, 
                 `Inizio: ${(new Date(longestReign.start)).toLocaleDateString()} Fine: ${(new Date(longestReign.end)).toLocaleDateString()}`
               )}
               {containerStat(
-                shortChamp?.colors.primary || 'black', 
+                'black', 
                 'Regno più corto', 
                 <> <TeamLink league={league} teamName={shortChamp?.squadra || ''} />: {duration(shortestReign)} Giorni </>, 
                 `Inizio: ${(new Date(shortestReign.start)).toLocaleDateString()} Fine: ${(new Date(shortestReign.end)).toLocaleDateString()}`
@@ -153,10 +153,10 @@ const Timeline = ({squadre, regni, startDate, league = "serie_a"}: {squadre: {sq
 
             {/* Campione Attuale */}
             <div className="flex flex-col items-center mb-6">
-                <p className="text-xl font-semibold text-center" style={{ color: actualChamp?.colors.primary }}>
+                <p className="text-xl font-semibold text-center">
                     Campione Attuale
                 </p>
-                <p className="text-3xl font-bold" style={{ color: actualChamp?.colors.secondary }}>
+                <p className="text-3xl font-bold">
                     <TeamLink league={league} teamName={actualChamp?.squadra || ''} />
                 </p>
                 <Jersey colors={actualChamp?.colors || {primary: '#000000', secondary: '#ffffff'}} icon={null}/>

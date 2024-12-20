@@ -51,12 +51,12 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, dates, league = "serie_a"
       }, [league, matchInfo.date]);
 
     return (
-        <div className="container mx-auto mt-8 p-4 border-4 rounded-xl" style={{ borderColor: teamHome.colors.primary }}>
+        <div className="container mx-auto mt-8 p-4 border-4 rounded-xl bg-slate-50">
             {/* Intestazione con nomi delle squadre e maglie */}
             <div className="flex justify-between items-center mb-6">
                 {/* Squadra A */}
                 <div className="flex flex-col items-center">
-                    <h2 className="text-2xl font-bold" style={{ color: teamHome.colors.primary }}>
+                    <h2 className="text-2xl font-bold">
                         <TeamLink league={league} teamName={teamHome.name} />
                     </h2>
                     <Jersey colors={teamHome.colors} icon={iconHome}/>
@@ -73,17 +73,22 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, dates, league = "serie_a"
                     <p className="text-lg">{matchInfo.location}</p>
                     {matchInfo.score && (
                         
-                            <p className="text-2xl font-bold mt-2" style={{ color: teamHome.colors.primary }}>
+                            <p className="text-2xl font-bold mt-2">
                                 {matchInfo.score}
                             </p>
                         
                     )}
-                    <FontAwesomeIcon icon={fas[iconMatch]} className="text-4xl mt-2" />
+                    <FontAwesomeIcon icon={fas[iconMatch]} className="text-4xl mt-2" color={iconMatch == 'faTrophy' ? 'gold' : ''}
+                      title={iconMatch == 'faTrophy' ? `Won by ${matchInfo.detentore}` : 
+                              iconMatch == 'faCalendar' ? 'Scheduled' : 
+                                iconMatch == 'faHandshake' ? `Draw (${matchInfo.detentore} still reigns)` :
+                                 `Defended by ${matchInfo.detentore}`}
+                    />
                 </div>
 
                 {/* Squadra B */}
                 <div className="flex flex-col items-center">
-                    <h2 className="text-2xl font-bold" style={{ color: teamAway.colors.primary }}>
+                    <h2 className="text-2xl font-bold">
                         <TeamLink league={league} teamName={teamAway.name} />
                     </h2>
                     <Jersey colors={teamAway.colors} icon={iconAway}/>
@@ -96,9 +101,9 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, dates, league = "serie_a"
 
             {/* Statistiche principali */}
             <div className="flex justify-around mb-6">
-            {containerStat(teamHome.colors.primary, `Titoli di ${teamHome.name}`, stats.teamHomeTitles, `Totale titoli vinti da ${teamHome.name}`)}
-            {containerStat(teamHome.colors.primary, 'Testa a Testa', `${stats.headToHead.home} ${stats.headToHead.draw} ${stats.headToHead.away}`, 'Titoli giocati tra le squadre')}
-            {containerStat(teamAway.colors.primary, `Titoli di ${teamAway.name}`, stats.teamAwayTitles, `Totale titoli vinti da ${teamAway.name}`)}
+            {containerStat('#000000', `${teamHome.name} titles`, stats.teamHomeTitles, `${teamHome.name} titles up to this match`)}
+            {containerStat('#000000', 'Head to Head', `${stats.headToHead.home} ${stats.headToHead.draw} ${stats.headToHead.away}`, 'H2H leading up to this match')}
+            {containerStat('#000000', `${teamAway.name} titles`, stats.teamAwayTitles, `${teamAway.name} titles up to this match`)}
             </div>
         </div>
     );
