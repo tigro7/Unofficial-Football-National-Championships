@@ -53,12 +53,18 @@ body {
 .bg-primary {
   background-color: #25424c; /* Colore primario */
 }
+.text-primary {
+  color: #25424c;
+}
 .border-primary {
   border-color: #25424c;
 }
 
 .bg-secondary {
   background-color: #6da48f; /* Colore secondario */
+}
+.text-secondary {
+  color: #6da48f;
 }
 .border-secondary {
   border-color: #6da48f;
@@ -67,12 +73,18 @@ body {
 .bg-tertiary {
   background-color: #c5cbc7; /* Colore terziario */
 }
+.text-tertiary {
+  color: #c5cbc7;
+}
 .border-tertiary {
   border-color: #c5cbc7;
 }
 
 .bg-highlights {
   background-color: #fff0c2; /* Colore highlights */
+}
+.text-highlights {
+  color: #fff0c2;
 }
 .border-highlights {
   border-color: #fff0c2;

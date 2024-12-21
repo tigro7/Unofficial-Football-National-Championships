@@ -114,7 +114,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
       {/* Stats e Posizioni */}
       <div className="flex justify-around mb-6">
         <StatContainer statName="Total Titles" statValue={stats.regni} position={posizioni.regni} positionSuffix={`${numeralSuffix(posizioni.regni)} overall`} color={"#000000"} />
-        <StatContainer statName="Combined Duration" statValue={stats.durataCombinata} valueSuffix=" days" position={posizioni.durata} positionSuffix={`${numeralSuffix(posizioni.durata)} overall`} color={"#000000"} />
+        <StatContainer statName="Combined Duration" statValue={stats.durataCombinata} valueSuffix=" days" position={posizioni.durata} positionSuffix={`${numeralSuffix(posizioni.durata)} overall`} color={"#000000"} />àù
         <StatContainer statName="Average Duration" statValue={stats.durataMedia} valueSuffix=" days" position={posizioni.media} positionSuffix={`${numeralSuffix(posizioni.media)} overall`} color={"#000000"} />
       </div>
 

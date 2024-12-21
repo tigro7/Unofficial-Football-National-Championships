@@ -1,21 +1,12 @@
 'use client'
 
 import Jersey from "@/app/components/Jersey";
+import StatContainer from "@/app/components/StatContainer";
 import TeamLink from "@/app/components/TeamLink";
 import TeamStats from "@/app/components/TeamStats";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-
-const containerStat = (color: string, statname: string, statvalue: number | string, description: string) => {
-  return (
-    <div className="text-center" style={{ color }}>
-      <p className="text-xl font-semibold">{statname}</p>
-      <p className="text-3xl">{statvalue}</p>
-      <p className="text-sm italic mt-2">{description}</p>
-    </div>
-  );
-};
 
 const getDateForLink = (date: string) => {
     const localDate = new Date(date).toLocaleDateString();
@@ -101,9 +92,9 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, dates, league = "serie_a"
 
             {/* Statistiche principali */}
             <div className="flex justify-around mb-6">
-            {containerStat('#000000', `${teamHome.name} titles`, stats.teamHomeTitles, `${teamHome.name} titles up to this match`)}
-            {containerStat('#000000', 'Head to Head', `${stats.headToHead.home} ${stats.headToHead.draw} ${stats.headToHead.away}`, 'H2H leading up to this match')}
-            {containerStat('#000000', `${teamAway.name} titles`, stats.teamAwayTitles, `${teamAway.name} titles up to this match`)}
+              <StatContainer statName={`${teamHome.name} titles`} statValue={stats.teamHomeTitles} color={"#000000"} position={`${teamHome.name} titles up to this match`}/>
+              <StatContainer statName={'Head to Head'} statValue={`${stats.headToHead.home} ${stats.headToHead.draw} ${stats.headToHead.away}`} color={"#000000"} position={'H2H leading up to this match'}/>  
+              <StatContainer statName={`${teamAway.name} titles`} statValue={stats.teamAwayTitles} color={"#000000"} position={`${teamAway.name} titles up to this match`}/>
             </div>
         </div>
     );
