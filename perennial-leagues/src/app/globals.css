@@ -20,6 +20,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.bg-system{
+  background: var(--background);
+}
+
 .bg-gold {
   background-color: #FFD700; /* Colore oro */
 }

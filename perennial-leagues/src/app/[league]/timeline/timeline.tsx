@@ -122,7 +122,7 @@ const Timeline = ({squadre, regni, startDate, league = "serie_a"}: {squadre: {sq
     const totalSpan = calculateDateDifference(new Date(startDate), new Date());
   
     return(
-        <div className="container mx-auto mt-8 p-4 border-4 border-gold bg-slate-50">
+        <div className="container mx-auto mt-8 p-4 border-4 border-gold bg-system">
             {/* Titolo */}
             <h1 className="text-4xl font-bold text-center mb-6">
               Cronologia dei Regni

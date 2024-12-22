@@ -105,7 +105,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
   }
 
   return(
-    <div className="container mx-auto mt-8 p-4 border-4 rounded-xl shadow-md bg-slate-50">
+    <div className="container mx-auto mt-8 p-4 border-4 rounded-xl shadow-md bg-system">
       {/* Nome della Squadra */}
       <h1 className="text-4xl font-bold text-center mb-6 rounded-xl">
         {`${squadra.charAt(0).toUpperCase()}${squadra.slice(1)}`}
@@ -114,7 +114,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
       {/* Stats e Posizioni */}
       <div className="flex justify-around mb-6">
         <StatContainer statName="Total Titles" statValue={stats.regni} position={posizioni.regni} positionSuffix={`${numeralSuffix(posizioni.regni)} overall`} color={"#000000"} />
-        <StatContainer statName="Combined Duration" statValue={stats.durataCombinata} valueSuffix=" days" position={posizioni.durata} positionSuffix={`${numeralSuffix(posizioni.durata)} overall`} color={"#000000"} />àù
+        <StatContainer statName="Combined Duration" statValue={stats.durataCombinata} valueSuffix=" days" position={posizioni.durata} positionSuffix={`${numeralSuffix(posizioni.durata)} overall`} color={"#000000"} />
         <StatContainer statName="Average Duration" statValue={stats.durataMedia} valueSuffix=" days" position={posizioni.media} positionSuffix={`${numeralSuffix(posizioni.media)} overall`} color={"#000000"} />
       </div>
 
