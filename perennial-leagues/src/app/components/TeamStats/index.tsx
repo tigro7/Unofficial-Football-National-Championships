@@ -34,7 +34,7 @@ const TeamStats = ({ stats, match = false } : {
                             <div>
                                 {match && <p className="text-sm font-bold">{stat.squadra}</p>}
                                 <p className="text-xl font-semibold">{stat.statistica}</p>
-                                <p className="text-sm italic mt-2">{localeDate}</p>
+                                {!match && <p className="text-sm italic mt-2">{localeDate}</p>}
                                 {stat.valore !== null && 
                                     <p className="text-lg mt-2">
                                         {valueProcessor ? valueProcessor(Number(stat.valore)) : stat.valore}

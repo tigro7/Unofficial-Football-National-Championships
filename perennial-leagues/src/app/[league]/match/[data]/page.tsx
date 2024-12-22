@@ -31,10 +31,11 @@ const Page = async ({params,}: {params: Promise<{ data: string, league: string}>
             <Match 
                 matchInfo={{
                     date: matchData.data, 
-                    location: matchData.luogo || 'Non specificato', 
-                    score: matchData.risultato || 'Non disputato',
+                    location: matchData.luogo || '', 
+                    score: matchData.risultato || 'To be played',
                     outcome: matchData.outcome,
-                    detentore: matchData.detentore
+                    detentore: matchData.detentore,
+                    competizione: matchData.league || league
                 }} 
                 teamHome={{ 
                     name: teamHome.squadra, 

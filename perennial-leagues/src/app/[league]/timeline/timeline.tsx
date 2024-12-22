@@ -3,6 +3,7 @@
 import Jersey from "@/app/components/Jersey";
 import TimelineByDecades from "@/app/components/TimelineByDecades";
 import TeamLink from "@/app/components/TeamLink";
+import StatContainer from "@/app/components/StatContainer";
 
 const maxDate = (date1: Date, date2: Date) => {
   return date1 > date2 ? date1 : date2;
@@ -60,16 +61,6 @@ const generateTimelineByDecade = (squadre: {squadra: string, colors: {primary: s
   }
 
   return segments; // Ordina i segmenti dal più vecchio al più recente
-};
-
-const containerStat = (color: string, statname: string, statvalue: React.ReactNode, description: string) => {
-  return (
-    <div className="text-center" style={{ color }}>
-      <p className="text-xl font-semibold">{statname}</p>
-      <p className="text-3xl">{statvalue}</p>
-      <p className="text-sm italic mt-2">{description}</p>
-    </div>
-  );
 };
 
 function calculateDateDifference(startDate: Date, endDate: Date) {
@@ -130,31 +121,21 @@ const Timeline = ({squadre, regni, startDate, league = "serie_a"}: {squadre: {sq
 
             {/* Stats Generali */}
             <div className="flex justify-around mb-6">
-              {containerStat('black', 'Campioni', regni.length, `Squadre: ${squadre.length}`)}
-              {containerStat('black', 'Durata Totale', `${totalSpan.years} Anni`, `${totalSpan.months} Mesi, ${totalSpan.days} Giorni, ${totalSpan.hours} Ore`)}
-              {containerStat('black', 'Durata Media', `${Math.floor(((new Date().getTime() - new Date(startDate).getTime()) / (1000 * 60 * 60 * 24))/regni.length)} Giorni`, 'Circa 10 partite')}
+              <StatContainer className={'w-1/3'} color="black" statName='Champions' statValue={regni.length} positionPrefix="Total teams: " position={squadre.length}/>
+              <StatContainer className={'w-1/3'} color='black' statName="Total length" statValue={`${totalSpan.years} Years`} position={`${totalSpan.months} Months, ${totalSpan.days} Days, ${totalSpan.hours} Hour`} />
+              <StatContainer className={'w-1/3'} color='black' statName='Average length' statValue={`${Math.floor(((new Date().getTime() - new Date(startDate).getTime()) / (1000 * 60 * 60 * 24))/regni.length)} Days`} position={'About 10 matches'} />
             </div>
 
             {/* Il più lungo e il più corto */}
             <div className="flex justify-around mb-6">
-              {containerStat(
-                'black',
-                'Regno più lungo', 
-                <> <TeamLink league={league} teamName={longChamp?.squadra || ''} />: {duration(longestReign)} Giorni </>, 
-                `Inizio: ${(new Date(longestReign.start)).toLocaleDateString()} Fine: ${(new Date(longestReign.end)).toLocaleDateString()}`
-              )}
-              {containerStat(
-                'black', 
-                'Regno più corto', 
-                <> <TeamLink league={league} teamName={shortChamp?.squadra || ''} />: {duration(shortestReign)} Giorni </>, 
-                `Inizio: ${(new Date(shortestReign.start)).toLocaleDateString()} Fine: ${(new Date(shortestReign.end)).toLocaleDateString()}`
-              )}
+              <StatContainer className={'w-1/2'} color='black' statName='Longest Reign' statValue={<><TeamLink league={league} teamName={longChamp?.squadra || ''} />: {duration(longestReign)} Days </>} position={`Start: ${(new Date(longestReign.start)).toLocaleDateString()} End: ${(new Date(longestReign.end)).toLocaleDateString()}`} />
+              <StatContainer className={'w-1/2'} color='black' statName='Shortest Reign' statValue={<><TeamLink league={league} teamName={shortChamp?.squadra || ''} />: {duration(shortestReign)} Days </>} position={`Start: ${(new Date(shortestReign.start)).toLocaleDateString()} End: ${(new Date(shortestReign.end)).toLocaleDateString()}`} />
             </div>
 
             {/* Campione Attuale */}
             <div className="flex flex-col items-center mb-6">
                 <p className="text-xl font-semibold text-center">
-                    Campione Attuale
+                    Reigning Champion
                 </p>
                 <p className="text-3xl font-bold">
                     <TeamLink league={league} teamName={actualChamp?.squadra || ''} />

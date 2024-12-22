@@ -14,7 +14,7 @@ const getDateForLink = (date: string) => {
 };
 
 const Match = ({ matchInfo, teamHome, teamAway, stats, dates, league = "serie_a"}: { 
-  matchInfo: { date: string, location: string, score?: string, outcome: string, detentore: string }, 
+  matchInfo: { date: string, location: string, score?: string, outcome: string, detentore: string, competizione: string }, 
   teamHome: { name: string, colors: { primary: string, secondary: string } }, 
   teamAway: { name: string, colors: { primary: string, secondary: string } }, 
   stats: { headToHead: {home: number, away: number, draw: number}, teamHomeTitles: number, teamAwayTitles: number },
@@ -58,12 +58,16 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, dates, league = "serie_a"
               {/* Dettagli del Match */}
               <div className="flex flex-col items-center text-center w-1/3">
                 <h1 className="text-3xl font-bold mb-2">Match</h1>
+                <p className="text-sm font-bold">
+                  {matchInfo.competizione}
+                </p>
                 <p className="text-lg italic">
-                  {dates.previous && <a href={`/${league}/match/${getDateForLink(dates.previous)}`}>{'<-  '}</a>}
+                  {dates.previous && window.matchMedia("(min-width: 1024px)").matches && <a href={`/${league}/match/${getDateForLink(dates.previous)}`}>{'<-  '}</a>}
                   {new Date(matchInfo.date).toLocaleDateString()}
+                  {dates.previous && !window.matchMedia("(min-width: 1024px)").matches && <><br /><a href={`/${league}/match/${getDateForLink(dates.previous)}`}>{'<-'}</a></>}
                   {dates.next && <a href={`/${league}/match/${getDateForLink(dates.next)}`}>{'  ->'}</a>}
                 </p>
-                <p className="text-lg">{matchInfo.location}</p>
+                <p className="text-md">{matchInfo.location}</p>
                 {matchInfo.score && (
                   <p className="text-2xl font-bold mt-2">{matchInfo.score}</p>
                 )}

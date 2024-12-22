@@ -90,7 +90,12 @@ export default function Home(){
                 <div className="bg-white rounded-xl shadow-md p-6">
                     <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Premier League</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    {/* Stesse card qui */}
+                    <div className="card bg-gray-200 rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-gray-300 transition cursor-pointer">
+                            <div className="h-32 w-full bg-gray-400 rounded-lg mb-4 flex items-center justify-center">
+                            <p className="text-xl font-bold text-gray-800">🚧</p>
+                            </div>
+                            <h3 className="text-lg font-semibold text-center">TBD</h3>
+                        </div>
                     </div>
                 </div>
                 </div>

@@ -16,6 +16,7 @@ const StatContainer = ({
     position,
     positionPrefix = '',
     positionSuffix = '',
+    className = '',
     onClick = () => {},
 }: {
     color: string;
@@ -27,6 +28,7 @@ const StatContainer = ({
     position?: number | string;
     positionPrefix?: string;
     positionSuffix?: string;
+    className?: string;
     onClick?: () => void;
 }) => {
     const effectiveColor = position && podiumColors[position as keyof typeof podiumColors]
@@ -34,7 +36,7 @@ const StatContainer = ({
         : color;
 
     return (
-        <div className={`text-center shadow-md rounded-md p-2 ${effectiveColor.startsWith("#") ? "" : `text-${effectiveColor}`}`}
+        <div className={`text-center shadow-md rounded-md p-2 ${effectiveColor.startsWith("#") ? "" : `text-${effectiveColor}`} ${className}`}
             style={effectiveColor.startsWith("#") ? { color: effectiveColor } : undefined}
             onClick={onClick}>
             <p className="text-xl font-semibold">{statName}</p>
