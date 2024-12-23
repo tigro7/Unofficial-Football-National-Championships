@@ -7,7 +7,7 @@ const podiumColors = {
 };
 
 const StatContainer = ({
-    color,
+    color = 'foreground',
     statName,
     statValue,
     description = '',
@@ -19,7 +19,7 @@ const StatContainer = ({
     className = '',
     onClick = () => {},
 }: {
-    color: string;
+    color?: string;
     statName: string;
     statValue: number | string | React.ReactNode;
     description?: string | React.ReactNode;
@@ -37,7 +37,6 @@ const StatContainer = ({
 
     return (
         <div className={`text-center shadow-md rounded-md p-2 ${effectiveColor.startsWith("#") ? "" : `text-${effectiveColor}`} ${className}`}
-            style={effectiveColor.startsWith("#") ? { color: effectiveColor } : undefined}
             onClick={onClick}>
             <p className="text-xl font-semibold">{statName}</p>
             <p className="text-3xl">{valuePrefix}{statValue}{valueSuffix}</p>

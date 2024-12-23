@@ -121,15 +121,15 @@ const Timeline = ({squadre, regni, startDate, league = "serie_a"}: {squadre: {sq
 
             {/* Stats Generali */}
             <div className="flex justify-around mb-6">
-              <StatContainer className={'w-1/3'} color="black" statName='Champions' statValue={regni.length} positionPrefix="Total teams: " position={squadre.length}/>
-              <StatContainer className={'w-1/3'} color='black' statName="Total length" statValue={`${totalSpan.years} Years`} position={`${totalSpan.months} Months, ${totalSpan.days} Days, ${totalSpan.hours} Hour`} />
-              <StatContainer className={'w-1/3'} color='black' statName='Average length' statValue={`${Math.floor(((new Date().getTime() - new Date(startDate).getTime()) / (1000 * 60 * 60 * 24))/regni.length)} Days`} position={'About 10 matches'} />
+              <StatContainer className={'w-auto sm:w-1/3 md:w-auto'} statName='Champions' statValue={regni.length} positionPrefix="Total teams: " position={squadre.length}/>
+              <StatContainer className={'w-auto sm:w-1/3 md:w-auto'} statName="Total length" statValue={`${totalSpan.years} Years`} position={`${totalSpan.months} Months, ${totalSpan.days} Days, ${totalSpan.hours} Hour`} />
+              <StatContainer className={'w-auto sm:w-1/3 md:w-auto '} statName='Average length' statValue={`${Math.floor(((new Date().getTime() - new Date(startDate).getTime()) / (1000 * 60 * 60 * 24))/regni.length)} Days`} position={'About 10 matches'} />
             </div>
 
             {/* Il più lungo e il più corto */}
             <div className="flex justify-around mb-6">
-              <StatContainer className={'w-1/2'} color='black' statName='Longest Reign' statValue={<><TeamLink league={league} teamName={longChamp?.squadra || ''} />: {duration(longestReign)} Days </>} position={`Start: ${(new Date(longestReign.start)).toLocaleDateString()} End: ${(new Date(longestReign.end)).toLocaleDateString()}`} />
-              <StatContainer className={'w-1/2'} color='black' statName='Shortest Reign' statValue={<><TeamLink league={league} teamName={shortChamp?.squadra || ''} />: {duration(shortestReign)} Days </>} position={`Start: ${(new Date(shortestReign.start)).toLocaleDateString()} End: ${(new Date(shortestReign.end)).toLocaleDateString()}`} />
+              <StatContainer className={'w-auto sm:w-1/2 md:w-auto'} statName='Longest Reign' statValue={<><TeamLink league={league} teamName={longChamp?.squadra || ''} />: {duration(longestReign)} Days </>} position={`Start: ${(new Date(longestReign.start)).toLocaleDateString()} End: ${(new Date(longestReign.end)).toLocaleDateString()}`} />
+              <StatContainer className={'w-auto sm:w-1/2 md:w-auto'} statName='Shortest Reign' statValue={<><TeamLink league={league} teamName={shortChamp?.squadra || ''} />: {duration(shortestReign)} Days </>} position={`Start: ${(new Date(shortestReign.start)).toLocaleDateString()} End: ${(new Date(shortestReign.end)).toLocaleDateString()}`} />
             </div>
 
             {/* Campione Attuale */}

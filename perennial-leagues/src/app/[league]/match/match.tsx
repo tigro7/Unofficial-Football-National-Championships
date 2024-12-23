@@ -106,17 +106,14 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, dates, league = "serie_a"
             <div className="flex justify-around mb-6 whitespace-pre-line">
               <StatContainer statName={`${teamHome.name} ${window.matchMedia("(min-width: 1024px)").matches ? "" : "\n"}titles`} 
                              statValue={stats.teamHomeTitles} 
-                             color={"#000000"} 
                              position={`${teamHome.name} titles up to this match`}
               />
               <StatContainer statName={'Head to Head'} 
                              statValue={`${stats.headToHead.home} ${stats.headToHead.draw} ${stats.headToHead.away}`} 
-                             color={"#000000"} 
                              position={'H2H leading up to this match'}
               />  
               <StatContainer statName={`${teamAway.name} ${window.matchMedia("(min-width: 1024px)").matches ? "" : "\n"}titles`} 
                              statValue={stats.teamAwayTitles} 
-                             color={"#000000"} 
                              position={`${teamAway.name} titles up to this match`}
               />
             </div>

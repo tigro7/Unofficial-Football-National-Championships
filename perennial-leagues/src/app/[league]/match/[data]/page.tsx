@@ -14,6 +14,8 @@ const Page = async ({params,}: {params: Promise<{ data: string, league: string}>
     }
     const matchData = (await response.json())[0];
 
+    console.info(matchData);
+
     const teamHome = (await (await fetch(`${host}/api/${league}/squadre/${matchData.home}`)).json())[0];
     const teamAway = (await (await fetch(`${host}/api/${league}/squadre/${matchData.away}`)).json())[0];
     const homeReigns = (await (await fetch(`${host}/api/${league}/regni/${matchData.home}/${data}`)).json())[0].regni;
@@ -35,7 +37,7 @@ const Page = async ({params,}: {params: Promise<{ data: string, league: string}>
                     score: matchData.risultato || 'To be played',
                     outcome: matchData.outcome,
                     detentore: matchData.detentore,
-                    competizione: matchData.league || league
+                    competizione: matchData.note || league
                 }} 
                 teamHome={{ 
                     name: teamHome.squadra, 

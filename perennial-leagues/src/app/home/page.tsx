@@ -14,8 +14,6 @@ export default function Home(){
           const host = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'; // URL di base
           const response = await fetch(`${host}/api/serie_a/matches/last`);
           const data = (await response.json())[0];
-
-          console.info(data);
   
           // Format the date
           const nextMatchDate = new Date(data.data)

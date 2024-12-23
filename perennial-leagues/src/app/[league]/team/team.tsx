@@ -104,6 +104,13 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
     return "th";
   }
 
+  const compareDatesByDay = (date1: string, date2: string) => {
+    const d1 = new Date(date1).setHours(0, 0, 0, 0);
+    const d2 = new Date(date2).setHours(0, 0, 0, 0);
+    return d1 === d2;
+  };
+
+
   return(
     <div className="container mx-auto mt-8 p-4 border-4 rounded-xl shadow-md bg-system">
       {/* Nome della Squadra */}
@@ -113,9 +120,9 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
 
       {/* Stats e Posizioni */}
       <div className="flex justify-around mb-6">
-        <StatContainer statName="Total Titles" statValue={stats.regni} position={posizioni.regni} positionSuffix={`${numeralSuffix(posizioni.regni)} overall`} color={"#000000"} />
-        <StatContainer statName="Combined Duration" statValue={stats.durataCombinata} valueSuffix=" days" position={posizioni.durata} positionSuffix={`${numeralSuffix(posizioni.durata)} overall`} color={"#000000"} />
-        <StatContainer statName="Average Duration" statValue={stats.durataMedia} valueSuffix=" days" position={posizioni.media} positionSuffix={`${numeralSuffix(posizioni.media)} overall`} color={"#000000"} />
+        <StatContainer statName="Total Titles" statValue={stats.regni} position={posizioni.regni} positionSuffix={`${numeralSuffix(posizioni.regni)} overall`} />
+        <StatContainer statName="Combined Duration" statValue={stats.durataCombinata} valueSuffix=" days" position={posizioni.durata} positionSuffix={`${numeralSuffix(posizioni.durata)} overall`} />
+        <StatContainer statName="Average Duration" statValue={stats.durataMedia} valueSuffix=" days" position={posizioni.media} positionSuffix={`${numeralSuffix(posizioni.media)} overall`} />
       </div>
 
       <div className="flex justify-around mb-6">
@@ -123,18 +130,18 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
       </div>
       
       <div className="flex justify-around mb-6">
-        <StatContainer statName="Longest Reign" statValue={longestReign.duration} valueSuffix=" days" color={"#000000"}
+        <StatContainer statName="Longest Reign" statValue={longestReign.duration} valueSuffix=" days"
           position={' '} positionPrefix={`Started: ${(new Date(longestReign.start)).toLocaleDateString()}`}
           positionSuffix={`Ended: ${(new Date(longestReign.end)).toLocaleDateString()}`}
         />
-        <StatContainer statName="Shortest Reign" statValue={shortestReign.duration} valueSuffix=" days" color={"#000000"}
+        <StatContainer statName="Shortest Reign" statValue={shortestReign.duration} valueSuffix=" days"
           position={' '} positionPrefix={`Started: ${(new Date(shortestReign.start)).toLocaleDateString()}`}
           positionSuffix={`Ended: ${(new Date(shortestReign.end)).toLocaleDateString()}`}
         />
       </div>
 
       <div className="flex justify-center mb-6">
-        <Jersey colors={colors} icon={null} />
+        <Jersey colors={colors} icon={compareDatesByDay(regni[regni.length - 1].end,new Date().toISOString()) ? "faCrown" : null} />
       </div>
 
       <div className="py-10">     
