@@ -1,1 +1,11 @@
 scrapecolori.js
+partite_campionato.csv
+scraperisultati.js
+csv_files/*
+csv_output/*
+node_modules/*
+node_scripts/*
+package-lock.json
+package.json
+calcreigns.js
+savetitledefences.js

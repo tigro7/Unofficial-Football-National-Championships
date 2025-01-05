@@ -26,8 +26,7 @@ export async function GET(request: Request, {params,}: {params: Promise<{ detent
                                     (SELECT COUNT(*) 
                                     FROM matches 
                                     WHERE outcome = 'p' 
-                                    AND LOWER(detentore) = $1
-                                    AND LOWER(sfidante) = $2
+                                    AND ((LOWER(detentore) = $1 AND LOWER(sfidante) = $2) OR (LOWER(detentore) = $2 AND LOWER(sfidante) = $1))
                                     AND league = $3 
                                     ${data ? `AND data < $4` : ''}) AS draw,
                                     
@@ -35,7 +34,7 @@ export async function GET(request: Request, {params,}: {params: Promise<{ detent
                                     FROM matches 
                                     WHERE (outcome = 's' OR outcome = 'v') 
                                     AND LOWER(detentore) = $2
-                                    AND LOWER(sfidante) = 'milan' 
+                                    AND LOWER(sfidante) = $1 
                                     AND league = $3 
                                     ${data ? `AND data < $4` : ''}) AS wons`;
         //const parametricQuery = `SELECT COUNT(*) as H2H FROM matches WHERE (outcome = 's' OR outcome = 'v') AND LOWER(detentore) = $1 AND LOWER(sfidante) = $2 AND league = $3 ${data ? `AND data < $4` : ''}`;
