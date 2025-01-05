@@ -34,62 +34,60 @@ export default function Home(){
     }, []);
 
     return(
-        <div className="min-h-screen bg-cover bg-center" style={{ backgroundImage: "url('/homepageback.png')" }}>
-            <div className="bg-black bg-opacity-50 min-h-screen flex flex-col items-center p-6">
+        <div className="min-h-screen bg-system" style={{ backgroundImage: "url('/homepageback.png')" }}>
+            <div className="bg-system bg-system-50 min-h-screen flex flex-col items-center p-6">
                 <h1 className="text-4xl md:text-6xl font-bold text-highlights mb-10 text-center">Unofficial Football National Championships</h1>
                 <div className="grid grid-cols-1 gap-6 w-full max-w-6xl">
                     {/* Container per ogni lega */}
-                    <div className="bg-white rounded-xl shadow-md p-6">
+                    <div className="bg-system rounded-xl shadow-md p-6">
                         <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Serie A</h2>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         {/* Card Campione Attuale */}
-                        <div className="card bg-gray-200 rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-gray-300 transition cursor-pointer">
-                            <div className="h-32 w-full bg-gray-400 rounded-lg mb-4 flex items-center justify-center">
-                            {/* Immagine o icona */}
-                            <p className="text-xl font-bold text-gray-800">🏆</p>
-                            </div>
-                            {isLoading ?
-                                (<h3 className="text-lg font-semibold text-center">Reigning Champion</h3>)
-                                : reigningChampion ?
-                                (<Link href={`/serie_a/team/${reigningChampion}`}>
+                        <div className="card bg-system rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-system transition cursor-pointer">
+                            <Link href={reigningChampion ? `/serie_a/team/${reigningChampion}` : "#"}>
+                                <div className="h-32 w-full bg-system rounded-lg mb-4 flex items-center justify-center">
+                                    {/* Immagine o icona */}
+                                    <p className="text-xl font-bold text-gray-800">🏆</p>
+                                </div>
+                                {isLoading ? (
+                                    <h3 className="text-lg font-semibold text-center">Reigning Champion</h3>
+                                ) : reigningChampion ? (
                                     <h3 className="text-lg font-semibold text-center">Reigning Champion: {reigningChampion.charAt(0).toUpperCase() + reigningChampion.slice(1)}</h3>
-                                </Link>)
-                                : (<p className="text-lg font-semibold text-center">No available Champion</p>)
-                            }
+                                ) : (
+                                    <p className="text-lg font-semibold text-center">No available Champion</p>
+                                )}
+                            </Link>
                         </div>
                         {/* Card Timeline Regni */}
-                        <div className="card bg-gray-200 rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-gray-300 transition cursor-pointer">
-                            <div className="h-32 w-full bg-gray-400 rounded-lg mb-4 flex items-center justify-center">
-                            {/* Immagine o icona */}
-                            <p className="text-xl font-bold text-gray-800">📜</p>
-                            </div>
+                        <div className="card bg-system rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-system-300 transition cursor-pointer">
                             <Link href="/serie_a/timeline">
+                                <div className="h-32 w-full bg-system rounded-lg mb-4 flex items-center justify-center">
+                                {/* Immagine o icona */}
+                                <p className="text-xl font-bold text-gray-800">📜</p>
+                                </div>
                                 <h3 className="text-lg font-semibold text-center">Titles Timeline</h3>
                             </Link>
                         </div>
                         {/* Card Prossimo Match */}
-                        <div className="card bg-gray-200 rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-gray-300 transition cursor-pointer">
-                            <div className="h-32 w-full bg-gray-400 rounded-lg mb-4 flex items-center justify-center">
-                            {/* Immagine o icona */}
-                            <p className="text-xl font-bold text-gray-800">⚽</p>
-                            </div>
-                            {isLoading ? 
-                                (<h3 className="text-lg font-semibold text-center">Next Match</h3>)
-                                : nextMatchDate ? 
-                                (<Link href={`/serie_a/match/${nextMatchDate}`}>
-                                    <h3 className="text-lg font-semibold text-center">Next Match</h3>
-                                </Link>)
-                                : (<p className="text-lg font-semibold text-center">No match available</p>)
-                            }
+                        <div className="card bg-system rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-system-300 transition cursor-pointer">
+                            <Link href={nextMatchDate ? `/serie_a/match/${nextMatchDate}` : "#"}>
+                                <div className="h-32 w-full bg-system rounded-lg mb-4 flex items-center justify-center">
+                                    {/* Immagine o icona */}
+                                    <p className="text-xl font-bold text-gray-800">⚽</p>
+                                </div>
+                                <h3 className="text-lg font-semibold text-center">
+                                    {isLoading ? "Next Match" : nextMatchDate ? "Next Match" : "No match available"}
+                                </h3>
+                            </Link>
                         </div>
                     </div>
                 </div>
                 {/* Ripetere per altre leghe */}
-                <div className="bg-white rounded-xl shadow-md p-6">
+                <div className="bg-system rounded-xl shadow-md p-6">
                     <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Premier League</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div className="card bg-gray-200 rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-gray-300 transition cursor-pointer">
-                            <div className="h-32 w-full bg-gray-400 rounded-lg mb-4 flex items-center justify-center">
+                    <div className="card bg-system rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-system-300 transition cursor-pointer">
+                            <div className="h-32 w-full bg-system rounded-lg mb-4 flex items-center justify-center">
                             <p className="text-xl font-bold text-gray-800">🚧</p>
                             </div>
                             <h3 className="text-lg font-semibold text-center">TBD</h3>
