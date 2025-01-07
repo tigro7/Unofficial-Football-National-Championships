@@ -299,7 +299,59 @@ const updateStats = async (
                                                 ) m`;
 
     console.info('strongholdRecord:', strongholdRecord.rowCount);
-    
+
+    //Consolation Prize
+    //eliminare i record da stats con statistica like 'Consolation Prize%'
+    await client.sql`DELETE FROM stats WHERE league = ${league} AND statistica LIKE 'Consolation Prize%'`;
+    const consolationPrize = await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, numero) 
+                                                SELECT c.squadra, c.ultima_sfida_data, c.league, CONCAT('Consolation Prize - ', c.rank) , c.sfide,  c.ultima_sfida_numero FROM
+                                                (
+                                                WITH ranked_squadre AS (
+                                                SELECT 
+                                                    *,
+                                                    RANK() OVER (ORDER BY sfide DESC) AS rank
+                                                FROM 
+                                                    squadre
+                                                WHERE 
+                                                    regni = 0 AND NOT(sfide IS NULL)
+                                                ),
+                                                last_match AS (
+                                                SELECT 
+                                                    s.squadra,
+                                                    m.*
+                                                FROM 
+                                                    ranked_squadre s
+                                                LEFT JOIN 
+                                                    matches m 
+                                                ON 
+                                                    s.squadra = m.sfidante
+                                                WHERE 
+                                                    m.data = (
+                                                    SELECT MAX(data)
+                                                    FROM matches
+                                                    WHERE sfidante = s.squadra
+                                                    )
+                                                )
+                                                SELECT 
+                                                r.squadra,
+                                                r.sfide,
+                                                r.rank,
+                                                r.league,
+                                                l.data AS ultima_sfida_data,
+                                                l.numero AS ultima_sfida_numero
+                                                FROM 
+                                                ranked_squadre r
+                                                LEFT JOIN 
+                                                last_match l 
+                                                ON 
+                                                r.squadra = l.squadra
+                                                ORDER BY 
+                                                r.rank
+                                                LIMIT 10
+                                                ) c`;
+
+    console.info('consolationPrize:', consolationPrize.rowCount);
+
     //3. King Slayer
     //eliminare i record da stats con statistica like 'King Slayer%'
     await client.sql`DELETE FROM stats WHERE league = ${league} AND statistica LIKE 'King Slayer%'`;

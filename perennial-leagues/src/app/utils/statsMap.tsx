@@ -16,6 +16,7 @@ import {
   faPersonCane,
   faChessRook,
   faBaby,
+  faGift,
 } from "@fortawesome/free-solid-svg-icons";
 
 const daysToYears = (days: number) => {
@@ -165,7 +166,15 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
       title: "Defend the title for the most matches",
       valueProcessor: (value) => {
         if (value === null) return "";
-        return `Defended for ${value} consecutive matches`;
+        return `Defended a title for ${value} consecutive matches`;
+      }
+    },
+    "Consolation Prize": {
+      icon: faGift,
+      title: "Most title challenges without winning",
+      valueProcessor: (value) => {
+        if (value === null) return "";
+        return `Challenged for the title ${value} times`;
       }
     },
     "Question Circle": {
