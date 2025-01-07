@@ -12,7 +12,7 @@ export async function GET(request: Request, {params,}: {params: Promise<{league:
 
     try {
         const client = await db.connect();
-        const rows =  await client.sql`SELECT * FROM matches WHERE league = ${league} ORDER BY data DESC`;
+        const rows =  await client.sql`SELECT * FROM matches WHERE league = ${league} ORDER BY numero DESC`;
     
         client.release();
         return NextResponse.json(rows.rows, { status: 200 });
@@ -52,6 +52,7 @@ export async function POST(request: Request, {params,}: {params: Promise<{league
         console.info(operationType, previousMatch?.rowCount)
         const previousDuration = previousMatch?.rowCount && previousMatch?.rowCount > 0 ? previousMatch.rows[0].durata : 0;
         const previousDate = previousMatch?.rowCount && previousMatch?.rowCount > 0 ? previousMatch.rows[0].data : null;
+        const numero = existingMatch?.rowCount && existingMatch?.rowCount > 0 ? existingMatch.rows[0].numero : previousMatch?.rowCount && previousMatch?.rowCount > 0 ? previousMatch.rows[0].numero + 1 : 1;
 
         //la durata dell'ultimo match è uguale alla somma delle durate dei match precedenti, quando inseriamo una nuova riga va aggiornata aggiungendo la differenza tra la data della nuova riga e la data del match precedente
         const updatedPreviousDuration = previousDuration + (new Date(data).getDate() - (previousDate ? new Date(previousDate).getDate() : 0));
@@ -72,14 +73,14 @@ export async function POST(request: Request, {params,}: {params: Promise<{league
         if (operationType === "update") {
             console.info('update');
             rows = await client.sql`UPDATE matches SET durata = ${durata}, outcome = ${outcome}, risultato = ${risultato}, note = ${noteValue} 
-                                    WHERE league = ${league} AND home = ${home} AND away = ${away} AND data = ${data} AND outcome = 'n'`;
+                                    WHERE league = ${league} AND home = ${home} AND away = ${away} AND data = ${data} AND numero = ${numero} AND outcome = 'n'`;
         } else {
             console.info('insert');
             if (outcome === "n") {
                 durata = 0;
             }
-            rows = await client.sql`INSERT INTO matches (detentore, sfidante, risultato, note, data, durata, league, home, away, outcome) 
-                                    VALUES (${detentoreName}, ${sfidanteName}, ${risultato}, ${noteValue}, ${data}, ${durata}, ${league}, ${home}, ${away}, ${outcome})`;
+            rows = await client.sql`INSERT INTO matches (detentore, sfidante, risultato, note, data, durata, league, home, away, outcome, numero) 
+                                    VALUES (${detentoreName}, ${sfidanteName}, ${risultato}, ${noteValue}, ${data}, ${durata}, ${league}, ${home}, ${away}, ${outcome}, ${numero})`;
         }
         console.info(rows.rowCount);
 
@@ -90,13 +91,13 @@ export async function POST(request: Request, {params,}: {params: Promise<{league
         if (operationType === "update" && outcome !== "n") {
             console.info('update previous duration');
             await client.sql`UPDATE matches SET durata = ${updatedPreviousDuration} FROM (
-	                            SELECT * FROM matches WHERE league = ${league} AND outcome != 'n' AND DATA < ${data} ORDER BY DATA DESC LIMIT 1
+	                            SELECT * FROM matches WHERE league = ${league} AND outcome != 'n' AND numero < ${numero} ORDER BY numero DESC LIMIT 1
                             ) p
-                            WHERE matches.DATA = p.data AND matches.league = p.league`;
+                            WHERE matches.league = p.league AND matches.numero = p.numero`;
         }
 
-        console.info(league, home, away, detentoreName, sfidanteName, risultato, outcome, previousDuration, updatedPreviousDuration, durata, data);
-        updateStats(client, league, home, away, detentoreName, sfidanteName, risultato, outcome, previousDuration, updatedPreviousDuration, durata, data);
+        console.info(league, home, away, detentoreName, sfidanteName, risultato, outcome, previousDuration, updatedPreviousDuration, durata, data, numero);
+        updateStats(client, league, home, away, detentoreName, sfidanteName, risultato, outcome, previousDuration, updatedPreviousDuration, durata, data, numero);
 
         client.release();
         return NextResponse.json(rows.rows, { status: 200 });

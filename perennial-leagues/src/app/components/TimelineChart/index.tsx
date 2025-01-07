@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const TimelineChart = ({regni, primaryColor, secondaryColor, league = "serie_a"}: { regni: { start: string; end: string; team: boolean; duration: number }[]; primaryColor: string; secondaryColor: string; league: string;}) => {
+const TimelineChart = ({regni, primaryColor, secondaryColor, league = "serie_a"}: { regni: { start: string; end: string; team: boolean; duration: number; matchStart: number; matchEnd: number}[]; primaryColor: string; secondaryColor: string; league: string;}) => {
   const [tooltip, setTooltip] = useState<{ visible: boolean; content: string; position: number | null }>({
     visible: false,
     content: "",
@@ -34,11 +34,6 @@ const TimelineChart = ({regni, primaryColor, secondaryColor, league = "serie_a"}
     });
   };
 
-  const getDateForLink = (start: string) => {
-    const localDate = new Date(start).toLocaleDateString();
-    return localDate.split('/').reverse().join('-');
-  };
-
   // Calcola le date significative per l'asse delle X (anniversari ogni 5 o 10 anni)
   const significantDates = [];
   const startYear = new Date(startDate).getFullYear();
@@ -70,7 +65,7 @@ const TimelineChart = ({regni, primaryColor, secondaryColor, league = "serie_a"}
               }}
               onMouseEnter={() => (regno.team ? showTooltip(regno.start, regno.end, parseFloat(leftPosition), indiceDelRegno) : null)}
               onMouseLeave={hideTooltip}
-              onClick={() => {window.location.href = `/${league}/match/${getDateForLink(regno.start)}`}}
+              onClick={() => {window.location.href = `/${league}/match/${regno.matchStart}`}}
             />
           );
         })}

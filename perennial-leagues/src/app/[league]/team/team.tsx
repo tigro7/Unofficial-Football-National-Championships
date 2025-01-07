@@ -7,7 +7,7 @@ import StatContainer from "@/app/components/StatContainer";
 import TeamStats from "@/app/components/TeamStats";
 import { useEffect, useState } from "react";
 
-const generateTimeline = (regni: { start: string; end: string }[], startDate: string) => {
+const generateTimeline = (regni: { start: string; end: string, matchStart: number, matchEnd: number }[], startDate: string) => {
   const timeline = [];
   const today = new Date().toISOString();
 
@@ -16,6 +16,8 @@ const generateTimeline = (regni: { start: string; end: string }[], startDate: st
     timeline.push({
       start: startDate,
       end: regni[0].start,
+      matchStart: 1,
+      matchEnd: regni[0].matchStart,
       team: false,
       duration: Math.ceil(
         (new Date(regni[0].start).getTime() - new Date(startDate).getTime()) /
@@ -43,7 +45,9 @@ const generateTimeline = (regni: { start: string; end: string }[], startDate: st
       if (currentEnd < nextStart) {
         timeline.push({
           start: currentRegno.end,
+          matchStart: currentRegno.matchEnd,
           end: regni[i + 1].start,
+          matchEnd: regni[i + 1].matchStart,
           team: false,
           duration: Math.ceil(
             (nextStart.getTime() - currentEnd.getTime()) / (1000 * 60 * 60 * 24)
@@ -57,7 +61,9 @@ const generateTimeline = (regni: { start: string; end: string }[], startDate: st
   if (new Date(today).getTime() > new Date(regni[regni.length - 1].end).getTime()) {
     timeline.push({
       start: regni[regni.length - 1].end,
+      matchStart: regni[regni.length - 1].matchEnd,
       end: today,
+      matchEnd: regni[regni.length - 1].matchEnd,
       team: false,
       duration: Math.ceil(
         (new Date(today).getTime() - new Date(regni[regni.length - 1].end).getTime()) /
@@ -70,7 +76,7 @@ const generateTimeline = (regni: { start: string; end: string }[], startDate: st
 };
 
 const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = "serie_a"}: 
-  {squadra: string, stats: {regni: number, durataCombinata: number, durataMedia: number}, colors: {primary: string, secondary: string}, regni:{ start: string, end: string }[], startDate: string, posizioni: {regni: number, durata: number, media: number}, league: string}) => {
+  {squadra: string, stats: {regni: number, durataCombinata: number, durataMedia: number}, colors: {primary: string, secondary: string}, regni:{ start: string, end: string, matchStart: number, matchEnd: number }[], startDate: string, posizioni: {regni: number, durata: number, media: number}, league: string}) => {
 
   const [iconStats, setStats] = useState([]);
 

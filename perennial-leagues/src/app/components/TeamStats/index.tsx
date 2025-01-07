@@ -8,6 +8,7 @@ const TeamStats = ({ stats, match = false } : {
         league: string;
         statistica: string;
         valore: string | null;
+        numero: number;
       }[];
     match?: boolean;
   }) => {
@@ -28,7 +29,7 @@ const TeamStats = ({ stats, match = false } : {
                                         event.preventDefault();
                                         return;
                                     }
-                                    window.location.href = `/${stat.league}/match/${localeDate.split('/').reverse().join('-')}`;
+                                    window.location.href = `/${stat.league}/match/${stat.numero}`;
                                 }}>
                             <StatsIcon statName={stat.statistica} statTitle={statInfo.title} />
                             <div>

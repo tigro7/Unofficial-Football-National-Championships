@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Home(){
-    const [nextMatchDate, setNextMatchDate] = useState<string | null>(null);
+    const [nextMatchNumber, setNextMatchNumber] = useState<string | null>(null);
     const [reigningChampion, setReigningChampion] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
   
@@ -14,14 +14,7 @@ export default function Home(){
           const host = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'; // URL di base
           const response = await fetch(`${host}/api/serie_a/matches/last`);
           const data = (await response.json())[0];
-  
-          // Format the date
-          const nextMatchDate = new Date(data.data)
-            .toLocaleDateString()
-            .split('/')
-            .reverse()
-            .join('-');
-          setNextMatchDate(nextMatchDate);
+          setNextMatchNumber(data.numero);
           setReigningChampion(data.detentore);
         } catch (error) {
           console.error("Error fetching next match:", error);
@@ -70,13 +63,13 @@ export default function Home(){
                         </div>
                         {/* Card Prossimo Match */}
                         <div className="card bg-system rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-system-300 transition cursor-pointer">
-                            <Link href={nextMatchDate ? `/serie_a/match/${nextMatchDate}` : "#"}>
+                            <Link href={nextMatchNumber ? `/serie_a/match/${nextMatchNumber}` : "#"}>
                                 <div className="h-32 w-full bg-system rounded-lg mb-4 flex items-center justify-center">
                                     {/* Immagine o icona */}
                                     <p className="text-xl font-bold text-gray-800">⚽</p>
                                 </div>
                                 <h3 className="text-lg font-semibold text-center">
-                                    {isLoading ? "Next Match" : nextMatchDate ? "Next Match" : "No match available"}
+                                    {isLoading ? "Next Match" : nextMatchNumber ? "Next Match" : "No match available"}
                                 </h3>
                             </Link>
                         </div>

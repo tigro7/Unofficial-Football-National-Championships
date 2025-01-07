@@ -8,17 +8,12 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 
-const getDateForLink = (date: string) => {
-    const localDate = new Date(date).toLocaleDateString();
-    return localDate.split('/').reverse().join('-');
-};
-
-const Match = ({ matchInfo, teamHome, teamAway, stats, dates, league = "serie_a"}: { 
-  matchInfo: { date: string, location: string, score?: string, outcome: string, detentore: string, competizione: string }, 
+const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "serie_a"}: { 
+  matchInfo: { date: string, location: string, score?: string, outcome: string, detentore: string, competizione: string, numero: number}, 
   teamHome: { name: string, colors: { primary: string, secondary: string } }, 
   teamAway: { name: string, colors: { primary: string, secondary: string } }, 
   stats: { headToHead: {home: number, away: number, draw: number}, teamHomeTitles: number, teamAwayTitles: number },
-  dates: { previous: string, next: string },
+  adjacents: { previous: number, next: number },
   league: string
 }) => {
     const iconHome = matchInfo.detentore === teamHome.name ? 'faCrown' : matchInfo.detentore === teamAway.name && matchInfo.outcome === 's' ? 'faFlag' : null;
@@ -30,7 +25,7 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, dates, league = "serie_a"
         useEffect(() => {
           const fetchStats = async () => {
             try {
-              const response = await fetch(`/api/${league}/stats/match/${getDateForLink(matchInfo.date)}`);
+              const response = await fetch(`/api/${league}/stats/match/${matchInfo.numero}`);
               const data = await response.json();
               setStats(data);
             } catch (error) {
@@ -39,7 +34,7 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, dates, league = "serie_a"
           };
       
           fetchStats();
-      }, [league, matchInfo.date]);
+      }, [league, matchInfo.numero]);
 
     return (
         <div className="container mx-auto mt-8 p-4 border-4 rounded-xl bg-system">
@@ -62,10 +57,10 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, dates, league = "serie_a"
                   {matchInfo.competizione}
                 </p>
                 <p className="text-lg italic">
-                  {dates.previous && window.matchMedia("(min-width: 1024px)").matches && <a href={`/${league}/match/${getDateForLink(dates.previous)}`}>{'<-  '}</a>}
+                  {adjacents.previous && window.matchMedia("(min-width: 1024px)").matches && <a href={`/${league}/match/${adjacents.previous}`}>{'<-  '}</a>}
                   {new Date(matchInfo.date).toLocaleDateString()}
-                  {dates.previous && !window.matchMedia("(min-width: 1024px)").matches && <><br /><a href={`/${league}/match/${getDateForLink(dates.previous)}`}>{'<-'}</a></>}
-                  {dates.next && <a href={`/${league}/match/${getDateForLink(dates.next)}`}>{'  ->'}</a>}
+                  {adjacents.previous && !window.matchMedia("(min-width: 1024px)").matches && <><br /><a href={`/${league}/match/${adjacents.previous}`}>{'<-'}</a></>}
+                  {adjacents.next && <a href={`/${league}/match/${adjacents.next}`}>{'  ->'}</a>}
                 </p>
                 <p className="text-md">{matchInfo.location}</p>
                 {matchInfo.score && (

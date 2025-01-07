@@ -10,7 +10,7 @@ export async function GET(request: Request, {params,}: {params: Promise<{league:
 
     try {
         const client = await db.connect();
-        const rows =  await client.sql`SELECT * FROM matches WHERE league = ${league} ORDER BY data DESC LIMIT 1`;
+        const rows =  await client.sql`SELECT * FROM matches WHERE league = ${league} ORDER BY numero DESC LIMIT 1`;
     
         client.release();
         return NextResponse.json(rows.rows, { status: 200 });
