@@ -32,7 +32,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
         return daysToYears(value);
       }
     },
-    "Longest Reign": {
+    "Longest Combined Reign": {
       icon: faCrown,
       title: "Longest time holding the title",
       valueProcessor: (value) => {

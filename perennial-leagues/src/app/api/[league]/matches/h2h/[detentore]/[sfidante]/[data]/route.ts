@@ -25,7 +25,7 @@ export async function GET(request: Request, {params,}: {params: Promise<{ detent
                                     
                                     (SELECT COUNT(*) 
                                     FROM matches 
-                                    WHERE outcome = 'p' 
+                                    WHERE outcome = 'd' 
                                     AND ((LOWER(detentore) = $1 AND LOWER(sfidante) = $2) OR (LOWER(detentore) = $2 AND LOWER(sfidante) = $1))
                                     AND league = $3 
                                     ${data ? `AND data < $4` : ''}) AS draw,

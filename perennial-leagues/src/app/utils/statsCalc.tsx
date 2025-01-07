@@ -36,7 +36,7 @@ const updateStats = async (
     // se esiste un back to back, aggiornare la tabella stats
     if (backToBack?.rowCount && backToBack?.rowCount > 0) {
         await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore) 
-                            VALUES (${detentoreName}, ${data}, ${league}, 'Back to Back', ${backToBack.rows[0].wait_time})`;
+                            VALUES (${detentoreName}, ${data}, ${league}, 'Back to Back', ${backToBack.rows[0].wait_time}, ${backToBack.rows[0].sfidante})`;
     }
 
     console.info('backToBack:', backToBack?.rowCount);
@@ -45,19 +45,20 @@ const updateStats = async (
 
     //3. decade dominator
     const decade = Math.floor(new Date(data).getFullYear() / 10) * 10;
-    const decadeDominator = await client.sql`SELECT DISTINCT ON (decade) 
-                                            decade, detentore, regni, data, league
-                                            FROM (
-                                            SELECT detentore, decade, regni, max(DATA) as data, league FROM
-                                            (SELECT t1.detentore, t1.decade, regni, matches.DATA, league FROM matches JOIN 
-                                            (SELECT COUNT(*) AS regni, detentore, concat(FLOOR(DATE_PART('year', DATA) / 10), '0') AS decade FROM matches WHERE outcome ='s' GROUP BY detentore, decade HAVING COUNT(*) > 1) t1
-                                            ON matches.detentore = t1.detentore AND DATE_PART('year', matches.data) >= CAST(t1.decade AS INTEGER) AND DATE_PART('year', matches.data) < CAST(t1.decade AS INTEGER) + 10
-                                            ) dinasties
-                                            GROUP BY detentore, decade, regni, league
-                                            ORDER BY decade ASC, regni DESC, detentore ASC, MAX(DATA) ASC
-                                            )
-                                            WHERE decade = ${decade} AND league = ${league}
-                                            ORDER BY decade ASC, regni DESC;`;
+        const decadeDominator = await client.sql`SELECT DISTINCT ON (decade) 
+                                                decade, d.detentore, regni, d.data, d.league, matches.sfidante
+                                                FROM (
+                                                SELECT detentore, decade, regni, max(DATA) as data, league FROM
+                                                (SELECT t1.detentore, t1.decade, regni, matches.DATA, league FROM matches JOIN 
+                                                (SELECT COUNT(*) AS regni, detentore, concat(FLOOR(DATE_PART('year', DATA) / 10), '0') AS decade FROM matches WHERE outcome ='s' GROUP BY detentore, decade HAVING COUNT(*) > 1) t1
+                                                ON matches.detentore = t1.detentore AND DATE_PART('year', matches.data) >= CAST(t1.decade AS INTEGER) AND DATE_PART('year', matches.data) < CAST(t1.decade AS INTEGER) + 10
+                                                ) dinasties
+                                                GROUP BY detentore, decade, regni, league
+                                                ORDER BY decade ASC, regni DESC, detentore ASC, MAX(DATA) ASC
+                                                ) d 
+                                                JOIN matches ON d.detentore = matches.detentore AND d.data = matches.data
+                                                WHERE decade = ${decade} AND league = ${league}
+                                                ORDER BY decade ASC, regni DESC;`;
     //aggiornare sempre il valore, inserirlo se non esiste
     console.info('decadeDominator:', decadeDominator.rowCount);
     const decadeStat = `Decade Dominator ${decade.toString()}`;
@@ -65,44 +66,48 @@ const updateStats = async (
     const ddData = decadeDominator.rows[0].data;
     const ddDetentore = decadeDominator.rows[0].detentore;
     const ddValore = decadeDominator.rows[0].regni;
+    const ddSfidante = decadeDominator.rows[0].sfidante;
     console.info(ddData, ddDetentore, ddValore);
     if (decadeDominatorExist?.rowCount && decadeDominatorExist.rowCount > 0) {
         console.info('update decade dominator');
-        await client.sql`UPDATE stats SET data = ${ddData}, squadra = ${ddDetentore}, valore = ${ddValore}
+        await client.sql`UPDATE stats SET data = ${ddData}, squadra = ${ddDetentore}, valore = ${ddValore}, sfidante = ${ddSfidante}
                             WHERE league = ${league} AND statistica = ${decadeStat}`;
     }else{
         console.info('insert decade dominator');
-        await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore) 
-                        VALUES (${ddDetentore}, ${ddData}, ${league}, ${decadeStat}, ${ddValore})`;
+        await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, sfidante) 
+                        VALUES (${ddDetentore}, ${ddData}, ${league}, ${decadeStat}, ${ddValore}, ${ddSfidante})`;
     }
 
 
     //4. longest reign
-    const longestReign = await client.sql`SELECT matches.detentore, matches.data, matches.league, long.durata FROM matches JOIN (
+    const longestReign = await client.sql`SELECT matches.detentore, matches.data, matches.league, matches.sfidante long.durata FROM matches JOIN (
                                             SELECT squadra,league,durata, RANK() OVER (ORDER BY durata DESC) AS position FROM squadre
                                           ) long
                                           ON matches.detentore = long.squadra 
+                                          WHERE matches.outcome <> 'n'
                                           ORDER BY long.durata DESC, DATA DESC LIMIT 1`;
     await client.sql`UPDATE stats SET 
-                    data = ${longestReign.rows[0].data}, squadra = ${longestReign.rows[0].detentore}, league = ${league}, statistica = 'Longest Reign', valore = ${longestReign.rows[0].durata}
+                    data = ${longestReign.rows[0].data}, squadra = ${longestReign.rows[0].detentore}, league = ${league}, statistica = 'Longest Reign', valore = ${longestReign.rows[0].durata}, sfidante = ${longestReign.rows[0].sfidante}
                     WHERE league = ${league} AND statistica = 'Longest Reign'`;
     
     console.info('longestReign:', longestReign.rowCount);
 
     //5. shortest reign
-    const shortestReign = await client.sql`SELECT matches.detentore, matches.data, matches.league, short.durata FROM matches JOIN (
+    const shortestReign = await client.sql`SELECT matches.detentore, matches.data, matches.league, matches.sfidante, short.durata FROM matches JOIN (
                                             SELECT squadra,league,durata, RANK() OVER (ORDER BY durata DESC) AS position FROM squadre
                                             ) short
                                             ON matches.detentore = short.squadra 
+                                            WHERE matches.outcome <> 'n'
                                             ORDER BY short.durata ASC, DATA DESC LIMIT 1`;
     await client.sql`UPDATE stats SET 
-                    data = ${shortestReign.rows[0].data}, squadra = ${shortestReign.rows[0].detentore}, league = ${league}, statistica = 'Shortest Reign', valore = ${shortestReign.rows[0].durata}
+                    data = ${shortestReign.rows[0].data}, squadra = ${shortestReign.rows[0].detentore}, league = ${league}, statistica = 'Shortest Reign', valore = ${shortestReign.rows[0].durata}, sdidante = ${shortestReign.rows[0].sfidante}
                     WHERE league = ${league} AND statistica = 'Shortest Reign'`;
 
     console.info('shortestReign:', shortestReign.rowCount);
     
     //6. century club
-    const centuryClub = await client.sql`SELECT matches.detentore, MAX(matches.data) as data, matches.league, cen_club.durata, cen_club.tier FROM matches 
+    const centuryClub = await client.sql`SELECT t.detentore, t.data, t.league, t.durata, t.tier, matches.sfidante FROM
+                                            (SELECT matches.detentore, MAX(matches.data) as data, matches.league, cen_club.durata, cen_club.tier FROM matches 
                                             JOIN (
                                                 SELECT squadra, league, durata,
                                                 CASE WHEN durata > 3650 THEN 'Gold'
@@ -111,16 +116,18 @@ const updateStats = async (
                                                 END AS tier FROM squadre WHERE durata > 365) cen_club
                                             ON matches.detentore = cen_club.squadra 
                                             WHERE matches.detentore = ${detentoreName} AND matches.league = ${league}
-                                            GROUP BY matches.detentore, matches.league, cen_club.durata, cen_club.tier`;
+                                            GROUP BY matches.detentore, matches.league, cen_club.durata, cen_club.tier) t
+                                            JOIN matches
+                                            ON t.detentore = matches.detentore AND t.data = matches.data`;
     console.info('centuryClub:', centuryClub?.rowCount);
     const centuryClubStat = `Century Club - ${centuryClub?.rows[0].tier}`;
     if (centuryClub?.rowCount && centuryClub?.rowCount > 0) {
         if (await client.sql`SELECT * FROM stats WHERE league = ${league} AND statistica LIKE 'Century Club%' AND squadra = ${detentoreName}`) {
-            await client.sql`UPDATE stats SET data = ${centuryClub.rows[0].data}, statistica = ${centuryClubStat}, valore = ${centuryClub.rows[0].durata}
+            await client.sql`UPDATE stats SET data = ${centuryClub.rows[0].data}, statistica = ${centuryClubStat}, valore = ${centuryClub.rows[0].durata}, sfidante = ${centuryClub.rows[0].sfidante}
                             WHERE league = ${league} AND statistica LIKE 'Century Club%' AND squadra = ${detentoreName}`;
         }else{
-            await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore) 
-                            VALUES (${centuryClub.rows[0].detentore}, ${centuryClub.rows[0].data}, ${league}, ${centuryClubStat}, ${centuryClub.rows[0].durata})`;
+            await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, sfidante) 
+                            VALUES (${centuryClub.rows[0].detentore}, ${centuryClub.rows[0].data}, ${league}, ${centuryClubStat}, ${centuryClub.rows[0].durata}, ${centuryClub.rows[0].sfidante})`;
         }
     }
 
@@ -154,8 +161,8 @@ const updateStats = async (
                                             )
                                             ORDER BY t2.data ASC;`;
     if (titleAvenger?.rowCount && titleAvenger?.rowCount > 0) {
-        await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore) 
-                            VALUES (${detentoreName}, ${data}, ${league}, 'Title Avenger vs ${sfidanteName}', ${titleAvenger.rows[0].record_count})`;
+        await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, sfidante) 
+                            VALUES (${detentoreName}, ${data}, ${league}, 'Title Avenger vs ${sfidanteName}', ${titleAvenger.rows[0].record_count}), ${titleAvenger.rows[0].sfidante})`;
     }
 
     console.info('titleAvenger:', titleAvenger?.rowCount);
@@ -163,7 +170,8 @@ const updateStats = async (
     //8. title traveller
 
     //9. sleeping giant
-    const sleepingGiant = await client.sql`SELECT t2.*, t2.data - t1.data as sleep_duration
+    const sleepingGiant = await client.sql`SELECT s.detentore, s.data, s.sleep_duration, matches.sfidante FROM(
+                                            SELECT t2.*, t2.data - t1.data as sleep_duration
                                             FROM matches AS t1
                                             JOIN matches AS t2
                                             ON t1.detentore = t2.detentore
@@ -179,10 +187,11 @@ const updateStats = async (
                                                 AND t3.data < t2.data
                                             )
                                             GROUP BY t2."data", t2.league, t2.data - t1.data
-                                            ORDER BY t2.data ASC`;
+                                            ORDER BY t2.data ASC) s
+                                            JOIN matches ON s.detentore = matches.detentore AND s.data = matches.data`;
     if (sleepingGiant?.rowCount && sleepingGiant?.rowCount > 0) {
-        await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore) 
-        VALUES (${detentoreName}, ${data}, ${league}, 'Sleeping Giant', ${sleepingGiant.rows[0].sleep_duration})`;
+        await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, sfidante) 
+        VALUES (${detentoreName}, ${data}, ${league}, 'Sleeping Giant', ${sleepingGiant.rows[0].sleep_duration}, ${sleepingGiant.rows[0].sfidante})`;
     }
 
     console.info('sleepingGiant:', sleepingGiant?.rowCount);
@@ -191,12 +200,13 @@ const updateStats = async (
     //se boomer rimuovi stats, se non sono presenti regni aggiunti millenial
     await client.sql`DELETE FROM stats WHERE league = ${league} AND squadra = ${detentoreName} AND statistica LIKE 'Boomer'`;
     if (teamFromDB?.rows[0]?.regni === 0) {
-        await client.sql`INSERT INTO stats (squadra, DATA, league, statistica) VALUES (${detentoreName}, ${data}, ${league}, 'Millenial')`;
+        await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, sfidante) VALUES (${detentoreName}, ${data}, ${league}, 'Millenial', ${sfidanteName})`;
     }
 
     //LIVELLO 3
     //1. Iron legacy
-    const ironLegacy = await client.sql`SELECT matches.detentore, MAX(matches.data) as data, matches.league, iron.regni, iron.tier FROM matches JOIN (
+    const ironLegacy = await client.sql`SELECT i.detentore, i.data, i.league, i.regni, i.tier, matches.sfidante FROM(
+                                        SELECT matches.detentore, MAX(matches.data) as data, matches.league, iron.regni, iron.tier FROM matches JOIN (
                                             SELECT squadra, league, regni,
                                             CASE WHEN regni > 100 THEN 'Platinum'
                                                 WHEN regni > 50 THEN 'Gold'
@@ -206,21 +216,25 @@ const updateStats = async (
                                             END AS tier FROM squadre WHERE regni > 10) iron
                                             ON matches.detentore = iron.squadra 
                                             WHERE matches.detentore = ${detentoreName} AND matches.league = ${league}
-                                            GROUP BY matches.detentore, matches.league, iron.regni, iron.tier`;
+                                            GROUP BY matches.detentore, matches.league, iron.regni, iron.tier) i
+                                            JOIN matches 
+                                            ON i.detentore = matches.detentore AND i.data = matches.data`;
     console.info('ironLegacy:', ironLegacy?.rowCount);
     const ironLegacyStat = `Iron Legacy ${ironLegacy?.rows[0].tier}`;
     if (ironLegacy?.rowCount && ironLegacy?.rowCount > 0) {
         if (await client.sql`SELECT * FROM stats WHERE league = ${league} AND statistica LIKE 'Iron Legacy%' AND squadra = ${detentoreName}`) {
-            await client.sql`UPDATE stats SET data = ${ironLegacy.rows[0].data}, statistica = ${ironLegacyStat}, valore = ${ironLegacy.rows[0].durata}
+            await client.sql`UPDATE stats SET data = ${ironLegacy.rows[0].data}, statistica = ${ironLegacyStat}, valore = ${ironLegacy.rows[0].durata}, sfidante = ${ironLegacy.rows[0].sfidante}
                             WHERE league = ${league} AND statistica LIKE 'Iron Legacy%' AND squadra = ${detentoreName}`;
         }else{
-            await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore) 
-                            VALUES (${ironLegacy.rows[0].detentore}, ${ironLegacy.rows[0].data}, ${league}, ${ironLegacyStat}, ${ironLegacy.rows[0].durata})`;
+            await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, sfidante) 
+                            VALUES (${ironLegacy.rows[0].detentore}, ${ironLegacy.rows[0].data}, ${league}, ${ironLegacyStat}, ${ironLegacy.rows[0].durata}, ${ironLegacy.rows[0].sfidante})`;
         }
     }
 
     //2. Clean Sheet
 
+    //per ricalcolare queste due stats, occorrerebbe riportare la durata del regno sulla sconfitta
+    /*
     //3. King Slayer
     //eliminare i record da stats con statistica like 'King Slayer%'
     await client.sql`DELETE FROM stats WHERE league = ${league} AND statistica LIKE 'King Slayer%'`;
@@ -246,14 +260,15 @@ const updateStats = async (
                                         ks.detentore, ks.data, ks.league, Concat('King Slayer vs ', ks.sfidante), ks.durata_regno FROM ks`;
 
     console.info('kingSlayer:', kingSlayer.rowCount);
+    
 
     //4. Dinasty Builder
-    const dinastyBuilder = await client.sql`SELECT matches.detentore, MAX(matches.data), matches.league, long.durata, decade FROM matches JOIN (
-                                            SELECT SUM AS durata, detentore, CONCAT(decade, '0') AS decade FROM (SELECT SUM(durata) AS sum, detentore, FLOOR(DATE_PART('year', DATA) / 10) AS decade FROM matches WHERE outcome ='s' GROUP BY detentore, decade) s 
-                                            WHERE sum > 365 AND decade = ${decade} AND detentore = ${detentoreName} ORDER BY decade ASC, SUM, detentore ASC) long
-                                            ON matches.detentore = long.detentore AND DATE_PART('year', matches.data) >= CAST(long.decade AS INTEGER) AND DATE_PART('year', matches.data) < CAST(long.decade AS INTEGER) + 10
-                                            GROUP BY matches.detentore, matches.league, long.durata, long.decade
-                                            ORDER BY decade`;
+        const dinastyBuilder = await client.sql`SELECT matches.detentore, MAX(matches.data), matches.league, long.durata, decade FROM matches JOIN (
+                                                SELECT SUM AS durata, detentore, CONCAT(decade, '0') AS decade FROM (SELECT SUM(durata) AS sum, detentore, FLOOR(DATE_PART('year', DATA) / 10) AS decade FROM matches WHERE outcome ='s' GROUP BY detentore, decade) s 
+                                                WHERE sum > 365 AND decade = ${decade} AND detentore = ${detentoreName} ORDER BY decade ASC, SUM, detentore ASC) long
+                                                ON matches.detentore = long.detentore AND DATE_PART('year', matches.data) >= CAST(long.decade AS INTEGER) AND DATE_PART('year', matches.data) < CAST(long.decade AS INTEGER) + 10
+                                                GROUP BY matches.detentore, matches.league, long.durata, long.decade
+                                                ORDER BY decade`;
     console.info('dinastyBuilder:', dinastyBuilder.rowCount);
     //aggiornare sempre il valore, inserirlo se non esiste
     const dinastyStat = `Dinasty Builder ${decade.toString()}`;
@@ -268,6 +283,8 @@ const updateStats = async (
         }
     }
 
+    */
+
     //5. All-time rivals
     const allTimeRivals = await client.sql`SELECT matches.detentore, all_time.sfidante, MAX(matches.data) as data, matches.league, all_time.tot FROM matches 
                                             JOIN (
@@ -277,14 +294,14 @@ const updateStats = async (
                                             WHERE matches.detentore = ${detentoreName} AND matches.league = ${league} AND matches.data = ${data} AND matches.sfidante = ${sfidanteName}
                                             GROUP BY matches.detentore, matches.league, all_time.sfidante, all_time.tot`;
     console.info('allTimeRivals:', allTimeRivals?.rowCount);
-    const allTimeRivalsStat = `All-time Rivals vs ${sfidanteName}`;
+    const allTimeRivalsStat = `All Time Rival vs ${sfidanteName}`;
     if (allTimeRivals?.rowCount && allTimeRivals?.rowCount > 0) {
         if (await client.sql`SELECT * FROM stats WHERE league = ${league} AND statistica = ${allTimeRivalsStat} AND squadra = ${detentoreName}`) {
-            await client.sql`UPDATE stats SET data = ${allTimeRivals.rows[0].data}, valore = ${allTimeRivals.rows[0].tot}
+            await client.sql`UPDATE stats SET data = ${allTimeRivals.rows[0].data}, valore = ${allTimeRivals.rows[0].tot}, sfidante = ${allTimeRivals.rows[0].sfidante}
                                 WHERE league = ${league} AND statistica = ${allTimeRivalsStat} AND squadra = ${detentoreName}`;
         }else{
-            await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore) 
-                                VALUES (${allTimeRivals.rows[0].detentore}, ${allTimeRivals.rows[0].data}, ${league}, ${allTimeRivalsStat}, ${allTimeRivals.rows[0].tot})`;
+            await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, sfidante) 
+                                VALUES (${allTimeRivals.rows[0].detentore}, ${allTimeRivals.rows[0].data}, ${league}, ${allTimeRivalsStat}, ${allTimeRivals.rows[0].tot}, ${allTimeRivals.rows[0].sfidante})`;
         }
     }
 
