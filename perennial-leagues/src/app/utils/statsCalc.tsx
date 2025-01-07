@@ -197,15 +197,16 @@ const updateStats = async (
     console.info('sleepingGiant:', sleepingGiant?.rowCount);
 
     //10. millenial/boomer
-    //se boomer rimuovi stats, se non sono presenti regni aggiunti millenial
+    //se boomer rimuovi stats, se non sono presenti regni aggiunti millenial, aggiungi anche Newbie, in quanto è il primo regno
     await client.sql`DELETE FROM stats WHERE league = ${league} AND squadra = ${detentoreName} AND statistica LIKE 'Boomer'`;
     if (teamFromDB?.rows[0]?.regni === 0) {
         await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, sfidante) VALUES (${detentoreName}, ${data}, ${league}, 'Millenial', ${sfidanteName})`;
+        await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, sfidante) VALUES (${detentoreName}, ${data}, ${league}, 'Newbie', ${sfidanteName})`;
     }
 
     //LIVELLO 3
-    //1. Iron legacy
-    const ironLegacy = await client.sql`SELECT i.detentore, i.data, i.league, i.regni, i.tier, matches.sfidante FROM(
+    //1. Legacy Run
+    const legacyRun = await client.sql`SELECT i.detentore, i.data, i.league, i.regni, i.tier, matches.sfidante FROM(
                                         SELECT matches.detentore, MAX(matches.data) as data, matches.league, iron.regni, iron.tier FROM matches JOIN (
                                             SELECT squadra, league, regni,
                                             CASE WHEN regni > 100 THEN 'Platinum'
@@ -219,71 +220,203 @@ const updateStats = async (
                                             GROUP BY matches.detentore, matches.league, iron.regni, iron.tier) i
                                             JOIN matches 
                                             ON i.detentore = matches.detentore AND i.data = matches.data`;
-    console.info('ironLegacy:', ironLegacy?.rowCount);
-    const ironLegacyStat = `Iron Legacy ${ironLegacy?.rows[0].tier}`;
-    if (ironLegacy?.rowCount && ironLegacy?.rowCount > 0) {
-        if (await client.sql`SELECT * FROM stats WHERE league = ${league} AND statistica LIKE 'Iron Legacy%' AND squadra = ${detentoreName}`) {
-            await client.sql`UPDATE stats SET data = ${ironLegacy.rows[0].data}, statistica = ${ironLegacyStat}, valore = ${ironLegacy.rows[0].durata}, sfidante = ${ironLegacy.rows[0].sfidante}
-                            WHERE league = ${league} AND statistica LIKE 'Iron Legacy%' AND squadra = ${detentoreName}`;
+    console.info('legacyRun:', legacyRun?.rowCount);
+    const legacyRunStat = `Legacy Run - ${legacyRun?.rows[0].tier}`;
+    if (legacyRun?.rowCount && legacyRun?.rowCount > 0) {
+        if (await client.sql`SELECT * FROM stats WHERE league = ${league} AND statistica LIKE 'Legacy Run%' AND squadra = ${detentoreName}`) {
+            await client.sql`UPDATE stats SET data = ${legacyRun.rows[0].data}, statistica = ${legacyRunStat}, valore = ${legacyRun.rows[0].regni}, sfidante = ${legacyRun.rows[0].sfidante}
+                            WHERE league = ${league} AND statistica LIKE 'Legacy Run%' AND squadra = ${detentoreName}`;
         }else{
             await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, sfidante) 
-                            VALUES (${ironLegacy.rows[0].detentore}, ${ironLegacy.rows[0].data}, ${league}, ${ironLegacyStat}, ${ironLegacy.rows[0].durata}, ${ironLegacy.rows[0].sfidante})`;
+                            VALUES (${legacyRun.rows[0].detentore}, ${legacyRun.rows[0].data}, ${league}, ${legacyRunStat}, ${legacyRun.rows[0].regni}, ${legacyRun.rows[0].sfidante})`;
         }
     }
 
-    //2. Clean Sheet
+    //Stronghold Record
+    //eliminare i record da stats con statistica like 'Stronghold%'
+    await client.sql`DELETE FROM stats WHERE league = ${league} AND statistica LIKE 'Stronghold%'`;
+    const strongholdRecord = await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, sfidante) 
+                                                SELECT m.detentore, m.fine_regno, 'serie_a', CONCAT('Stronghold Record - ',m.rank) , m.partite,  m.sfidante FROM
+                                                (
+                                                WITH ranked_matches AS (
+                                                SELECT
+                                                    *,
+                                                    ROW_NUMBER() OVER (ORDER BY data) 
+                                                    - ROW_NUMBER() OVER (PARTITION BY detentore ORDER BY data) AS regno_id
+                                                FROM
+                                                    matches
+                                                ),
+                                                grouped_regni AS (
+                                                SELECT
+                                                    detentore,
+                                                    regno_id,
+                                                    MIN(data) AS inizio_regno,
+                                                    MAX(data) AS fine_regno,
+                                                    COUNT(*) AS partite
+                                                FROM
+                                                    ranked_matches
+                                                GROUP BY
+                                                    detentore, regno_id
+                                                ),
+                                                ordered_regni AS (
+                                                SELECT
+                                                    detentore,
+                                                    inizio_regno,
+                                                    fine_regno,
+                                                    partite,
+                                                    RANK() OVER (ORDER BY partite DESC) AS rank
+                                                FROM
+                                                    grouped_regni
+                                                )
+                                                SELECT
+                                                re.detentore,
+                                                inizio_regno,
+                                                fine_regno,
+                                                partite,
+                                                rank,
+                                                sfidante
+                                                FROM
+                                                ordered_regni re
+                                                JOIN matches ma ON re.detentore = ma.detentore AND re.fine_regno = ma.data
+                                                ORDER BY partite DESC
+                                                LIMIT 10
+                                                ) m`;
 
-    //per ricalcolare queste due stats, occorrerebbe riportare la durata del regno sulla sconfitta
-    /*
+    console.info('strongholdRecord:', strongholdRecord.rowCount);
+    
     //3. King Slayer
     //eliminare i record da stats con statistica like 'King Slayer%'
     await client.sql`DELETE FROM stats WHERE league = ${league} AND statistica LIKE 'King Slayer%'`;
-    const kingSlayer = await client.sql`WITH ks AS (
-                                            SELECT t2.*, t1.durata AS durata_regno
-                                            FROM (
-                                            SELECT * 
-                                            FROM matches 
-                                            ORDER BY durata DESC 
-                                            LIMIT 10
-                                            ) AS t1
+    const kingSlayer = await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, sfidante) 
+                                                SELECT m.ks, m.data_prossima_partita, 'serie_a', Concat('King Slayer vs ', m.detentore) , m.durata,  m.detentore FROM
+                                                (
+                                            WITH ranked_matches AS (
+                                            SELECT
+                                                *,
+                                                ROW_NUMBER() OVER (ORDER BY data) 
+                                                - ROW_NUMBER() OVER (PARTITION BY detentore ORDER BY data) AS regno_id
+                                            FROM
+                                                matches
+                                            ),
+                                            grouped_regni AS (
+                                            SELECT
+                                                detentore,
+                                                regno_id,
+                                                MIN(data) AS inizio_regno,
+                                                MAX(data) AS fine_regno,
+                                                MAX(durata) AS durata,
+                                                COUNT(*) AS partite
+                                            FROM
+                                                ranked_matches
+                                            GROUP BY
+                                                detentore, regno_id
+                                            ),
+                                            ordered_regni AS (
+                                            SELECT
+                                                detentore,
+                                                inizio_regno,
+                                                fine_regno,
+                                                durata,
+                                                partite,
+                                                RANK() OVER (ORDER BY partite DESC) AS rank
+                                            FROM
+                                                grouped_regni
+                                            )
+                                            SELECT
+                                            regni.detentore,
+                                            regni.inizio_regno,
+                                            regni.fine_regno,
+                                            regni.durata,
+                                            regni.partite,
+                                            next_match.data AS data_prossima_partita,
+                                            next_match.detentore AS ks
+                                            FROM
+                                            ordered_regni regni
                                             LEFT JOIN LATERAL (
-                                            SELECT * 
-                                            FROM matches AS t2
-                                            WHERE t2.data > t1.data
-                                            AND t2.outcome = 's'
-                                            AND t2.sfidante = t1.detentore
-                                            ORDER BY t2.data ASC
+                                            SELECT
+                                                m.data,
+                                                m.detentore
+                                            FROM
+                                                matches m
+                                            WHERE
+                                                m.data > regni.fine_regno -- Solo partite successive alla fine del regno
+                                                AND m.sfidante = regni.detentore -- Sfidante è il detentore
+                                                AND m.outcome = 's' -- Risultato deve essere "s"
+                                            ORDER BY
+                                                m.data ASC -- Prendi la prima partita successiva
                                             LIMIT 1
-                                            ) AS t2 ON TRUE
-                                        ) INSERT INTO stats (squadra, DATA, league, statistica, valore) 
-                                        SELECT 
-                                        ks.detentore, ks.data, ks.league, Concat('King Slayer vs ', ks.sfidante), ks.durata_regno FROM ks`;
+                                            ) next_match ON TRUE
+                                            ORDER BY
+                                            regni.durata DESC
+                                            LIMIT 10
+                                            )m`;
 
     console.info('kingSlayer:', kingSlayer.rowCount);
     
-
+    
     //4. Dinasty Builder
-        const dinastyBuilder = await client.sql`SELECT matches.detentore, MAX(matches.data), matches.league, long.durata, decade FROM matches JOIN (
-                                                SELECT SUM AS durata, detentore, CONCAT(decade, '0') AS decade FROM (SELECT SUM(durata) AS sum, detentore, FLOOR(DATE_PART('year', DATA) / 10) AS decade FROM matches WHERE outcome ='s' GROUP BY detentore, decade) s 
-                                                WHERE sum > 365 AND decade = ${decade} AND detentore = ${detentoreName} ORDER BY decade ASC, SUM, detentore ASC) long
-                                                ON matches.detentore = long.detentore AND DATE_PART('year', matches.data) >= CAST(long.decade AS INTEGER) AND DATE_PART('year', matches.data) < CAST(long.decade AS INTEGER) + 10
-                                                GROUP BY matches.detentore, matches.league, long.durata, long.decade
-                                                ORDER BY decade`;
+        const dinastyBuilder = await client.sql`SELECT matches.detentore, matches.data, decade, tot AS durata, matches.league, matches.sfidante FROM(
+                                                        SELECT detentore, MAX(fine_regno), decade, SUM(durata) AS tot FROM 
+                                                        (WITH ranked_matches AS (
+                                                        SELECT
+                                                            *,
+                                                            ROW_NUMBER() OVER (ORDER BY data) 
+                                                            - ROW_NUMBER() OVER (PARTITION BY detentore ORDER BY data) AS regno_id
+                                                        FROM
+                                                            matches
+                                                        ),
+                                                        grouped_regni AS (
+                                                        SELECT
+                                                            detentore,
+                                                            regno_id,
+                                                            MIN(data) AS inizio_regno,
+                                                            MAX(data) AS fine_regno,
+                                                            MAX(durata) AS durata,
+                                                            COUNT(*) AS partite
+                                                        FROM
+                                                            ranked_matches
+                                                        GROUP BY
+                                                            detentore, regno_id
+                                                        ),
+                                                        ordered_regni AS (
+                                                        SELECT
+                                                            detentore,
+                                                            inizio_regno,
+                                                            fine_regno,
+                                                            durata,
+                                                            partite,
+                                                            RANK() OVER (ORDER BY partite DESC) AS rank
+                                                        FROM
+                                                            grouped_regni
+                                                        )
+                                                        SELECT
+                                                        detentore,
+                                                        inizio_regno,
+                                                        fine_regno,
+                                                        CONCAT(FLOOR(DATE_PART('year', inizio_regno) / 10),0) AS decade,
+                                                        durata,
+                                                        partite
+                                                        FROM
+                                                        ordered_regni ) db
+                                                        GROUP BY detentore, decade
+                                                        HAVING SUM(durata) > 365
+                                                        ORDER BY decade ASC, tot DESC, detentore ) db1
+                                                        JOIN matches ON db1.detentore = matches.detentore AND db1.max = matches.data
+                                                        WHERE decade = ${decade} AND db1.detentore = ${detentoreName} AND matches.league = ${league}`;
     console.info('dinastyBuilder:', dinastyBuilder.rowCount);
     //aggiornare sempre il valore, inserirlo se non esiste
     const dinastyStat = `Dinasty Builder ${decade.toString()}`;
     const dinastyBuilderExist = await client.sql`SELECT * FROM stats WHERE league = ${league} AND statistica = ${dinastyStat}`;
     if (dinastyBuilder.rowCount && dinastyBuilder.rowCount > 0) {
         if (dinastyBuilderExist?.rowCount && dinastyBuilderExist.rowCount > 0) {
-            await client.sql`UPDATE stats SET data = ${dinastyBuilder.rows[0].MAX}, valore = ${dinastyBuilder.rows[0].durata}, squadra = ${dinastyBuilder.rows[0].detentore} 
+            await client.sql`UPDATE stats SET data = ${dinastyBuilder.rows[0].MAX}, valore = ${dinastyBuilder.rows[0].durata}, squadra = ${dinastyBuilder.rows[0].detentore}, sfidante = ${dinastyBuilder.rows[0].sfidante}
                                 WHERE league = ${league} AND statistica = ${dinastyStat}`;
         }else{
-            await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore) 
-            VALUES (${dinastyBuilder.rows[0].detentore}, ${dinastyBuilder.rows[0].MAX}, ${league}, ${dinastyStat}, ${dinastyBuilder.rows[0].durata})`;
+            await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, sfidante) 
+            VALUES (${dinastyBuilder.rows[0].detentore}, ${dinastyBuilder.rows[0].MAX}, ${league}, ${dinastyStat}, ${dinastyBuilder.rows[0].durata}, ${dinastyBuilder.rows[0].sfidante})`;
         }
     }
 
-    */
 
     //5. All-time rivals
     const allTimeRivals = await client.sql`SELECT matches.detentore, all_time.sfidante, MAX(matches.data) as data, matches.league, all_time.tot FROM matches 

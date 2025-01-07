@@ -14,6 +14,8 @@ import {
   faQuestionCircle,
   faBabyCarriage,
   faPersonCane,
+  faChessRook,
+  faBaby,
 } from "@fortawesome/free-solid-svg-icons";
 
 const daysToYears = (days: number) => {
@@ -80,28 +82,28 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
         return daysToYears(value);
       },
     },
-    "Iron Legacy": {
+    "Legacy Run - Iron": {
         icon: faTrophy,
         title: "Have at least 10 title reigns",
         valueProcessor: (value) =>{
           return value ? `${value.toString()} reigns` : "";
         }
       },
-    "Bronze Legacy": {
+    "Legacy Run - Bronze": {
         icon: faTrophy,
         title: "Have at least 15 title reigns",
         valueProcessor: (value) =>{
           return value ? `${value.toString()} reigns` : "";
         }
       },
-    "Silver Legacy": {
+    "Legacy Run - Silver": {
         icon: faTrophy,
         title: "Have at least 25 title reigns",
         valueProcessor: (value) =>{
           return value ? `${value.toString()} reigns` : "";
         }
       },
-    "Gold Legacy": {
+    "Legacy Run - Gold": {
       icon: faTrophy,
       title: "Have at least 50 title reigns",
       valueProcessor: (value) =>{
@@ -153,6 +155,18 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
     "Boomer": {
       icon: faPersonCane,
       title: "Win the last title before 1945",
+    },
+    "Newbie": {
+      icon: faBaby,
+      title: "First title",
+    },
+    "Stronghold Record": {
+      icon: faChessRook,
+      title: "Defend the title for the most matches",
+      valueProcessor: (value) => {
+        if (value === null) return "";
+        return `Defended for ${value} consecutive matches`;
+      }
     },
     "Question Circle": {
       icon: faQuestionCircle,
