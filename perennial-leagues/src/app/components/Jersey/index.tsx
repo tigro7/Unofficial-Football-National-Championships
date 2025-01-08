@@ -7,7 +7,7 @@ const Jersey = ({ colors, icon }: { colors: { primary: string; secondary: string
 
   return (
     <div
-      className="w-16 md:w-16 lg:w-32 h-16 md:h-16 lg:h-32 mx-auto rounded-full"
+      className="w-16 md:w-16 lg:w-32 h-16 md:h-16 lg:h-32 rounded-full"
       style={{
         background: `linear-gradient(45deg, ${primaryColor} 50%, ${secondaryColor} 50%)`,
       }}

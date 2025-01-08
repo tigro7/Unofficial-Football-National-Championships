@@ -44,7 +44,6 @@ const TimelineChart = ({regni, primaryColor, secondaryColor, league = "serie_a"}
     significantDates.push(new Date(year, 0, 1));
   }
 
-  console.info(regni);
 
   return (
     <div className="relative flex items-center w-full h-24">

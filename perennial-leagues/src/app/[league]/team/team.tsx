@@ -6,6 +6,8 @@ import TimelineChart from "@/app/components/TimelineChart";
 import StatContainer from "@/app/components/StatContainer";
 import TeamStats from "@/app/components/TeamStats";
 import { useEffect, useState } from "react";
+import normalizeLeagueName from "@/app/utils/leaguesMap";
+import LastFiveMatches from "@/app/components/LastFive";
 
 const generateTimeline = (regni: { start: string; end: string, matchStart: number, matchEnd: number }[], startDate: string) => {
   const timeline = [];
@@ -75,8 +77,16 @@ const generateTimeline = (regni: { start: string; end: string, matchStart: numbe
   return timeline;
 };
 
-const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = "serie_a"}: 
-  {squadra: string, stats: {regni: number, durataCombinata: number, durataMedia: number}, colors: {primary: string, secondary: string}, regni:{ start: string, end: string, matchStart: number, matchEnd: number }[], startDate: string, posizioni: {regni: number, durata: number, media: number}, league: string}) => {
+const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = "serie_a", lastFiveMatches}: 
+  {squadra: string, 
+    stats: {regni: number, durataCombinata: number, durataMedia: number}, 
+    colors: {primary: string, secondary: string}, 
+    regni:{ start: string, end: string, matchStart: number, matchEnd: number }[], 
+    startDate: string, 
+    posizioni: {regni: number, durata: number, media: number}, 
+    league: string,
+    lastFiveMatches: {numero: number, detentore: string, sfidante: string, risultato: string, note: string, data: string, durata: number, outcome: 'v' | 's' | 'd', home: string, away: string, league: string}[]
+  }) => {
 
   const [iconStats, setStats] = useState([]);
 
@@ -120,9 +130,29 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
   return(
     <div className="container mx-auto mt-8 p-4 border-4 rounded-xl shadow-md bg-system">
       {/* Nome della Squadra */}
-      <h1 className="text-4xl font-bold text-center mb-6 rounded-xl">
-        {`${squadra.charAt(0).toUpperCase()}${squadra.slice(1)}`}
-      </h1>
+      
+      <div className="items-start ml-12 my-6">
+        <div className="inset-0 border-4 rounded-xl" style={{ borderColor: colors.primary }}>
+          <div className="inset-1 border-4 rounded-xl p-4" style={{ borderColor: colors.secondary }}>
+            <div className="flex items-center">
+              <Jersey colors={colors} icon={compareDatesByDay(regni[regni.length - 1]?.end, new Date().toISOString()) ? "faCrown" : null} />
+              <div className="ml-4">
+                <h1 className="text-4xl font-bold mb-2">
+                  {`${squadra.charAt(0).toUpperCase()}${squadra.slice(1)}`}
+                </h1>
+                <h3 className="text-2xl text-gray-800">
+                  {normalizeLeagueName(league)}
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Ultimi 5 match */}
+      <div className="flex justify-around mb-6">
+        <LastFiveMatches team={squadra} matches={lastFiveMatches} />
+      </div>
 
       {/* Stats e Posizioni */}
       <div className="flex justify-around mb-6">
@@ -148,10 +178,6 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
             positionSuffix={`Ended: ${(new Date(shortestReign.end)).toLocaleDateString()}`}
           />
       }
-      </div>
-
-      <div className="flex justify-center mb-6">
-        <Jersey colors={colors} icon={compareDatesByDay(regni[regni.length - 1]?.end,new Date().toISOString()) ? "faCrown" : null} />
       </div>
 
       <div className="py-10">
