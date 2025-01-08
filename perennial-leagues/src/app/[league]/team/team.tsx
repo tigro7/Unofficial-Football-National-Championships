@@ -12,7 +12,7 @@ const generateTimeline = (regni: { start: string; end: string, matchStart: numbe
   const today = new Date().toISOString();
 
   // Aggiungere un regno vuoto all'Started, se necessario
-  if (new Date(startDate).getTime() < new Date(regni[0].start).getTime()) {
+  if (new Date(startDate).getTime() < new Date(regni[0]?.start).getTime()) {
     timeline.push({
       start: startDate,
       end: regni[0].start,
@@ -58,7 +58,7 @@ const generateTimeline = (regni: { start: string; end: string, matchStart: numbe
   }
 
   // Aggiungere un regno vuoto alla Ended, se necessario
-  if (new Date(today).getTime() > new Date(regni[regni.length - 1].end).getTime()) {
+  if (new Date(today).getTime() > new Date(regni[regni.length - 1]?.end).getTime()) {
     timeline.push({
       start: regni[regni.length - 1].end,
       matchStart: regni[regni.length - 1].matchEnd,
@@ -99,8 +99,8 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
   }
 
   const timeLineData = generateTimeline(regni, startDate);
-  const longestReign = timeLineData.filter(regno => regno.team).reduce((prev, curr) =>{return prev.duration > curr.duration ? prev : curr;})
-  const shortestReign = timeLineData.filter(regno => regno.team).reduce((prev, curr) =>{return prev.duration < curr.duration ? prev : curr;})
+  const longestReign = timeLineData.length > 0 ? timeLineData.filter(regno => regno.team).reduce((prev, curr) => { return prev.duration > curr.duration ? prev : curr; }) : null;
+  const shortestReign = timeLineData.length > 0 ? timeLineData.filter(regno => regno.team).reduce((prev, curr) => { return prev.duration < curr.duration ? prev : curr; }) : null;
 
   const numeralSuffix = (num: number) => {
     const lastDigit = num.toString().slice(-1);
@@ -136,22 +136,28 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
       </div>
       
       <div className="flex justify-around mb-6">
-        <StatContainer statName="Longest Reign" statValue={longestReign.duration} valueSuffix=" days"
-          position={' '} positionPrefix={`Started: ${(new Date(longestReign.start)).toLocaleDateString()}`}
-          positionSuffix={`Ended: ${(new Date(longestReign.end)).toLocaleDateString()}`}
-        />
-        <StatContainer statName="Shortest Reign" statValue={shortestReign.duration} valueSuffix=" days"
-          position={' '} positionPrefix={`Started: ${(new Date(shortestReign.start)).toLocaleDateString()}`}
-          positionSuffix={`Ended: ${(new Date(shortestReign.end)).toLocaleDateString()}`}
-        />
+        {longestReign &&
+          <StatContainer statName="Longest Reign" statValue={longestReign.duration} valueSuffix=" days"
+            position={' '} positionPrefix={`Started: ${(new Date(longestReign.start)).toLocaleDateString()}`}
+            positionSuffix={`Ended: ${(new Date(longestReign.end)).toLocaleDateString()}`}
+          />
+        }
+        {shortestReign &&
+          <StatContainer statName="Shortest Reign" statValue={shortestReign.duration} valueSuffix=" days"
+            position={' '} positionPrefix={`Started: ${(new Date(shortestReign.start)).toLocaleDateString()}`}
+            positionSuffix={`Ended: ${(new Date(shortestReign.end)).toLocaleDateString()}`}
+          />
+      }
       </div>
 
       <div className="flex justify-center mb-6">
-        <Jersey colors={colors} icon={compareDatesByDay(regni[regni.length - 1].end,new Date().toISOString()) ? "faCrown" : null} />
+        <Jersey colors={colors} icon={compareDatesByDay(regni[regni.length - 1]?.end,new Date().toISOString()) ? "faCrown" : null} />
       </div>
 
-      <div className="py-10">     
-        <TimelineChart regni={timeLineData} primaryColor={"#000000"} secondaryColor={colors.secondary} league={league}/>
+      <div className="py-10">
+        {timeLineData.length > 0 &&     
+          <TimelineChart regni={timeLineData} primaryColor={"#000000"} secondaryColor={colors.secondary} league={league}/>
+        }
       </div>
     </div>
   );

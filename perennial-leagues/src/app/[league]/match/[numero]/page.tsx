@@ -1,6 +1,7 @@
 import React from "react";
 import Match from "../match";
 import ErrorBoundary from "@/app/components/ErrorBoundary";
+import normalizeTeamName from "@/app/utils/namesMap";
 
 const Page = async ({params,}: {params: Promise<{ numero: number, league: string}>}) => {
 
@@ -16,10 +17,10 @@ const Page = async ({params,}: {params: Promise<{ numero: number, league: string
 
     console.info(matchData);
 
-    const teamHome = (await (await fetch(`${host}/api/${league}/squadre/${matchData.home}`)).json())[0];
-    const teamAway = (await (await fetch(`${host}/api/${league}/squadre/${matchData.away}`)).json())[0];
-    const homeReigns = (await (await fetch(`${host}/api/${league}/regni/${matchData.home}/${numero}`)).json())[0].regni;
-    const awayReigns = (await (await fetch(`${host}/api/${league}/regni/${matchData.away}/${numero}`)).json())[0].regni;
+    const teamHome = (await (await fetch(`${host}/api/${league}/squadre/${normalizeTeamName(matchData.home)}`)).json())[0];
+    const teamAway = (await (await fetch(`${host}/api/${league}/squadre/${normalizeTeamName(matchData.away)}`)).json())[0];
+    const homeReigns = (await (await fetch(`${host}/api/${league}/regni/${normalizeTeamName(matchData.home)}/${numero}`)).json())[0].regni;
+    const awayReigns = (await (await fetch(`${host}/api/${league}/regni/${normalizeTeamName(matchData.away)}/${numero}`)).json())[0].regni;
 
     const h2h = (await (await fetch(`${host}/api/${league}/matches/h2h/${teamHome.squadra}/${teamAway.squadra}/${numero}`)).json())[0];
     //const awayH2H = (await (await fetch(`${host}/api/${league}/matches/h2h/${teamAway.squadra}/${teamHome.squadra}/${data}`)).json())[0];
@@ -37,8 +38,11 @@ const Page = async ({params,}: {params: Promise<{ numero: number, league: string
                     score: matchData.risultato || 'To be played',
                     outcome: matchData.outcome,
                     detentore: matchData.detentore,
+                    sfidante: matchData.sfidante,
                     competizione: matchData.note || league,
-                    numero: matchData.numero
+                    numero: matchData.numero,
+                    home: matchData.home,
+                    away: matchData.away
                 }} 
                 teamHome={{ 
                     name: teamHome.squadra, 

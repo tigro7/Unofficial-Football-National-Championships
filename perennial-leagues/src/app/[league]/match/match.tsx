@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 
 const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "serie_a"}: { 
-  matchInfo: { date: string, location: string, score?: string, outcome: string, detentore: string, competizione: string, numero: number}, 
+  matchInfo: { date: string, location: string, score?: string, outcome: string, detentore: string, sfidante: string, home: string, away: string, competizione: string, numero: number}, 
   teamHome: { name: string, colors: { primary: string, secondary: string } }, 
   teamAway: { name: string, colors: { primary: string, secondary: string } }, 
   stats: { headToHead: {home: number, away: number, draw: number}, teamHomeTitles: number, teamAwayTitles: number },
@@ -44,7 +44,7 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
               <div className="flex flex-col items-center w-1/3">
                 <div className="h-12 flex items-center justify-center">
                   <h2 className="text-2xl font-bold text-center">
-                    <TeamLink league={league} teamName={teamHome.name} />
+                    <TeamLink league={league} teamName={matchInfo.home} teamLink={teamHome.name} />
                   </h2>
                 </div>
                 <Jersey colors={teamHome.colors} icon={iconHome} />
@@ -86,7 +86,7 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
               <div className="flex flex-col items-center w-1/3">
                 <div className="h-12 flex items-center justify-center">
                   <h2 className="text-2xl font-bold text-center">
-                    <TeamLink league={league} teamName={teamAway.name} />
+                    <TeamLink league={league} teamName={matchInfo.away} teamLink={teamAway.name}/>
                   </h2>
                 </div>
                 <Jersey colors={teamAway.colors} icon={iconAway} />

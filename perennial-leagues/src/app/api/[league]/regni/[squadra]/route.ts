@@ -22,20 +22,22 @@ export async function GET(request: Request, {params,}: {params: Promise<{ squadr
             match.detentore.toLowerCase() === squadra.toLowerCase() || match.sfidante.toLowerCase() === squadra.toLowerCase()
         );
 
-        const regni : {start: string, end: string }[] = [];
+        const regni : {start: string, end: string, matchStart: number, matchEnd: number}[] = [];
         let currentStart: string | null = null;
+        let currentMatchStart: number = 0;
 
         for (const match of relevantMatches) {
             if (match.detentore.toLowerCase() == squadra.toLowerCase() && currentStart == null) {
                 currentStart = match.data;
+                currentMatchStart = match.numero;
             }else if (currentStart && match.sfidante.toLowerCase() == squadra.toLowerCase()) {
-                regni.push({start: currentStart, end: match.data });
+                regni.push({start: currentStart, end: match.data, matchStart: currentMatchStart, matchEnd: match.numero});
                 currentStart = null;
             }
         }
 
         if (currentStart) {
-            regni.push({start: currentStart, end: new Date().toISOString()});
+            regni.push({start: currentStart, end: new Date().toISOString(), matchStart: currentMatchStart, matchEnd: matches[matches.length - 1].numero});
         }
     
         return NextResponse.json(regni, { status: 200 });
