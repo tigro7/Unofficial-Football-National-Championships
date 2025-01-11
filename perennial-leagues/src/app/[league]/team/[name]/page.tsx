@@ -19,8 +19,6 @@ const TeamPage = async ({params,}: {params: Promise<{ name: string, league: stri
     const startDate = await fetch (`${host}/api/${league}/start`).then(res => res.json()).then(data => data[0].data);
     const lastFiveMatches = await fetch (`${host}/api/${league}/matches/last/${teamData.squadra}`).then(res => res.json());
 
-    console.info(lastFiveMatches)
-
     const posizioneRegni = teamData.position_regni;
     const posizioneDurata = teamData.position_durata;
     const posizioneMedia = teamData.position_media;

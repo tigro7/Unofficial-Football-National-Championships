@@ -131,7 +131,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
     <div className="container mx-auto mt-8 p-4 border-4 rounded-xl shadow-md bg-system">
       {/* Nome della Squadra */}
       
-      <div className="items-start ml-12 my-6">
+      <div className={`items-start ${window.matchMedia("(orientation: portrait)").matches ? '' : 'ml-12'} my-6`}>
         <div className="inset-0 border-4 rounded-xl" style={{ borderColor: colors.primary }}>
           <div className="inset-1 border-4 rounded-xl p-4" style={{ borderColor: colors.secondary }}>
             <div className="flex items-center">
