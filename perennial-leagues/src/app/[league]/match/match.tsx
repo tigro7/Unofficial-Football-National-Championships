@@ -57,9 +57,8 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
                   {matchInfo.competizione}
                 </p>
                 <p className="text-lg italic">
-                  {adjacents.previous && window.matchMedia("(min-width: 1024px)").matches && <a href={`/${league}/match/${adjacents.previous}`}>{'<-  '}</a>}
+                  {adjacents.previous && <a href={`/${league}/match/${adjacents.previous}`}>{'<-  '}</a>}
                   {new Date(matchInfo.date).toLocaleDateString()}
-                  {adjacents.previous && !window.matchMedia("(min-width: 1024px)").matches && <><br /><a href={`/${league}/match/${adjacents.previous}`}>{'<-'}</a></>}
                   {adjacents.next && <a href={`/${league}/match/${adjacents.next}`}>{'  ->'}</a>}
                 </p>
                 <p className="text-md">{matchInfo.location}</p>
@@ -99,7 +98,7 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
 
             {/* Statistiche principali */}
             <div className="flex justify-around mb-6 whitespace-pre-line">
-              <StatContainer statName={`${teamHome.name} ${window.matchMedia("(min-width: 1024px)").matches ? "" : "\n"}titles`} 
+              <StatContainer statName={`${teamHome.name} titles`} 
                              statValue={stats.teamHomeTitles} 
                              position={`${teamHome.name} titles up to this match`}
               />
@@ -107,7 +106,7 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
                              statValue={`${stats.headToHead.home} ${stats.headToHead.draw} ${stats.headToHead.away}`} 
                              position={'H2H leading up to this match'}
               />  
-              <StatContainer statName={`${teamAway.name} ${window.matchMedia("(min-width: 1024px)").matches ? "" : "\n"}titles`} 
+              <StatContainer statName={`${teamAway.name} titles`} 
                              statValue={stats.teamAwayTitles} 
                              position={`${teamAway.name} titles up to this match`}
               />

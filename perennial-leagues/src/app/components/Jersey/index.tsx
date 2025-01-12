@@ -9,6 +9,7 @@ const Jersey = ({ colors, icon, dimensions }: { colors: { primary: string; secon
   const classString = `w-${defaultDimensions} md:w-${defaultDimensions} lg:w-${defaultDimensions * 2} h-${defaultDimensions} md:h-${defaultDimensions} lg:h-${defaultDimensions * 2} rounded-full`;
   const iconClassString = `text-center ${defaultDimensions >= 16 ? 'bg-black/10' : ''} relative top-${defaultDimensions / 4} md:top-${defaultDimensions / 4} lg:top-${defaultDimensions / 2} left-${defaultDimensions / 4} md:left-${defaultDimensions / 4} lg:left-${defaultDimensions / 2} w-${defaultDimensions / 2} md:w-${defaultDimensions / 2} lg:w-${defaultDimensions} h-${defaultDimensions / 2} md:h-${defaultDimensions / 2} lg:h-${defaultDimensions} pt-2 md:pt-2 lg:pt-4 rounded-full`;
   const minWidthFAIcon = defaultDimensions * 64;
+  const iconSize = minWidthFAIcon >= 1024 ? "2x" : "1x";
   return (
     <div
       className={classString}
@@ -20,7 +21,7 @@ const Jersey = ({ colors, icon, dimensions }: { colors: { primary: string; secon
         <p className={iconClassString}>
           <FontAwesomeIcon 
             icon={fas[icon]} 
-            size={window.matchMedia(`(min-width: ${minWidthFAIcon}px)`).matches ? "2x" : "1x"} 
+            size={iconSize} 
             style={{ color: icon === 'faCrown' ? 'gold' : 'white', }}
           />
         </p>
