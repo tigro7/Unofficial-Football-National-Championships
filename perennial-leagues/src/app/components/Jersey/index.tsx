@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 
-const Jersey = ({ colors, icon, dimensions }: { colors: { primary: string; secondary: string;}, icon?: string | null, dimensions?: number}) => {
+const Jersey = ({ colors, icon, dimensions }: { colors: { primary: string; secondary: string;}, icon: string | null, dimensions?: number}) => {
   const primaryColor = colors?.primary || "#000000"; // Default nero
   const secondaryColor = colors?.secondary || "#FFFFFF"; // Default bianco
 
