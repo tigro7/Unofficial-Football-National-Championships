@@ -91,7 +91,7 @@ const LastFiveMatches = ({
                 />
               )}
               <p className='text-md font-black'>{match.risultato}</p>
-              <Jersey colors={colors ? colors[team === match.detentore ? match.sfidante : match.detentore] : {primary: "#000000", secondary: "#FFFFFF"}} icon={team !== match.detentore ? "faCrown" : null} dimensions={8}/>
+              <Jersey colors={colors ? colors[team === match.detentore ? match.sfidante : match.detentore] : {primary: "#000000", secondary: "#FFFFFF"}} icon={team !== match.detentore ? "faCrown" : null} dimensions={"medium"}/>
             </div>
           );
         })}
