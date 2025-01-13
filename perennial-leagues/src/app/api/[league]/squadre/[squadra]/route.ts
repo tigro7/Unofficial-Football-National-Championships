@@ -15,7 +15,14 @@ export async function GET(request: Request, {params,}: {params: Promise<{ squadr
         const client = await db.connect();
         //const rows =  await client.sql`SELECT * FROM squadre WHERE LOWER(squadra) = ${squadra.toLowerCase()} AND league = ${league}`;
         const rows = await client.sql`SELECT s.* FROM 
-                                        (SELECT *, RANK() OVER (ORDER BY regni DESC) AS position_regni, RANK() OVER (ORDER BY durata DESC) AS position_durata, RANK() OVER (ORDER BY media DESC) AS position_media FROM squadre) s 
+                                        (SELECT *, 
+                                            RANK() OVER (ORDER BY regni DESC) AS position_regni, 
+                                            RANK() OVER (ORDER BY durata DESC) AS position_durata, 
+                                            RANK() OVER (ORDER BY media DESC) AS position_media,
+                                            RANK() OVER (ORDER BY difese DESC) AS position_difese,
+                                            RANK() OVER (ORDER BY media_difese DESC) AS position_media_difese,
+                                            RANK() OVER (ORDER BY sfide DESC) AS position_sfide
+                                        FROM squadre) s 
                                       WHERE LOWER(squadra) = ${squadra.toLowerCase()} AND league = ${league}`;
 
         if (rows.rowCount === 0) {

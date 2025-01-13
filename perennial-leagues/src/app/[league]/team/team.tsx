@@ -8,6 +8,8 @@ import TeamStats from "@/app/components/TeamStats";
 import { useEffect, useState } from "react";
 import normalizeLeagueName from "@/app/utils/leaguesMap";
 import LastFiveMatches from "@/app/components/LastFive";
+import { openSans } from "@/app/fonts";
+import TrophyTable from "@/app/components/TrophyTable";
 
 const generateTimeline = (regni: { start: string; end: string, matchStart: number, matchEnd: number }[], startDate: string) => {
   const timeline = [];
@@ -79,11 +81,11 @@ const generateTimeline = (regni: { start: string; end: string, matchStart: numbe
 
 const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = "serie_a", lastFiveMatches}: 
   {squadra: string, 
-    stats: {regni: number, durataCombinata: number, durataMedia: number}, 
+    stats: {regni: number, durataCombinata: number, durataMedia: number, difese: number, mediaDifese: number, sfide: number}, 
     colors: {primary: string, secondary: string}, 
     regni:{ start: string, end: string, matchStart: number, matchEnd: number }[], 
     startDate: string, 
-    posizioni: {regni: number, durata: number, media: number}, 
+    posizioni: {regni: number, durata: number, media: number, difese: number, mediaDifese: number, sfide: number}, 
     league: string,
     lastFiveMatches: {numero: number, detentore: string, sfidante: string, risultato: string, note: string, data: string, durata: number, outcome: 'v' | 's' | 'd', home: string, away: string, league: string}[]
   }) => {
@@ -109,8 +111,8 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
   }
 
   const timeLineData = generateTimeline(regni, startDate);
-  const longestReign = timeLineData.length > 0 ? timeLineData.filter(regno => regno.team).reduce((prev, curr) => { return prev.duration > curr.duration ? prev : curr; }) : null;
-  const shortestReign = timeLineData.length > 0 ? timeLineData.filter(regno => regno.team).reduce((prev, curr) => { return prev.duration < curr.duration ? prev : curr; }) : null;
+  //const longestReign = timeLineData.length > 0 ? timeLineData.filter(regno => regno.team).reduce((prev, curr) => { return prev.duration > curr.duration ? prev : curr; }) : null;
+  //const shortestReign = timeLineData.length > 0 ? timeLineData.filter(regno => regno.team).reduce((prev, curr) => { return prev.duration < curr.duration ? prev : curr; }) : null;
 
   const numeralSuffix = (num: number) => {
     const lastDigit = num.toString().slice(-1);
@@ -136,13 +138,14 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
             <div className="flex items-center">
               <Jersey colors={colors} icon={compareDatesByDay(regni[regni.length - 1]?.end, new Date().toISOString()) ? "faCrown" : null} />
               <div className="ml-4">
-                <h1 className="text-4xl font-bold mb-2">
+                <h1 className="text-4xl font-bold">
                   {`${squadra.charAt(0).toUpperCase()}${squadra.slice(1)}`}
                 </h1>
-                <h3 className="text-2xl text-gray-800">
+                <h3 className={`text-2xl text-gray-800 italic ${openSans.className}`}>
                   {normalizeLeagueName(league)}
                 </h3>
               </div>
+              <TrophyTable titles={stats.regni} />
             </div>
           </div>
         </div>
@@ -153,17 +156,21 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
         <LastFiveMatches team={squadra} matches={lastFiveMatches} />
       </div>
 
+      <div className="flex justify-around mb-6">
+        <TeamStats stats={iconStats} />
+      </div>
+
       {/* Stats e Posizioni */}
       <div className="flex justify-around mb-6">
         <StatContainer statName="Total Titles" statValue={stats.regni} position={posizioni.regni} positionSuffix={`${numeralSuffix(posizioni.regni)} overall`} />
         <StatContainer statName="Combined Duration" statValue={stats.durataCombinata} valueSuffix=" days" position={posizioni.durata} positionSuffix={`${numeralSuffix(posizioni.durata)} overall`} />
         <StatContainer statName="Average Duration" statValue={stats.durataMedia} valueSuffix=" days" position={posizioni.media} positionSuffix={`${numeralSuffix(posizioni.media)} overall`} />
+        <StatContainer statName="Defenses" statValue={stats.difese} valueSuffix=" times" position={posizioni.difese} positionSuffix={`${numeralSuffix(posizioni.difese)} overall`} />
+        <StatContainer statName="Average Defenses" statValue={stats.mediaDifese} valueSuffix=" times" position={posizioni.mediaDifese} positionSuffix={`${numeralSuffix(posizioni.mediaDifese)} overall`} />
+        <StatContainer statName="Challenges" statValue={stats.sfide} valueSuffix=" times" position={posizioni.sfide} positionSuffix={`${numeralSuffix(posizioni.sfide)} overall`} />
       </div>
-
-      <div className="flex justify-around mb-6">
-        <TeamStats stats={iconStats} />
-      </div>
-      
+  
+      {/* Regni
       <div className="flex justify-around mb-6">
         {longestReign &&
           <StatContainer statName="Longest Reign" statValue={longestReign.duration} valueSuffix=" days"
@@ -178,6 +185,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
           />
       }
       </div>
+       */}
 
       <div className="py-10">
         {timeLineData.length > 0 &&     

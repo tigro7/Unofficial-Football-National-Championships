@@ -22,6 +22,9 @@ const TeamPage = async ({params,}: {params: Promise<{ name: string, league: stri
     const posizioneRegni = teamData.position_regni;
     const posizioneDurata = teamData.position_durata;
     const posizioneMedia = teamData.position_media;
+    const posizioneDifese = teamData.position_difese;
+    const posizioneMediaDifese = teamData.position_media_difese;
+    const posizioneSfide = teamData.position_sfide;
 
     return (
         <ErrorBoundary>
@@ -31,6 +34,9 @@ const TeamPage = async ({params,}: {params: Promise<{ name: string, league: stri
                     regni: teamData.regni,
                     durataCombinata: teamData.durata,
                     durataMedia: teamData.media,
+                    difese: teamData.difese,
+                    mediaDifese: teamData.media_difese,
+                    sfide: teamData.sfide,
                 }}
                 colors={{
                     primary: `#${teamData.colore_primario}`,
@@ -39,7 +45,10 @@ const TeamPage = async ({params,}: {params: Promise<{ name: string, league: stri
                 posizioni={{
                     regni: posizioneRegni,
                     durata: posizioneDurata,
-                    media: posizioneMedia
+                    media: posizioneMedia,
+                    difese: posizioneDifese,
+                    mediaDifese: posizioneMediaDifese,
+                    sfide: posizioneSfide,
                 }}
                 regni={regni}
                 startDate={startDate}

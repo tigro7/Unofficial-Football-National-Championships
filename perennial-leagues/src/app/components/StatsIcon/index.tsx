@@ -8,7 +8,7 @@ const StatsIcon = ({ statName, statTitle} : {
     const icon = Object.keys(statsMap).find((key) => statName.toLowerCase().includes(key.toLowerCase())) || "Question Circle";
     const color = (statName.toLowerCase().includes("gold") || statName.toLowerCase().includes("longest") || statName.endsWith(' - 1')) ? "gold" : 
                     (statName.toLowerCase().includes("silver") || statName.endsWith(' - 2')) ? "silver" : 
-                        (statName.toLowerCase().includes("bronze") || statName.toLowerCase().includes("shortest") || statName.endsWith(' - 3')) ? "bronze" : 
+                        (statName.toLowerCase().includes("bronze") || statName.toLowerCase().includes("shortest") || statName.endsWith(' - 3')) ? "#CD7F32" : 
                             statName.toLowerCase().includes("iron") ? "gray" : "black";
     return (
         //gestisci il colore in base ai colori della squadra, tranne nel caso in cui in statName vi sia Iron, Bronze, Silver o Gold

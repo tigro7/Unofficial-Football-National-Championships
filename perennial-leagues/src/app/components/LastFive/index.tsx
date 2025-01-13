@@ -55,6 +55,7 @@ const LastFiveMatches = ({
     
     fetchColors();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [host]);
 
   return (
@@ -64,18 +65,18 @@ const LastFiveMatches = ({
         {[...matches].reverse().map((match, index) => {
           const isLastMatch = index === 4;
           const outcomeIcon = outcomeIcons(team, match.outcome, match.detentore);
+          const matchSuffix = `vs. ${team === match.detentore ? match.sfidante : match.detentore}`;
+          const matchTitle = match.outcome === 'd' ? `Draw (${match.detentore} extends reign)` : match.outcome === 's' ? `${team === match.detentore ? 'Won by' : 'Lost to'} ${match.detentore}` : `Defended by ${match.detentore}`;
 
           return (
             <div
               key={match.numero}
               className={ `relative text-center p-2 rounded-md cursor-pointer ${outcomeColors(team, match.outcome, match.detentore)} hover:bg-gray-200 transition-all`}
               onClick={() => {window.location.href = `/${match.league}/match/${match.numero}`}}
-              title={`${new Date(match.data).toLocaleDateString()} - ${match.note} vs. ${team === match.detentore ? match.sfidante : match.detentore}`}
+              title={`${new Date(match.data).toLocaleDateString()} - ${match.note} ${matchTitle} ${team === match.detentore ? matchSuffix : ''}`}
             >
               {isLastMatch && (
-                <span className="absolute -top-2 -right-2 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full">
-                  Latest
-                </span>
+                <span className="absolute w-full -bottom-2 left-0 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full" />
               )}
               {outcomeIcon && (
                 <FontAwesomeIcon
