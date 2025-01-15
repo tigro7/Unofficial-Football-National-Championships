@@ -104,7 +104,7 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
             {/* Statistiche principali */}
             <div className="flex justify-around mb-6 whitespace-pre-line">
               <TrophyTable titles={stats.teamHomeTitles} match={true}/>
-              <HeadToHead home={stats.headToHead.home} draw={stats.headToHead.draw} away={stats.headToHead.away} colorHome={teamHome.colors.primary} colorAway={teamAway.colors.primary} />
+              <HeadToHead home={stats.headToHead.home} draw={stats.headToHead.draw} away={stats.headToHead.away} colorHome={teamHome.colors.primary == "#FFFFFF" ? teamHome.colors.secondary : teamHome.colors.primary} colorAway={teamAway.colors.primary == "#FFFFFF" ? teamAway.colors.secondary : teamAway.colors.primary} />
               <TrophyTable titles={stats.teamAwayTitles} match={true}/>
             </div>
         </div>

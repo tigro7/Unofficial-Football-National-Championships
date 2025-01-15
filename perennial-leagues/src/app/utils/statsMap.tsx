@@ -18,20 +18,16 @@ import {
   faBaby,
   faGift,
 } from "@fortawesome/free-solid-svg-icons";
-
-const daysToYears = (days: number) => {
-    const years = Math.floor(days / 365);
-    const months = Math.floor((days % 365) / 31);
-    const remainingDays = (days % 365) % 31;
-    return `${years > 0 ? `${years} years` : ""} ${months > 0 ? `${months} months` : ""} ${remainingDays > 0 ? `${remainingDays} days` : ""}`.trim();
-}
+import { daysToYears } from "@/app/lib/commons";
 
 const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valueProcessor?: (value: number | null) => string }> = {
     "Back to Back": {
       icon: faRotateRight,
-      title: "Regain the title after losing it in less than 2 months",
+      title: "Regain the title after losing it in less than 1 month or 5 matches",
       valueProcessor: (value) => {
         if (value === null) return "";
+        if (Number(value) === 1) return 'Won it back next match';
+        if (Number(value) < 5) return `Won it back after ${value} matches`;
         return daysToYears(value);
       }
     },

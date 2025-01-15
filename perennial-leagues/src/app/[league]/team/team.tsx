@@ -2,7 +2,7 @@
 
 import "@/app/utils/setupCharts";
 import Jersey from "@/app/components/Jersey";
-import TimelineChart from "@/app/components/TimelineChart";
+//import TimelineChart from "@/app/components/TimelineChart";
 import StatContainer from "@/app/components/StatContainer";
 import TeamStats from "@/app/components/TeamStats";
 import { useEffect, useState } from "react";
@@ -10,6 +10,7 @@ import normalizeLeagueName from "@/app/utils/leaguesMap";
 import LastFiveMatches from "@/app/components/LastFive";
 import { openSans } from "@/app/fonts";
 import TrophyTable from "@/app/components/TrophyTable";
+import VerticalTimelineChart from "@/app/components/VerticalTimelineChart";
 
 const generateTimeline = (regni: { start: string; end: string, matchStart: number, matchEnd: number }[], startDate: string) => {
   const timeline = [];
@@ -161,7 +162,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
       </div>
 
       {/* Stats e Posizioni */}
-      <div className="flex justify-around mb-6">
+      <div className="flex justify-around mb-6 grid grid-cols-[repeat(auto-fit,minmax(150px,150px))] justify-center gap-2">
         <StatContainer statName="Total Titles" statValue={stats.regni} position={posizioni.regni} positionSuffix={`${numeralSuffix(posizioni.regni)} overall`} />
         <StatContainer statName="Combined Duration" statValue={stats.durataCombinata} valueSuffix=" days" position={posizioni.durata} positionSuffix={`${numeralSuffix(posizioni.durata)} overall`} />
         <StatContainer statName="Average Duration" statValue={stats.durataMedia} valueSuffix=" days" position={posizioni.media} positionSuffix={`${numeralSuffix(posizioni.media)} overall`} />
@@ -185,11 +186,16 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
           />
       }
       </div>
-       */}
 
       <div className="py-10">
         {timeLineData.length > 0 &&     
-          <TimelineChart regni={timeLineData} primaryColor={"#000000"} secondaryColor={colors.secondary} league={league}/>
+          <TimelineChart regni={timeLineData} primaryColor={colors.primary} secondaryColor={colors.secondary} league={league}/>
+        }
+      </div>
+      */}
+      <div className="py-10">
+        {timeLineData.length > 0 &&     
+          <VerticalTimelineChart regni={timeLineData} primaryColor={colors.primary} secondaryColor={colors.secondary} league={league}/>
         }
       </div>
     </div>

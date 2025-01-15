@@ -25,18 +25,30 @@ const updateStats = async (
     //aggiornare la tabella stats
 
     //1. back to back
-    const backToBack = await client.sql`SELECT t2.detentore, t2.league, t2.numero, t2.data, t2.data - t1.data AS wait_time FROM 
+    const backToBack = await client.sql`SELECT t2.detentore, t2.league, t2.numero, t2.data, MIN(t2.data - t1.data) AS wait_time FROM 
                                         matches AS t1 JOIN matches AS t2 ON 
-                                        t1.detentore = t2.detentore AND t2.data > t1.data AND t2.data - t1.data < 60
-                                        WHERE t1.outcome = 's' AND t2.outcome = 's'
-                                        AND t2.detentore = ${detentoreName} AND t2.league = ${league}
-                                        AND t2.data = ${data}
-                                        GROUP BY t2."data", t2.league, t2.data - t1.data
+                                        t1.sfidante = t2.detentore AND t2.data > t1.data AND t2.data - t1.data < 30
+                                        WHERE t1.outcome = 's' AND t2.outcome = 's'                         
+                                        AND t2.detentore = ${detentoreName} AND t2.league = ${league} AND t2.data = ${data}
+                                        GROUP BY t2.detentore, t2.numero, t2.data, t2.league
                                         ORDER BY t2.data ASC`;
     // se esiste un back to back, aggiornare la tabella stats
     if (backToBack?.rowCount && backToBack?.rowCount > 0) {
         await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, numero) 
                             VALUES (${detentoreName}, ${data}, ${league}, 'Back to Back', ${backToBack.rows[0].wait_time}, ${backToBack.rows[0].numero})`;
+    }
+
+    const backToBackBis = await client.sql`SELECT t2.detentore, t2.league, t2.numero, t2.data, MIN(t2.numero - t1.numero) AS wait_matches FROM  
+                                            matches AS t1 JOIN matches AS t2 ON 
+                                            t1.sfidante = t2.detentore AND t2.numero > t1.numero AND t2.numero - t1.numero <= 5 AND t2.data - t1.data >= 30
+                                            WHERE t1.outcome = 's' AND t2.outcome = 's'
+                                            AND t2.detentore = ${detentoreName} AND t2.league = ${league} AND t2.data = ${data}
+                                            GROUP BY t2.detentore, t2.numero, t2.data, t2.league
+                                            ORDER BY t2.data ASC`;
+    // se esiste un back to back, aggiornare la tabella stats
+    if (backToBackBis?.rowCount && backToBackBis?.rowCount > 0) {
+        await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, numero) 
+                            VALUES (${detentoreName}, ${data}, ${league}, 'Back to Back', ${backToBackBis.rows[0].wait_time}, ${backToBackBis.rows[0].numero})`;
     }
 
     console.info('backToBack:', backToBack?.rowCount);
@@ -166,13 +178,13 @@ const updateStats = async (
     //8. title traveller
 
     //9. sleeping giant
-    const sleepingGiant = await client.sql`SELECT t2.*, t2.data - t1.data as sleep_duration
+    const sleepingGiant = await client.sql`SELECT t2.detentore, t2.data, t2.league, t2.numero, t2.data - t1.data as sleep_duration
                                             FROM matches AS t1
                                             JOIN matches AS t2
                                             ON t1.detentore = t2.detentore
                                             AND t2.data > t1.data
                                             AND t2.data - t1.data > 3650
-                                            WHERE t1.outcome = 's' AND t2.outcome = 's'
+                                            WHERE t2.outcome = 's'
                                             AND t2."data" = ${data} AND t2.detentore = ${detentoreName} AND t2.league = ${league}
                                             AND NOT EXISTS (
                                                 SELECT 1 
@@ -181,7 +193,7 @@ const updateStats = async (
                                                 AND t3."data" > t1.data
                                                 AND t3.data < t2.data
                                             )
-                                            GROUP BY t2."data", t2.league, t2.data - t1.data
+                                            GROUP BY t2.detentore, t2.data, t2.league, t2.numero, t2.data - t1.data
                                             ORDER BY t2.data ASC`;
     if (sleepingGiant?.rowCount && sleepingGiant?.rowCount > 0) {
         await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, numero) 
