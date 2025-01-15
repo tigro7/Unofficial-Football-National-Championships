@@ -12,9 +12,11 @@ import {
   faFlag,
   faHandshake,
   faShieldHalved,
+  faCircleArrowLeft,
+  faCircleArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "serie_a"}: { 
   matchInfo: { date: string, location: string, score?: string, outcome: string, detentore: string, sfidante: string, home: string, away: string, competizione: string, numero: number}, 
@@ -47,8 +49,63 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
       fetchStats();
     }, [league, matchInfo.numero]);
 
+    const touchStartX = useRef<number | null>(null);
+    const touchEndX = useRef<number | null>(null);
+  
+    const handleTouchStart = (event: React.TouchEvent) => {
+      touchStartX.current = event.touches[0].clientX;
+    };
+  
+    const handleTouchMove = (event: React.TouchEvent) => {
+      touchEndX.current = event.touches[0].clientX;
+    };
+  
+    const handleTouchEnd = () => {
+      if (touchStartX.current !== null && touchEndX.current !== null) {
+        const deltaX = touchStartX.current - touchEndX.current;
+  
+        // Swipe verso sinistra (vai alla pagina successiva)
+        if (deltaX > 50 && adjacents.next) {
+          window.location.href = `/${league}/match/${adjacents.next}`;
+        }
+  
+        // Swipe verso destra (vai alla pagina precedente)
+        if (deltaX < -50 && adjacents.previous) {
+          window.location.href = `/${league}/match/${adjacents.previous}`;
+        }
+      }
+  
+      // Resetta i valori dopo il completamento dello swipe
+      touchStartX.current = null;
+      touchEndX.current = null;
+    };
+
     return (
-        <div className="container mx-auto mt-8 p-4 border-4 rounded-xl bg-system">
+        <div className="container mx-auto mt-8 p-4 border-4 rounded-xl bg-system"       
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+
+          {adjacents.previous && (
+            <a
+              className="landscape:hidden fixed left-0 top-1/2 transform -translate-y-1/2 p-4"
+              href={`/${league}/match/${adjacents.previous}`}
+              style={{ zIndex: 1000 }}
+            >
+              <FontAwesomeIcon icon={faCircleArrowLeft} size="2x" />
+            </a>
+          )}
+          {adjacents.next && (
+            <a
+              className="landscape:hidden fixed right-0 top-1/2 transform -translate-y-1/2 p-4"
+              href={`/${league}/match/${adjacents.next}`}
+              style={{ zIndex: 1000 }}
+            >
+              <FontAwesomeIcon icon={faCircleArrowRight} size="2x" />
+            </a>
+          )}
+
             {/* Intestazione con nomi delle squadre e maglie */}
             <div className="flex justify-between items-center mb-6">
               {/* Squadra A */}
@@ -68,10 +125,9 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
                   {matchInfo.competizione}
                 </p>
                 <p className="text-lg italic">
-                  {adjacents.previous && <a className="portrait:hidden" href={`/${league}/match/${adjacents.previous}`}>{'<-  '}</a>}
+                  {adjacents.previous && <a className="portrait:hidden mr-8" href={`/${league}/match/${adjacents.previous}`}><FontAwesomeIcon icon={faCircleArrowLeft}/></a>}
                   {new Date(matchInfo.date).toLocaleDateString()}
-                  {adjacents.previous && <a className="landscape:hidden" href={`/${league}/match/${adjacents.previous}`}>{'<-'}</a>}
-                  {adjacents.next && <a href={`/${league}/match/${adjacents.next}`}>{'  ->'}</a>}
+                  {adjacents.next && <a className="portrait:hidden ml-8" href={`/${league}/match/${adjacents.next}`}><FontAwesomeIcon icon={faCircleArrowRight}/></a>}
                 </p>
                 <p className="text-md">{matchInfo.location}</p>
                 {matchInfo.score && (
@@ -103,9 +159,13 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
 
             {/* Statistiche principali */}
             <div className="flex justify-around mb-6 whitespace-pre-line">
-              <TrophyTable titles={stats.teamHomeTitles} match={true}/>
+              <TrophyTable titles={stats.teamHomeTitles} match={true} className={"portrait:hidden w-1/3"}/>
               <HeadToHead home={stats.headToHead.home} draw={stats.headToHead.draw} away={stats.headToHead.away} colorHome={teamHome.colors.primary == "#FFFFFF" ? teamHome.colors.secondary : teamHome.colors.primary} colorAway={teamAway.colors.primary == "#FFFFFF" ? teamAway.colors.secondary : teamAway.colors.primary} />
-              <TrophyTable titles={stats.teamAwayTitles} match={true}/>
+              <TrophyTable titles={stats.teamAwayTitles} match={true} className={"portrait:hidden w-1/3"}/>
+            </div>
+            <div className="flex justify-around mb-6 whitespace-pre-line landscape:hidden">
+              <TrophyTable titles={stats.teamHomeTitles} match={true} className={"w-1/2"}/>
+              <TrophyTable titles={stats.teamAwayTitles} match={true} className={"w-1/2"}/>
             </div>
         </div>
     );

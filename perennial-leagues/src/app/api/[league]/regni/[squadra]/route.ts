@@ -27,12 +27,14 @@ export async function GET(request: Request, {params,}: {params: Promise<{ squadr
         let currentMatchStart: number = 0;
 
         for (const match of relevantMatches) {
-            if (match.detentore.toLowerCase() == squadra.toLowerCase() && currentStart == null) {
-                currentStart = match.data;
-                currentMatchStart = match.numero;
-            }else if (currentStart && match.sfidante.toLowerCase() == squadra.toLowerCase()) {
-                regni.push({start: currentStart, end: match.data, matchStart: currentMatchStart, matchEnd: match.numero});
-                currentStart = null;
+            if (match.outcome == 's'){
+                if (match.detentore.toLowerCase() == squadra.toLowerCase() && currentStart == null) {
+                    currentStart = match.data;
+                    currentMatchStart = match.numero;
+                }else if (currentStart && match.sfidante.toLowerCase() == squadra.toLowerCase()) {
+                    regni.push({start: currentStart, end: match.data, matchStart: currentMatchStart, matchEnd: match.numero});
+                    currentStart = null;
+                }
             }
         }
 

@@ -71,6 +71,7 @@ const VerticalTimelineChart = ({
                 <div
                   className={infoClassName}
                   style={{
+                    cursor: "pointer",
                     top: `calc(${percentage / 2}%)`,
                     transform: `translateY(-50%)`,
                   }}

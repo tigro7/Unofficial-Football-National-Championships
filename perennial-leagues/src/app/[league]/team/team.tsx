@@ -98,7 +98,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
         try {
           const response = await fetch(`/api/${league}/stats/${squadra}`);
           const data = await response.json();
-          setStats(data);
+          setStats(data.filter((stat: { statistica: string; }) => stat.statistica !== "Newbie"));
         } catch (error) {
           console.error("Errore nel caricamento delle statistiche", error);
         }
@@ -162,7 +162,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
       </div>
 
       {/* Stats e Posizioni */}
-      <div className="flex justify-around mb-6 grid grid-cols-[repeat(auto-fit,minmax(150px,150px))] justify-center gap-2">
+      <div className="flex justify-around mb-6 grid grid-cols-[repeat(auto-fit,minmax(450px,450px))] justify-center gap-2">
         <StatContainer statName="Total Titles" statValue={stats.regni} position={posizioni.regni} positionSuffix={`${numeralSuffix(posizioni.regni)} overall`} />
         <StatContainer statName="Combined Duration" statValue={stats.durataCombinata} valueSuffix=" days" position={posizioni.durata} positionSuffix={`${numeralSuffix(posizioni.durata)} overall`} />
         <StatContainer statName="Average Duration" statValue={stats.durataMedia} valueSuffix=" days" position={posizioni.media} positionSuffix={`${numeralSuffix(posizioni.media)} overall`} />
