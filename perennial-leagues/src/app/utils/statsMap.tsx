@@ -3,7 +3,6 @@ import {
   faCrown,
   faHourglassEnd,
   faMountain,
-  faMedal,
   faStar,
   faTrophy,
   faCalendarDays,
@@ -56,7 +55,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
       },
     },
     "Century Club - Bronze": {
-      icon: faMedal,
+      icon: faStar,
       title: "Hold the title for at least 1 year combined",
       valueProcessor: (value) => {
         if (value === null) return "";
@@ -72,7 +71,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
       },
     },
     "Century Club - Gold": {
-      icon: faTrophy,
+      icon: faStar,
       title:"Hold the title for at least 10 years combined",
       valueProcessor: (value) => {
         if (value === null) return "";

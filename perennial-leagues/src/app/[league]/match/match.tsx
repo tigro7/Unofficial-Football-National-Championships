@@ -50,6 +50,8 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
       fetchStats();
     }, [league, matchInfo.numero]);
 
+    const matchDate = new Date(matchInfo.date).toLocaleDateString();
+
     const [swipeProgress, setSwipeProgress] = useState<number | null>(null); // Valore progressivo per il feedback
 
     const handlers = useSwipeable({
@@ -133,7 +135,7 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
                 </p>
                 <p className="text-lg italic">
                   {adjacents.previous && <a className="portrait:hidden mr-8" href={`/${league}/match/${adjacents.previous}`}><FontAwesomeIcon icon={faCircleArrowLeft}/></a>}
-                  {new Date(matchInfo.date).toLocaleDateString()}
+                  {matchDate}
                   {adjacents.next && <a className="portrait:hidden ml-8" href={`/${league}/match/${adjacents.next}`}><FontAwesomeIcon icon={faCircleArrowRight}/></a>}
                 </p>
                 <p className="text-md">{matchInfo.location}</p>
