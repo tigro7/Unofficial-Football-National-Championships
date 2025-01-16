@@ -35,6 +35,8 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
     const iconColor = matchInfo.outcome === 's' ? 'gold' : '';
 
     const [iconStats, setStats] = useState([]);
+
+    let matchDate;
   
     useEffect(() => {
       const fetchStats = async () => {
@@ -48,9 +50,9 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
       };
   
       fetchStats();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      matchDate = new Date(matchInfo.date).toLocaleDateString();
     }, [league, matchInfo.numero]);
-
-    const matchDate = new Date(matchInfo.date).toLocaleDateString();
 
     const [swipeProgress, setSwipeProgress] = useState<number | null>(null); // Valore progressivo per il feedback
 
