@@ -75,7 +75,7 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
         }
         setSwipeProgress(null); // Resetta il feedback
       },
-      preventScrollOnSwipe: true,
+      preventScrollOnSwipe: false,
       trackTouch: true,
     });
 
