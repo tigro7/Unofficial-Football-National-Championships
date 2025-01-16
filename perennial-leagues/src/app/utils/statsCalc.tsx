@@ -126,7 +126,7 @@ const updateStats = async (
                                             WHERE matches.detentore = ${detentoreName} AND matches.league = ${league}
                                             GROUP BY matches.detentore, matches.league, cen_club.durata, cen_club.tier`;
     console.info('centuryClub:', centuryClub?.rowCount);
-    const centuryClubStat = `Century Club - ${centuryClub?.rows[0].tier}`;
+    const centuryClubStat = `Century Club ${centuryClub?.rows[0].tier}`;
     if (centuryClub?.rowCount && centuryClub?.rowCount > 0) {
         if (await client.sql`SELECT * FROM stats WHERE league = ${league} AND statistica LIKE 'Century Club%' AND squadra = ${detentoreName}`) {
             await client.sql`UPDATE stats SET data = ${centuryClub.rows[0].data}, statistica = ${centuryClubStat}, valore = ${centuryClub.rows[0].durata}, numero = ${centuryClub.rows[0].numero}
@@ -249,7 +249,7 @@ const updateStats = async (
                                             WHERE matches.detentore = ${detentoreName} AND matches.league = ${league}
                                             GROUP BY matches.detentore, matches.league, iron.regni, iron.tier`;
     console.info('legacyRun:', legacyRun?.rowCount);
-    const legacyRunStat = `Legacy Run - ${legacyRun?.rows[0].tier}`;
+    const legacyRunStat = `Legacy Run ${legacyRun?.rows[0].tier}`;
     if (legacyRun?.rowCount && legacyRun?.rowCount > 0) {
         if (await client.sql`SELECT * FROM stats WHERE league = ${league} AND statistica LIKE 'Legacy Run%' AND squadra = ${detentoreName}`) {
             await client.sql`UPDATE stats SET data = ${legacyRun.rows[0].data}, statistica = ${legacyRunStat}, valore = ${legacyRun.rows[0].regni}, numero = ${legacyRun.rows[0].numero}
@@ -316,7 +316,7 @@ const updateStats = async (
     //eliminare i record da stats con statistica like 'Consolation Prize%'
     await client.sql`DELETE FROM stats WHERE league = ${league} AND statistica LIKE 'Consolation Prize%'`;
     const consolationPrize = await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, numero) 
-                                                SELECT c.squadra, c.ultima_sfida_data, c.league, CONCAT('Consolation Prize - ', c.rank) , c.sfide,  c.ultima_sfida_numero FROM
+                                                SELECT c.squadra, c.ultima_sfida_data, c.league, CONCAT('Consolation Prize ', c.rank) , c.sfide,  c.ultima_sfida_numero FROM
                                                 (
                                                 WITH ranked_squadre AS (
                                                 SELECT 
@@ -437,28 +437,25 @@ const updateStats = async (
     
     
     //4. Dinasty Builder
-    const dinastyBuilder = await client.sql`SELECT matches.detentore, matches.data, decade, tot AS durata, matches.league, matches.numero FROM(
-                                                    SELECT detentore, MAX(fine_regno), decade, SUM(durata) AS tot FROM 
-                                                    (WITH ranked_matches AS (
-                                                    SELECT
-                                                        *,
-                                                        ROW_NUMBER() OVER (ORDER BY data) 
-                                                        - ROW_NUMBER() OVER (PARTITION BY detentore ORDER BY data) AS regno_id
-                                                    FROM
-                                                        matches
+    const dinastyBuilder = await client.sql`SELECT matches.detentore, matches.data, decade, sum AS durata, matches.league, matches.numero FROM(
+	                                            SELECT DISTINCT ON (decade) detentore, SUM(durata), decade, MAX(fine_regno) FROM
+												    (WITH ranked_matches AS (
+                                                        SELECT *,
+                                                            ROW_NUMBER() OVER (ORDER BY data) - ROW_NUMBER() OVER (PARTITION BY detentore ORDER BY data) AS regno_id FROM
+                                                                matches
                                                     ),
                                                     grouped_regni AS (
-                                                    SELECT
-                                                        detentore,
-                                                        regno_id,
-                                                        MIN(data) AS inizio_regno,
-                                                        MAX(data) AS fine_regno,
-                                                        MAX(durata) AS durata,
-                                                        COUNT(*) AS partite
-                                                    FROM
-                                                        ranked_matches
-                                                    GROUP BY
-                                                        detentore, regno_id
+                                                        SELECT
+                                                            detentore,
+                                                            regno_id,
+                                                            MIN(data) AS inizio_regno,
+                                                            MAX(data) AS fine_regno,
+                                                            MAX(durata) AS durata,
+                                                            COUNT(*) AS partite
+                                                        FROM
+                                                            ranked_matches
+                                                        GROUP BY
+                                                            detentore, regno_id
                                                     ),
                                                     ordered_regni AS (
                                                     SELECT
@@ -472,19 +469,19 @@ const updateStats = async (
                                                         grouped_regni
                                                     )
                                                     SELECT
-                                                    detentore,
-                                                    inizio_regno,
-                                                    fine_regno,
-                                                    CONCAT(FLOOR(DATE_PART('year', inizio_regno) / 10),0) AS decade,
-                                                    durata,
-                                                    partite
+                                                        regni.detentore,
+                                                        regni.inizio_regno,
+                                                        regni.fine_regno,
+                                                        regni.durata,
+                                                        regni.partite,
+                                                        concat(FLOOR(DATE_PART('year', regni.inizio_regno) / 10), '0') AS decade
                                                     FROM
-                                                    ordered_regni ) db
-                                                    GROUP BY detentore, decade
-                                                    HAVING SUM(durata) > 365
-                                                    ORDER BY decade ASC, tot DESC, detentore ) db1
-                                                    JOIN matches ON db1.detentore = matches.detentore AND db1.max = matches.data
-                                                    WHERE decade = ${decade} AND db1.detentore = ${detentoreName} AND matches.league = ${league}`;
+                                                        ordered_regni regni
+                                                ) r
+                                                GROUP BY detentore, decade
+                                                ORDER BY decade ASC, SUM DESC) db1
+                                            JOIN matches ON db1.detentore = matches.detentore AND db1.max = matches.data
+                                            WHERE decade = ${decade} AND db1.detentore = ${detentoreName} AND matches.league = ${league}`;
     console.info('dinastyBuilder:', dinastyBuilder.rowCount);
     //aggiornare sempre il valore, inserirlo se non esiste
     const dinastyStat = `Dinasty Builder ${decade.toString()}`;

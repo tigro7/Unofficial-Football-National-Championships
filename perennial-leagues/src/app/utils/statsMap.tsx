@@ -26,7 +26,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
       valueProcessor: (value) => {
         if (value === null) return "";
         if (Number(value) === 1) return 'Won it back next match';
-        if (Number(value) < 5) return `Won it back after ${value} matches`;
+        if (Number(value) <= 5) return `Won it back after ${value} matches`;
         return daysToYears(value);
       }
     },
@@ -54,7 +54,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
         return daysToYears(value);
       },
     },
-    "Century Club - Bronze": {
+    "Century Club Bronze": {
       icon: faStar,
       title: "Hold the title for at least 1 year combined",
       valueProcessor: (value) => {
@@ -62,7 +62,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
         return daysToYears(value);
       },
     },
-    "Century Club - Silver": {
+    "Century Club Silver": {
       icon: faStar,
       title: "Hold the title for at least 5 years combined",
       valueProcessor: (value) => {
@@ -70,7 +70,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
         return daysToYears(value);
       },
     },
-    "Century Club - Gold": {
+    "Century Club Gold": {
       icon: faStar,
       title:"Hold the title for at least 10 years combined",
       valueProcessor: (value) => {
@@ -78,28 +78,28 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
         return daysToYears(value);
       },
     },
-    "Legacy Run - Iron": {
+    "Legacy Run Iron": {
         icon: faTrophy,
         title: "Have at least 10 title reigns",
         valueProcessor: (value) =>{
           return value ? `${value.toString()} reigns` : "";
         }
       },
-    "Legacy Run - Bronze": {
+    "Legacy Run Bronze": {
         icon: faTrophy,
         title: "Have at least 15 title reigns",
         valueProcessor: (value) =>{
           return value ? `${value.toString()} reigns` : "";
         }
       },
-    "Legacy Run - Silver": {
+    "Legacy Run Silver": {
         icon: faTrophy,
         title: "Have at least 25 title reigns",
         valueProcessor: (value) =>{
           return value ? `${value.toString()} reigns` : "";
         }
       },
-    "Legacy Run - Gold": {
+    "Legacy Run Gold": {
       icon: faTrophy,
       title: "Have at least 50 title reigns",
       valueProcessor: (value) =>{
@@ -113,9 +113,9 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
         return value ? `${value.toString()} reigns` : "";
       }
     },
-    "Dinasty Builder": {
+    "Class of ": {
       icon: faBuildingColumns,
-      title: "Hold the title for at least 1 year in a decade",
+      title: "Hold the title for the most time in a decade",
       valueProcessor: (value) => {
         if (value === null) return "";
         return daysToYears(value);

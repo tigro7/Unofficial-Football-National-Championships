@@ -127,6 +127,8 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
     return d1 === d2;
   };
 
+  const reigningIcon = regni.length > 0 ? compareDatesByDay(regni[regni.length - 1]?.end, new Date().toISOString()) ? "faCrown" : null : null;
+  
   return(
     <div className="container mx-auto mt-8 p-4 border-4 rounded-xl shadow-md bg-system">
       {/* Nome della Squadra */}
@@ -135,7 +137,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
         <div className="inset-0 border-4 rounded-xl" style={{ borderColor: colors.primary }}>
           <div className="inset-1 border-4 rounded-xl p-4" style={{ borderColor: colors.secondary }}>
             <div className="flex items-center">
-              <Jersey colors={colors} icon={compareDatesByDay(regni[regni.length - 1]?.end, new Date().toISOString()) ? "faCrown" : null} />
+              <Jersey colors={colors} icon={reigningIcon} />
               <div className="ml-4">
                 <h1 className="text-4xl font-bold">
                   {`${squadra.charAt(0).toUpperCase()}${squadra.slice(1)}`}
@@ -159,12 +161,12 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
         <LastFiveMatches team={squadra} matches={lastFiveMatches} />
       </div>
 
-      <div className="flex justify-around mb-6">
+      <div className="flex justify-around mb-6 min-h-275">
         <TeamStats stats={iconStats} />
       </div>
 
       {/* Stats e Posizioni */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6 justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6 justify-center min-h-240">
         <StatContainer statName="Total Titles" statValue={stats.regni} position={posizioni.regni} positionSuffix={`${numeralSuffix(posizioni.regni)} overall`} className={"w-full"}/>
         <StatContainer statName="Combined Duration" statValue={stats.durataCombinata} valueSuffix=" days" position={posizioni.durata} positionSuffix={`${numeralSuffix(posizioni.durata)} overall`} className={"w-full"}/>
         <StatContainer statName="Average Duration" statValue={stats.durataMedia} valueSuffix=" days" position={posizioni.media} positionSuffix={`${numeralSuffix(posizioni.media)} overall`} className={"w-full"}/>
