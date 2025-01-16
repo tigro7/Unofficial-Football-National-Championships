@@ -10,7 +10,7 @@ const trophyTable = ({
 }) => {
 
     return (
-        <div className={`flex flex-col ml-auto shadow-md p-2 rounded-lg items-center ${className}`}>
+        <div className={`flex flex-col ml-auto shadow-md p-2 rounded-lg items-center ${className? className : ''}`}>
             <div className="flex flex-wrap justify-center">
                 {Array.from({ length: Math.floor(titles / 10) }).map((_, index) => (
                     <FontAwesomeIcon key={`star-${index}`} icon={faStar} size="2x" color="gold" />

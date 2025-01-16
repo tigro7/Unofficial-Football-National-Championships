@@ -71,7 +71,7 @@ const LastFiveMatches = ({
           return (
             <div
               key={match.numero}
-              className={ `relative text-center p-2 rounded-md cursor-pointer ${outcomeColors(team, match.outcome, match.detentore)} hover:bg-gray-200 transition-all`}
+              className={ `relative text-center p-2 rounded-md cursor-pointer ${outcomeColors(team, match.outcome, match.detentore)} hover:bg-gray-200 transition-all flex flex-col items-center`}
               onClick={() => {window.location.href = `/${match.league}/match/${match.numero}`}}
               title={`${new Date(match.data).toLocaleDateString()} - ${match.note} ${matchTitle} ${team === match.detentore ? matchSuffix : ''}`}
             >
@@ -84,6 +84,7 @@ const LastFiveMatches = ({
                     className="text-2xl mb-2"
                 />
               )}
+              {team !== match.detentore && (<div className='mb-8' />)}
               {team === match.detentore && (
                 <FontAwesomeIcon
                     icon={faCrown}
@@ -92,7 +93,7 @@ const LastFiveMatches = ({
                 />
               )}
               <p className='text-md font-black'>{match.risultato}</p>
-              <Jersey colors={colors ? colors[team === match.detentore ? match.sfidante : match.detentore] : {primary: "#000000", secondary: "#FFFFFF"}} icon={team !== match.detentore ? "faCrown" : null} dimensions={"medium"}/>
+              <Jersey colors={colors ? colors[team === match.detentore ? match.sfidante : match.detentore] : {primary: "#000000", secondary: "#FFFFFF"}} icon={team === match.detentore ? null : "faCrown"} dimensions={"medium"}/>
             </div>
           );
         })}

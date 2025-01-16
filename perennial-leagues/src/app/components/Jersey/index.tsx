@@ -12,7 +12,7 @@ const Jersey = ({ colors, icon, dimensions = "default" }: { colors: { primary: s
   let iconSize: SizeProp = "2x";
   if (dimensions === "medium") {
     classString = `w-8 md:w-8 lg:w-16 h-8 md:h-8 lg:h-16 rounded-full`;
-    iconClassString = `text-center relative top-2 md:top-2 lg:top-3 left-2 md:left-2 lg:left-4 w-4 md:w-4 lg:w-8 h-4 md:h-4 lg:h-8 pt-1 md:pt-1 lg:pt-2 rounded-full`;
+    iconClassString = `text-center relative portrait:top-0 top-2 md:top-2 lg:top-3 left-2 md:left-2 lg:left-4 w-4 md:w-4 lg:w-8 h-4 md:h-4 lg:h-8 pt-1 md:pt-1 lg:pt-2 rounded-full`;
     iconSize = "1x";
   }
 
@@ -26,14 +26,23 @@ const Jersey = ({ colors, icon, dimensions = "default" }: { colors: { primary: s
       }}
     >
       {icon && iconType && 
-        <p className={iconClassString}>
+        <p className={`${iconClassString} portrait:hidden`}>
           <FontAwesomeIcon 
             icon={iconType}
             size={iconSize} 
             color={iconColor}
           />
         </p>
-        }
+      }
+      {icon && iconType && 
+        <p className={`${iconClassString} landscape:hidden`}>
+          <FontAwesomeIcon 
+            icon={iconType}
+            size={"1x"} 
+            color={iconColor}
+          />
+        </p>
+      }
     </div>
   );
 };

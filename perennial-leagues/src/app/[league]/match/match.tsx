@@ -16,7 +16,8 @@ import {
   faCircleArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { useSwipeable } from "react-swipeable";
 
 const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "serie_a"}: { 
   matchInfo: { date: string, location: string, score?: string, outcome: string, detentore: string, sfidante: string, home: string, away: string, competizione: string, numero: number}, 
@@ -49,43 +50,49 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
       fetchStats();
     }, [league, matchInfo.numero]);
 
-    const touchStartX = useRef<number | null>(null);
-    const touchEndX = useRef<number | null>(null);
+    const [swipeProgress, setSwipeProgress] = useState<number | null>(null); // Valore progressivo per il feedback
+
+    const handlers = useSwipeable({
+      onSwiping: (eventData) => {
+        // Calcola la percentuale di completamento dello swipe
+        const maxSwipe = window.innerWidth / 2; // Distanza massima per lo swipe
+        const progress = Math.min(Math.abs(eventData.deltaX) / maxSwipe, 1); // Limita al 100%
   
-    const handleTouchStart = (event: React.TouchEvent) => {
-      touchStartX.current = event.touches[0].clientX;
-    };
-  
-    const handleTouchMove = (event: React.TouchEvent) => {
-      touchEndX.current = event.touches[0].clientX;
-    };
-  
-    const handleTouchEnd = () => {
-      if (touchStartX.current !== null && touchEndX.current !== null) {
-        const deltaX = touchStartX.current - touchEndX.current;
-  
-        // Swipe verso sinistra (vai alla pagina successiva)
-        if (deltaX > 50 && adjacents.next) {
-          window.location.href = `/${league}/match/${adjacents.next}`;
+        if (eventData.dir === "Left" && adjacents.next) {
+          setSwipeProgress(progress); // Aggiorna per lo swipe a sinistra
+        } else if (eventData.dir === "Right" && adjacents.previous) {
+          setSwipeProgress(-progress); // Aggiorna per lo swipe a destra
+        } else {
+          setSwipeProgress(null); // Nessun feedback
         }
-  
-        // Swipe verso destra (vai alla pagina precedente)
-        if (deltaX < -50 && adjacents.previous) {
+      },
+      onSwiped: (eventData) => {
+        // Naviga alla pagina corrispondente se lo swipe è completo
+        if (eventData.dir === "Left" && adjacents.next) {
+          window.location.href = `/${league}/match/${adjacents.next}`;
+        } else if (eventData.dir === "Right" && adjacents.previous) {
           window.location.href = `/${league}/match/${adjacents.previous}`;
         }
-      }
-  
-      // Resetta i valori dopo il completamento dello swipe
-      touchStartX.current = null;
-      touchEndX.current = null;
-    };
+        setSwipeProgress(null); // Resetta il feedback
+      },
+      preventScrollOnSwipe: true,
+      trackTouch: true,
+    });
 
     return (
-        <div className="container mx-auto mt-8 p-4 border-4 rounded-xl bg-system"       
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-        >
+        <div className="container mx-auto mt-8 p-4 border-4 rounded-xl bg-system" {...handlers}>
+          {/* Feedback visivo con progressivo */}
+                {swipeProgress !== null && (
+                <div
+                  className="fixed top-0 h-full transition-transform duration-100 ease-out"
+                  style={{
+                  left: swipeProgress < 0 ? 0 : undefined,
+                  right: swipeProgress > 0 ? 0 : undefined,
+                  width: `${Math.min(Math.abs(swipeProgress) * 100, 15)}%`, // Limita al 10%
+                  backgroundColor: "rgba(0, 0, 0, 0.2)", // Ombra trasparente
+              }}
+            />
+          )}
 
           {adjacents.previous && (
             <a

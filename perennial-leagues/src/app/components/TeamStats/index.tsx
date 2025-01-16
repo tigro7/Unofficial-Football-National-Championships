@@ -14,7 +14,7 @@ const TeamStats = ({ stats, match = false } : {
   }) => {
     return (
         <div className="team-stats-container m-5 w-full">
-            <div className="stats-grid grid grid-cols-[repeat(auto-fit,minmax(150px,150px))] justify-center gap-2">
+            <div className="stats-grid grid grid-cols-[repeat(auto-fit,minmax(150px,150px))] justify-center landscape:gap-2">
                 {stats.map((stat, index) => {
                     // Trova informazioni relative alla statistica
                     const statKey = Object.keys(statsMap).find((key) => stat.statistica.toLowerCase().includes(key.toLowerCase())) || "Question Circle";
