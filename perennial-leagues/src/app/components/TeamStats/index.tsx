@@ -112,7 +112,10 @@ const TeamStats = ({ stats, match = false } : {
                             <FontAwesomeIcon
                                 icon={faInfoCircle}
                                 className="absolute bottom-2 right-2 text-xs text-primary cursor-pointer"
-                                onClick={() => setInfo(statInfo.title)}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setInfo(statInfo.title);
+                                }}
                             />
                         </div>
                     );
