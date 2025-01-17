@@ -54,6 +54,16 @@ body {
   border-color: #CD7F32;
 }
 
+.bg-iron {
+  background-color: #43464B; /* Colore ferro */
+}
+.text-iron {
+  color: #43464B;
+}
+.border-iron {
+  border-color: #43464B;
+}
+
 .bg-primary {
   background-color: #25424c; /* Colore primario */
 }

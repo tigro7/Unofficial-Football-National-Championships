@@ -14,11 +14,11 @@ const TeamStats = ({ stats, match = false } : {
     match?: boolean;
   }) => {
 
-    const tailGap = match ? "gap-2" : "gap-4";
+    const tailGap = match ? "gap-2 portrait:gap-1" : "gap-4 portrait:gap-2";
 
     return (
         <div className="team-stats-container m-4 w-full">
-            <div className={`stats-grid grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] ${tailGap} justify-center`}>
+            <div className={`stats-grid grid grid-cols-[repeat(auto-fit,minmax(150px,150px))] ${tailGap} justify-center items-center`}>
                 {stats.map((stat, index) => {
                 // Trova informazioni relative alla statistica
                 const statKey = Object.keys(statsMap).find((key) =>
@@ -30,7 +30,7 @@ const TeamStats = ({ stats, match = false } : {
                 // eslint-disable-next-line react-hooks/rules-of-hooks
                 const [isHovered, setIsHovered] = useState(false);
                 const rival = stat.statistica.split(" vs ") ? stat.statistica.split(" vs ")[1] : "";
-                const tier = stat.statistica.endsWith(" Gold") ? "Gold" : stat.statistica.endsWith(" Silver") ? "Silver" : stat.statistica.endsWith(" Bronze") ? "Bronze" : "";
+                const tier = stat.statistica.endsWith(" Gold") ? "Gold" : stat.statistica.endsWith(" Silver") ? "Silver" : stat.statistica.endsWith(" Bronze") ? "Bronze" : stat.statistica.endsWith(" Iron") ? "Iron" : "";
                 const tierColor = `bg-${tier.toLowerCase()}`;
                 const positionMatch = stat.statistica.match(/ (\d+)$/);
                 const position = positionMatch ? positionMatch[1] : null;
@@ -39,7 +39,7 @@ const TeamStats = ({ stats, match = false } : {
                 return (
                         <div
                             key={index}
-                            className={`relative shadow-md flex flex-col items-center justify-center p-4  ${
+                            className={`relative shadow-md flex flex-col items-center justify-center p-4 rounded-md  ${
                                 match ? "" : "hover:shadow-lg transition-shadow duration-300"
                             }`}
                             onMouseEnter={() => setIsHovered(true)}
