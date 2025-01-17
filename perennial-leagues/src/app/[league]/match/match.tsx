@@ -18,6 +18,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useSwipeable } from "react-swipeable";
+import { InfoProvider } from "@/app/components/InfoContext/InfoContext";
+import InfoWindow from "@/app/components/InfoContext/InfoWindow";
 
 const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "serie_a"}: { 
   matchInfo: { date: string, location: string, score?: string, outcome: string, detentore: string, sfidante: string, home: string, away: string, competizione: string, numero: number}, 
@@ -84,6 +86,7 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
     });
 
     return (
+      <InfoProvider>
         <div className="container mx-auto mt-8 p-4 border-4 rounded-xl bg-system" {...handlers}>
           {/* Feedback visivo con progressivo */}
                 {swipeProgress !== null && (
@@ -179,6 +182,8 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
               <TrophyTable titles={stats.teamAwayTitles} match={true} className={"w-1/2"}/>
             </div>
         </div>
+        <InfoWindow />
+      </InfoProvider>
     );
 };
 

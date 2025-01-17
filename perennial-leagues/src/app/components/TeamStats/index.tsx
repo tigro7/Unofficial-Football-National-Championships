@@ -1,6 +1,8 @@
-import { useState } from "react";
 import StatsIcon from "../StatsIcon";
 import statsMap from "@/app/utils/statsMap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { useInfo } from "../InfoContext/InfoContext";
 
 const TeamStats = ({ stats, match = false } : {
     stats: {
@@ -14,6 +16,7 @@ const TeamStats = ({ stats, match = false } : {
     match?: boolean;
   }) => {
 
+    const { setInfo } = useInfo();
     const tailGap = match ? "gap-2 portrait:gap-1" : "gap-4 portrait:gap-2";
 
     return (
@@ -28,7 +31,6 @@ const TeamStats = ({ stats, match = false } : {
                 const valueProcessor = statInfo.valueProcessor;
                 const localeDate = new Date(stat.data).toLocaleDateString();
                 // eslint-disable-next-line react-hooks/rules-of-hooks
-                const [isHovered, setIsHovered] = useState(false);
                 const rival = stat.statistica.split(" vs ") ? stat.statistica.split(" vs ")[1] : "";
                 const tier = stat.statistica.endsWith(" Gold") ? "Gold" : stat.statistica.endsWith(" Silver") ? "Silver" : stat.statistica.endsWith(" Bronze") ? "Bronze" : stat.statistica.endsWith(" Iron") ? "Iron" : "";
                 const tierColor = `bg-${tier.toLowerCase()}`;
@@ -42,8 +44,6 @@ const TeamStats = ({ stats, match = false } : {
                             className={`relative shadow-md flex flex-col items-center justify-center p-4 rounded-md  ${
                                 match ? "" : "hover:shadow-lg transition-shadow duration-300"
                             }`}
-                            onMouseEnter={() => setIsHovered(true)}
-                            onMouseLeave={() => setIsHovered(false)}
                             style={{
                                 width: "150px",
                                 height: "150px",
@@ -109,12 +109,11 @@ const TeamStats = ({ stats, match = false } : {
                             {/* Nome detentore */}
                             {match && <p className={`font-bold text-xs absolute top-2`}>{stat.squadra}</p>}
                         
-                            {/* Valore e titolo nascosti */}
-                            {isHovered && stat.valore !== null && (
-                                <div className="absolute bottom-2 text-center text-xs bg-gray-100 rounded-md p-2 shadow">
-                                <p className="font-bold">{statInfo.title}</p>
-                                </div>
-                            )}
+                            <FontAwesomeIcon
+                                icon={faInfoCircle}
+                                className="absolute bottom-2 right-2 text-xs text-primary cursor-pointer"
+                                onClick={() => setInfo(statInfo.title)}
+                            />
                         </div>
                     );
                 })}

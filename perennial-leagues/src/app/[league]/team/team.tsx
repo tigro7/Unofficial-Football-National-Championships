@@ -11,6 +11,8 @@ import LastFiveMatches from "@/app/components/LastFive";
 import { openSans } from "@/app/fonts";
 import TrophyTable from "@/app/components/TrophyTable";
 import VerticalTimelineChart from "@/app/components/VerticalTimelineChart";
+import { InfoProvider } from "@/app/components/InfoContext/InfoContext";
+import InfoWindow from "@/app/components/InfoContext/InfoWindow";
 
 const generateTimeline = (regni: { start: string; end: string, matchStart: number, matchEnd: number }[], startDate: string) => {
   const timeline = [];
@@ -130,57 +132,60 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
   const reigningIcon = regni.length > 0 ? compareDatesByDay(regni[regni.length - 1]?.end, new Date().toISOString()) ? "faCrown" : null : null;
   
   return(
-    <div className="container mx-auto mt-8 p-4 border-4 rounded-xl shadow-md bg-system">
-      {/* Nome della Squadra */}
-      
-      <div className={`items-start landscape:ml-12 my-6`}>
-        <div className="inset-0 border-4 rounded-xl" style={{ borderColor: colors.primary }}>
-          <div className="inset-1 border-4 rounded-xl p-4" style={{ borderColor: colors.secondary }}>
-            <div className="flex items-center">
-              <Jersey colors={colors} icon={reigningIcon} />
-              <div className="ml-4">
-                <h1 className="text-4xl font-bold">
-                  {`${squadra.charAt(0).toUpperCase()}${squadra.slice(1)}`}
-                </h1>
-                <h3 className={`text-2xl text-gray-800 italic ${openSans.className}`}>
-                  {normalizeLeagueName(league)}
-                </h3>
+    <InfoProvider>
+      <div className="container mx-auto mt-8 p-4 border-4 rounded-xl shadow-md bg-system">
+        {/* Nome della Squadra */}
+        
+        <div className={`items-start landscape:ml-12 my-6`}>
+          <div className="inset-0 border-4 rounded-xl" style={{ borderColor: colors.primary }}>
+            <div className="inset-1 border-4 rounded-xl p-4" style={{ borderColor: colors.secondary }}>
+              <div className="flex items-center">
+                <Jersey colors={colors} icon={reigningIcon} />
+                <div className="ml-4">
+                  <h1 className="text-4xl font-bold">
+                    {`${squadra.charAt(0).toUpperCase()}${squadra.slice(1)}`}
+                  </h1>
+                  <h3 className={`text-2xl text-gray-800 italic ${openSans.className}`}>
+                    {normalizeLeagueName(league)}
+                  </h3>
+                </div>
+                <TrophyTable titles={stats.regni} className="portrait:hidden"/>
               </div>
-              <TrophyTable titles={stats.regni} className="portrait:hidden"/>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="flex justify-around mb-6">
-        <TrophyTable titles={stats.regni} className="!ml-0 landscape:hidden"/>
-      </div>
+        <div className="flex justify-around mb-6">
+          <TrophyTable titles={stats.regni} className="!ml-0 landscape:hidden"/>
+        </div>
 
-      {/* Ultimi 5 match */}
-      <div className="flex justify-around mb-6">
-        <LastFiveMatches team={squadra} matches={lastFiveMatches} />
-      </div>
+        {/* Ultimi 5 match */}
+        <div className="flex justify-around mb-6">
+          <LastFiveMatches team={squadra} matches={lastFiveMatches} />
+        </div>
 
-      <div className="flex justify-around mb-6 min-h-275">
-        <TeamStats stats={iconStats} />
-      </div>
+        <div className="flex justify-around mb-6 min-h-275">
+          <TeamStats stats={iconStats} />
+        </div>
 
-      {/* Stats e Posizioni */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6 justify-center min-h-240">
-        <StatContainer statName="Total Titles" statValue={stats.regni} position={posizioni.regni} positionSuffix={`${numeralSuffix(posizioni.regni)} overall`} className={"w-full"}/>
-        <StatContainer statName="Combined Duration" statValue={stats.durataCombinata} valueSuffix=" days" position={posizioni.durata} positionSuffix={`${numeralSuffix(posizioni.durata)} overall`} className={"w-full"}/>
-        <StatContainer statName="Average Duration" statValue={stats.durataMedia} valueSuffix=" days" position={posizioni.media} positionSuffix={`${numeralSuffix(posizioni.media)} overall`} className={"w-full"}/>
-        <StatContainer statName="Defenses" statValue={stats.difese} valueSuffix=" times" position={posizioni.difese} positionSuffix={`${numeralSuffix(posizioni.difese)} overall`} className={"w-full"}/>
-        <StatContainer statName="Average Defenses" statValue={stats.mediaDifese} valueSuffix=" times" position={posizioni.mediaDifese} positionSuffix={`${numeralSuffix(posizioni.mediaDifese)} overall`} className={"w-full"}/>
-        <StatContainer statName="Challenges" statValue={stats.sfide} valueSuffix=" times" position={posizioni.sfide} positionSuffix={`${numeralSuffix(posizioni.sfide)} overall`} className={"w-full"}/>
-      </div>
+        {/* Stats e Posizioni */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6 justify-center min-h-240">
+          <StatContainer statName="Total Titles" statValue={stats.regni} position={posizioni.regni} positionSuffix={`${numeralSuffix(posizioni.regni)} overall`} className={"w-full"}/>
+          <StatContainer statName="Combined Duration" statValue={stats.durataCombinata} valueSuffix=" days" position={posizioni.durata} positionSuffix={`${numeralSuffix(posizioni.durata)} overall`} className={"w-full"}/>
+          <StatContainer statName="Average Duration" statValue={stats.durataMedia} valueSuffix=" days" position={posizioni.media} positionSuffix={`${numeralSuffix(posizioni.media)} overall`} className={"w-full"}/>
+          <StatContainer statName="Defenses" statValue={stats.difese} valueSuffix=" times" position={posizioni.difese} positionSuffix={`${numeralSuffix(posizioni.difese)} overall`} className={"w-full"}/>
+          <StatContainer statName="Average Defenses" statValue={stats.mediaDifese} valueSuffix=" times" position={posizioni.mediaDifese} positionSuffix={`${numeralSuffix(posizioni.mediaDifese)} overall`} className={"w-full"}/>
+          <StatContainer statName="Challenges" statValue={stats.sfide} valueSuffix=" times" position={posizioni.sfide} positionSuffix={`${numeralSuffix(posizioni.sfide)} overall`} className={"w-full"}/>
+        </div>
 
-      <div className="py-10">
-        {timeLineData.length > 0 &&     
-          <VerticalTimelineChart regni={timeLineData} primaryColor={colors.primary} secondaryColor={colors.secondary} league={league}/>
-        }
+        <div className="py-10">
+          {timeLineData.length > 0 &&     
+            <VerticalTimelineChart regni={timeLineData} primaryColor={colors.primary} secondaryColor={colors.secondary} league={league}/>
+          }
+        </div>
       </div>
-    </div>
+      <InfoWindow />
+    </InfoProvider>
   );
 }
 
