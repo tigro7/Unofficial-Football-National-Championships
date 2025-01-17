@@ -7,7 +7,7 @@ const InfoWindow = () => {
   console.info(info);
 
   useEffect(() => {
-    const handleClose = (e) => {
+    const handleClose = (e: { type: unknown; }) => {
         console.info(e.type);
         return setInfo(null);
     }
