@@ -1,7 +1,8 @@
 export const daysToYears = (days: number) => {
     const years = Math.floor(days / 365);
-    const months = Math.floor((days % 365) / 31);
-    const remainingDays = (days % 365) % 31;
+    //const months = Math.floor((days % 365) / 31);
+    const months = 0;
+    const remainingDays = (days % 365);
     return `${years > 0 ? `${years} years` : ""} ${months > 0 ? `${months} months` : ""} ${remainingDays > 0 ? `${remainingDays} days` : ""}`.trim();
 }
 

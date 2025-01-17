@@ -1,10 +1,8 @@
 import {
   faRotateRight,
-  faCrown,
-  faHourglassEnd,
   faMountain,
   faStar,
-  faTrophy,
+  faRankingStar,
   faCalendarDays,
   faBuildingColumns,
   faHandshake,
@@ -16,6 +14,8 @@ import {
   faChessRook,
   faBaby,
   faGift,
+  faMedal,
+  faMeteor,
 } from "@fortawesome/free-solid-svg-icons";
 import { daysToYears } from "@/app/lib/commons";
 
@@ -25,13 +25,13 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
       title: "Regain the title after losing it in less than 1 month or 5 matches",
       valueProcessor: (value) => {
         if (value === null) return "";
-        if (Number(value) === 1) return 'Won it back next match';
-        if (Number(value) <= 5) return `Won it back after ${value} matches`;
+        if (Number(value) === 1) return 'Back to back!';
+        if (Number(value) <= 5) return `${value} matches`;
         return daysToYears(value);
       }
     },
-    "Longest Combined Reign": {
-      icon: faCrown,
+    "Longest Reigning": {
+      icon: faMedal,
       title: "Longest time holding the title",
       valueProcessor: (value) => {
         if (value === null) return "";
@@ -39,7 +39,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
       },
     },
     "Shortest Reign": {
-      icon: faHourglassEnd,
+      icon: faMeteor,
       title: "Shortest time holding the title",
       valueProcessor: (value) => {
         if (value === null) return "";
@@ -79,28 +79,28 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
       },
     },
     "Legacy Run Iron": {
-        icon: faTrophy,
+        icon: faRankingStar,
         title: "Have at least 10 title reigns",
         valueProcessor: (value) =>{
           return value ? `${value.toString()} reigns` : "";
         }
       },
     "Legacy Run Bronze": {
-        icon: faTrophy,
+        icon: faRankingStar,
         title: "Have at least 15 title reigns",
         valueProcessor: (value) =>{
           return value ? `${value.toString()} reigns` : "";
         }
       },
     "Legacy Run Silver": {
-        icon: faTrophy,
+        icon: faRankingStar,
         title: "Have at least 25 title reigns",
         valueProcessor: (value) =>{
           return value ? `${value.toString()} reigns` : "";
         }
       },
     "Legacy Run Gold": {
-      icon: faTrophy,
+      icon: faRankingStar,
       title: "Have at least 50 title reigns",
       valueProcessor: (value) =>{
         return value ? `${value.toString()} reigns` : "";
@@ -133,7 +133,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
       title: "Win the title from the longest reigning champion (first 10 reigns)",
       valueProcessor: (value) => {
         if (value === null) return "";
-        return `Reign had lasted for ${daysToYears(value)}`;
+        return `${daysToYears(value)}`;
       },
     },
     "Title Avenger": {
@@ -141,7 +141,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
       title: "Win the title back from the same opponent",
       valueProcessor: (value) => {
         if (value === null) return "";
-        return value == 0 ? `Won it back without changing hands` : `After ${value} reigns`;
+        return value == 0 ? `Back to back!` : `After ${value} reigns`;
       }
     },
     "Millenial": {
@@ -161,7 +161,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
       title: "Defend the title for the most matches",
       valueProcessor: (value) => {
         if (value === null) return "";
-        return `Defended a title for ${value} consecutive matches`;
+        return `${value} matches`;
       }
     },
     "Consolation Prize": {
@@ -169,7 +169,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
       title: "Most title challenges without winning",
       valueProcessor: (value) => {
         if (value === null) return "";
-        return `Challenged for the title ${value} times`;
+        return `${value} challenges`;
       }
     },
     "Question Circle": {

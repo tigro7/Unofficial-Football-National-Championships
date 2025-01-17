@@ -153,7 +153,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
       </div>
 
       <div className="flex justify-around mb-6">
-        <TrophyTable titles={stats.regni} className="ml-0 landscape:hidden"/>
+        <TrophyTable titles={stats.regni} className="!ml-0 landscape:hidden"/>
       </div>
 
       {/* Ultimi 5 match */}

@@ -96,7 +96,7 @@ const updateStats = async (
                                           WHERE matches.outcome <> 'n'
                                           ORDER BY long.durata DESC, DATA DESC LIMIT 1`;
     await client.sql`UPDATE stats SET 
-                    data = ${longestReign.rows[0].data}, squadra = ${longestReign.rows[0].detentore}, league = ${league}, statistica = 'Longest Combined Reign', valore = ${longestReign.rows[0].durata}, numero = ${longestReign.rows[0].numero}
+                    data = ${longestReign.rows[0].data}, squadra = ${longestReign.rows[0].detentore}, league = ${league}, statistica = 'Longest Reigning', valore = ${longestReign.rows[0].durata}, numero = ${longestReign.rows[0].numero}
                     WHERE league = ${league} AND statistica = 'Longest Combined Reign'`;
     
     console.info('longestReign:', longestReign.rowCount);
