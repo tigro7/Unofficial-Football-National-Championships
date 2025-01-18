@@ -19,7 +19,7 @@ const VerticalTimelineChart = ({
   let reignIndex = 0;
 
   return (
-    <div className="relative flex justify-center w-full" style={{ minHeight: "600px", height: `${totalHeight}px` }}>
+    <div className="relative flex landscape:justify-center w-full" style={{ minHeight: "600px", height: `${totalHeight}px` }}>
       {/* Timeline centrale */}
       <div className="relative w-8 bg-gray-300 h-full">
         {regni.map((regno, index) => {
@@ -31,10 +31,11 @@ const VerticalTimelineChart = ({
             index === 0 ? 0 : regni.slice(0, index).reduce((sum, r) => sum + calcPercentage(r.duration), 0)
           }%`;
           const isLeft = reignIndex % 2 === 0; // Alterna destra/sinistra
-          const lineClassName = `absolute w-2 h-1 ${isLeft ? "left-full ml-6" : "right-full mr-6"}`;
+          const lineClassName = `absolute w-2 h-1 ${
+            isLeft ? "left-full ml-6" : "landscape:right-full landscape:mr-6 portrait:left-full portrait:ml-6"} bg-gray-300`;
           const infoClassName = `absolute w-64 p-2 text-sm bg-gray-100 shadow-md rounded-md ${
-            isLeft ? "left-full ml-6" : "right-full mr-6"
-          }`;
+            isLeft ? "left-full ml-6" : "landscape:right-full landscape:mr-6 portrait:left-full portrait:ml-6"
+          } hover:z-50`;
 
           return (
             <div
@@ -60,7 +61,7 @@ const VerticalTimelineChart = ({
                     top: `calc(${percentage / 2}%)`,
                     transform: `translateY(-50%)`,
                     backgroundColor: reignIndex % 2 === 0 ? secondaryColor : primaryColor,
-                    zIndex: 5, // Linea sopra il box delle informazioni
+                    zIndex: 2, // Linea sopra il box delle informazioni
                   }}
                 />
               )}

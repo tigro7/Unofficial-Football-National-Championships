@@ -18,6 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/ufnc.ico" sizes="any" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body className={`${montserrat.className} antialiased bg-secondary`}>
         <Layout>
