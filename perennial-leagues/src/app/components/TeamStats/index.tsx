@@ -80,22 +80,16 @@ const TeamStats = ({ stats, match = false } : {
                                     />
                                 </defs>
                             </svg>
-            
-                            {/* Titolo vicino all'icona 
-                                <p className="absolute text-center text-sm font-semibold text-primary max-w-24 text-ellipsis overflow-hidden whitespace-nowrap">
-                                    {stat.statistica}
-                                </p>
-                            */}
 
                             <p className="text-center text-xs">{valueProcessor ? valueProcessor(Number(stat.valore)) : stat.valore}</p>
 
-                            {rival && <div className="absolute bottom-8 text-xs bg-red-700 text-white rounded-full px-2 py-1">{rival}</div>}
-                            {tier && <div className={`absolute bottom-8 text-xs ${tierColor} text-white rounded-full px-2 py-1`}>{tier}</div>}
-                            {position && <div className={`absolute bottom-8 text-xs ${positionColor} text-white rounded-full px-2 py-1`}>{position}</div>}
+                            {rival && <div className="absolute top-4 text-xs bg-red-700 text-white rounded-full px-2 py-1">{rival}</div>}
+                            {tier && <div className={`absolute top-4 text-xs ${tierColor} text-white rounded-full px-2 py-1`}>{tier}</div>}
+                            {position && <div className={`absolute top-4 text-xs ${positionColor} text-white rounded-full px-2 py-1`}>{position}</div>}
         
                             {/* Data */}
                             {!match && (
-                                <div className="absolute top-2 right-2 text-xs bg-secondary text-white rounded-full px-2 py-1 cursor-pointer"
+                                <div className="absolute -bottom-3 text-xs bg-secondary text-white rounded-full px-2 py-1 cursor-pointer"
                                     onClick={(event) => {
                                         if (match) {
                                             event.preventDefault();
@@ -103,18 +97,22 @@ const TeamStats = ({ stats, match = false } : {
                                         }
                                         window.location.href = `/${stat.league}/match/${stat.numero}`;
                                     }}>
-                                <span>{localeDate}</span>
+                                    <span>{localeDate}</span>
                                 </div>
                             )}
                             {/* Nome detentore */}
-                            {match && <p className={`font-bold text-xs absolute top-2`}>{stat.squadra}</p>}
+                            {match && 
+                                <div className="absolute -bottom-3 text-xs bg-secondary text-white rounded-full px-2 py-1">
+                                    <span>{stat.squadra}</span>
+                                </div>
+                            }
                         
                             <FontAwesomeIcon
                                 icon={faInfoCircle}
                                 className="absolute bottom-2 right-2 text-xs text-primary cursor-pointer"
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    setInfo(statInfo.title);
+                                    setInfo({content: statInfo.title, title: stat.statistica, value: valueProcessor ? valueProcessor(Number(stat.valore)) : stat.valore});
                                 }}
                             />
                         </div>

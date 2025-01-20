@@ -4,8 +4,6 @@ import { useInfo } from './InfoContext';
 const InfoWindow = () => {
   const { info, setInfo } = useInfo();
 
-  console.info(info);
-
   useEffect(() => {
     const handleClose = (e: { type: unknown; }) => {
         console.info(e.type);
@@ -34,9 +32,12 @@ const InfoWindow = () => {
   return (
     <>
         <div className="fixed inset-0 bg-black opacity-50 z-10" onClick={() => setInfo(null)} />
-        <div className="fixed bottom-0 w-1/2 h-1/8 left-1/4 portrait:w-full portrait:left-0 bg-system p-4 shadow-lg rounded-md z-10">
-        <div className="flex justify-between items-center">
-            <p className="text-sm">{info}</p>
+        <div className="fixed portrait:bottom-0 w-1/2 h-1/8 left-1/4 portrait:w-full portrait:left-0 bg-system p-4 shadow-lg rounded-md z-10">
+        <div className="text-center">
+            {typeof info == 'string' && <p className="text-sm">{info}</p>}
+            {typeof info == 'object' && 'title' in info && typeof info.title == 'string' && <p className="text-lg font-bold">{info.title}</p>}
+            {typeof info == 'object' && 'value' in info && typeof info.value == 'string' && <p className="text-sm">{info.value}</p>}
+            {typeof info == 'object' && 'content' in info && typeof info.content == 'string' && <p className="text-sm">{info.content}</p>}
             <button onClick={() => setInfo(null)} className="text-red-500">Close</button>
         </div>
         </div>

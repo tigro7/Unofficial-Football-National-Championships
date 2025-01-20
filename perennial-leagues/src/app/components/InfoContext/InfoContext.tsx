@@ -1,14 +1,14 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 
 interface InfoContextType {
-  info: string | null;
-  setInfo: (info: string | null) => void;
+  info: string | object | null;
+  setInfo: (info: string | object | null) => void;
 }
 
 const InfoContext = createContext<InfoContextType | undefined>(undefined);
 
 export const InfoProvider = ({ children }: { children: ReactNode }) => {
-  const [info, setInfo] = useState<string | null>(null);
+  const [info, setInfo] = useState<string | object | null>(null);
 
   return (
     <InfoContext.Provider value={{ info, setInfo }}>
