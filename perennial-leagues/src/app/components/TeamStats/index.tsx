@@ -112,7 +112,12 @@ const TeamStats = ({ stats, match = false } : {
                                 className="absolute bottom-2 right-2 text-xs text-primary cursor-pointer"
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    setInfo({content: statInfo.title, title: stat.statistica, value: valueProcessor ? valueProcessor(Number(stat.valore)) : stat.valore});
+                                    setInfo({content: statInfo.title, 
+                                             title: stat.statistica, 
+                                             value: valueProcessor ? valueProcessor(Number(stat.valore)) : stat.valore, 
+                                             longInfo: statInfo.longInfo?.replace("$squadra", stat.squadra).replace("$sfidante", rival).replace("$position", position || "").replace("$decade", position || "")
+                                                                         .replace("$value", stat.valore ? valueProcessor ? valueProcessor(Number(stat.valore)) : stat.valore.toString() : ""),
+                                    });
                                 }}
                             />
                         </div>

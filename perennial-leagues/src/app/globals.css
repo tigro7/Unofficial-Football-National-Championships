@@ -24,6 +24,10 @@ body {
   background: var(--background);
 }
 
+.border-foreground {
+  border-color: var(--foreground);
+}
+
 .bg-gold {
   background-color: #FFD700; /* Colore oro */
 }
