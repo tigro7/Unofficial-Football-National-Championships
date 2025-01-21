@@ -1,4 +1,5 @@
 import { daysToYears, showSpan } from "@/app/lib/commons";
+import { useEffect, useRef } from "react";
 
 const VerticalTimelineChart = ({
   regni,
@@ -18,6 +19,43 @@ const VerticalTimelineChart = ({
 
   let reignIndex = 0;
 
+  const refs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+      // Funzione per gestire l'osservazione
+      const handleIntersect = (entries: IntersectionObserverEntry[]) => {
+          entries.forEach((entry) => {
+              const index = refs.current.findIndex((ref) => ref === entry.target);
+              if (entry.isIntersecting && refs.current[index]) {
+                  // Aggiungi focus al div visibile
+                  refs.current[index]?.focus();
+              } else if (refs.current[index]) {
+                  // Rimuovi focus se non più visibile
+                  refs.current[index]?.blur();
+              }
+          });
+      };
+
+      const observer = new IntersectionObserver(handleIntersect, {
+          root: null, // Viewport come root
+          rootMargin: "0px 0px 100px 0px",
+          threshold: 0.25, // Almeno il 25% dell'elemento visibile
+      });
+
+      refs.current.forEach((ref) => {
+          if (ref) {
+              observer.observe(ref);
+          }
+      });
+
+      return () => {
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+          refs.current.forEach((ref) => {
+              if (ref) observer.unobserve(ref);
+          });
+      };
+  }, []);
+
   return (
     <div className="relative flex landscape:justify-center w-full" style={{ minHeight: "600px", height: `${totalHeight}px` }}>
       {/* Timeline centrale */}
@@ -35,13 +73,15 @@ const VerticalTimelineChart = ({
             isLeft ? "left-full ml-6" : "landscape:right-full landscape:mr-6 portrait:left-full portrait:ml-6"} bg-gray-300`;
           const infoClassName = `absolute w-64 p-2 text-sm bg-gray-100 shadow-md rounded-md ${
             isLeft ? "left-full ml-6" : "landscape:right-full landscape:mr-6 portrait:left-full portrait:ml-6"
-          } hover:z-50`;
+          }`;
 
           return (
             <div
               key={index}
+              tabIndex={index}
+              ref={(el) => { if(regno.team) refs.current[index] = el; }}
               style={{ top: topPosition, height: `${percentage}%`, minHeight: `${regno.team ? "5px" : "0px"}` }}
-              className="w-8 absolute"
+              className="w-8 absolute hover:z-50 focus:z-50"
             >
               {/* Segmento del regno */}
               <div

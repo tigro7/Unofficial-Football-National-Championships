@@ -89,7 +89,7 @@ const TeamStats = ({ stats, match = false } : {
         
                             {/* Data */}
                             {!match && (
-                                <div className="absolute -bottom-3 text-xs bg-secondary text-white rounded-full px-2 py-1 cursor-pointer"
+                                <div className="absolute -bottom-3 text-xs bg-secondary text-white rounded-full px-2 py-1 cursor-pointer z-10"
                                     onClick={(event) => {
                                         if (match) {
                                             event.preventDefault();
@@ -102,7 +102,7 @@ const TeamStats = ({ stats, match = false } : {
                             )}
                             {/* Nome detentore */}
                             {match && 
-                                <div className="absolute -bottom-3 text-xs bg-secondary text-white rounded-full px-2 py-1">
+                                <div className="absolute -bottom-3 text-xs bg-secondary text-white rounded-full px-2 py-1 z-10">
                                     <span>{stat.squadra}</span>
                                 </div>
                             }
@@ -117,6 +117,7 @@ const TeamStats = ({ stats, match = false } : {
                                              value: valueProcessor ? valueProcessor(Number(stat.valore)) : stat.valore, 
                                              longInfo: statInfo.longInfo?.replace("$squadra", stat.squadra).replace("$sfidante", rival).replace("$position", position || "").replace("$decade", position || "")
                                                                          .replace("$value", stat.valore ? valueProcessor ? valueProcessor(Number(stat.valore)) : stat.valore.toString() : ""),
+                                             data: localeDate,
                                     });
                                 }}
                             />

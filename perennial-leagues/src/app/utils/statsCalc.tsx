@@ -373,9 +373,9 @@ const updateStats = async (
                                                 last_match l 
                                                 ON 
                                                 r.squadra = l.squadra
+                                                WHERE r.rank < 10
                                                 ORDER BY 
                                                 r.rank
-                                                LIMIT 10
                                                 ) c`;
 
     console.info('consolationPrize:', consolationPrize.rowCount);
