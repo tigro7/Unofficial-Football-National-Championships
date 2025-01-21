@@ -24,21 +24,23 @@ const VerticalTimelineChart = ({
   useEffect(() => {
       // Funzione per gestire l'osservazione
       const handleIntersect = (entries: IntersectionObserverEntry[]) => {
+        if (window.innerWidth < 512) {
           entries.forEach((entry) => {
               const index = refs.current.findIndex((ref) => ref === entry.target);
               if (entry.isIntersecting && refs.current[index]) {
                   // Aggiungi focus al div visibile
-                  refs.current[index]?.focus();
-              } else if (refs.current[index]) {
-                  // Rimuovi focus se non più visibile
-                  refs.current[index]?.blur();
+                    refs.current[index]?.style.setProperty('z-index', '50');
+                  } else if (refs.current[index]) {
+                    // Rimuovi z-index se non più visibile
+                    refs.current[index]?.style.removeProperty('z-index');
               }
           });
+        }
       };
 
       const observer = new IntersectionObserver(handleIntersect, {
           root: null, // Viewport come root
-          rootMargin: "0px 0px 100px 0px",
+          rootMargin: "-25% 0px -25% 0px",
           threshold: 0.25, // Almeno il 25% dell'elemento visibile
       });
 
@@ -57,7 +59,7 @@ const VerticalTimelineChart = ({
   }, []);
 
   return (
-    <div className="relative flex landscape:justify-center w-full" style={{ minHeight: "600px", height: `${totalHeight}px` }}>
+    <div className="relative flex landscape:justify-center w-full portrait:mb-28 min-h-[600px]" style={{ height: `${totalHeight}px` }}>
       {/* Timeline centrale */}
       <div className="relative w-8 bg-gray-300 h-full">
         {regni.map((regno, index) => {
@@ -78,10 +80,9 @@ const VerticalTimelineChart = ({
           return (
             <div
               key={index}
-              tabIndex={index}
               ref={(el) => { if(regno.team) refs.current[index] = el; }}
               style={{ top: topPosition, height: `${percentage}%`, minHeight: `${regno.team ? "5px" : "0px"}` }}
-              className="w-8 absolute hover:z-50 focus:z-50"
+              className="w-8 absolute hover:z-50"
             >
               {/* Segmento del regno */}
               <div
