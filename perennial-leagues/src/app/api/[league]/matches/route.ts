@@ -72,7 +72,7 @@ export async function POST(request: Request, {params,}: {params: Promise<{league
 
         if (operationType === "update") {
             console.info('update');
-            rows = await client.sql`UPDATE matches SET durata = ${durata}, outcome = ${outcome}, risultato = ${risultato}, note = ${noteValue} 
+            rows = await client.sql`UPDATE matches SET durata = ${durata}, outcome = ${outcome}, risultato = ${risultato}, note = ${noteValue}, detentore = ${detentoreName}, sfidante = ${sfidanteName}
                                     WHERE league = ${league} AND home = ${home} AND away = ${away} AND data = ${data} AND numero = ${numero} AND outcome = 'n'`;
         } else {
             console.info('insert');

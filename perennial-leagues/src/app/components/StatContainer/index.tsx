@@ -37,7 +37,8 @@ const StatContainer = ({
 
     return (
         <div className={`text-center shadow-md rounded-md p-2 ${effectiveColor.startsWith("#") ? "" : `text-${effectiveColor}`} ${className}`}
-            onClick={onClick}>
+            onClick={onClick}
+            style={{ background: "linear-gradient(135deg, #f0f0f0, #ffffff)" }}>
             <p className="text-xl font-semibold">{statName}</p>
             <p className="text-3xl">{valuePrefix}{statValue}{valueSuffix}</p>
             {description && <p className="text-sm italic mt-2">{description}</p>}

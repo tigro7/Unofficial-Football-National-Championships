@@ -14,7 +14,7 @@ export async function GET(request: Request, {params,}: {params: Promise<{ league
 
     try {
         const client = await db.connect();
-        const rows =  await client.sql`SELECT * FROM stats WHERE league = ${league} AND squadra = ${squadra} ORDER BY data ASC`;
+        const rows =  await client.sql`SELECT * FROM stats WHERE league = ${league} AND squadra = ${squadra} ORDER BY data DESC`;
     
         client.release();
         return NextResponse.json(rows.rows, { status: 200 });

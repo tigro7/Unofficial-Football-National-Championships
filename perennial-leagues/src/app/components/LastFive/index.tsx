@@ -59,7 +59,8 @@ const LastFiveMatches = ({
   }, [host]);
 
   return (
-    <div className="shadow-md rounded-md p-4 bg-background">
+    <div className="shadow-md rounded-md p-4"
+      style={{ background: "linear-gradient(135deg, #f0f0f0, #ffffff)" }}>
       <h2 className="text-left text-xl font-bold mb-4">Last 5 Title Matches</h2>
       <div className="flex justify-end gap-2">
         {[...matches].reverse().map((match, index) => {
