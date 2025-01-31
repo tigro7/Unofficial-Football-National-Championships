@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { daysToYears, showSpan } from "@/app/lib/commons";
 
 const TimelineByDecades = ({ segments, league = "serie_a" }: {segments :{ start: Date, end: Date, 
     regni: { colors: { primary: string; secondary: string; }; duration: number; start: string; end: string; squadra: string; realduration: number; startsbefore: boolean; endsafter: boolean}[];}[]; league: string}) => {
@@ -6,13 +7,11 @@ const TimelineByDecades = ({ segments, league = "serie_a" }: {segments :{ start:
     const [tooltip, setTooltip] = useState<{visible: boolean; content: string; position: number | null; index: number | null; squadra: string | null}>({visible: false, content: "", position: null, index: null, squadra: null});
     
     const showTooltip = ( start: string, end: string, position: number, reignIndex: number, segIndex: number, squadra: string, duration: number, sb: boolean, ea: boolean) => {
-        const startDate = new Date(start).toLocaleDateString();
-        const endDate = new Date(end).toLocaleDateString();
     
         setTooltip({ 
             visible: true, 
-            content: `#${reignIndex} | ${squadra.charAt(0).toUpperCase() + squadra.slice(1)} | Inizio: ${sb ? `...` : ``}${startDate} | Fine: ${endDate}${ea ? `...` : ``}
-                        | Durata: ${duration} giorni`,
+            content: `#${reignIndex} | ${squadra.charAt(0).toUpperCase() + squadra.slice(1)} | ${sb ? `...` : ``}${showSpan(start, end)}${ea ? `...` : ``} :
+                ${daysToYears(duration)}`,
             position,
             index: segIndex,
             squadra,
@@ -81,7 +80,10 @@ const TimelineByDecades = ({ segments, league = "serie_a" }: {segments :{ start:
                             className="absolute bg-gray-800 text-white p-2 rounded"
                             style={{
                                 left: `calc(${tooltip.position}% - 20px)`,
-                                top: `calc((${tooltip.index} * 176px) + 50px)`, //appena sopra la timeline
+                                top: `calc((${tooltip.index} * 176px) + 50px)`, // appena sopra la timeline
+                                transform: tooltip.position > 90 ? 'translateX(-100%)' : 'none', // sposta il tooltip a sinistra se è vicino al margine destro
+                                whiteSpace: 'nowrap', // evita che il testo vada a capo
+                                zIndex: 50, // assicura che il tooltip sia sopra altri elementi
                             }}
                         >
                             {tooltip.content}

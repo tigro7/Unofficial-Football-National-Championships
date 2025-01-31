@@ -113,39 +113,36 @@ const Timeline = ({squadre, regni, startDate, league = "serie_a"}: {squadre: {sq
     const totalSpan = calculateDateDifference(new Date(startDate), new Date());
   
     return(
-        <div className="container mx-auto mt-8 p-4 border-4 border-gold bg-system">
-            {/* Titolo */}
-            <h1 className="text-4xl font-bold text-center mb-6">
-              Cronologia dei Regni
-            </h1>
+      <div className="container mx-auto mt-8 p-4 border-4 rounded-xl shadow-md bg-tertiary bg-[center_top_4rem] bg-no-repeat min-h-screen flex flex-col items-center p-6">
+        <h1 className="text-4xl md:text-6xl font-bold text-highlights mb-8 text-center">Titles Timeline</h1>
 
-            {/* Stats Generali */}
-            <div className="flex justify-around mb-6">
-              <StatContainer className={'w-auto sm:w-1/3 md:w-auto'} statName='Champions' statValue={regni.length} positionPrefix="Total teams: " position={squadre.length}/>
-              <StatContainer className={'w-auto sm:w-1/3 md:w-auto'} statName="Total length" statValue={`${totalSpan.years} Years`} position={`${totalSpan.months} Months, ${totalSpan.days} Days, ${totalSpan.hours} Hour`} />
-              <StatContainer className={'w-auto sm:w-1/3 md:w-auto '} statName='Average length' statValue={`${Math.floor(((new Date().getTime() - new Date(startDate).getTime()) / (1000 * 60 * 60 * 24))/regni.length)} Days`} position={'About 10 matches'} />
-            </div>
+        {/* Stats Generali */}
+        <div className="flex justify-around mb-6 w-full">
+          <StatContainer className={'w-auto sm:w-1/3 md:w-auto'} statName='Champions' statValue={regni.length} positionPrefix="Total teams: " position={squadre.length}/>
+          <StatContainer className={'w-auto sm:w-1/3 md:w-auto'} statName="Total length" statValue={`${totalSpan.years} Years`} position={`${totalSpan.months} Months, ${totalSpan.days} Days, ${totalSpan.hours} Hour`} />
+          <StatContainer className={'w-auto sm:w-1/3 md:w-auto '} statName='Average length' statValue={`${Math.floor(((new Date().getTime() - new Date(startDate).getTime()) / (1000 * 60 * 60 * 24))/regni.length)} Days`} position={'About 10 matches'} />
+        </div>
 
-            {/* Il più lungo e il più corto */}
-            <div className="flex justify-around mb-6">
-              <StatContainer className={'w-auto sm:w-1/2 md:w-auto'} statName='Longest Reign' statValue={<><TeamLink league={league} teamName={longChamp?.squadra || ''} />: {duration(longestReign)} Days </>} position={`Start: ${(new Date(longestReign.start)).toLocaleDateString()} End: ${(new Date(longestReign.end)).toLocaleDateString()}`} />
-              <StatContainer className={'w-auto sm:w-1/2 md:w-auto'} statName='Shortest Reign' statValue={<><TeamLink league={league} teamName={shortChamp?.squadra || ''} />: {duration(shortestReign)} Days </>} position={`Start: ${(new Date(shortestReign.start)).toLocaleDateString()} End: ${(new Date(shortestReign.end)).toLocaleDateString()}`} />
-            </div>
+        {/* Il più lungo e il più corto */}
+        <div className="flex justify-around mb-6 w-full">
+          <StatContainer className={'w-auto sm:w-1/2 md:w-auto'} statName='Longest Reign' statValue={<><TeamLink league={league} teamName={longChamp?.squadra || ''} />: {duration(longestReign)} Days </>} position={`Start: ${(new Date(longestReign.start)).toLocaleDateString()} End: ${(new Date(longestReign.end)).toLocaleDateString()}`} />
+          <StatContainer className={'w-auto sm:w-1/2 md:w-auto'} statName='Shortest Reign' statValue={<><TeamLink league={league} teamName={shortChamp?.squadra || ''} />: {duration(shortestReign)} Days </>} position={`Start: ${(new Date(shortestReign.start)).toLocaleDateString()} End: ${(new Date(shortestReign.end)).toLocaleDateString()}`} />
+        </div>
 
-            {/* Campione Attuale */}
-            <div className="flex flex-col items-center mb-6">
-                <p className="text-xl font-semibold text-center">
-                    Reigning Champion
-                </p>
-                <p className="text-3xl font-bold">
-                    <TeamLink league={league} teamName={actualChamp?.squadra || ''} />
-                </p>
-                <Jersey colors={actualChamp?.colors || {primary: '#000000', secondary: '#ffffff'}} icon={null}/>
-            </div>
+        {/* Campione Attuale */}
+        <div className="flex flex-col items-center mb-6">
+            <p className="text-xl font-semibold text-center">
+                Reigning Champion
+            </p>
+            <p className="text-3xl font-bold">
+                <TeamLink league={league} teamName={actualChamp?.squadra || ''} />
+            </p>
+            <Jersey colors={actualChamp?.colors || {primary: '#000000', secondary: '#ffffff'}} icon={null}/>
+        </div>
 
-            <div className="py-10">     
-                <TimelineByDecades segments={timeLineData} league={league}/>
-            </div>
+        <div className="py-10 w-full">     
+            <TimelineByDecades segments={timeLineData} league={league}/>
+        </div>
 
         </div>
     );

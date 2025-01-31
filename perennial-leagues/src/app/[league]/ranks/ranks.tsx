@@ -56,12 +56,12 @@ const Ranks = ({ squadre, stats, last, league = "serie_a"}: {squadre: Squadra[],
       footer: info => info.column.id,
     }),
     columnHelper.accessor('durata', {
-      header: () => 'Holding Time',
+      header: () => 'Time',
       cell: info => info.renderValue(),
       footer: info => info.column.id,
     }),
     columnHelper.accessor('media', {
-      header: () => 'Avg by reign',
+      header: () => 'Avg',
       cell: info => info.renderValue(),
       footer: info => info.column.id,
     }),
@@ -75,11 +75,11 @@ const Ranks = ({ squadre, stats, last, league = "serie_a"}: {squadre: Squadra[],
       footer: info => info.column.id,
     }),
     columnHelper.accessor('difese', {
-      header: () => <span>Defenses</span>,
+      header: () => <span>Def</span>,
       footer: info => info.column.id,
     }),
     columnHelper.accessor('media_difese', {
-      header: 'Avg by reign',
+      header: 'Avg',
       footer: info => info.column.id,
     }),
   ]
@@ -113,7 +113,7 @@ const Ranks = ({ squadre, stats, last, league = "serie_a"}: {squadre: Squadra[],
   const columnsUltimo: ColumnDef<Ultimo, string>[] = [
     columnHelperUltimo.accessor(row => row.detentore, {
       id: 'detentore',
-      cell: info => <i>{info.getValue()}</i>,
+      cell: info => <TeamLink teamName={info.getValue()} league={league} />,
       header: () => <span>Team</span>,
       footer: info => info.column.id,
     }),
@@ -183,11 +183,11 @@ const Ranks = ({ squadre, stats, last, league = "serie_a"}: {squadre: Squadra[],
       <h1 className="text-4xl md:text-6xl font-bold text-highlights mb-8 text-center">Ranks</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl mt-auto">
         <TableComponent<Squadra> columns={columnsRegni} data={teams} title="Top teams by reigns" initialState={initialRegni} />
-        <TableComponent<Squadra> columns={columnsDurata} data={teams} title="Top teams by holding times" initialState={initialDurata}/>
+        <TableComponent<Squadra> columns={columnsDurata} data={teams} title="Top teams by combined duration" initialState={initialDurata}/>
         <TableComponent<Squadra> columns={columnsDifese} data={teams} title="Top teams by defenses" initialState={initialDifese}/>
         <TableComponent<Squadra> columns={columnsSfide} data={teams} title="Top teams by challenges" initialState={initialSfide}/>
         <TableComponent<Stats> columns={columnsStats} data={statistiche} title="Top teams by stats" initialState={initialStats}/>
-        <TableComponent<Ultimo> columns={columnsUltimo} data={last} title="Longest without a title" initialState={initialUltimo}/>
+        <TableComponent<Ultimo> columns={columnsUltimo} data={last} title="Longest time without a title" initialState={initialUltimo}/>
       </div>
     </div>
   )

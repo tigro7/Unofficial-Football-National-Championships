@@ -122,9 +122,11 @@ const VerticalTimelineChart = ({
                   }}
                 >
                   <p className="font-semibold">{`#${reignIndex}`}</p>
-                  <p>{`${showSpan(regno.start, regno.end)}: ${daysToYears(Math.ceil(
-                    (new Date(regno.end).getTime() - new Date(regno.start).getTime()) / (1000 * 60 * 60 * 24))
-                  )}`}</p>
+                  <p>
+                    {`${showSpan(regno.start, regno.end)}: ${daysToYears(Math.ceil(
+                      (new Date(regno.end).getTime() - new Date(regno.start).getTime()) / (1000 * 60 * 60 * 24))
+                    )}`}
+                  </p>
                 </div>
               )}
             </div>

@@ -179,9 +179,14 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
         </div>
 
         <div className="py-10">
-          {timeLineData.length > 0 &&     
-            <VerticalTimelineChart regni={timeLineData} primaryColor={colors.primary} secondaryColor={colors.secondary} league={league}/>
-          }
+          <div className="inset-0 border-4 rounded-xl" style={{ borderColor: colors.primary }}>
+            <div className="inset-1 border-4 rounded-xl p-4" style={{ borderColor: colors.secondary }}>
+              <h1 className="text-2xl md:text-4xl font-bold text-primary mb-8 text-center">Titles Timeline</h1>
+              {timeLineData.length > 0 &&     
+                <VerticalTimelineChart regni={timeLineData} primaryColor={colors.primary} secondaryColor={colors.secondary} league={league}/>
+              }
+            </div>
+          </div>
         </div>
       </div>
       <InfoWindow />

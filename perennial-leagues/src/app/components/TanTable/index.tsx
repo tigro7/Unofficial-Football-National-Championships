@@ -17,6 +17,9 @@ interface TableComponentProps<T> {
     initialState?: InitialTableState;
 }
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSort, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
+
 const TableComponent = <T,>({ columns, data, title, initialState }: TableComponentProps<T>) => {
     const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
     const [sorting, setSorting] = useState<SortingState>(initialState?.sorting ?? []);
@@ -64,8 +67,9 @@ const TableComponent = <T,>({ columns, data, title, initialState }: TableCompone
                                                             header.getContext()
                                                     )}
                                                     {{
-                                                            asc: ' 🔼',
-                                                            desc: ' 🔽',
+                                                            asc: <>{' '}<FontAwesomeIcon icon={faSortUp} /></>,
+                                                            desc: <>{' '}<FontAwesomeIcon icon={faSortDown} /></>,
+                                                            false: <>{' '}<FontAwesomeIcon icon={faSort} /></>,
                                                     }[header.column.getIsSorted() as string] ?? null}
                                             </div>)}
                                 </th>
@@ -85,19 +89,21 @@ const TableComponent = <T,>({ columns, data, title, initialState }: TableCompone
                     ))}
                 </tbody>
             </table>
-            <div className="pagination">
-                <button onClick={() => table.setPageIndex(0)} disabled={!table.getCanPreviousPage()}>
-                    {'<<'}
-                </button>{' '}
-                <button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
-                    {'<'}
-                </button>{' '}
-                <button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
-                    {'>'}
-                </button>{' '}
-                <button onClick={() => table.setPageIndex(table.getPageCount() - 1)} disabled={!table.getCanNextPage()}>
-                    {'>>'}
-                </button>{' '}
+            <div className="pagination flex justify-between items-center w-full mt-4">
+                <div>
+                    <button onClick={() => table.setPageIndex(0)} disabled={!table.getCanPreviousPage()}>
+                        {'<<'}
+                    </button>{' '}
+                    <button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+                        {'<'}
+                    </button>{' '}
+                    <button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+                        {'>'}
+                    </button>{' '}
+                    <button onClick={() => table.setPageIndex(table.getPageCount() - 1)} disabled={!table.getCanNextPage()}>
+                        {'>>'}
+                    </button>
+                </div>
                 <span>
                     Page{' '}
                     <strong>
