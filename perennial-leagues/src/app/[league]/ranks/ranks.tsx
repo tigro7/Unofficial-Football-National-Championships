@@ -8,20 +8,20 @@ import TeamLink from '@/app/components/TeamLink';
 
 type Squadra = {
   squadra: string, 
-  regni: number, 
-  durata: number,
-  media: number, 
+  regni: string, 
+  durata: string,
+  media: string, 
   colore_primario: string, 
   colore_secondario: string, 
   league: string, 
-  difese: number,
-  media_difese: number,
-  sfide: number,
+  difese: string,
+  media_difese: string,
+  sfide: string,
 }
 
 type Stats = {
   squadra: string,
-  stats: number,
+  stats: string,
 }
 
 type Ultimo = {
@@ -35,7 +35,7 @@ const columnHelperUltimo = createColumnHelper<Ultimo>();
 
 const Ranks = ({ squadre, stats, last, league = "serie_a"}: {squadre: Squadra[], stats: Stats[], last: Ultimo[], league: string}) => {
 
-  const columnsRegni: ColumnDef<Squadra, any>[] = [
+  const columnsRegni = [
     columnHelper.accessor('squadra', {
       cell: info => <TeamLink teamName={info.getValue()} league={league} />,
       header: () => <span>Team</span>,
@@ -48,7 +48,7 @@ const Ranks = ({ squadre, stats, last, league = "serie_a"}: {squadre: Squadra[],
     }),
   ]
   
-  const columnsDurata: ColumnDef<Squadra, any>[] = [
+  const columnsDurata = [
     columnHelper.accessor(row => row.squadra, {
       id: 'squadra',
       cell: info => <TeamLink teamName={info.getValue()} league={league} />,
@@ -67,7 +67,7 @@ const Ranks = ({ squadre, stats, last, league = "serie_a"}: {squadre: Squadra[],
     }),
   ]
   
-  const columnsDifese: ColumnDef<Squadra, any>[] = [
+  const columnsDifese = [
     columnHelper.accessor(row => row.squadra, {
       id: 'squadra',
       cell: info => <TeamLink teamName={info.getValue()} league={league} />,
@@ -84,7 +84,7 @@ const Ranks = ({ squadre, stats, last, league = "serie_a"}: {squadre: Squadra[],
     }),
   ]
   
-  const columnsSfide: ColumnDef<Squadra, any>[] = [
+  const columnsSfide = [
     columnHelper.accessor(row => row.squadra, {
       id: 'squadra',
       cell: info => <TeamLink teamName={info.getValue()} league={league} />,
@@ -97,7 +97,7 @@ const Ranks = ({ squadre, stats, last, league = "serie_a"}: {squadre: Squadra[],
     }),
   ]
   
-  const columnsStats: ColumnDef<Stats, any>[] = [
+  const columnsStats = [
     columnHelperStats.accessor(row => row.squadra, {
       id: 'squadra',
       cell: info => <TeamLink teamName={info.getValue()} league={league} />,
@@ -110,7 +110,7 @@ const Ranks = ({ squadre, stats, last, league = "serie_a"}: {squadre: Squadra[],
     }),
   ]
   
-  const columnsUltimo: ColumnDef<Ultimo, any>[] = [
+  const columnsUltimo: ColumnDef<Ultimo, string>[] = [
     columnHelperUltimo.accessor(row => row.detentore, {
       id: 'detentore',
       cell: info => <i>{info.getValue()}</i>,

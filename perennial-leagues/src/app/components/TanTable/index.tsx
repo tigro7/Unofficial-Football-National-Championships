@@ -11,7 +11,7 @@ import {
   import { useState } from 'react';
   
 interface TableComponentProps<T> {
-    columns: ColumnDef<T, string | number>[];
+    columns: ColumnDef<T, string>[];
     data: T[];
     title: string;
     initialState?: InitialTableState;
