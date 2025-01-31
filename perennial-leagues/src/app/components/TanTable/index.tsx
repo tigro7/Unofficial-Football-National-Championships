@@ -11,8 +11,7 @@ import {
   import { useState } from 'react';
   
 interface TableComponentProps<T> {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    columns: ColumnDef<T, any>[];
+    columns: ColumnDef<T, string | number>[];
     data: T[];
     title: string;
     initialState?: InitialTableState;
@@ -20,18 +19,17 @@ interface TableComponentProps<T> {
 
 const TableComponent = <T,>({ columns, data, title, initialState }: TableComponentProps<T>) => {
     const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
-    const [, setSorting] = useState<SortingState>([]);
+    const [sorting, setSorting] = useState<SortingState>(initialState?.sorting ?? []);
 
     const table = useReactTable({
         data,
         columns,
-        state: { pagination },
         onPaginationChange: setPagination,
         onSortingChange: setSorting,
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
-        initialState: initialState as InitialTableState | undefined,
+        state: { pagination, sorting},
     });
 
     return (
@@ -42,7 +40,7 @@ const TableComponent = <T,>({ columns, data, title, initialState }: TableCompone
                     {table.getHeaderGroups().map(headerGroup => (
                         <tr key={headerGroup.id}>
                             {headerGroup.headers.map(header => (
-                                <th key={header.id} className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th key={header.id} className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     {header.isPlaceholder ? null : (
                                             <div
                                                     className={
@@ -79,7 +77,7 @@ const TableComponent = <T,>({ columns, data, title, initialState }: TableCompone
                     {table.getRowModel().rows.map(row => (
                         <tr key={row.id}>
                             {row.getVisibleCells().map(cell => (
-                                <td key={cell.id} className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                <td key={cell.id} className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                 </td>
                             ))}
@@ -106,30 +104,6 @@ const TableComponent = <T,>({ columns, data, title, initialState }: TableCompone
                         {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
                     </strong>{' '}
                 </span>
-                <span>
-                    | Go to page:{' '}
-                    <input
-                        type="number"
-                        defaultValue={table.getState().pagination.pageIndex + 1}
-                        onChange={e => {
-                            const page = e.target.value ? Number(e.target.value) - 1 : 0;
-                            table.setPageIndex(page);
-                        }}
-                        style={{ width: '100px' }}
-                    />
-                </span>{' '}
-                <select
-                    value={table.getState().pagination.pageSize}
-                    onChange={e => {
-                        table.setPageSize(Number(e.target.value));
-                    }}
-                >
-                    {[10, 20, 30, 40, 50].map(pageSize => (
-                        <option key={pageSize} value={pageSize}>
-                            Show {pageSize}
-                        </option>
-                    ))}
-                </select>
             </div>
         </div>
     );

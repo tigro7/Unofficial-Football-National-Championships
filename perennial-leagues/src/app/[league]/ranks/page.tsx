@@ -6,10 +6,12 @@ export default async function Page({ params, }: { params: Promise<{ league: stri
 
     const league = (await params).league;
     const squadre = await fetch (`${host}/api/${league}/squadre`).then(res => res.json());
+    const stats = await fetch (`${host}/api/${league}/stats`).then(res => res.json());
+    const last = await fetch (`${host}/api/${league}/regni/last`).then(res => res.json());
 
     return (
         <ErrorBoundary>
-            <Ranks squadre={squadre}/>
+            <Ranks squadre={squadre} stats={stats} last={last} league={league}/>
         </ErrorBoundary>
     )
 }

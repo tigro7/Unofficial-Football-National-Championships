@@ -88,7 +88,7 @@ const LeaguePage = ({league = 'serie_a'} : { league: string}) => {
               <div className="card bg-system rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-system-300 transition cursor-pointer">
                 <Link href={lastMatchNumber ? `/${league}/match/${lastMatchNumber}` : "#"}>
                   <div className="h-32 w-full bg-system rounded-lg mb-4 flex items-center justify-center">
-                    <p className="text-xl font-bold text-gray-800">📅</p>
+                    <p className="text-xl font-bold text-gray-800">⚽</p>
                   </div>
                   <h3 className="text-lg font-semibold text-center">Last Match</h3>
                 </Link>
@@ -97,7 +97,7 @@ const LeaguePage = ({league = 'serie_a'} : { league: string}) => {
               <div className="card bg-system rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-system-300 transition cursor-pointer">
                 <Link href={nextMatchNumber ? `/${league}/match/${nextMatchNumber}` : "#"}>
                   <div className="h-32 w-full bg-system rounded-lg mb-4 flex items-center justify-center">
-                    <p className="text-xl font-bold text-gray-800">⚽</p>
+                    <p className="text-xl font-bold text-gray-800">📅</p>
                   </div>
                   <h3 className="text-lg font-semibold text-center">Next Match</h3>
                 </Link>
