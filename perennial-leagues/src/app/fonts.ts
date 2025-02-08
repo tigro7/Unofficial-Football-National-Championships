@@ -1,4 +1,4 @@
-import { Montserrat, Open_Sans } from "next/font/google";
+import { Montserrat, Open_Sans, Pridi } from "next/font/google";
  
 export const montserrat = Montserrat({
   subsets: ['latin'],
@@ -8,4 +8,9 @@ export const montserrat = Montserrat({
 export const openSans = Open_Sans({
   subsets: ['latin'],
   display: 'swap',
+})
+
+export const pridi = Pridi({
+  subsets: ['latin'],
+  weight: "500"
 })

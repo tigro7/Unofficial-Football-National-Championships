@@ -1,5 +1,5 @@
 const leagueNormalizationMap: { [key: string]: string } = {
-    "serie_a": "Italy",
+    "serie_a": "Italian Championship",
 }
 
 export default function normalizeLeagueName(leagueName: string) {

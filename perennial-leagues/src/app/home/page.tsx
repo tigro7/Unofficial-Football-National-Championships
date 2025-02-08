@@ -1,44 +1,41 @@
 import Link from 'next/link';
+import Card from '@/app/components/Card';
+import Button from '../components/Button';
+import normalizeLeagueName from '../utils/leaguesMap';
+import getLeagueDesc from '../utils/leaguesDescMap';
 
 const HomePage = () => {
   return (
-    <div className="container mx-auto mt-8 p-4 border-4 rounded-xl shadow-md bg-tertiary bg-[center_top_4rem] bg-no-repeat min-h-screen flex flex-col items-center p-6" style={{ backgroundImage: "url('/homepageback.png')" }}>
-      <h1 className="text-4xl md:text-6xl font-bold text-highlights mb-8 text-center">Unofficial Football National Championships</h1>
-      <div className="grid grid-cols-1 gap-6 w-full max-w-6xl mt-auto">
-        {/* Link a Serie A */}
-        <Link href="/serie_a">
-            <div className="card bg-system rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-system transition cursor-pointer">
-                <div className="h-32 w-full bg-system rounded-lg mb-4 flex items-center justify-center">
-                    <p className="text-xl font-bold text-gray-800">Serie A</p>
-                </div>
-            </div>
-        </Link>
-        {/* Link a Premier League */}
-        <Link href="/premier_league">
-            <div className="card bg-system rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-system transition cursor-pointer">
-                <div className="h-32 w-full bg-system rounded-lg mb-4 flex items-center justify-center">
-                    <p className="text-xl font-bold text-gray-800">Premier League</p>
-                </div>
-            </div>
-        </Link>
-        {/* Link a Info */}
-        <Link href="/info">
-            <div className="card bg-system rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-system transition cursor-pointer"> 
-                <div className="h-32 w-full bg-system rounded-lg mb-4 flex items-center justify-center">
-                <p className="text-xl font-bold text-gray-800">Info</p>
-                </div>         
-            </div>  
-        </Link>
-        {/* Link a Blog */}
-        <Link href="/blog">
-            <div className="card bg-system rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-system transition cursor-pointer">
-                <div className="h-32 w-full bg-system rounded-lg mb-4 flex items-center justify-center">
-                   <p className="text-xl font-bold text-gray-800">Blog</p>
-                </div>
-            </div>
-        </Link>
-      </div>
-    </div>
+    <>
+        <h3 className="h3 w-1/2">
+            <span className='text-secondary'>UFNC</span> tracks championships
+            like boxing titles
+        </h3>
+        <span className="par w-1/2 text-primary mt-[var(--margin-md)] block">
+            Starting from Italian championship, you can follow titles, defenses and challenges.
+            <Link href={`https://www.ufwc.co.uk/`} target='_blank' className='link-tertiary ml-[var(--margin-sm)]'>
+                Inspired by UFWC
+            </Link>
+        </span> 
+        <span className='w-1/2 mt-[var(--margin-big)] block'>
+            <Button buttonLink='/last' buttonText='Last match' primary />
+            <Button buttonLink='/serie_a/napoli' buttonText='Napoli is the reigning champion' primary={false} />
+        </span>
+        <div className="flex flex-wrap justify-between w-full mt-[var(--margin-huge)]">
+            <Card 
+                imageSrc='/asteriskCup.png' title={normalizeLeagueName('serie_a')} 
+                description={getLeagueDesc('serie_a')}
+                buttonText='Explore' buttonLink='/serie_a' 
+            />
+            <Card imageSrc='/image2.png' title='Title 2' description='Description 2' buttonText='Button 2' buttonLink='/link2' />
+            <Card imageSrc='/image3.png' title='Title 3' description='Description 3' buttonText='Button 3' buttonLink='/link3' />
+        </div>
+        <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)]">
+            <Card imageSrc='/image4.png' title='Title 4' description='Description 4' buttonText='Button 4' buttonLink='/link4' />
+            <Card imageSrc='/image5.png' title='Title 5' description='Description 5' buttonText='Button 5' buttonLink='/link5' />
+            <Card imageSrc='/image6.png' title='Title 6' description='Description 6' buttonText='Button 6' buttonLink='/link6' />
+        </div>
+    </>  
   );
 };
 

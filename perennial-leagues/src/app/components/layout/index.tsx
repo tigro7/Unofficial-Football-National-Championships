@@ -1,26 +1,27 @@
 'use client';
 
+import { pridi } from "@/app/fonts";
 import Image from "next/image";
 import Link from "next/link";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="bg-tertiary text-white p-4 flex justify-between items-center">
-        <Link href="/" className="text-lg hover:underline">
-          <Image src="/headersimage.png" alt="Unofficial Football National Championships" className="h-16" width={313} height={91} />
-        </Link>
-        <Link href="/" className="text-lg hover:underline">
-            <Image src="/logofull.png" alt="Home" className="h-16" width={64} height={64} />
-        </Link>
-      </header>
 
       {/* Contenuto */}
-      <main className="flex-grow container mx-auto p-4">{children}</main>
-
+      <main className="flex-grow container mx-auto p-4">
+        {/* Header */}
+        <header className="flex justify-between items-center mb-[var(--margin-huge)]">
+          <Link href="/" className="flex items-center">
+            <Image src="/logofull.png" alt="Unofficial Football National Championships" className="h-16" width={64} height={64} />
+            <h2 className={`${pridi.className} h2 ml-[var(--margin-sm)]`}>UFNC</h2>
+          </Link>
+        </header>
+        {children}
+      </main>
+      
       {/* Footer */}
-      <footer className="bg-tertiary text-white text-center p-4">
+      <footer className="text-center p-4">
         by Alberto Tiribelli
       </footer>
     </div>

@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
 import normalizeLeagueName from '../utils/leaguesMap';
+import getLeagueDesc from '../utils/leaguesDescMap';
+import Card from '../components/Card';
 
 const League = ({league = 'serie_a'} : { league: string}) => {
     const [nextMatchNumber, setNextMatchNumber] = useState<string | null>(null);
@@ -34,77 +35,22 @@ const League = ({league = 'serie_a'} : { league: string}) => {
     }, [league]);
 
     return (
-        <div className="container mx-auto mt-8 p-4 border-4 rounded-xl shadow-md bg-tertiary bg-[center_top_4rem] bg-no-repeat min-h-screen flex flex-col items-center p-6" style={{ backgroundImage: "url('/homepageback.png')" }}>
-          <h1 className="text-4xl md:text-6xl font-bold text-highlights mb-8 text-center">{normalizeLeagueName(league)}</h1>
-          <div className="grid grid-cols-1 gap-6 w-full max-w-6xl mt-auto">
-            {/* Sezione History & Data */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Card Timeline Regni */}
-              <div className="card bg-system rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-system-300 transition cursor-pointer">
-                <Link href={`/${league}/timeline`}>
-                  <div className="h-32 w-full bg-system rounded-lg mb-4 flex items-center justify-center">
-                    <p className="text-xl font-bold text-gray-800">📜</p>
-                  </div>
-                  <h3 className="text-lg font-semibold text-center">Titles Timeline</h3>
-                </Link>
-              </div>
-              {/* Card Campione Attuale */}
-              <div className="card bg-system rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-system transition cursor-pointer">
-                <Link href={reigningChampion ? `/${league}/team/${reigningChampion}` : "#"}>
-                  <div className="h-32 w-full bg-system rounded-lg mb-4 flex items-center justify-center">
-                    <p className="text-xl font-bold text-gray-800">🏆</p>
-                  </div>
-                  {isLoading ? (
-                    <h3 className="text-lg font-semibold text-center">Reigning Champion</h3>
-                  ) : reigningChampion ? (
-                    <h3 className="text-lg font-semibold text-center">Reigning Champion: {reigningChampion.charAt(0).toUpperCase() + reigningChampion.slice(1)}</h3>
-                  ) : (
-                    <p className="text-lg font-semibold text-center">No available Champion</p>
-                  )}
-                </Link>
-              </div>
-              {/* Card Ranks */}
-              <div className="card bg-system rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-system-300 transition cursor-pointer">
-                <Link href={`/${league}/ranks`}>
-                  <div className="h-32 w-full bg-system rounded-lg mb-4 flex items-center justify-center">
-                    <p className="text-xl font-bold text-gray-800">📊</p>
-                  </div>
-                  <h3 className="text-lg font-semibold text-center">Ranks</h3>
-                </Link>
-              </div>
+        <>
+          <h3 className="h3 w-1/2">{normalizeLeagueName(league)}</h3>
+          <span className="par w-1/2 text-primary mt-[var(--margin-md)] block">
+            {getLeagueDesc(league)}
+          </span>
+            <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)]">
+              <Card imageSrc='/image4.png' title='Titles Timeline' description='Unravel the full history of title contention' buttonText='Explore' buttonLink={`/${league}/timeline`} />
+              <Card imageSrc='/image5.png' title={isLoading ? ('Reigning Champion') : reigningChampion ? (`Reigning Champion`) : ('No available Champion')} description='Bow to the reigning champion' buttonText={isLoading ? 'Loading...' : reigningChampion ? reigningChampion : 'Uh oh! Something is missing...'} buttonLink={reigningChampion ? `/${league}/team/${reigningChampion}` : "#"} />
+              <Card imageSrc='/image6.png' title='Stats & Stuff' description='Some geeky and nerdy charts and related stats.' buttonText='Dive in!' buttonLink={`/${league}/timeline`} />
             </div>
-            {/* Sezione Title Matches */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Card Random Match */}
-              <div className="card bg-system rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-system-300 transition cursor-pointer">
-                <Link href={randomMatchNumber ? `/${league}/match/${randomMatchNumber}` : "#"}>
-                  <div className="h-32 w-full bg-system rounded-lg mb-4 flex items-center justify-center">
-                    <p className="text-xl font-bold text-gray-800">🎲</p>
-                  </div>
-                  <h3 className="text-lg font-semibold text-center">Random Match</h3>
-                </Link>
-              </div>
-              {/* Card Last Match */}
-              <div className="card bg-system rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-system-300 transition cursor-pointer">
-                <Link href={lastMatchNumber ? `/${league}/match/${lastMatchNumber}` : "#"}>
-                  <div className="h-32 w-full bg-system rounded-lg mb-4 flex items-center justify-center">
-                    <p className="text-xl font-bold text-gray-800">⚽</p>
-                  </div>
-                  <h3 className="text-lg font-semibold text-center">Last Match</h3>
-                </Link>
-              </div>
-              {/* Card Prossimo Match */}
-              <div className="card bg-system rounded-lg shadow-md flex flex-col items-center p-4 hover:bg-system-300 transition cursor-pointer">
-                <Link href={nextMatchNumber ? `/${league}/match/${nextMatchNumber}` : "#"}>
-                  <div className="h-32 w-full bg-system rounded-lg mb-4 flex items-center justify-center">
-                    <p className="text-xl font-bold text-gray-800">📅</p>
-                  </div>
-                  <h3 className="text-lg font-semibold text-center">Next Match</h3>
-                </Link>
-              </div>
+            <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)]">
+              <Card imageSrc='/image4.png' title='Random Match' description="Let me pick an interesting match! (or a boring one, I'm a card description, not a football expert)" buttonText='Try your luck!' buttonLink={randomMatchNumber ? `/${league}/match/${randomMatchNumber}` : "#"} />
+              <Card imageSrc='/image5.png' title='Last Match' description="Was the last title challenge successful? Did the reigning champion manage to defend their title?" buttonText='Explore' buttonLink={lastMatchNumber ? `/${league}/match/${lastMatchNumber}` : "#"} />
+              <Card imageSrc='/image6.png' title='Next Match' description="The next challenge is scheduled! Pick your favourite treat and join us in the stands." buttonText='Show me!' buttonLink={nextMatchNumber ? `/${league}/match/${nextMatchNumber}` : "#"} />
             </div>
-          </div>
-        </div>
+        </>
       );
 };
 

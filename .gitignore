@@ -9,3 +9,5 @@ package-lock.json
 package.json
 calcreigns.js
 savetitledefences.js
+perennial-leagues/.storybook/
+perennial-leagues/src/stories/
