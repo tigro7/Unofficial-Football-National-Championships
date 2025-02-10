@@ -113,8 +113,8 @@ const Timeline = ({squadre, regni, startDate, league = "serie_a"}: {squadre: {sq
     const totalSpan = calculateDateDifference(new Date(startDate), new Date());
   
     return(
-      <div className="container mx-auto mt-8 p-4 border-4 rounded-xl shadow-md bg-tertiary bg-[center_top_4rem] bg-no-repeat min-h-screen flex flex-col items-center p-6">
-        <h1 className="text-4xl md:text-6xl font-bold text-highlights mb-8 text-center">Titles Timeline</h1>
+      <div className="container mx-auto mt-8 bg-system min-h-screen p-6">
+        <h3 className="h3 mb-8">Titles Timeline</h3>
 
         {/* Stats Generali */}
         <div className="flex justify-around mb-6 w-full">

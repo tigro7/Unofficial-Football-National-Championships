@@ -179,8 +179,8 @@ const Ranks = ({ squadre, stats, last, league = "serie_a"}: {squadre: Squadra[],
   }
               
   return(
-    <div className="container mx-auto mt-8 p-4 border-4 rounded-xl shadow-md bg-tertiary bg-[center_top_4rem] bg-no-repeat min-h-screen flex flex-col items-center p-6">
-      <h1 className="text-4xl md:text-6xl font-bold text-highlights mb-8 text-center">Ranks</h1>
+    <div className="container mx-auto mt-8 bg-system min-h-screen flex flex-col items-center p-6">
+      <h3 className="h3 mb-8">Ranks</h3>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl mt-auto">
         <TableComponent<Squadra> columns={columnsRegni} data={teams} title="Top teams by reigns" initialState={initialRegni} />
         <TableComponent<Squadra> columns={columnsDurata} data={teams} title="Top teams by combined duration" initialState={initialDurata}/>

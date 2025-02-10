@@ -22,7 +22,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body className={`${montserrat.className} antialiased bg-background`}>
-        <Image src="/homepageback.png" alt="Unofficial Football National Championships" className="absolute right-0" width={512} height={512} />
+        <Image src="/homepageback.png" alt="Unofficial Football National Championships" className="absolute right-0 -z-10" width={512} height={512} />
         <Layout>
           {children}
         </Layout>

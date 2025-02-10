@@ -168,7 +168,7 @@ body {
   text-decoration: underline;
 }
 
-.card{
+.card, div.container{
   box-shadow: 0 0.5rem 1rem var(--tertiary);
   border-radius: 0.25rem;
 }

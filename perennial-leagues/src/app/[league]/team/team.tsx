@@ -133,12 +133,12 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
   
   return(
     <InfoProvider>
-      <div className="container mx-auto mt-8 p-4 border-4 rounded-xl shadow-md bg-system">
+      <div className="container mx-auto mt-8 p-4 bg-system">
         {/* Nome della Squadra */}
         
         <div className={`items-start landscape:ml-12 my-6`}>
-          <div className="inset-0 border-4 rounded-xl" style={{ borderColor: colors.primary }}>
-            <div className="inset-1 border-4 rounded-xl p-4" style={{ borderColor: colors.secondary }}>
+          <div className="inset-0 border-r-8" style={{ borderColor: colors.primary }}>
+            <div className="inset-1 border-r-8 p-4" style={{ borderColor: colors.secondary }}>
               <div className="flex items-center">
                 <Jersey colors={colors} icon={reigningIcon} />
                 <div className="ml-4">
@@ -179,8 +179,8 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
         </div>
 
         <div className="py-10">
-          <div className="inset-0 border-4 rounded-xl" style={{ borderColor: colors.primary }}>
-            <div className="inset-1 border-4 rounded-xl p-4" style={{ borderColor: colors.secondary }}>
+          <div className="inset-0 border-r-8" style={{ borderColor: colors.primary }}>
+            <div className="inset-1 border-r-8 p-4" style={{ borderColor: colors.secondary }}>
               <h1 className="text-2xl md:text-4xl font-bold text-primary mb-8 text-center">Titles Timeline</h1>
               {timeLineData.length > 0 &&     
                 <VerticalTimelineChart regni={timeLineData} primaryColor={colors.primary} secondaryColor={colors.secondary} league={league}/>
