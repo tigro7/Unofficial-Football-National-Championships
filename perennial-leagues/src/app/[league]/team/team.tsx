@@ -133,7 +133,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
   
   return(
     <InfoProvider>
-      <div className="container mx-auto mt-8 p-4 bg-system">
+      <div className="container mx-auto p-4 bg-system">
         {/* Nome della Squadra */}
         
         <div className={`items-start landscape:ml-12 my-6`}>

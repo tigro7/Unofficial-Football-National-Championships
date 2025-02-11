@@ -87,7 +87,7 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
 
     return (
       <InfoProvider>
-        <div className="container mx-auto mt-8 p-4 bg-system" {...handlers}>
+        <div className="container mx-auto p-4 bg-system" {...handlers}>
           {/* Feedback visivo con progressivo */}
                 {swipeProgress !== null && (
                 <div

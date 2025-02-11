@@ -7,17 +7,17 @@ import getLeagueDesc from '../utils/leaguesDescMap';
 const HomePage = () => {
   return (
     <>
-        <h3 className="h3 w-1/2">
+        <h3 className="h3 w-full lg:w-1/2">
             <span className='text-secondary'>UFNC</span> tracks championships
             like boxing titles
         </h3>
-        <span className="par w-1/2 text-primary mt-[var(--margin-md)] block">
+        <span className="par w-full lg:w-1/2 text-primary mt-[var(--margin-md)] block">
             Starting from Italian championship, you can follow titles, defenses and challenges.
             <Link href={`https://www.ufwc.co.uk/`} target='_blank' className='link-tertiary ml-[var(--margin-sm)]'>
                 Inspired by UFWC
             </Link>
         </span> 
-        <span className='w-1/2 mt-[var(--margin-big)] block'>
+        <span className='w-full lg:w-1/2 mt-[var(--margin-big)] block'>
             <Button buttonLink='/last' buttonText='Last match' primary />
             <Button buttonLink='/serie_a/napoli' buttonText='Napoli is the reigning champion' primary={false} />
         </span>

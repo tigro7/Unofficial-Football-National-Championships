@@ -113,12 +113,12 @@ const Timeline = ({squadre, regni, startDate, league = "serie_a"}: {squadre: {sq
     const totalSpan = calculateDateDifference(new Date(startDate), new Date());
   
     return(
-      <div className="container mx-auto mt-8 bg-system min-h-screen p-6">
+      <div className="container mx-auto bg-system min-h-screen p-6">
         <h3 className="h3 mb-8">Titles Timeline</h3>
 
         {/* Stats Generali */}
         <div className="flex justify-around mb-6 w-full">
-          <StatContainer className={'w-auto sm:w-1/3 md:w-auto'} statName='Champions' statValue={regni.length} positionPrefix="Total teams: " position={squadre.length}/>
+          <StatContainer className={'w-auto sm:w-1/3 md:w-auto'} statName='Reigns' statValue={regni.length} positionPrefix="Total teams: " position={squadre.length}/>
           <StatContainer className={'w-auto sm:w-1/3 md:w-auto'} statName="Total length" statValue={`${totalSpan.years} Years`} position={`${totalSpan.months} Months, ${totalSpan.days} Days, ${totalSpan.hours} Hour`} />
           <StatContainer className={'w-auto sm:w-1/3 md:w-auto '} statName='Average length' statValue={`${Math.floor(((new Date().getTime() - new Date(startDate).getTime()) / (1000 * 60 * 60 * 24))/regni.length)} Days`} position={'About 10 matches'} />
         </div>
