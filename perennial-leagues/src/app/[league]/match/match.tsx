@@ -20,6 +20,7 @@ import { useEffect, useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import { InfoProvider } from "@/app/components/InfoContext/InfoContext";
 import InfoWindow from "@/app/components/InfoContext/InfoWindow";
+import Link from "next/link";
 
 const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "serie_a"}: { 
   matchInfo: { date: string, location: string, score?: string, outcome: string, detentore: string, sfidante: string, home: string, away: string, competizione: string, numero: number}, 
@@ -129,14 +130,18 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
                     <TeamLink league={league} teamName={matchInfo.home} teamLink={teamHome.name} />
                   </h2>
                 </div>
-                <Jersey colors={teamHome.colors} icon={iconHome} />
+                <Link href={`/${league}/team/${teamHome.name}`}>
+                  <Jersey colors={teamHome.colors} icon={iconHome} />
+                </Link>
               </div>
 
               {/* Dettagli del Match */}
               <div className="flex flex-col items-center text-center w-1/3">
                 <h1 className="text-3xl font-bold mb-2">Match</h1>
                 <p className="text-sm font-bold">
-                  {matchInfo.competizione}
+                  <Link href={`/${league}`} className="link-secondary">
+                    {matchInfo.competizione}
+                  </Link>
                 </p>
                 <p className="text-lg italic">
                   {adjacents.previous && <a className="portrait:hidden mr-8" href={`/${league}/match/${adjacents.previous}`}><FontAwesomeIcon icon={faCircleArrowLeft}/></a>}
@@ -163,7 +168,9 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
                     <TeamLink league={league} teamName={matchInfo.away} teamLink={teamAway.name}/>
                   </h2>
                 </div>
-                <Jersey colors={teamAway.colors} icon={iconAway} />
+                <Link href={`/${league}/team/${teamAway.name}`}>
+                  <Jersey colors={teamAway.colors} icon={iconAway} />
+                </Link>
               </div>
             </div>
 
