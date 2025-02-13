@@ -34,3 +34,13 @@ export interface Team {
         secondary: string;
     };
 }
+
+export interface BlogPost {
+    id: number;
+    title: string;
+    extract: string;
+    body: string;
+    author: string;
+    date: Date;
+    call_to_action: string;
+}

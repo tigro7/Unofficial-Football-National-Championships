@@ -6,6 +6,7 @@ import Button from '../components/Button';
 import normalizeLeagueName from '../utils/leaguesMap';
 import getLeagueDesc from '../utils/leaguesDescMap';
 import { useEffect, useState } from 'react';
+import { BlogPost } from '../lib/definitions';
 
 const HomePage = () => {
 
@@ -13,29 +14,45 @@ const HomePage = () => {
     const [reigningChampion, setReigningChampion] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [lastMatchLeague, setLastMatchLeague] = useState<string | null>(null);
+    const [lastPost, setLastPost] = useState<BlogPost>();
+    const host = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'; // URL di base
 
     useEffect(() => {
         const fetchNextMatch = async () => {
-        try {
-            const host = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'; // URL di base
-            const response = await fetch(`${host}/api/matches/last`);
-            const data = (await response.json())[0];
-            const lastMatch = Number(data.numero);
-            setLastMatchNumber(String(lastMatch));
-            setReigningChampion(data.detentore);
-            setLastMatchLeague(data.league);
-        } catch (error) {
-            console.error("Error fetching next match:", error);
-        } finally {
-            setIsLoading(false);
-        }
+            try {
+                const response = await fetch(`${host}/api/matches/last`);
+                const data = (await response.json())[0];
+                const lastMatch = Number(data.numero);
+                setLastMatchNumber(String(lastMatch));
+                setReigningChampion(data.detentore);
+                setLastMatchLeague(data.league);
+            } catch (error) {
+                console.error("Error fetching next match:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        const fetchLastPost = async () => {
+            try {
+                const response = await fetch(`${host}/api/blog/last`);
+                const data = (await response.json())[0];
+                setLastPost(data);
+            } catch (error) {
+                console.error("Error fetching last post:", error);
+            }
         };
 
         fetchNextMatch();
-    }, []);
+        fetchLastPost();
+
+    }, [host]);
 
     return (
         <>
+            {lastPost && <span className='w-full lg:w-1/2 mt-[var(--margin-big)] mb-[var(--margin-small)] block'>
+                <Button buttonLink={`/blog/${lastPost.id}`} buttonText={lastPost.call_to_action} primary />
+            </span>}
             <h3 className="h3 w-full lg:w-1/2">
                 <span className='text-secondary'>UFNC</span> tracks championships
                 like boxing titles
@@ -56,7 +73,7 @@ const HomePage = () => {
                     description={getLeagueDesc('serie_a')}
                     buttonText='Explore' buttonLink='/serie_a' 
                 />
-                <Card imageSrc='/image2.png' title='Title 2' description='Description 2' buttonText='Button 2' buttonLink='/link2' />
+                <Card imageSrc='/image2.png' title='Blog' description='Read all the latest news and announcements.' buttonText='Read More' buttonLink='/blog' />
                 <Card imageSrc='/image3.png' title='Title 3' description='Description 3' buttonText='Button 3' buttonLink='/link3' />
             </div>
             <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)]">
