@@ -7,6 +7,7 @@ import normalizeLeagueName from '../utils/leaguesMap';
 import getLeagueDesc from '../utils/leaguesDescMap';
 import { useEffect, useState } from 'react';
 import { BlogPost } from '../lib/definitions';
+import { faArrowRight, faChampagneGlasses } from '@fortawesome/free-solid-svg-icons';
 
 const HomePage = () => {
 
@@ -50,8 +51,8 @@ const HomePage = () => {
 
     return (
         <>
-            {lastPost && <span className='w-full lg:w-1/2 mt-[var(--margin-big)] mb-[var(--margin-small)] block'>
-                <Button buttonLink={`/blog/${lastPost.id}`} buttonText={lastPost.call_to_action} primary />
+            {lastPost && <span className='w-full lg:w-1/2 mt-[var(--margin-big)] mb-[var(--margin-md)] block'>
+                <Button buttonLink={`/blog/${lastPost.id}`} buttonText={lastPost.call_to_action} primary={false} className='callToAction' iconpre={faChampagneGlasses} iconpost={faArrowRight} />
             </span>}
             <h3 className="h3 w-full lg:w-1/2">
                 <span className='text-secondary'>UFNC</span> tracks championships
