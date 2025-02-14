@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col" tabIndex={-1}>
 
       {/* Contenuto */}
       <main className="flex-grow container mx-auto p-4">

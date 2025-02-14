@@ -50,7 +50,7 @@ const HomePage = () => {
     }, [host]);
 
     return (
-        <>
+        <main>
             {lastPost && <span className='w-full lg:w-1/2 mt-[var(--margin-big)] mb-[var(--margin-md)] block'>
                 <Button buttonLink={`/blog/${lastPost.id}`} buttonText={lastPost.call_to_action} primary={false} className='callToAction' iconpre={faChampagneGlasses} iconpost={faArrowRight} />
             </span>}
@@ -84,7 +84,7 @@ const HomePage = () => {
                     <Card imageSrc='/card_background.png' title='Title 6' description='Description 6' buttonText='Button 6' buttonLink='/link6' />
                 */}
             </div>
-        </>  
+        </main>  
     );
 };
 
