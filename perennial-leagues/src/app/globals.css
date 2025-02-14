@@ -127,6 +127,12 @@ body {
   line-height: 2.25rem;
 }
 
+.h4{
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 2.5rem;
+}
+
 .sub{
   font-weight: 600;
   font-size: 1.75rem;

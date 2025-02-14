@@ -13,7 +13,7 @@ const Card = ({ imageSrc, title, description, buttonText, buttonLink }: CardProp
   return (
     <div className="card w-[30rem] bg-system flex flex-col p-4 text-left">
       <div className="flex flex-col">
-        <Image src={imageSrc} alt={title} height={64} width={64} className="object-cover rounded-lg mb-4" />
+        <Image src={imageSrc} alt={title} height={128} width={128} className="object-cover rounded-lg mb-4 self-center" />
         <h3 className="sub">{title}</h3>
         <p className="small">{description}</p>
       </div>
