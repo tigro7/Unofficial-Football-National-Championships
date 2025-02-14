@@ -13,11 +13,15 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const isBrowserDefaultDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
   const [theme, setTheme] = useState(isBrowserDefaultDark() ? 'dark' : 'light');
 
-  const handleThemeChange = () => {
-    const isCurrentDark = theme === 'dark';
-    setTheme(isCurrentDark ? 'light' : 'dark');
-    localStorage.setItem('theme', isCurrentDark ? 'light' : 'dark');
-  };
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setTheme(savedTheme as 'light' | 'dark');
+      document.documentElement.classList.add(savedTheme);
+    } else {
+      document.documentElement.classList.add(theme);
+    }
+  }, []);
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -25,7 +29,17 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     } else {
       document.body.classList.remove('dark');
     }
-  }, [theme]); 
+  }, [theme]);
+
+  const handleThemeChange = () => {
+    const isCurrentDark = theme === 'dark';
+    const newTheme = isCurrentDark ? 'light' : 'dark';
+    setTheme(newTheme);
+    document.documentElement.classList.remove(theme);
+    document.documentElement.classList.add(newTheme);
+    localStorage.setItem('theme', newTheme);
+  };
+
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
