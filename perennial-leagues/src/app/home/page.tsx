@@ -78,9 +78,11 @@ const HomePage = () => {
                 <Card imageSrc='/card_background.png' title='About UFNC' description='What is this all about? Who is the mad man behind this? Is there anything I neeed to understand before diving in?' buttonText='Find out' buttonLink='/about' />
             </div>
             <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)]">
-                <Card imageSrc='/card_background.png' title='Title 4' description='Description 4' buttonText='Button 4' buttonLink='/link4' />
-                <Card imageSrc='/card_background.png' title='Title 5' description='Description 5' buttonText='Button 5' buttonLink='/link5' />
-                <Card imageSrc='/card_background.png' title='Title 6' description='Description 6' buttonText='Button 6' buttonLink='/link6' />
+                <Card imageSrc='/english_card.png' title={normalizeLeagueName('premier_league')} description={getLeagueDesc('premier_league')} buttonText='...' buttonLink='/' />
+                {/*
+                    <Card imageSrc='/card_background.png' title='Title 5' description='Description 5' buttonText='Button 5' buttonLink='/link5' />
+                    <Card imageSrc='/card_background.png' title='Title 6' description='Description 6' buttonText='Button 6' buttonLink='/link6' />
+                */}
             </div>
         </>  
     );
