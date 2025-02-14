@@ -15,6 +15,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <head>
@@ -23,10 +24,10 @@ export default function RootLayout({
       </head>
       <body className={`${montserrat.className} antialiased bg-background`}>
         <Image src="/homepageback.png" alt="Unofficial Football National Championships" className="absolute right-0 -z-10 opacity-[.125] lg:opacity-50" width={512} height={512} />
-        <Layout>
-          {children}
-        </Layout>
-        <SpeedInsights />
+          <Layout>
+            {children}
+          </Layout>
+          <SpeedInsights />
       </body>
     </html>
   );
