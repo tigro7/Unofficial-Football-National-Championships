@@ -2,7 +2,6 @@
 
 import "@/app/utils/setupCharts";
 import Jersey from "@/app/components/Jersey";
-//import TimelineChart from "@/app/components/TimelineChart";
 import StatContainer from "@/app/components/StatContainer";
 import TeamStats from "@/app/components/TeamStats";
 import { useEffect, useState } from "react";

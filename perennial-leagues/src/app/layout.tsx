@@ -4,6 +4,7 @@ import Layout from "./components/layout";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Image from 'next/image';
 import { montserrat } from "./fonts";
+import { ThemeProvider } from "@/contexts/theme-context";
 
 export const metadata = {
   title: "Campionato d'Italia non ufficiale",
@@ -24,9 +25,11 @@ export default function RootLayout({
       </head>
       <body className={`${montserrat.className} antialiased bg-background`}>
         <Image src="/homepageback.png" alt="Unofficial Football National Championships" className="absolute right-0 -z-10 opacity-[.125] lg:opacity-50" width={512} height={512} />
-          <Layout>
-            {children}
-          </Layout>
+          <ThemeProvider>
+            <Layout>
+              {children}
+            </Layout>
+          </ThemeProvider>
           <SpeedInsights />
       </body>
     </html>
