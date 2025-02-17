@@ -130,7 +130,7 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
                     <TeamLink league={league} teamName={matchInfo.home} teamLink={teamHome.name} />
                   </h2>
                 </div>
-                <Link href={`/${league}/team/${teamHome.name}`}>
+                <Link href={`/${league}/team/${teamHome.name}`} title={teamHome.name}>
                   <Jersey colors={teamHome.colors} icon={iconHome} />
                 </Link>
               </div>
@@ -144,9 +144,9 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
                   </Link>
                 </p>
                 <p className="text-lg italic">
-                  {adjacents.previous && <a className="portrait:hidden mr-8" href={`/${league}/match/${adjacents.previous}`}><FontAwesomeIcon icon={faCircleArrowLeft}/></a>}
+                  {adjacents.previous && <a className="portrait:hidden mr-8" href={`/${league}/match/${adjacents.previous}`} title="previous match"><FontAwesomeIcon icon={faCircleArrowLeft}/></a>}
                   {matchDate}
-                  {adjacents.next && <a className="portrait:hidden ml-8" href={`/${league}/match/${adjacents.next}`}><FontAwesomeIcon icon={faCircleArrowRight}/></a>}
+                  {adjacents.next && <a className="portrait:hidden ml-8" href={`/${league}/match/${adjacents.next}`} title="next match"><FontAwesomeIcon icon={faCircleArrowRight}/></a>}
                 </p>
                 <p className="text-md">{matchInfo.location}</p>
                 {matchInfo.score && (
@@ -168,7 +168,7 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
                     <TeamLink league={league} teamName={matchInfo.away} teamLink={teamAway.name}/>
                   </h2>
                 </div>
-                <Link href={`/${league}/team/${teamAway.name}`}>
+                <Link href={`/${league}/team/${teamAway.name}`} title={teamAway.name}>
                   <Jersey colors={teamAway.colors} icon={iconAway} />
                 </Link>
               </div>

@@ -144,9 +144,9 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
                   <h1 className="text-4xl font-bold">
                     {`${squadra.charAt(0).toUpperCase()}${squadra.slice(1)}`}
                   </h1>
-                  <h3 className={`text-2xl text-gray-800 italic ${openSans.className}`}>
+                  <h2 className={`text-2xl text-secondary italic ${openSans.className}`}>
                     {normalizeLeagueName(league)}
-                  </h3>
+                  </h2>
                 </div>
                 <TrophyTable titles={stats.regni} className="portrait:hidden"/>
               </div>
