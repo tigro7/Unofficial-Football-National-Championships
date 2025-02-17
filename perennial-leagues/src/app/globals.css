@@ -44,6 +44,7 @@ body.dark{
   --background: #171717;
   --foreground: #ededed;
   --primary: #c5cbc7;
+  --secondary: var(--secondary-not-accessible);
   background: #222222;
 }
 
