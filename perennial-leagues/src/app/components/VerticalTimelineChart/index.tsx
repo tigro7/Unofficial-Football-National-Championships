@@ -73,7 +73,7 @@ const VerticalTimelineChart = ({
           const isLeft = reignIndex % 2 === 0; // Alterna destra/sinistra
           const lineClassName = `absolute w-2 h-1 ${
             isLeft ? "left-full ml-6" : "landscape:right-full landscape:mr-6 portrait:left-full portrait:ml-6"} bg-gray-300`;
-          const infoClassName = `absolute w-64 p-2 text-sm bg-gray-100 shadow-md rounded-md ${
+          const infoClassName = `absolute w-64 p-2 text-sm bg-background-dark shadow-md rounded-md ${
             isLeft ? "left-full ml-6" : "landscape:right-full landscape:mr-6 portrait:left-full portrait:ml-6"
           }`;
 

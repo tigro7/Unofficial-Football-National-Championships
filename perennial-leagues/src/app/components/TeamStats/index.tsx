@@ -41,13 +41,12 @@ const TeamStats = ({ stats, match = false } : {
                 return (
                         <div
                             key={index}
-                            className={`relative shadow-md flex flex-col items-center justify-center p-4 rounded-md  ${
+                            className={`relative shadow-md flex flex-col items-center justify-center p-4 rounded-md bg-background-dark ${
                                 match ? "" : "hover:shadow-lg transition-shadow duration-300"
                             }`}
                             style={{
                                 width: "150px",
                                 height: "150px",
-                                background: "linear-gradient(135deg, #f0f0f0, #ffffff)",
                             }}
                         >
                             {/* Icona principale */}

@@ -12,7 +12,7 @@ const HeadToHead = ({
     const classNameAway = draw == 0 ? home == 0 ? 'rounded-full' : 'rounded-r-lg' : 'rounded-r-lg';
 
     return (
-        <div className={`text-center shadow-md rounded-md p-2 landscape:ml-auto landscape:w-1/3 portrait:w-full`}>
+        <div className={`text-center shadow-md rounded-md p-2 landscape:ml-auto landscape:w-1/3 portrait:w-full bg-background-dark`}>
             <p className="text-xl font-semibold">Head To Head</p>
             <div className="flex justify-around items-center mt-4">
                 <div className={`w-16 h-16 rounded-full flex items-center justify-center`} style={{ backgroundColor: colorHome }}>
