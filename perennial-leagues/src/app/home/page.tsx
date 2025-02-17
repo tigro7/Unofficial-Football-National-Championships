@@ -60,7 +60,7 @@ const HomePage = () => {
             </h3>
             <span className="par w-full lg:w-1/2 text-primary mt-[var(--margin-md)] block">
                 Starting from Italian championship, you can follow titles, defenses and challenges.
-                <Link href={`https://www.ufwc.co.uk/`} target='_blank' className='link-tertiary ml-[var(--margin-sm)]'>
+                <Link href={`https://www.ufwc.co.uk/`} target='_blank' className='link-secondary ml-[var(--margin-sm)]'>
                     Inspired by UFWC
                 </Link>
             </span> 
