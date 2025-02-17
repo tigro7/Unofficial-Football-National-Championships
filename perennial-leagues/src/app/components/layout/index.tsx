@@ -26,6 +26,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             className="hidden md:block bg-inverted px-4 py-2 rounded-lg"
+            title={theme === 'dark' ? 'light theme' : 'dark theme'}
           >
             {theme === 'dark' ? <FontAwesomeIcon icon={faSun} /> : <FontAwesomeIcon icon={faMoon} />}
           </button>
