@@ -111,7 +111,7 @@ const VerticalTimelineChart = ({
 
               {/* Informazioni del regno */}
               {regno.team && (
-                <Link href={`/${league}/team/${regno.matchStart}`} key={regno.start}>
+                <Link href={`/${league}/match/${regno.matchStart}`} key={regno.matchStart}>
                   <div
                     className={infoClassName}
                     style={{

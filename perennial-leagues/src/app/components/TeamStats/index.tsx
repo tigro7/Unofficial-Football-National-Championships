@@ -89,10 +89,8 @@ const TeamStats = ({ stats, match = false } : {
         
                             {/* Data */}
                             {!match && (
-                                <Link href={`/${stat.league}/match/${stat.numero}`}>
-                                    <div className="absolute -bottom-3 text-xs bg-secondary text-white rounded-full px-2 py-1 cursor-pointer z-10">
-                                        <span>{localeDate}</span>
-                                    </div>
+                                <Link href={`/${stat.league}/match/${stat.numero}`} className="absolute -bottom-3 text-xs bg-secondary text-white rounded-full px-2 py-1 cursor-pointer z-10">
+                                    <span>{localeDate}</span>
                                 </Link>
                             )}
                             {/* Nome detentore */}

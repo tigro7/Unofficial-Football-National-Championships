@@ -147,9 +147,9 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
                   </Link>
                 </p>
                 <p className="text-lg italic">
-                  {adjacents.previous && <a className="portrait:hidden mr-8" href={`/${league}/match/${adjacents.previous}`} title="previous match"><FontAwesomeIcon icon={faCircleArrowLeft}/></a>}
+                  {adjacents.previous && <Link className="portrait:hidden mr-8" href={`/${league}/match/${adjacents.previous}`} title="previous match"><FontAwesomeIcon icon={faCircleArrowLeft}/></Link>}
                   {matchDate}
-                  {adjacents.next && <a className="portrait:hidden ml-8" href={`/${league}/match/${adjacents.next}`} title="next match"><FontAwesomeIcon icon={faCircleArrowRight}/></a>}
+                  {adjacents.next && <Link className="portrait:hidden ml-8" href={`/${league}/match/${adjacents.next}`} title="next match"><FontAwesomeIcon icon={faCircleArrowRight}/></Link>}
                 </p>
                 <p className="text-md">{matchInfo.location}</p>
                 {matchInfo.score && (

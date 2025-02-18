@@ -5,6 +5,7 @@ import TableComponent from '@/app/components/TanTable';
 import { ColumnDef, createColumnHelper, } from '@tanstack/react-table'
 import { useState } from 'react';
 import TeamLink from '@/app/components/TeamLink';
+import Link from 'next/link';
 
 type Squadra = {
   squadra: string, 
@@ -27,6 +28,7 @@ type Stats = {
 type Ultimo = {
   detentore: string,
   data: string,
+  numero: number,
 }
 
 const columnHelper = createColumnHelper<Squadra>();
@@ -117,11 +119,11 @@ const Ranks = ({ squadre, stats, last, league = "serie_a"}: {squadre: Squadra[],
       header: () => <span>Team</span>,
       footer: info => info.column.id,
     }),
-    columnHelperUltimo.accessor('data', {
+    columnHelperUltimo.accessor(row => row.data, {
       header: 'Last time',
-      cell: info => {
-        const value = info.renderValue();
-        return value ? new Date(value).toLocaleDateString() : '';
+      cell: ({cell, row}) => {
+        const value = cell.renderValue();
+        return value ? <Link href={`/${league}/match/${row.original.numero}`}> {new Date(value).toLocaleDateString()} </Link> : '';
       },
       footer: info => info.column.id,
     }),

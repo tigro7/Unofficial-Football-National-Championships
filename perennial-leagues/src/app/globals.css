@@ -114,6 +114,10 @@ body.dark{
   background-color: var(--tertiary);
 }
 
+thead.bg-tertiary{
+  color: #171717;
+}
+
 .bg-highlights {
   background-color: var(--highlights);
 }
@@ -231,6 +235,7 @@ body.dark{
 
 .dark .matchWon{
   background-color: var(--secondary);
+  color: var(--background);
 }
 
 .matchLost{

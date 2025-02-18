@@ -36,14 +36,14 @@ const TableComponent = <T,>({ columns, data, title, initialState }: TableCompone
     });
 
     return (
-        <div className="card bg-system shadow-md flex flex-col items-center p-4 hover:bg-system-300 transition cursor-pointer">
+        <div className="card bg-background-dark shadow-md flex flex-col items-center p-4 hover:bg-system-300 transition cursor-pointer">
             <h3 className="text-lg font-semibold text-center mb-4">{title}</h3>
             <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-tertiary">
                     {table.getHeaderGroups().map(headerGroup => (
                         <tr key={headerGroup.id}>
                             {headerGroup.headers.map(header => (
-                                <th key={header.id} className="px-4 py-3 text-left text-xs font-medium text-foreground uppercase tracking-wider">
+                                <th key={header.id} className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider">
                                     {header.isPlaceholder ? null : (
                                             <div
                                                     className={
