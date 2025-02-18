@@ -120,6 +120,7 @@ const Ranks = ({ squadre, stats, last, league = "serie_a"}: {squadre: Squadra[],
       footer: info => info.column.id,
     }),
     columnHelperUltimo.accessor(row => row.data, {
+      id: 'data',
       header: 'Last time',
       cell: ({cell, row}) => {
         const value = cell.renderValue();
