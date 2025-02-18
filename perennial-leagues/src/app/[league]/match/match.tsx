@@ -17,9 +17,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useSwipeable } from "react-swipeable";
-import { InfoProvider } from "@/app/components/InfoContext/InfoContext";
-import InfoWindow from "@/app/components/InfoContext/InfoWindow";
+import { InfoProvider } from "@/contexts/InfoContext/InfoContext";
+import InfoWindow from "@/contexts/InfoContext/InfoWindow";
 import Link from "next/link";
 
 const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "serie_a"}: { 
@@ -40,6 +41,8 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
     const [iconStats, setStats] = useState([]);
 
     const [matchDate, setMatchDate] = useState<string | null>(null);
+
+    const router = useRouter();
   
     useEffect(() => {
       const fetchStats = async () => {
@@ -76,9 +79,9 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
       onSwiped: (eventData) => {
         // Naviga alla pagina corrispondente se lo swipe è completo
         if (eventData.dir === "Left" && adjacents.next) {
-          window.location.href = `/${league}/match/${adjacents.next}`;
+          router.push(`/${league}/match/${adjacents.next}`);
         } else if (eventData.dir === "Right" && adjacents.previous) {
-          window.location.href = `/${league}/match/${adjacents.previous}`;
+          router.push(`/${league}/match/${adjacents.previous}`);
         }
         setSwipeProgress(null); // Resetta il feedback
       },
@@ -103,22 +106,22 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
           )}
 
           {adjacents.previous && (
-            <a
+            <Link
               className="landscape:hidden fixed left-0 top-1/2 transform -translate-y-1/2 p-4"
               href={`/${league}/match/${adjacents.previous}`}
               style={{ zIndex: 1000 }}
             >
               <FontAwesomeIcon icon={faCircleArrowLeft} size="2x" />
-            </a>
+            </Link>
           )}
           {adjacents.next && (
-            <a
+            <Link
               className="landscape:hidden fixed right-0 top-1/2 transform -translate-y-1/2 p-4"
               href={`/${league}/match/${adjacents.next}`}
               style={{ zIndex: 1000 }}
             >
               <FontAwesomeIcon icon={faCircleArrowRight} size="2x" />
-            </a>
+            </Link>
           )}
 
             {/* Intestazione con nomi delle squadre e maglie */}

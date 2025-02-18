@@ -1,4 +1,5 @@
 import { daysToYears, showSpan } from "@/app/lib/commons";
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 const VerticalTimelineChart = ({
@@ -110,24 +111,23 @@ const VerticalTimelineChart = ({
 
               {/* Informazioni del regno */}
               {regno.team && (
-                <div
-                  className={infoClassName}
-                  style={{
-                    cursor: "pointer",
-                    top: `calc(${percentage / 2}%)`,
-                    transform: `translateY(-50%)`,
-                  }}
-                  onClick={() => {
-                    window.location.href = `/${league}/match/${regno.matchStart}`;
-                  }}
-                >
-                  <p className="font-semibold">{`#${reignIndex}`}</p>
-                  <p>
-                    {`${showSpan(regno.start, regno.end)}: ${daysToYears(Math.ceil(
-                      (new Date(regno.end).getTime() - new Date(regno.start).getTime()) / (1000 * 60 * 60 * 24))
-                    )}`}
-                  </p>
-                </div>
+                <Link href={`/${league}/team/${regno.matchStart}`} key={regno.start}>
+                  <div
+                    className={infoClassName}
+                    style={{
+                      cursor: "pointer",
+                      top: `calc(${percentage / 2}%)`,
+                      transform: `translateY(-50%)`,
+                    }}
+                  >
+                    <p className="font-semibold">{`#${reignIndex}`}</p>
+                    <p>
+                      {`${showSpan(regno.start, regno.end)}: ${daysToYears(Math.ceil(
+                        (new Date(regno.end).getTime() - new Date(regno.start).getTime()) / (1000 * 60 * 60 * 24))
+                      )}`}
+                    </p>
+                  </div>
+                </Link>
               )}
             </div>
           );

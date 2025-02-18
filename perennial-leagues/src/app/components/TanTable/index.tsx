@@ -43,7 +43,7 @@ const TableComponent = <T,>({ columns, data, title, initialState }: TableCompone
                     {table.getHeaderGroups().map(headerGroup => (
                         <tr key={headerGroup.id}>
                             {headerGroup.headers.map(header => (
-                                <th key={header.id} className="px-4 py-3 text-left text-xs font-medium text-tertiary uppercase tracking-wider">
+                                <th key={header.id} className="px-4 py-3 text-left text-xs font-medium text-foreground uppercase tracking-wider">
                                     {header.isPlaceholder ? null : (
                                             <div
                                                     className={

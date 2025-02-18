@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { daysToYears, showSpan } from "@/app/lib/commons";
+import Link from "next/link";
 
 const TimelineByDecades = ({ segments, league = "serie_a" }: {segments :{ start: Date, end: Date, 
     regni: { colors: { primary: string; secondary: string; }; duration: number; start: string; end: string; squadra: string; realduration: number; startsbefore: boolean; endsafter: boolean}[];}[]; league: string}) => {
@@ -21,10 +22,6 @@ const TimelineByDecades = ({ segments, league = "serie_a" }: {segments :{ start:
     
     const hideTooltip = () => {
         setTooltip({visible: false, content: "", position: null, index: null, squadra: null});
-    };
-
-    const openSquadPage = (squadra: string) => {
-        window.location.href = `/${league}/team/${squadra}`;
     };
 
     let regniACavallo = segments.reduce((sum, segment) => sum + segment.regni.reduce((sum, regno) => sum + (regno.startsbefore ? 1 : 0), 0 ), 0);
@@ -57,19 +54,20 @@ const TimelineByDecades = ({ segments, league = "serie_a" }: {segments :{ start:
                                     const indiceUltimoNelSegmento = totalSegments - previousSegmentSum;
                                     const indiceDelRegno = indiceUltimoNelSegmento - (segment.regni.length - index) - regniACavallo + (segIndex == segments.length - 1 ? 1 : 0);
                                     return (
-                                        <div key={index} className="absolute h-2 z-10"
-                                            style={{
-                                                left: leftPosition,
-                                                width: `${percentage}%`,
-                                                background: percentage < 5 ? 
-                                                `linear-gradient(90deg, ${regno.colors.primary} 50%, ${regno.colors.secondary} 50%)` 
-                                                : 
-                                                `repeating-linear-gradient(90deg, ${regno.colors.primary} 0px, ${regno.colors.primary} 8px, ${regno.colors.secondary} 8px, ${regno.colors.secondary} 16px)`,
-                                            }}
-                                            onMouseEnter={() => showTooltip(regno.start, regno.end, parseFloat(leftPosition), indiceDelRegno, segIndex, regno.squadra, regno.realduration, regno.startsbefore, regno.endsafter)}
-                                            onMouseLeave={hideTooltip}
-                                            onClick={() => openSquadPage(regno.squadra)}
-                                        />
+                                        <Link href={`/${league}/team/${regno.squadra}`} key={index}>
+                                            <div key={index} className="absolute h-2 z-10"
+                                                style={{
+                                                    left: leftPosition,
+                                                    width: `${percentage}%`,
+                                                    background: percentage < 5 ? 
+                                                    `linear-gradient(90deg, ${regno.colors.primary} 50%, ${regno.colors.secondary} 50%)` 
+                                                    : 
+                                                    `repeating-linear-gradient(90deg, ${regno.colors.primary} 0px, ${regno.colors.primary} 8px, ${regno.colors.secondary} 8px, ${regno.colors.secondary} 16px)`,
+                                                }}
+                                                onMouseEnter={() => showTooltip(regno.start, regno.end, parseFloat(leftPosition), indiceDelRegno, segIndex, regno.squadra, regno.realduration, regno.startsbefore, regno.endsafter)}
+                                                onMouseLeave={hideTooltip}
+                                            />
+                                        </Link>
                                     );
                                 })}
                             </div>

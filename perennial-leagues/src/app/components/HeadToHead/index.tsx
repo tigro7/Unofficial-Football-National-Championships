@@ -8,7 +8,7 @@ const HeadToHead = ({
 
     const total = Number(home) + Number(draw) + Number(away);
     const classNameHome = draw == 0 ? away == 0 ? 'rounded-full' : 'rounded-l-lg' : 'rounded-l-lg';
-    const classNameDraw = home == 0 ? (away == 0 ? 'rounded-full bg-tertiary' : 'rounded-l-lg bg-tertiary') : (away == 0 ? 'rounded-r-lg bg-tertiary' : '');
+    const classNameDraw = `bg-tertiary ${home == 0 ? (away == 0 ? 'rounded-full' : 'rounded-l-lg') : (away == 0 ? 'rounded-r-lg' : '')}`;
     const classNameAway = draw == 0 ? home == 0 ? 'rounded-full' : 'rounded-r-lg' : 'rounded-r-lg';
 
     return (

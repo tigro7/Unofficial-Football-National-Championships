@@ -10,8 +10,8 @@ import LastFiveMatches from "@/app/components/LastFive";
 import { openSans } from "@/app/fonts";
 import TrophyTable from "@/app/components/TrophyTable";
 import VerticalTimelineChart from "@/app/components/VerticalTimelineChart";
-import { InfoProvider } from "@/app/components/InfoContext/InfoContext";
-import InfoWindow from "@/app/components/InfoContext/InfoWindow";
+import { InfoProvider } from "@/contexts/InfoContext/InfoContext";
+import InfoWindow from "@/contexts/InfoContext/InfoWindow";
 
 const generateTimeline = (regni: { start: string; end: string, matchStart: number, matchEnd: number }[], startDate: string) => {
   const timeline = [];

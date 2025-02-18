@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrophy, faShieldHalved, faHandshake, faFlag, faBan, faCrown} from '@fortawesome/free-solid-svg-icons';
 import Jersey from '../Jersey';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 //import Jersey from '../Jersey';
 
 const outcomeColors = (team: string, outcome: 'v' | 's' | 'd', detentore: string) => {
@@ -69,32 +70,32 @@ const LastFiveMatches = ({
           const matchTitle = match.outcome === 'd' ? `Draw (${match.detentore} extends reign)` : match.outcome === 's' ? `${team === match.detentore ? 'Won by' : 'Lost to'} ${match.detentore}` : `Defended by ${match.detentore}`;
 
           return (
-            <div
-              key={match.numero}
-              className={ `relative text-center p-2 rounded-md cursor-pointer ${outcomeColors(team, match.outcome, match.detentore)} hover:hover-match transition-all flex flex-col items-center`}
-              onClick={() => {window.location.href = `/${match.league}/match/${match.numero}`}}
-              title={`${new Date(match.data).toLocaleDateString()} - ${match.note} ${matchTitle} ${team === match.detentore ? matchSuffix : ''}`}
-            >
-              {isLastMatch && (
-                <span className="absolute w-full -bottom-2 left-0 bg-bronze text-white text-xs px-2 py-1 rounded-full" />
-              )}
-              {outcomeIcon && (
-                <FontAwesomeIcon
-                    icon={outcomeIcon}
-                    className="text-2xl mb-2"
-                />
-              )}
-              {team !== match.detentore && (<div className='mb-8' />)}
-              {team === match.detentore && (
-                <FontAwesomeIcon
-                    icon={faCrown}
-                    className="text-2xl mb-2"
-                    color='gold'
-                />
-              )}
-              <p className='text-md font-black'>{match.risultato}</p>
-              <Jersey colors={colors ? colors[team === match.detentore ? match.sfidante : match.detentore] : {primary: "#000000", secondary: "#FFFFFF"}} icon={team === match.detentore ? null : "faCrown"} dimensions={"medium"}/>
-            </div>
+            <Link href={`/${match.league}/match/${match.numero}`} key={match.numero}>
+              <div
+                className={ `relative text-center p-2 rounded-md cursor-pointer ${outcomeColors(team, match.outcome, match.detentore)} hover:hover-match transition-all flex flex-col items-center`}
+                title={`${new Date(match.data).toLocaleDateString()} - ${match.note} ${matchTitle} ${team === match.detentore ? matchSuffix : ''}`}
+              >
+                {isLastMatch && (
+                  <span className="absolute w-full -bottom-2 left-0 bg-bronze text-white text-xs px-2 py-1 rounded-full" />
+                )}
+                {outcomeIcon && (
+                  <FontAwesomeIcon
+                      icon={outcomeIcon}
+                      className="text-2xl mb-2"
+                  />
+                )}
+                {team !== match.detentore && (<div className='mb-8' />)}
+                {team === match.detentore && (
+                  <FontAwesomeIcon
+                      icon={faCrown}
+                      className="text-2xl mb-2"
+                      color='gold'
+                  />
+                )}
+                <p className='text-md font-black'>{match.risultato}</p>
+                <Jersey colors={colors ? colors[team === match.detentore ? match.sfidante : match.detentore] : {primary: "#000000", secondary: "#FFFFFF"}} icon={team === match.detentore ? null : "faCrown"} dimensions={"medium"}/>
+              </div>
+            </Link>
           );
         })}
       </div>

@@ -226,6 +226,10 @@ body.dark{
 }
 
 .matchWon{
+  background-color: var(--secondary-not-accessible);
+}
+
+.dark .matchWon{
   background-color: var(--secondary);
 }
 

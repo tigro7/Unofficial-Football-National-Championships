@@ -2,7 +2,8 @@ import StatsIcon from "../StatsIcon";
 import statsMap from "@/app/utils/statsMap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import { useInfo } from "../InfoContext/InfoContext";
+import { useInfo } from "../../../contexts/InfoContext/InfoContext";
+import Link from "next/link";
 
 const TeamStats = ({ stats, match = false } : {
     stats: {
@@ -88,16 +89,11 @@ const TeamStats = ({ stats, match = false } : {
         
                             {/* Data */}
                             {!match && (
-                                <div className="absolute -bottom-3 text-xs bg-secondary text-white rounded-full px-2 py-1 cursor-pointer z-10"
-                                    onClick={(event) => {
-                                        if (match) {
-                                            event.preventDefault();
-                                            return;
-                                        }
-                                        window.location.href = `/${stat.league}/match/${stat.numero}`;
-                                    }}>
-                                    <span>{localeDate}</span>
-                                </div>
+                                <Link href={`/${stat.league}/match/${stat.numero}`}>
+                                    <div className="absolute -bottom-3 text-xs bg-secondary text-white rounded-full px-2 py-1 cursor-pointer z-10">
+                                        <span>{localeDate}</span>
+                                    </div>
+                                </Link>
                             )}
                             {/* Nome detentore */}
                             {match && 
