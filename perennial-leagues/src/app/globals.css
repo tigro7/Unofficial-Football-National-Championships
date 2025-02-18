@@ -227,7 +227,6 @@ body.dark{
 
 .matchWon{
   background-color: var(--secondary);
-  color: var(--highlights);
 }
 
 .matchLost{
