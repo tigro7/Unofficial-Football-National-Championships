@@ -8,7 +8,7 @@ const HeadToHead = ({
 
     const total = Number(home) + Number(draw) + Number(away);
     const classNameHome = draw == 0 ? away == 0 ? 'rounded-full' : 'rounded-l-lg' : 'rounded-l-lg';
-    const classNameDraw = home == 0 ? (away == 0 ? 'rounded-full' : 'rounded-l-lg') : (away == 0 ? 'rounded-r-lg' : '');
+    const classNameDraw = home == 0 ? (away == 0 ? 'rounded-full bg-tertiary' : 'rounded-l-lg bg-tertiary') : (away == 0 ? 'rounded-r-lg bg-tertiary' : '');
     const classNameAway = draw == 0 ? home == 0 ? 'rounded-full' : 'rounded-r-lg' : 'rounded-r-lg';
 
     return (
@@ -18,7 +18,7 @@ const HeadToHead = ({
                 <div className={`w-16 h-16 rounded-full flex items-center justify-center`} style={{ backgroundColor: colorHome }}>
                     <span className="text-white text-xl">{home}</span>
                 </div>
-                <div className={`w-16 h-16 rounded-full flex items-center justify-center bg-gray-400`}>
+                <div className={`w-16 h-16 rounded-full flex items-center justify-center bg-tertiary`}>
                     <span className="text-white text-xl">{draw}</span>
                 </div>
                 <div className={`w-16 h-16 rounded-full flex items-center justify-center`} style={{ backgroundColor: colorAway }}>
@@ -28,7 +28,7 @@ const HeadToHead = ({
             <div className="text-sm italic mt-2">
                 <div className="flex mt-2 h-2">
                     <div className={classNameHome} style={{ backgroundColor: colorHome, width: `${(home / total) * 100}%` }} />
-                    <div className={classNameDraw} style={{ backgroundColor: 'gray', width: `${(draw / total) * 100}%` }} />
+                    <div className={classNameDraw} style={{ width: `${(draw / total) * 100}%` }} />
                     <div className={classNameAway} style={{ backgroundColor: colorAway, width: `${(away / total) * 100}%` }} />
                 </div>
             </div>

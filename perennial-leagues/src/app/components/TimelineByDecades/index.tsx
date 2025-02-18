@@ -44,7 +44,7 @@ const TimelineByDecades = ({ segments, league = "serie_a" }: {segments :{ start:
 
                         {/* Timeline del segmento */}
                         <div className="relative flex items-center w-full h-24">
-                            <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-300 z-10">
+                            <div className="absolute top-1/2 left-0 right-0 h-1 bg-tertiary z-10">
                                 {segment.regni.map((regno, index) => {
                                     if (regno.startsbefore) {
                                         regniACavallo--;
@@ -77,7 +77,7 @@ const TimelineByDecades = ({ segments, league = "serie_a" }: {segments :{ start:
                         {/* Tooltip */}
                         {tooltip.visible && tooltip.position !== null && tooltip.index == segIndex && (
                         <div
-                            className="absolute bg-gray-800 text-white p-2 rounded"
+                            className="absolute bg-background text-white p-2 rounded"
                             style={{
                                 left: `calc(${tooltip.position}% - 20px)`,
                                 top: `calc((${tooltip.index} * 176px) + 50px)`, // appena sopra la timeline

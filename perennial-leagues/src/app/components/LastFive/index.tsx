@@ -9,9 +9,9 @@ import { useState, useEffect } from 'react';
 
 const outcomeColors = (team: string, outcome: 'v' | 's' | 'd', detentore: string) => {
     if (team === detentore){
-        return outcome === 'd' ? 'bg-grey-500' : 'bg-green-500';
+        return outcome === 'd' ? 'matchDraw' : 'matchWon';
     }
-    return outcome === 'd' ? 'bg-grey-500' : 'bg-red-500';
+    return outcome === 'd' ? 'matchDraw' : 'matchLost';
 }
 
 const outcomeIcons = (team: string, outcome: 'v' | 's' | 'd', detentore: string) => {
@@ -71,12 +71,12 @@ const LastFiveMatches = ({
           return (
             <div
               key={match.numero}
-              className={ `relative text-center p-2 rounded-md cursor-pointer ${outcomeColors(team, match.outcome, match.detentore)} hover:bg-gray-200 transition-all flex flex-col items-center`}
+              className={ `relative text-center p-2 rounded-md cursor-pointer ${outcomeColors(team, match.outcome, match.detentore)} hover:hover-match transition-all flex flex-col items-center`}
               onClick={() => {window.location.href = `/${match.league}/match/${match.numero}`}}
               title={`${new Date(match.data).toLocaleDateString()} - ${match.note} ${matchTitle} ${team === match.detentore ? matchSuffix : ''}`}
             >
               {isLastMatch && (
-                <span className="absolute w-full -bottom-2 left-0 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full" />
+                <span className="absolute w-full -bottom-2 left-0 bg-bronze text-white text-xs px-2 py-1 rounded-full" />
               )}
               {outcomeIcon && (
                 <FontAwesomeIcon

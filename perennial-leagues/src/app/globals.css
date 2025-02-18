@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 :root {
   --background: #ededed;
@@ -25,6 +25,7 @@
   --silver: #C0C0C0;
   --bronze: #CD7F32;
   --iron: #43464B;
+  --lost: #B5001E;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -139,8 +140,8 @@ body.dark{
 }
 
 .h2{
-  font-weight: 700;
-  font-size: 3.75rem;
+  font-weight: 700 !important;
+  font-size: 3.75rem !important;
 }
 
 .h3{
@@ -222,4 +223,33 @@ body.dark{
 
 .callToAction{
   font-size: 0.75rem;
+}
+
+.matchWon{
+  background-color: var(--secondary);
+  color: var(--highlights);
+}
+
+.dark .matchWon{
+  background-color: var(--secondary-not-accessible);
+}
+
+.matchLost{
+  background-color: var(--lost);
+  color: var(--highlights);
+}
+
+.matchDraw{
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+@layer utilities {
+  .hover-match{
+    background-color: var(--highlights);
+    color: var(--foreground);
+  }
+  .dark .hover-match{
+    background-color: var(--iron);
+  }
 }
