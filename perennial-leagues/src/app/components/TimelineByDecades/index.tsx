@@ -77,7 +77,7 @@ const TimelineByDecades = ({ segments, league = "serie_a" }: {segments :{ start:
                         {/* Tooltip */}
                         {tooltip.visible && tooltip.position !== null && tooltip.index == segIndex && (
                         <div
-                            className="absolute bg-background text-white p-2 rounded"
+                            className="absolute bg-background text-foreground p-2 rounded"
                             style={{
                                 left: `calc(${tooltip.position}% - 20px)`,
                                 top: `calc((${tooltip.index} * 176px) + 50px)`, // appena sopra la timeline

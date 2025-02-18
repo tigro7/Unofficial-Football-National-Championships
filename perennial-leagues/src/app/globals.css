@@ -230,10 +230,6 @@ body.dark{
   color: var(--highlights);
 }
 
-.dark .matchWon{
-  background-color: var(--secondary-not-accessible);
-}
-
 .matchLost{
   background-color: var(--lost);
   color: var(--highlights);
