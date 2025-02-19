@@ -28,12 +28,14 @@
   --lost: #B5001E;
 }
 
+/*
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #171717;
     --foreground: #ededed;
   }
 }
+*/
 
 body {
   color: var(--foreground);

@@ -10,8 +10,6 @@ import Link from "next/link";
 const Layout = ({ children }: { children: React.ReactNode }) => {
 
   const { theme, setTheme } = useTheme();
-  //const isBrowserDefaultDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
-  //setTheme(isBrowserDefaultDark() ? 'dark' : 'light');
 
   return (
     <div className="min-h-screen flex flex-col" tabIndex={-1}>

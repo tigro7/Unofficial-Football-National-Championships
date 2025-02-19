@@ -23,10 +23,10 @@ const League = ({post_id} : { post_id: number}) => {
 
     return (
         <>
-            <h5 className='h5 w-1/2'>{blogPost?.date ? new Date(blogPost.date).toLocaleDateString() : ''}</h5>
+            <span className='par w-1/2'>{blogPost?.date ? new Date(blogPost.date).toLocaleDateString() : ''}</span>
             <h3 className="h3 w-1/2">{blogPost?.title}</h3>
-            <h5 className='h5 w-1/2'>{blogPost?.author}</h5>
-            <span className="par w-1/2 text-primary mt-[var(--margin-md)] block">
+            <span className='par w-1/2'>{blogPost?.author}</span>
+            <span className="h4 w-1/2 text-primary mt-[var(--margin-md)] block">
                 {blogPost?.body}
             </span>
         </>
