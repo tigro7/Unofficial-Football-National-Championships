@@ -66,7 +66,10 @@ const HomePage = () => {
             </span> 
             <span className='w-full lg:w-1/2 mt-[var(--margin-big)] block'>
                 <Button buttonLink={`/${lastMatchLeague}/match/${lastMatchNumber}`} buttonText='Last match' primary className='mr-1' />
-                <Button buttonLink={`/${lastMatchLeague}/team/${reigningChampion}`} buttonText={isLoading ? 'Crowning a champ...' : reigningChampion ? `${reigningChampion} is the reigning champion` : 'Uh oh! Something is missing...'} primary={false} />
+                <Button buttonLink={`/${lastMatchLeague}/team/${reigningChampion}`} buttonText={isLoading ? 'Crowning a champ...' : reigningChampion ? `${reigningChampion} is the reigning champ` : 'Uh oh! Something is missing...'} primary={false} className='hidden lg:inline' />
+            </span>
+            <span className='w-full lg:w-1/2 mt-[var(--margin-md)] block lg:hidden'>
+                <Button buttonLink={`/${lastMatchLeague}/team/${reigningChampion}`} buttonText={isLoading ? 'Crowning a champ...' : reigningChampion ? `${reigningChampion} is the reigning champ` : 'Uh oh! Something is missing...'} primary={false} />
             </span>
             <div className="flex flex-wrap justify-between w-full mt-[var(--margin-huge)]">
                 <Card 

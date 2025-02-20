@@ -47,7 +47,7 @@ const League = ({league = 'serie_a'} : { league: string}) => {
             </div>
             <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)]">
               <Card imageSrc='/card_background.png' title='Random Match' description="Let me pick an interesting match! (or a boring one, I'm a card description, not a football expert)" buttonText='Try your luck!' buttonLink={randomMatchNumber ? `/${league}/match/${randomMatchNumber}` : "#"} />
-              <Card imageSrc='/card_background.png' title='Last Match' description="Was the last title challenge successful? Did the reigning champion manage to defend their title?" buttonText='Explore' buttonLink={lastMatchNumber ? `/${league}/match/${lastMatchNumber}` : "#"} />
+              <Card imageSrc='/card_background.png' title='Last Match' description="Was the last title challenge successful? Did the reigning champion manage to defend their title?" buttonText='Find out!' buttonLink={lastMatchNumber ? `/${league}/match/${lastMatchNumber}` : "#"} />
               <Card imageSrc='/card_background.png' title='Next Match' description="The next challenge is scheduled! Pick your favourite treat and join us in the stands." buttonText='Show me!' buttonLink={nextMatchNumber ? `/${league}/match/${nextMatchNumber}` : "#"} />
             </div>
         </>
