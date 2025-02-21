@@ -7,8 +7,9 @@ import { montserrat } from "./fonts";
 import { ThemeProvider } from "@/contexts/theme-context";
 
 export const metadata = {
-  title: "Campionato d'Italia non ufficiale",
-  description: "Classifica e statistiche della Serie A non ufficiale",
+  title: "Unofficial Football National Championships",
+  description: "What if football championships were tracked like boxing titles?",
+  image: "/logofull.png"
 };
 
 export default function RootLayout({
