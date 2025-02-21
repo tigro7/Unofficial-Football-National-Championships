@@ -45,23 +45,23 @@ const Blog = () => {
         <>
             <h3 className="h3 w-1/2">Blog</h3>
 
-            <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)]">
+            <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)] gap-y-[var(--margin-big)]">
                 {currentPosts.slice(0, 3).map((post) => (
                     <Card key={post.id} imageSrc='/card_background.png' title={post.title} description={post.extract} buttonText='Read more' buttonLink={`/blog/${post.id}`} />
                 ))}
             </div>
-            <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)]">
+            <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)] gap-y-[var(--margin-big)]">
                 {currentPosts.slice(3, 6).map((post) => (
                     <Card key={post.id} imageSrc='/card_background.png' title={post.title} description={post.extract} buttonText='Read more' buttonLink={`/blog/${post.id}`} />
                 ))}
             </div>
-            <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)]">
+            <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)] gap-y-[var(--margin-big)]">
                 {currentPosts.slice(6, 9).map((post) => (
                     <Card key={post.id} imageSrc='/card_background.png' title={post.title} description={post.extract} buttonText='Read more' buttonLink={`/blog/${post.id}`} />
                 ))}
             </div>
 
-            <div className="flex justify-between w-full mt-[var(--margin-big)]">
+            <div className="flex justify-between w-full mt-[var(--margin-big)] gap-y-[var(--margin-big)]">
                 <button onClick={prevPage} disabled={currentPage === 1} className="bg-primary text-white px-4 py-2 rounded-lg">
                     Previous
                 </button>
