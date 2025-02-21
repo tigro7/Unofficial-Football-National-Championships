@@ -71,7 +71,7 @@ const HomePage = () => {
             <span className='w-full lg:w-1/2 mt-[var(--margin-md)] block lg:hidden'>
                 <Button buttonLink={`/${lastMatchLeague}/team/${reigningChampion}`} buttonText={isLoading ? 'Crowning a champ...' : reigningChampion ? `${reigningChampion} is the reigning champ` : 'Uh oh! Something is missing...'} primary={false} />
             </span>
-            <div className="flex flex-wrap justify-between w-full mt-[var(--margin-huge)]">
+            <div className="flex flex-wrap justify-between w-full mt-[var(--margin-huge)] gap-y-[var(--margin-big)]">
                 <Card 
                     imageSrc='/italian_card.png' title={normalizeLeagueName('serie_a')} 
                     description={getLeagueDesc('serie_a')}
@@ -80,7 +80,7 @@ const HomePage = () => {
                 <Card imageSrc='/card_background.png' title='Blog' description='Read all the latest news and announcements. Stay up to the date on all future developments and check out cool stories about recent and past challenges.' buttonText='Read More' buttonLink='/blog' />
                 <Card imageSrc='/card_background.png' title='About UFNC' description='What is this all about? Who is the mad man behind this? Is there anything I neeed to understand before diving in?' buttonText='Find out' buttonLink='/about' />
             </div>
-            <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)]">
+            <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)] gap-y-[var(--margin-big)]">
                 <Card imageSrc='/english_card.png' title={normalizeLeagueName('premier_league')} description={getLeagueDesc('premier_league')} buttonText='...' buttonLink='/' />
                 {/*
                     <Card imageSrc='/card_background.png' title='Title 5' description='Description 5' buttonText='Button 5' buttonLink='/link5' />
