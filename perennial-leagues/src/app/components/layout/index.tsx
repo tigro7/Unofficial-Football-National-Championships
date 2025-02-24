@@ -34,9 +34,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       
       {/* Footer */}
       <footer className="text-center p-4">
-        <p>
-          Except where otherwhise noted, content on this site, <a property="dct:title" rel="cc:attributionURL" href="http://ufnc.xyz">ufnc</a>{' by '}<a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/alberto-tiribelli-64237867/">Alberto Tiribelli</a>{' is licensed under '}<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style={{ display: 'inline-block' }}>CC BY-NC-SA 4.0. Icons by <a href="https://fontawesome.com">Font Awesome</a>. <Image height={22} width={22} style={{ marginLeft: '3px', verticalAlign: 'text-bottom' }} src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt="" /><Image height={22} width={22} style={{ marginLeft: '3px', verticalAlign: 'text-bottom' }} src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt="" /><Image height={22} width={22} style={{ marginLeft: '3px', verticalAlign: 'text-bottom' }} src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt="" /><Image height={22} width={22} style={{ marginLeft: '3px', verticalAlign: 'text-bottom' }} src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt="" /></a>
-        </p>
+        <div>
+          Except where otherwhise noted, content on this site, <a property="dct:title" rel="cc:attributionURL" href="http://ufnc.xyz">ufnc</a>{' by '}<a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/alberto-tiribelli-64237867/">Alberto Tiribelli</a>{', is licensed under '}
+          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style={{ display: 'inline-block' }}>CC BY-NC-SA 4.0.</a> Icons by <a href="https://fontawesome.com">Font Awesome</a>. 
+          <div className="flex justify-center mt-2">
+            <Image height={22} width={22} style={{ marginLeft: '3px', verticalAlign: 'text-bottom' }} src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt="" />
+            <Image height={22} width={22} style={{ marginLeft: '3px', verticalAlign: 'text-bottom' }} src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt="" />
+            <Image height={22} width={22} style={{ marginLeft: '3px', verticalAlign: 'text-bottom' }} src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt="" />
+            <Image height={22} width={22} style={{ marginLeft: '3px', verticalAlign: 'text-bottom' }} src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt="" />
+          </div>
+        </div>
       </footer>
     </div>
   );
