@@ -56,7 +56,7 @@ const statsMap: Record<string, { icon: typeof faRotateRight; title: string; valu
         if (value === null) return "";
         return daysToYears(value);
       },
-      longInfo: "$squadra has won the title, after not beign able to hold it for $value.",
+      longInfo: "$squadra has won the title, after not being able to hold it for $value.",
     },
     "Century Club Bronze": {
       icon: faStar,
