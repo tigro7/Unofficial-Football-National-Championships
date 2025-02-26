@@ -47,7 +47,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             `${league}/timeline`,
             `${league}/ranks`
         ]),
-        ...matchIds.map((match: Match) => `${match.league}/match/${match.numero}`),
+        ...matchIds.slice(0,100).map((match: Match) => `${match.league}/match/${match.numero}`),
         ...teamIds.map((team: Squadra) => `${team.league}/team/${team.squadra}`),
         ...blogPosts.map((post: BlogPost) => `blog/${post.id}`)
     ];
