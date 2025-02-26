@@ -57,9 +57,8 @@ const League = ({post_id} : { post_id: number}) => {
     return (
         <>
             <title>Blog Post - UFNC</title>
-            <span className='h4'>{blogPost?.date ? new Date(blogPost.date).toLocaleDateString() : ''}</span>
             <h3 className="h3">{blogPost?.title}</h3>
-            <span className='h4'>{blogPost?.author}</span>
+            <span className='h4'>{blogPost?.date ? `${new Date(blogPost.date).toLocaleDateString()} - ` : ''}{blogPost?.author}</span>
             <span className="par text-primary mt-[var(--margin-md)] block">
                 {blogPost?.body.split('\n').map((paragraph, index) => renderParagraph(paragraph, index))}
             </span>
