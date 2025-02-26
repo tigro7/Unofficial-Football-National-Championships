@@ -56,6 +56,7 @@ const League = ({post_id} : { post_id: number}) => {
 
     return (
         <>
+            <title>Blog Post - UFNC</title>
             <span className='par w-1/2'>{blogPost?.date ? new Date(blogPost.date).toLocaleDateString() : ''}</span>
             <h3 className="h3 w-1/2">{blogPost?.title}</h3>
             <span className='par w-1/2'>{blogPost?.author}</span>

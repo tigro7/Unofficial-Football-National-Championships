@@ -91,6 +91,7 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
 
     return (
       <InfoProvider>
+        <title>{league} - Match - UFNC</title>
         <div className="container mx-auto p-4 bg-system" {...handlers}>
           {/* Feedback visivo con progressivo */}
                 {swipeProgress !== null && (

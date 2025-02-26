@@ -37,6 +37,7 @@ const League = ({league = 'serie_a'} : { league: string}) => {
     return (
         <>
           <h3 className="h3 w-1/2">{normalizeLeagueName(league)}</h3>
+          <title>{league} - UFNC</title>
           <span className="par w-1/2 text-primary mt-[var(--margin-md)] block">
             {getLeagueDesc(league)}
           </span>

@@ -35,6 +35,19 @@ export interface Team {
     };
 }
 
+export interface Squadra {
+    squadra: string;
+    regni: number;
+    durata: number;
+    media: number;
+    colore_primario: string;
+    colore_secondario: string;
+    league: string;
+    difese: number;
+    media_difese: number;
+    sfide: number;
+}
+
 export interface BlogPost {
     id: number;
     title: string;
@@ -43,4 +56,18 @@ export interface BlogPost {
     author: string;
     date: Date;
     call_to_action: string;
+}
+
+export interface Match {
+    detentore: string;
+    sfidante: string;
+    risultato: string;
+    note: string;
+    data: Date;
+    durata: number;
+    league: string;
+    home: string;
+    away: string;
+    outcome: string;
+    numero: number;
 }

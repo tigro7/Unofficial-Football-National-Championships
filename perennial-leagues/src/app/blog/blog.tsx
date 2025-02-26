@@ -43,6 +43,7 @@ const Blog = () => {
 
     return (
         <>
+            <title>Blog - UFNC</title>
             <h3 className="h3 w-1/2">Blog</h3>
 
             <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)] gap-y-[var(--margin-big)]">

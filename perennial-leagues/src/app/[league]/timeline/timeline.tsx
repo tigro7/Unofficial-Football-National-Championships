@@ -114,6 +114,7 @@ const Timeline = ({squadre, regni, startDate, league = "serie_a"}: {squadre: {sq
   
     return(
       <div className="container mx-auto bg-system min-h-screen p-6">
+        <title>{league} - Titles Timeline - UFNC</title>
         <h3 className="h3 mb-8">Titles Timeline</h3>
 
         {/* Stats Generali */}

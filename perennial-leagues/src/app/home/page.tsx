@@ -51,6 +51,7 @@ const HomePage = () => {
 
     return (
         <main>
+            <title>Home - UFNC</title>
             {lastPost && <span className='w-full lg:w-1/2 mt-[var(--margin-big)] mb-[var(--margin-md)] block'>
                 <Button buttonLink={`/blog/${lastPost.id}`} buttonText={lastPost.call_to_action} primary={false} className='callToAction' iconpre={faChampagneGlasses} iconpost={faArrowRight} />
             </span>}

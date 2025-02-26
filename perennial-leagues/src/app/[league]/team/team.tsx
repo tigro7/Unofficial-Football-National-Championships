@@ -134,6 +134,9 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
     <InfoProvider>
       <div className="container mx-auto p-4 bg-system">
         {/* Nome della Squadra */}
+
+        <title>{league} - Team - {squadra} - UFNC</title>
+
         
         <div className={`items-start landscape:ml-12 my-6`}>
           <div className="inset-0 border-r-8" style={{ borderColor: colors.primary }}>
