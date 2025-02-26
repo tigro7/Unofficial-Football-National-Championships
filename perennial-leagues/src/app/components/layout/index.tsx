@@ -2,14 +2,53 @@
 
 import { pridi } from "@/app/fonts";
 import { useTheme } from "@/contexts/theme-context";
-import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
+import normalizeLeagueName from "@/app/utils/leaguesMap";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
 
   const { theme, setTheme } = useTheme();
+  const pathname = usePathname();
+
+  const generateBreadcrumbs = () => {
+    const pathArray = pathname.split('/').filter((path) => path);
+
+    return pathArray.map((path, index) => {
+      const href = `/${pathArray.slice(0, index + 1).join('/')}`;
+
+      const isLast = index === pathArray.length - 1;
+      const isInvalidPage = path === 'team' || path === 'match';
+
+      //controlla se un elemento corrisponde a un nome lega, tramite normalizeLeagueName
+      //se si, restituisci il nome della lega
+
+      const leagueName = normalizeLeagueName(path);
+      if (leagueName != path) {
+        path = leagueName;
+      }
+
+      const formattedPath = path.replace(/-/g, ' ');
+
+      if (isLast || isInvalidPage) {
+        return (
+          <span key={href} className={isLast ? "text-primary" : "text-secondary"}>
+        {formattedPath}
+          </span>
+        );
+      }
+
+      return (
+        <Link key={href} href={href} className="text-secondary hover:underline">
+          {formattedPath}
+        </Link>
+      );
+    });
+
+  };
 
   return (
     <div className="min-h-screen flex flex-col" tabIndex={-1}>
@@ -21,6 +60,18 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <Image src="/logofull.png" alt="Unofficial Football National Championships" className="h-16" width={64} height={64} />
             <h2 className={`${pridi.className} h2 ml-[var(--margin-sm)]`}>UFNC</h2>
           </Link>
+          <nav className="ml-4 flex items-start">
+              {generateBreadcrumbs().map((breadcrumb, index) => (
+                <span key={index} className="text-gray-500">
+                  {breadcrumb}
+                  {index < generateBreadcrumbs().length - 1 && (
+                    <FontAwesomeIcon icon={faChevronRight} className="mx-2" />
+                  )}
+                </span>
+              ))}
+            </nav>
+
+
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             className="hidden md:block bg-inverted px-4 py-2 rounded-lg"

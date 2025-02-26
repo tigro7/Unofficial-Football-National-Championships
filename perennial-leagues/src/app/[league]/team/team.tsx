@@ -12,6 +12,7 @@ import TrophyTable from "@/app/components/TrophyTable";
 import VerticalTimelineChart from "@/app/components/VerticalTimelineChart";
 import { InfoProvider } from "@/contexts/InfoContext/InfoContext";
 import InfoWindow from "@/contexts/InfoContext/InfoWindow";
+import Link from "next/link";
 
 const generateTimeline = (regni: { start: string; end: string, matchStart: number, matchEnd: number }[], startDate: string) => {
   const timeline = [];
@@ -147,9 +148,11 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
                   <h1 className="text-4xl font-bold">
                     {`${squadra.charAt(0).toUpperCase()}${squadra.slice(1)}`}
                   </h1>
-                  <h2 className={`text-2xl text-secondary ${openSans.className} !italic`}>
-                    {normalizeLeagueName(league)}
-                  </h2>
+                  <Link href={`/${league}`}>
+                    <h2 className={`text-2xl text-secondary ${openSans.className} !italic`}>
+                      {normalizeLeagueName(league)}
+                    </h2>
+                  </Link>
                 </div>
                 <TrophyTable titles={stats.regni} className="portrait:hidden"/>
               </div>
