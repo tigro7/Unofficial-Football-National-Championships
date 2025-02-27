@@ -8,6 +8,7 @@ export default async function Page() {
                 This website is inspired by the Unofficial Football World Championships (UFWC), applying the same concept to national leagues. 
                 <br/>
                 The idea behind it is simple: instead of tracking international matches, we follow a championship-style lineage within domestic leagues, treating the title as something to be defended in each match.
+                Therefore, as they are not official we could call Football Championships with an asterisk.
                 <br/>
                 The project started as a personal effort, manually compiling results in an Excel spreadsheet. Gathering match data one by one from online sources took nearly a month. Later, I discovered another user on Reddit who had done the same thing, and when we compared our results, they matched perfectly. 
                 <br/>
