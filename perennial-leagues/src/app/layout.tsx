@@ -2,6 +2,7 @@
 import "./globals.css";
 import Layout from "./components/layout";
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/next';
 import Image from 'next/image';
 import { montserrat } from "./fonts";
 import { ThemeProvider } from "@/contexts/theme-context";
@@ -31,6 +32,7 @@ export default function RootLayout({
               {children}
             </Layout>
           </ThemeProvider>
+          <Analytics />
           <SpeedInsights />
       </body>
     </html>
