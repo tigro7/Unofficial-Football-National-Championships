@@ -79,7 +79,7 @@ const HomePage = () => {
                     buttonText='Explore' buttonLink='/serie_a' 
                 />
                 <Card imageSrc='/card_background.png' title='Blog' description='Read all the latest news and announcements. Stay up to the date on all future developments and check out cool stories about recent and past challenges.' buttonText='Read More' buttonLink='/blog' />
-                <Card imageSrc='/card_background.png' title='About UFNC' description='What is this all about? Who is the mad man behind this? Is there anything I neeed to understand before diving in?' buttonText='Find out' buttonLink='/about' />
+                <Card imageSrc='/card_background.png' title='About UFNC' description='What is this all about? Who is the mad man behind this? Is there anything I need to understand before diving in?' buttonText='Find out' buttonLink='/about' />
             </div>
             <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)] gap-y-[var(--margin-big)]">
                 <Card imageSrc='/english_card.png' title={normalizeLeagueName('premier_league')} description={getLeagueDesc('premier_league')} buttonText='...' buttonLink='/' />
