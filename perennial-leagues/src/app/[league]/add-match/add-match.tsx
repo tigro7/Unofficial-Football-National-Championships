@@ -43,7 +43,8 @@ const ProtectedAddMatch = ({league = "serie_a"} : {league: string}) => {
     //con
 
     try {
-      const response = await fetch(`/api/${league}/matches`, {
+      const host = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'; // URL di base
+      const response = await fetch(`${host}/api/${league}/matches`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
