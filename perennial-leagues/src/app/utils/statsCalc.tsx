@@ -410,7 +410,7 @@ const updateStats = async (
                                                 ranked_matches
                                             where league = ${league}
                                             GROUP BY
-                                                detentore, regno_id
+                                                detentore, regno_id, league
                                             ),
                                             ordered_regni AS (
                                             SELECT
