@@ -22,7 +22,8 @@ export async function GET(request: Request, {params,}: {params: Promise<{ squadr
                                             RANK() OVER (ORDER BY difese DESC) AS position_difese,
                                             RANK() OVER (ORDER BY media_difese DESC) AS position_media_difese,
                                             RANK() OVER (ORDER BY sfide DESC) AS position_sfide
-                                        FROM squadre) s 
+                                        FROM squadre
+                                        WHERE league = ${league}) s 
                                       WHERE LOWER(squadra) = ${squadra.toLowerCase()} AND league = ${league}`;
 
         if (rows.rowCount === 0) {

@@ -252,8 +252,7 @@ const updateStats = async (
 
     //LIVELLO 3
     //1. Legacy Run
-    const legacyRun = await client.sql`
-                                        SELECT matches.detentore, MAX(matches.data) as data, matches.league, iron.regni, iron.tier, MAX(matches.numero) AS numero FROM matches JOIN (
+    const legacyRun = await client.sql`SELECT matches.detentore, MAX(matches.data) as data, matches.league, iron.regni, iron.tier, MAX(matches.numero) AS numero FROM matches JOIN (
                                             SELECT squadra, league, regni,
                                             CASE WHEN regni > 100 THEN 'Platinum'
                                                 WHEN regni > 50 THEN 'Gold'
@@ -280,7 +279,7 @@ const updateStats = async (
     //eliminare i record da stats con statistica like 'Stronghold%'
     await client.sql`DELETE FROM stats WHERE league = ${league} AND statistica LIKE 'Stronghold%'`;
     const strongholdRecord = await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, numero) 
-                                                SELECT m.detentore, m.fine_regno, 'serie_a', CONCAT('Stronghold Record ',m.rank) , m.partite,  m.numero FROM
+                                                SELECT m.detentore, m.fine_regno, m.league, CONCAT('Stronghold Record ',m.rank) , m.partite,  m.numero FROM
                                                 (
                                                 WITH ranked_matches AS (
                                                 SELECT
@@ -289,6 +288,7 @@ const updateStats = async (
                                                     - ROW_NUMBER() OVER (PARTITION BY detentore ORDER BY data) AS regno_id
                                                 FROM
                                                     matches
+                                                WHERE league = ${league}
                                                 ),
                                                 grouped_regni AS (
                                                 SELECT
@@ -318,6 +318,7 @@ const updateStats = async (
                                                 fine_regno,
                                                 partite,
                                                 rank,
+                                                league,
                                                 numero
                                                 FROM
                                                 ordered_regni re
@@ -342,6 +343,7 @@ const updateStats = async (
                                                     squadre
                                                 WHERE 
                                                     regni = 0 AND NOT(sfide IS NULL)
+                                                    and league = ${league}
                                                 ),
                                                 last_match AS (
                                                 SELECT 
@@ -384,7 +386,7 @@ const updateStats = async (
     //eliminare i record da stats con statistica like 'King Slayer%'
     await client.sql`DELETE FROM stats WHERE league = ${league} AND statistica LIKE 'King Slayer%'`;
     const kingSlayer = await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, numero) 
-                                                SELECT m.ks, m.data_prossima_partita, 'serie_a', Concat('King Slayer vs ', m.detentore) , m.durata, m.numero FROM
+                                                SELECT m.ks, m.data_prossima_partita, m.league, Concat('King Slayer vs ', m.detentore) , m.durata, m.numero FROM
                                                 (
                                             WITH ranked_matches AS (
                                             SELECT
@@ -393,10 +395,12 @@ const updateStats = async (
                                                 - ROW_NUMBER() OVER (PARTITION BY detentore ORDER BY data) AS regno_id
                                             FROM
                                                 matches
+                                            WHERE league = ${league}
                                             ),
                                             grouped_regni AS (
                                             SELECT
                                                 detentore,
+                                                league,
                                                 regno_id,
                                                 MIN(data) AS inizio_regno,
                                                 MAX(data) AS fine_regno,
@@ -404,6 +408,7 @@ const updateStats = async (
                                                 COUNT(*) AS partite
                                             FROM
                                                 ranked_matches
+                                            where league = ${league}
                                             GROUP BY
                                                 detentore, regno_id
                                             ),
@@ -412,6 +417,7 @@ const updateStats = async (
                                                 detentore,
                                                 inizio_regno,
                                                 fine_regno,
+                                                league,
                                                 durata,
                                                 partite,
                                                 RANK() OVER (ORDER BY partite DESC) AS rank
@@ -424,6 +430,7 @@ const updateStats = async (
                                             regni.fine_regno,
                                             regni.durata,
                                             regni.partite,
+                                            regni.league,
                                             next_match.data AS data_prossima_partita,
                                             next_match.detentore AS ks,
                                             next_match.numero
@@ -440,6 +447,7 @@ const updateStats = async (
                                                 m.data > regni.fine_regno -- Solo partite successive alla fine del regno
                                                 AND m.sfidante = regni.detentore -- Sfidante è il detentore
                                                 AND m.outcome = 's' -- Risultato deve essere "s"
+                                                and m.league = ${league}
                                             ORDER BY
                                                 m.data ASC -- Prendi la prima partita successiva
                                             LIMIT 1
@@ -459,6 +467,7 @@ const updateStats = async (
                                                         SELECT *,
                                                             ROW_NUMBER() OVER (ORDER BY data) - ROW_NUMBER() OVER (PARTITION BY detentore ORDER BY data) AS regno_id FROM
                                                                 matches
+                                                        where league = ${league}
                                                     ),
                                                     grouped_regni AS (
                                                         SELECT
