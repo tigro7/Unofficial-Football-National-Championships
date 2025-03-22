@@ -7,7 +7,7 @@ import normalizeLeagueName from '../utils/leaguesMap';
 import getLeagueDesc from '../utils/leaguesDescMap';
 import { useEffect, useState } from 'react';
 import { BlogPost } from '../lib/definitions';
-import { faArrowRight, faChampagneGlasses, faFootballBall, faFutbol } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faFutbol } from '@fortawesome/free-solid-svg-icons';
 
 const HomePage = () => {
 
