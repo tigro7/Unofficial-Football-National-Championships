@@ -509,7 +509,7 @@ const updateStats = async (
                                             WHERE decade = ${decade} AND db1.detentore = ${detentoreName} AND matches.league = ${league}`;
     console.info('dinastyBuilder:', dinastyBuilder.rowCount);
     //aggiornare sempre il valore, inserirlo se non esiste
-    const dinastyStat = `Dinasty Builder ${decade.toString()}`;
+    const dinastyStat = `Class of ${decade.toString()}`;
     const dinastyBuilderExist = await client.sql`SELECT * FROM stats WHERE league = ${league} AND statistica = ${dinastyStat}`;
     if (dinastyBuilder.rowCount && dinastyBuilder.rowCount > 0) {
         if (dinastyBuilderExist?.rowCount && dinastyBuilderExist.rowCount > 0) {
