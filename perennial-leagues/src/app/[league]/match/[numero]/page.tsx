@@ -44,6 +44,7 @@ const Page = async ({params,}: {params: Promise<{ numero: number, league: string
                 }} 
                 teamHome={{ 
                     name: teamHome.squadra, 
+                    abbr: teamHome.abbr,
                     colors: { 
                         primary: teamHome.colore_primario ? `#${teamHome.colore_primario}` : '#000000', 
                         secondary: teamHome.colore_secondario ? `#${teamHome.colore_secondario}` : '#FFFFFF'
@@ -51,6 +52,7 @@ const Page = async ({params,}: {params: Promise<{ numero: number, league: string
                 }} 
                 teamAway={{ 
                     name: teamAway.squadra, 
+                    abbr: teamAway.abbr,
                     colors: { 
                         primary: teamAway.colore_primario ? `#${teamAway.colore_primario}` : '#000000', 
                         secondary: teamAway.colore_secondario ? `#${teamAway.colore_secondario}` : '#FFFFFF'

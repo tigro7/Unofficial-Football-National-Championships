@@ -1451,7 +1451,7 @@ const teamNormalizationMap: { [key: string]: string } = {
     "Hartlepool": "",
     "Hartlepool United": "",
     "Hartlepool Utd": "Hartlepool United",
-    "Hartlepools United": "",
+    "Hartlepools United": "Hartlepool United",
     "Harwich": "",
     "Harwich & Parkeston": "",
     "Haslingden Association": "",
