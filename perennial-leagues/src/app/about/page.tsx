@@ -24,6 +24,13 @@ export default async function Page() {
                 This project allowed me to combine my passion for football with my interest in data processing and web development, creating something both fun and informative.
             </span>
             <br/>
+            <h4 className="h4">Non Linear Championships Tracker</h4>
+            <span className="par text-primary mt-[var(--margin-md)] block">
+                The internet is full of good inspiration and this field is not an exception. You can find a lot of people who are tracking the same thing, for different leagues and competitions.
+                <br/>
+                Everyone has done an outstanding job, spending free time and effort to keep track of a silly idea and I want to highlight a couple of them: <a href="https://www.stevesfootballstats.uk/unofficial_football_club_championship_ufcc.html" target="_blank" rel="noopener noreferrer">#UFCC</a> by Steve and <a href="https://www.baton-bourbotte.com/" target="_blank" rel="noopener noreferrer">Le Baton De Bourbotte</a> for the French Champsionship.
+            </span>
+            <br/>
             <h4 className="h4">Disclaimer</h4>
             <span className="par text-primary mt-[var(--margin-md)] block">
                 For the sake of consistency, penalty shootouts are only considered in single-match scenarios (e.g., finals or knockout rounds). 
