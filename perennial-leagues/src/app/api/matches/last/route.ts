@@ -8,7 +8,7 @@ export async function GET() {
 
     try {
         const client = await db.connect();
-        const rows =  await client.sql`SELECT * FROM matches WHERE outcome <> 'n' ORDER BY numero DESC LIMIT 1`;
+        const rows =  await client.sql`SELECT * FROM matches WHERE outcome <> 'n' ORDER BY data DESC LIMIT 1`;
     
         client.release();
         return NextResponse.json(rows.rows, { status: 200 });
