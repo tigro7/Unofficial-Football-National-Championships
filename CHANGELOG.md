@@ -12,6 +12,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Home page icon
 - `og:title`, `og:image`, and canonical link tag in the HTML head (`metadataBase`, `openGraph`, `alternates.canonical` in root layout)
 - `CLAUDE.md`, `CONTRIBUTING.md`, `CHANGELOG.md` project documentation
+- `.env.example` documenting all required environment variables with placeholder values
 
 ### Changed
 - Last-match fetching now uses match date rather than sequential number
