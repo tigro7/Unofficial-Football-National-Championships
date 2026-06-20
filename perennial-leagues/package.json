@@ -20,7 +20,7 @@
     "@vercel/speed-insights": "^1.1.0",
     "chart.js": "^4.4.7",
     "clsx": "^2.1.1",
-    "next": "^15.0.4",
+    "next": "15.0.7",
     "next-auth": "^4.24.11",
     "postcss": "^8.5.2",
     "react": "^18.2.0",
