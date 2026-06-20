@@ -10,9 +10,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 - Home page icon
+- `og:title`, `og:image`, and canonical link tag in the HTML head (`metadataBase`, `openGraph`, `alternates.canonical` in root layout)
+- `CLAUDE.md`, `CONTRIBUTING.md`, `CHANGELOG.md` project documentation
 
 ### Changed
 - Last-match fetching now uses match date rather than sequential number
+
+### Fixed
+- Sitemap generation crash at build time: fetch helpers now return `[]` on failure instead of `undefined`, preventing "is not iterable" during static export
 - About page links to other related projects
 - Database schema updated to handle long team names in matches
 
