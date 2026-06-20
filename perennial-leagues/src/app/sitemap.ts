@@ -9,37 +9,45 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         'blog',
     ];
 
-    const fetchBlogPosts = async () => {
-        try {            
+    const fetchBlogPosts = async (): Promise<BlogPost[]> => {
+        try {
             const response = await fetch(`${baseUrl}api/blog`);
-            return await response.json();
+            const data = await response.json();
+            return Array.isArray(data) ? data : [];
         } catch (error) {
             console.error("Error fetching blog posts:", error);
+            return [];
         }
     };
 
-    const fetchTeams = async (league: string) => {
+    const fetchTeams = async (league: string): Promise<Squadra[]> => {
         try {
             const response = await fetch(`${baseUrl}api/${league}/squadre`);
-            return await response.json();
+            const data = await response.json();
+            return Array.isArray(data) ? data : [];
         } catch (error) {
             console.error("Error fetching teams:", error);
+            return [];
         }
     }
 
     const leagues = ['serie_a'];
     let matchIds: Match[] = [];
     for (const league of leagues) {
-        const response = await fetch(`${baseUrl}api/${league}/matches`);
-        const matches = await response.json();
-        matchIds = [...matchIds, ...matches];
+        try {
+            const response = await fetch(`${baseUrl}api/${league}/matches`);
+            const matches = await response.json();
+            if (Array.isArray(matches)) matchIds = [...matchIds, ...matches];
+        } catch (error) {
+            console.error(`Error fetching matches for ${league}:`, error);
+        }
     }
     let teamIds: Squadra[] = [];
     for (const league of leagues) {
         const teams = await fetchTeams(league);
         teamIds = [...teamIds, ...teams];
     }
-    const blogPosts : BlogPost[] = await fetchBlogPosts();
+    const blogPosts: BlogPost[] = await fetchBlogPosts();
 
     const dynamicPages = [
         ...leagues.flatMap(league => [

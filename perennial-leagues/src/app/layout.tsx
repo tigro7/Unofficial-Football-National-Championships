@@ -8,9 +8,17 @@ import { montserrat } from "./fonts";
 import { ThemeProvider } from "@/contexts/theme-context";
 
 export const metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'),
   title: "Unofficial Football National Championships",
   description: "What if football championships were tracked like boxing titles?",
-  image: "/logofull.png"
+  openGraph: {
+    title: "Unofficial Football National Championships",
+    description: "What if football championships were tracked like boxing titles?",
+    images: ['/logofull.png'],
+  },
+  alternates: {
+    canonical: '/',
+  },
 };
 
 export default function RootLayout({
