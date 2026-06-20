@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { Squadra, BlogPost, Match } from './lib/definitions';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/';
+    const baseUrl = (process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000').replace(/\/$/, '') + '/';
     const staticPages = [
         '',
         'about',
@@ -31,7 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         }
     }
 
-    const leagues = ['serie_a'];
+    const leagues = ['serie_a', 'premier_league'];
     let matchIds: Match[] = [];
     for (const league of leagues) {
         try {

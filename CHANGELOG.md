@@ -21,6 +21,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 - Sitemap generation crash at build time: fetch helpers now return `[]` on failure instead of `undefined`, preventing "is not iterable" during static export
+- Trailing slash normalisation in `robots.ts` and `sitemap.ts` to prevent double slashes in generated URLs
+- Removed non-existent `/private/` disallow rule from `robots.ts`
+- `sitemap.ts` now includes `premier_league` pages (was missing since v0.5.0)
 - About page links to other related projects
 - Database schema updated to handle long team names in matches
 
