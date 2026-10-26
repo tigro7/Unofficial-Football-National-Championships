@@ -2,13 +2,13 @@
 /**
  * check-pending-matches.mjs
  *
- * Fetches UFNC matches with outcome='n' whose scheduled date is in the past,
- * looks up their results on football-data.org, and writes one JSON file per
- * resolved match to .github/pending-results/.
+ * Determines the current title holder for each league, finds their next
+ * finished match on football-data.org that is not yet recorded in the UFNC DB,
+ * and writes one JSON file per resolved match to .github/pending-results/.
  *
- * Called by the check-pending-matches.yml workflow. Exits 0 if no results were
- * found (idempotent), exits 0 with files written when results were found, exits
- * 1 on a hard error.
+ * Called by the check-pending-matches.yml workflow. Exits 0 if no new results
+ * were found (idempotent), exits 0 with files written when results were found,
+ * exits 1 on a hard error.
  *
  * Required env vars:
  *   UFNC_BASE_URL          e.g. https://your-app.vercel.app
@@ -84,25 +84,16 @@ function mapOutcome(winner, detentore) {
 }
 
 /**
- * Fetches finished matches from football-data.org for a competition on a given date.
- * Uses a ±1 day window to account for UTC vs local time differences.
+ * Fetches all finished matches from football-data.org for a competition
+ * from dateFrom up to today.
  */
-async function fetchFdoMatches(competitionCode, dateStr) {
-  const from = new Date(dateStr);
-  from.setDate(from.getDate() - 1);
-  const to = new Date(dateStr);
-  to.setDate(to.getDate() + 1);
-
-  const dateFrom = from.toISOString().split('T')[0];
-  const dateTo = to.toISOString().split('T')[0];
-
-  const url = `https://api.football-data.org/v4/competitions/${competitionCode}/matches?status=FINISHED&dateFrom=${dateFrom}&dateTo=${dateTo}`;
+async function fetchFdoMatchesAfter(competitionCode, dateFrom) {
+  const url = `https://api.football-data.org/v4/competitions/${competitionCode}/matches?status=FINISHED&dateFrom=${dateFrom}&dateTo=${today}`;
   const res = await fetch(url, {
     headers: { 'X-Auth-Token': FD_API_KEY },
   });
 
   if (res.status === 429) {
-    // Rate limited (free tier: 10 req/min) — wait 60s and retry once
     console.warn(`Rate limited by football-data.org. Waiting 65s...`);
     await new Promise(r => setTimeout(r, 65_000));
     const retry = await fetch(url, { headers: { 'X-Auth-Token': FD_API_KEY } });
@@ -141,78 +132,102 @@ async function main() {
       continue;
     }
 
-    // Strip any time component from the date (DB returns ISO timestamps like 2025-10-25T00:00:00.000Z)
+    // Strip any time component from the date (DB returns ISO timestamps)
     for (const m of ufncMatches) {
       m.data = m.data.split('T')[0];
     }
 
-    // Filter: unplayed matches whose date is already in the past
-    const pending = ufncMatches.filter(m => m.outcome === 'n' && m.data < today);
-
-    if (pending.length === 0) {
-      console.log(`${ufncLeague}: no pending matches in the past`);
+    // Find the most recent completed match to determine the current champion
+    const lastCompleted = ufncMatches.find(m => m.outcome !== 'n');
+    if (!lastCompleted) {
+      console.log(`${ufncLeague}: no completed matches found, skipping`);
       continue;
     }
 
-    console.log(`${ufncLeague}: ${pending.length} pending match(es) to check`);
+    // Current champion: sfidante if they stole the title, otherwise detentore
+    const currentChampion = lastCompleted.outcome === 's'
+      ? lastCompleted.sfidante
+      : lastCompleted.detentore;
 
-    // Group by date to minimise football-data.org API calls (free tier: 10 req/min)
-    const byDate = pending.reduce((acc, m) => {
-      (acc[m.data] ??= []).push(m);
-      return acc;
-    }, {});
+    const lastMatchDate = lastCompleted.data;
+    console.log(`${ufncLeague}: current champion is "${currentChampion}" (last match: ${lastMatchDate}, outcome=${lastCompleted.outcome})`);
 
-    for (const [date, matches] of Object.entries(byDate)) {
-      // Small delay between API calls to stay within free-tier rate limit
-      await new Promise(r => setTimeout(r, 6_500));
+    // Compute the day after the last recorded match
+    const afterDate = new Date(lastMatchDate);
+    afterDate.setDate(afterDate.getDate() + 1);
+    const dateFrom = afterDate.toISOString().split('T')[0];
 
-      const fdoMatches = await fetchFdoMatches(code, date);
-
-      for (const ufncMatch of matches) {
-        const { home, away, detentore, numero } = ufncMatch;
-
-        // Find the corresponding football-data.org match
-        const fdoMatch = fdoMatches.find(m =>
-          teamMatches(home, m.homeTeam, leagueAliases) &&
-          teamMatches(away, m.awayTeam, leagueAliases)
-        );
-
-        if (!fdoMatch) {
-          console.warn(
-            `${ufncLeague} #${numero} (${date}): no football-data.org match found for "${home}" vs "${away}". ` +
-            `Add entries to football-data-config.json if team names differ.`
-          );
-          continue;
-        }
-
-        const { fullTime } = fdoMatch.score;
-        if (fullTime.home === null || fullTime.away === null) {
-          console.warn(`${ufncLeague} #${numero}: match found but score not yet available`);
-          continue;
-        }
-
-        // detentore is stored as a name in the DB; map back to 'home'/'away' position
-        const detentorePosition = detentore === home ? 'home' : 'away';
-        const outcome = mapOutcome(fdoMatch.score.winner, detentorePosition);
-        const risultato = `${fullTime.home}-${fullTime.away}`;
-
-        const result = {
-          league: ufncLeague,
-          home,
-          away,
-          data: date,
-          detentore: detentorePosition,
-          risultato,
-          outcome,
-          note: `${LEAGUE_DISPLAY_NAME[ufncLeague] ?? ufncLeague.replace(/_/g, ' ')} ${seasonLabel(date)}`,
-        };
-
-        console.log(
-          `${ufncLeague} #${numero}: ${home} ${risultato} ${away} → outcome=${outcome}`
-        );
-        resolved.push({ numero, ...result });
-      }
+    if (dateFrom > today) {
+      console.log(`${ufncLeague}: no matches possible after today, skipping`);
+      continue;
     }
+
+    // Small delay between API calls to stay within free-tier rate limit
+    await new Promise(r => setTimeout(r, 6_500));
+
+    const fdoMatches = await fetchFdoMatchesAfter(code, dateFrom);
+
+    // Filter to matches where the champion was home or away, sort by date ascending
+    const championMatches = fdoMatches
+      .filter(m =>
+        teamMatches(currentChampion, m.homeTeam, leagueAliases) ||
+        teamMatches(currentChampion, m.awayTeam, leagueAliases)
+      )
+      .sort((a, b) => new Date(a.utcDate) - new Date(b.utcDate));
+
+    if (championMatches.length === 0) {
+      console.log(`${ufncLeague}: no finished matches found for "${currentChampion}" after ${lastMatchDate}`);
+      continue;
+    }
+
+    // Take only the first (earliest) — cascade re-trigger handles subsequent ones
+    const fdoMatch = championMatches[0];
+    const matchDate = fdoMatch.utcDate.split('T')[0];
+    const home = fdoMatch.homeTeam.shortName ?? fdoMatch.homeTeam.name;
+    const away = fdoMatch.awayTeam.shortName ?? fdoMatch.awayTeam.name;
+
+    // Use UFNC team names (from config keys) rather than FDO names to keep DB consistent
+    const ufncHome = Object.keys(leagueAliases).find(name =>
+      teamMatches(name, fdoMatch.homeTeam, leagueAliases)
+    ) ?? home;
+    const ufncAway = Object.keys(leagueAliases).find(name =>
+      teamMatches(name, fdoMatch.awayTeam, leagueAliases)
+    ) ?? away;
+
+    // Idempotency: skip if this match is already in the UFNC DB
+    const alreadyRecorded = ufncMatches.some(m =>
+      m.home === ufncHome && m.away === ufncAway && m.data === matchDate
+    );
+    if (alreadyRecorded) {
+      console.log(`${ufncLeague}: ${ufncHome} vs ${ufncAway} on ${matchDate} already in DB, skipping`);
+      continue;
+    }
+
+    const { fullTime } = fdoMatch.score;
+    if (fullTime.home === null || fullTime.away === null) {
+      console.warn(`${ufncLeague}: match found but score not yet available`);
+      continue;
+    }
+
+    const detentorePosition = teamMatches(currentChampion, fdoMatch.homeTeam, leagueAliases) ? 'home' : 'away';
+    const outcome = mapOutcome(fdoMatch.score.winner, detentorePosition);
+    const risultato = `${fullTime.home}-${fullTime.away}`;
+
+    const result = {
+      league: ufncLeague,
+      home: ufncHome,
+      away: ufncAway,
+      data: matchDate,
+      detentore: detentorePosition,
+      risultato,
+      outcome,
+      note: `${LEAGUE_DISPLAY_NAME[ufncLeague] ?? ufncLeague.replace(/_/g, ' ')} ${seasonLabel(matchDate)}`,
+    };
+
+    console.log(
+      `${ufncLeague}: ${ufncHome} ${risultato} ${ufncAway} on ${matchDate} → outcome=${outcome} (champion="${currentChampion}" was ${detentorePosition})`
+    );
+    resolved.push(result);
   }
 
   // Write result files
@@ -221,7 +236,7 @@ async function main() {
   if (resultsFound) {
     mkdirSync(OUTPUT_DIR, { recursive: true });
     for (const result of resolved) {
-      const filename = `${result.data}-${result.league}-${result.numero}.json`;
+      const filename = `${result.data}-${result.league}.json`;
       writeFileSync(join(OUTPUT_DIR, filename), JSON.stringify(result, null, 2) + '\n');
       console.log(`Written: .github/pending-results/${filename}`);
     }
