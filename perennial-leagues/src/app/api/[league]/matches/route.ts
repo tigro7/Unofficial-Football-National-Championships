@@ -26,10 +26,14 @@ export async function POST(request: Request, {params,}: {params: Promise<{league
 
     const league = (await params).league || "serie_a";
 
-    // Verifica autenticazione
+    // Accept NextAuth session OR a pre-shared bearer token for CI automation
     const session = await getServerSession();
-    console.info('session:', session);
-    if (!session) {
+    const authHeader = request.headers.get('Authorization');
+    const automationSecret = process.env.AUTOMATION_SECRET;
+    const isAutomated = automationSecret && authHeader === `Bearer ${automationSecret}`;
+
+    console.info('session:', session, 'isAutomated:', isAutomated);
+    if (!session && !isAutomated) {
         return NextResponse.json({ error: 'Non autorizzato' }, { status: 401 });
     }
 

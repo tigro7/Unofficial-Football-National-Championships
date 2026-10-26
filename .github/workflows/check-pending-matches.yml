@@ -1,0 +1,74 @@
+name: Check pending match results
+
+on:
+  schedule:
+    # Run at 07:00 UTC every day (off the :00 mark to avoid API congestion)
+    - cron: '7 7 * * *'
+  workflow_dispatch: {}   # allow manual trigger from GitHub Actions UI
+
+jobs:
+  check:
+    name: Fetch results and open PR
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch results from football-data.org
+        id: check
+        env:
+          UFNC_BASE_URL: ${{ vars.UFNC_BASE_URL }}
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+        run: node .github/scripts/check-pending-matches.mjs
+
+      - name: Open PR with resolved results
+        if: steps.check.outputs.results_found == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          DATE=$(date -u +%Y-%m-%d)
+          BRANCH="match-results/${DATE}"
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git checkout -b "$BRANCH"
+          git add .github/pending-results/
+          git commit -m "chore(match): add pending results for ${DATE}
+
+          Co-Authored-By: Claude <noreply@anthropic.com>"
+          git push origin "$BRANCH"
+
+          # Build PR body listing each resolved match
+          BODY="## Match results ready for review
+
+          The following matches were resolved and are ready to be applied to the database.
+          **Review the results below and merge to apply them.**
+
+          $(for f in .github/pending-results/*.json; do
+            league=$(jq -r '.league' "$f")
+            home=$(jq -r '.home' "$f")
+            away=$(jq -r '.away' "$f")
+            score=$(jq -r '.risultato' "$f")
+            outcome=$(jq -r '.outcome' "$f")
+            date=$(jq -r '.data' "$f")
+            printf '- **%s** %s – %s vs %s (%s) → %s\n' "$date" "$league" "$home" "$away" "$score" "$outcome"
+          done)
+
+          Outcome codes: \`v\` = defender wins, \`d\` = draw, \`s\` = challenger wins (title changes hands).
+
+          🤖 Generated with [Claude Code](https://claude.com/claude-code)"
+
+          gh pr create \
+            --title "chore(match): update match results ${DATE}" \
+            --body "$BODY" \
+            --base main \
+            --head "$BRANCH" \
+            --label "match-result"

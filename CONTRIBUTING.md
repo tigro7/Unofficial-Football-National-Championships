@@ -84,6 +84,7 @@ docs: update CHANGELOG for v1.2.0
 | `NEXTAUTH_SECRET` | NextAuth session encryption secret |
 | `NEXT_PUBLIC_BASE_URL` | Canonical base URL used for client-side fetch calls |
 | `POSTGRES_URL` | Vercel Postgres connection string |
+| `AUTOMATION_SECRET` | Pre-shared bearer token that allows GitHub Actions to call the POST `/api/[league]/matches` endpoint without a user session. Must be set both in Vercel (production env) and as a GitHub repository secret. |
 
 ## Dependency Update Strategy
 
@@ -104,6 +105,34 @@ When merging a dependency PR, use commit type `chore(deps)`:
 ```
 chore(deps): bump next from 15.1.0 to 15.2.0
 ```
+
+## Automatic match result updates
+
+A GitHub Actions workflow (`check-pending-matches.yml`) runs daily at 07:00 UTC. It:
+
+1. Fetches all `outcome='n'` matches from the UFNC API whose `data` is in the past.
+2. Looks up each result on the [football-data.org](https://www.football-data.org/) API.
+3. If results are found, opens a pull request on the `match-results/YYYY-MM-DD` branch with one JSON file per resolved match under `.github/pending-results/`.
+
+**Reviewing and merging the PR** triggers `apply-match-results.yml`, which calls `POST /api/[league]/matches` for each file via the bearer-token auth path.
+
+### GitHub repository variables / secrets required
+
+| Name | Where to set | Purpose |
+|---|---|---|
+| `UFNC_BASE_URL` | Repository variable (`Settings → Variables`) | Production URL, e.g. `https://ufnc.vercel.app` |
+| `FOOTBALL_DATA_API_KEY` | Repository secret | football-data.org v4 API key |
+| `AUTOMATION_SECRET` | Repository secret **and** Vercel env var | Shared bearer token for the POST endpoint |
+
+Generate `AUTOMATION_SECRET` with `openssl rand -hex 32`.
+
+### Team name mapping
+
+`.github/scripts/football-data-config.json` maps UFNC team names (as stored in the DB) to the `shortName` values used by football-data.org. If the workflow logs `no match found` for a team, add an entry to the `teams` object for that league.
+
+### `match-result` label
+
+Create a `match-result` label in GitHub Issues (`Settings → Labels`) so the check workflow can tag its PRs and the apply workflow can identify them. Colour suggestion: `#0075ca`.
 
 ## Changelog
 
