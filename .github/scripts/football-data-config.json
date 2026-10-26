@@ -1,0 +1,83 @@
+{
+  "_comment": "Maps UFNC league names to football-data.org competition codes and team name aliases. Keys under 'teams' are the names stored in the UFNC database; values are football-data.org shortName values used for matching. Add entries when automatic matching fails (check workflow logs for 'no match found' warnings).",
+  "leagues": {
+    "serie_a": {
+      "code": "SA",
+      "teams": {
+        "Juventus": ["Juventus"],
+        "Milan": ["Milan"],
+        "Inter": ["Inter", "Internazionale"],
+        "Roma": ["Roma"],
+        "Napoli": ["Napoli"],
+        "Lazio": ["Lazio"],
+        "Fiorentina": ["Fiorentina"],
+        "Atalanta": ["Atalanta"],
+        "Torino": ["Torino"],
+        "Genoa": ["Genoa"],
+        "Cagliari": ["Cagliari"],
+        "Sassuolo": ["Sassuolo"],
+        "Salernitana": ["Salernitana"],
+        "Hellas Verona": ["Hellas Verona", "Verona"],
+        "Udinese": ["Udinese"],
+        "Bologna": ["Bologna"],
+        "Empoli": ["Empoli"],
+        "Monza": ["Monza"],
+        "Lecce": ["Lecce"],
+        "Frosinone": ["Frosinone"],
+        "Como": ["Como", "Como 1907"],
+        "Venezia": ["Venezia"],
+        "Parma": ["Parma"]
+      }
+    },
+    "premier_league": {
+      "code": "PL",
+      "teams": {
+        "Man City": ["Man City", "Manchester City"],
+        "Arsenal": ["Arsenal"],
+        "Liverpool": ["Liverpool"],
+        "Aston Villa": ["Aston Villa"],
+        "Tottenham": ["Spurs", "Tottenham"],
+        "Chelsea": ["Chelsea"],
+        "Newcastle": ["Newcastle"],
+        "Man United": ["Man United", "Manchester United"],
+        "West Ham": ["West Ham"],
+        "Brighton": ["Brighton"],
+        "Wolves": ["Wolves", "Wolverhampton"],
+        "Fulham": ["Fulham"],
+        "Brentford": ["Brentford"],
+        "Crystal Palace": ["Crystal Palace"],
+        "Nottingham": ["Nottingham", "Nott'm Forest"],
+        "Everton": ["Everton"],
+        "Bournemouth": ["Bournemouth"],
+        "Leicester": ["Leicester"],
+        "Southampton": ["Southampton"],
+        "Ipswich": ["Ipswich"]
+      }
+    },
+    "liga": {
+      "code": "PD",
+      "teams": {
+        "Real Madrid": ["Real Madrid"],
+        "Barcelona": ["Barcelona"],
+        "Atletico Madrid": ["Atlético de Madrid", "Atletico Madrid", "Atlético"],
+        "Real Sociedad": ["Real Sociedad"],
+        "Villarreal": ["Villarreal"],
+        "Athletic Bilbao": ["Athletic Club", "Athletic Bilbao"],
+        "Celta Vigo": ["Celta Vigo", "Celta"],
+        "Valencia": ["Valencia"],
+        "Sevilla": ["Sevilla"],
+        "Real Betis": ["Betis", "Real Betis"],
+        "Osasuna": ["Osasuna"],
+        "Getafe": ["Getafe"],
+        "Girona": ["Girona"],
+        "Rayo Vallecano": ["Rayo Vallecano", "Rayo"],
+        "Alaves": ["Alavés", "Alaves"],
+        "Las Palmas": ["Las Palmas"],
+        "Mallorca": ["Mallorca"],
+        "Valladolid": ["Valladolid"],
+        "Espanol": ["Espanyol", "Espanol"],
+        "Leganes": ["Leganés", "Leganes"]
+      }
+    }
+  }
+}

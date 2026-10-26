@@ -1,0 +1,72 @@
+name: Apply match results
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+jobs:
+  apply:
+    name: POST results to UFNC API
+    # Only run when a match-results/* branch is merged (not just closed)
+    if: |
+      github.event.pull_request.merged == true &&
+      startsWith(github.head_ref, 'match-results/')
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Checkout the merge commit on main so we have the result JSON files
+          ref: main
+
+      - name: Apply each result file
+        env:
+          UFNC_BASE_URL: ${{ vars.UFNC_BASE_URL }}
+          AUTOMATION_SECRET: ${{ secrets.AUTOMATION_SECRET }}
+        run: |
+          set -euo pipefail
+          FAILED=0
+
+          for f in .github/pending-results/*.json; do
+            [ -f "$f" ] || continue
+
+            league=$(jq -r '.league' "$f")
+            home=$(jq -r '.home' "$f")
+            away=$(jq -r '.away' "$f")
+            data=$(jq -r '.data' "$f")
+            detentore=$(jq -r '.detentore' "$f")
+            risultato=$(jq -r '.risultato' "$f")
+            outcome=$(jq -r '.outcome' "$f")
+            note=$(jq -r '.note' "$f")
+
+            echo "Applying: ${league} ${home} vs ${away} on ${data} → ${outcome} (${risultato})"
+
+            STATUS=$(curl -s -o /tmp/response.json -w "%{http_code}" \
+              -X POST "${UFNC_BASE_URL}/api/${league}/matches" \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bearer ${AUTOMATION_SECRET}" \
+              -d "$(jq -n \
+                --arg home "$home" \
+                --arg away "$away" \
+                --arg detentore "$detentore" \
+                --arg risultato "$risultato" \
+                --arg note "$note" \
+                --arg data "$data" \
+                --arg outcome "$outcome" \
+                '{home:$home,away:$away,detentore:$detentore,risultato:$risultato,note:$note,data:$data,outcome:$outcome}')")
+
+            if [ "$STATUS" -ge 200 ] && [ "$STATUS" -lt 300 ]; then
+              echo "  ✓ Applied (HTTP ${STATUS})"
+            else
+              echo "  ✗ Failed (HTTP ${STATUS}): $(cat /tmp/response.json)"
+              FAILED=$((FAILED + 1))
+            fi
+          done
+
+          if [ "$FAILED" -gt 0 ]; then
+            echo "::error::${FAILED} result(s) failed to apply. Check the logs above."
+            exit 1
+          fi
+
+          echo "All results applied successfully."
