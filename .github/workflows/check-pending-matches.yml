@@ -81,17 +81,14 @@ jobs:
               MATCH_LINES="${MATCH_LINES}"$'\n'"* ${mdate} | ${home} vs ${away} | ${score} | outcome=${outcome}"
             done
 
-            cat > "/tmp/pr-body-${league}.md" <<PRBODY
-## Match results ready for review — ${league}
-
-The following match was resolved and is ready to be applied to the database.
-**Review the result below and merge to apply it.**
-${MATCH_LINES}
-
-Outcome codes: \`v\` = defender wins, \`d\` = draw, \`s\` = challenger wins (title changes hands).
-
-Generated with [Claude Code](https://claude.com/claude-code)
-PRBODY
+            {
+              printf '## Match results ready for review — %s\n\n' "$league"
+              printf 'The following match was resolved and is ready to be applied to the database.\n'
+              printf '**Review the result below and merge to apply it.**\n'
+              printf '%s\n\n' "$MATCH_LINES"
+              printf 'Outcome codes: `v` = defender wins, `d` = draw, `s` = challenger wins (title changes hands).\n\n'
+              printf 'Generated with [Claude Code](https://claude.com/claude-code)\n'
+            } > "/tmp/pr-body-${league}.md"
 
             gh pr create \
               --title "chore(match): ${league} results ${DATE}" \
