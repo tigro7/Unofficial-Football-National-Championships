@@ -2,6 +2,7 @@
 
 import { db } from "@vercel/postgres";
 import { NextResponse } from 'next/server';
+import { getServerSession } from "next-auth";
 
 export async function GET(request: Request, {params,}: {params: Promise<{ league: string }>}) {
 
@@ -27,12 +28,18 @@ export async function GET(request: Request, {params,}: {params: Promise<{ league
 export async function POST(request: Request, {params,}: {params: Promise<{ league: string }>}) {
 
     const league = (await params).league || "serie_a";
+
+    const session = await getServerSession();
+    if (!session) {
+        return NextResponse.json({ error: 'Non autorizzato' }, { status: 401 });
+    }
+
     const body = await request.json();
-    
+
     try {
         const client = await db.connect();
-        const rows =  await client.sql`INSERT INTO squadre (squadra, regni, durata, media, colore_primario, colore_secondario, league, mb) 
-                                        VALUES ('${body.squadra}', 1, ${body.durata}, ${body.durata}, '#000000', '#FFFFFF', ${league}, 'm')`;
+        const rows =  await client.sql`INSERT INTO squadre (squadra, regni, durata, media, colore_primario, colore_secondario, league, mb)
+                                        VALUES (${body.squadra}, 1, ${body.durata}, ${body.durata}, '#000000', '#FFFFFF', ${league}, 'm')`;
     
         client.release();
         return NextResponse.json(rows.rows, { status: 200 });
@@ -45,8 +52,14 @@ export async function POST(request: Request, {params,}: {params: Promise<{ leagu
 export async function PUT(request: Request, {params,}: {params: Promise<{ league: string }>}) {
 
     const league = (await params).league || "serie_a";
+
+    const session = await getServerSession();
+    if (!session) {
+        return NextResponse.json({ error: 'Non autorizzato' }, { status: 401 });
+    }
+
     const body = await request.json();
-    
+
     try {
         const client = await db.connect();
         const rows =  await client.sql`UPDATE squadre SET regni = regni + 1, durata = durata + ${body.durata}, media = (durata + ${body.durata}) / regni, 

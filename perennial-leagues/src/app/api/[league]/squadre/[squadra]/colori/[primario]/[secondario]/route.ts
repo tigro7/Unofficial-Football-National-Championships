@@ -2,10 +2,17 @@
 
 import { db } from "@vercel/postgres";
 import { NextResponse } from 'next/server';
+import { getServerSession } from "next-auth";
 
 export async function PUT(request: Request, {params,}: {params: Promise<{ squadra: string, league: string, primario: string, secondario: string}>}) {
 
     const {squadra, league = "serie_a", primario = "000000", secondario = "FFFFFF"} = await params;
+
+    const session = await getServerSession();
+    if (!session) {
+        return NextResponse.json({ error: 'Non autorizzato' }, { status: 401 });
+    }
+
     console.info(`PUT /api/${league}/squadre/${squadra}/${primario}/${secondario}`);
 
     if (squadra == undefined || squadra == '') {
