@@ -38,6 +38,19 @@ const config = JSON.parse(
 
 const today = new Date().toISOString().split('T')[0];
 
+const LEAGUE_DISPLAY_NAME = {
+  serie_a: 'Serie A',
+  premier_league: 'Premier League',
+  liga: 'La Liga',
+};
+
+/** Returns "YYYY-YYYY+1" season label for a YYYY-MM-DD date string. */
+function seasonLabel(dateStr) {
+  const [year, month] = dateStr.split('-').map(Number);
+  const start = month >= 7 ? year : year - 1;
+  return `${start}-${start + 1}`;
+}
+
 /**
  * Tries to match a UFNC team name against a football-data.org team object.
  * Returns true if the FDO team's name or shortName matches any alias in the config.
@@ -191,7 +204,7 @@ async function main() {
           detentore: detentorePosition,
           risultato,
           outcome,
-          note: `${ufncLeague.replace(/_/g, ' ')} matchday ${fdoMatch.matchday ?? ''}`.trim(),
+          note: `${LEAGUE_DISPLAY_NAME[ufncLeague] ?? ufncLeague.replace(/_/g, ' ')} ${seasonLabel(date)}`,
         };
 
         console.log(
