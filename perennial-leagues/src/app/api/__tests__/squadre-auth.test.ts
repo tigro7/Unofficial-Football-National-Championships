@@ -23,7 +23,8 @@ import { POST, PUT } from "@/app/api/[league]/squadre/route";
 import { PUT as PUTColors } from "@/app/api/[league]/squadre/[squadra]/colori/[primario]/[secondario]/route";
 import { getServerSession } from "next-auth";
 
-function params(p: Record<string, string>) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function params(p: Record<string, string>): any {
   return { params: Promise.resolve(p) };
 }
 
