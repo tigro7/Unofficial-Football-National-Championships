@@ -26,6 +26,7 @@ jobs:
           AUTOMATION_SECRET: ${{ secrets.AUTOMATION_SECRET }}
         run: |
           set -euo pipefail
+          UFNC_BASE_URL="${UFNC_BASE_URL%/}"  # strip any trailing slash
           FAILED=0
 
           for f in .github/pending-results/*.json; do
