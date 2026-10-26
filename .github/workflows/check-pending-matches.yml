@@ -1,8 +1,8 @@
 name: Check pending match results
 
 on:
-  - workflow_dispatch
-  - schedule:
+  workflow_dispatch:
+  schedule:
     # Run at 07:00 UTC every day (off the :00 mark to avoid API congestion)
     - cron: '7 7 * * *'
   
