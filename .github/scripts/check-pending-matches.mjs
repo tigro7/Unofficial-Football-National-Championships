@@ -212,9 +212,15 @@ async function main() {
       continue;
     }
 
-    const detentorePosition = teamMatches(currentChampion, fdoMatch.homeTeam, leagueAliases) ? 'home' : 'away';
-    const outcome = mapOutcome(fdoMatch.score.winner, detentorePosition);
+    const incomingChampionPosition = teamMatches(currentChampion, fdoMatch.homeTeam, leagueAliases) ? 'home' : 'away';
+    const outcome = mapOutcome(fdoMatch.score.winner, incomingChampionPosition);
     const risultato = `${fullTime.home}-${fullTime.away}`;
+
+    // detentore = who holds the title AFTER this match (the winner):
+    // 's' → challenger won, flip position; 'v'/'d' → champion kept it, same position
+    const detentorePosition = outcome === 's'
+      ? (incomingChampionPosition === 'home' ? 'away' : 'home')
+      : incomingChampionPosition;
 
     const result = {
       league: ufncLeague,
@@ -228,7 +234,7 @@ async function main() {
     };
 
     console.log(
-      `${ufncLeague}: ${ufncHome} ${risultato} ${ufncAway} on ${matchDate} → outcome=${outcome} (champion="${currentChampion}" was ${detentorePosition})`
+      `${ufncLeague}: ${ufncHome} ${risultato} ${ufncAway} on ${matchDate} → outcome=${outcome} (champion="${currentChampion}" was ${incomingChampionPosition}, new detentore=${detentorePosition})`
     );
     resolved.push(result);
   }
