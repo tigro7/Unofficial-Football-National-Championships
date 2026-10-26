@@ -53,22 +53,24 @@ jobs:
             score=$(jq -r '.risultato' "$f")
             outcome=$(jq -r '.outcome' "$f")
             date=$(jq -r '.data' "$f")
-            LINE="* ${date} | ${league} | ${home} vs ${away} | ${score} | outcome=${outcome}"
-            MATCH_LINES="${MATCH_LINES}
-            ${LINE}"
+            MATCH_LINES="${MATCH_LINES}"$'\n'"* ${date} | ${league} | ${home} vs ${away} | ${score} | outcome=${outcome}"
           done
+
+          cat > /tmp/pr-body.md <<PRBODY
+          ## Match results ready for review
+
+          The following matches were resolved and are ready to be applied to the database.
+          **Review the results below and merge to apply them.**
+          ${MATCH_LINES}
+
+          Outcome codes: \`v\` = defender wins, \`d\` = draw, \`s\` = challenger wins (title changes hands).
+
+          Generated with [Claude Code](https://claude.com/claude-code)
+          PRBODY
 
           gh pr create \
             --title "chore(match): update match results ${DATE}" \
-            --body "## Match results ready for review
-
-The following matches were resolved and are ready to be applied to the database.
-**Review the results below and merge to apply them.**
-${MATCH_LINES}
-
-Outcome codes: \`v\` = defender wins, \`d\` = draw, \`s\` = challenger wins (title changes hands).
-
-Generated with [Claude Code](https://claude.com/claude-code)" \
+            --body-file /tmp/pr-body.md \
             --base main \
             --head "$BRANCH" \
             --label "match-result"
