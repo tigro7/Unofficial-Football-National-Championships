@@ -128,6 +128,11 @@ async function main() {
       continue;
     }
 
+    // Strip any time component from the date (DB returns ISO timestamps like 2025-10-25T00:00:00.000Z)
+    for (const m of ufncMatches) {
+      m.data = m.data.split('T')[0];
+    }
+
     // Filter: unplayed matches whose date is already in the past
     const pending = ufncMatches.filter(m => m.outcome === 'n' && m.data < today);
 
