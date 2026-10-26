@@ -47,28 +47,29 @@ jobs:
           git push origin "$BRANCH"
 
           # Build PR body listing each resolved match
-          BODY="## Match results ready for review
-
-          The following matches were resolved and are ready to be applied to the database.
-          **Review the results below and merge to apply them.**
-
-          $(for f in .github/pending-results/*.json; do
+          MATCH_LINES=""
+          for f in .github/pending-results/*.json; do
             league=$(jq -r '.league' "$f")
             home=$(jq -r '.home' "$f")
             away=$(jq -r '.away' "$f")
             score=$(jq -r '.risultato' "$f")
             outcome=$(jq -r '.outcome' "$f")
             date=$(jq -r '.data' "$f")
-            printf '- **%s** %s – %s vs %s (%s) → %s\n' "$date" "$league" "$home" "$away" "$score" "$outcome"
-          done)
-
-          Outcome codes: \`v\` = defender wins, \`d\` = draw, \`s\` = challenger wins (title changes hands).
-
-          🤖 Generated with [Claude Code](https://claude.com/claude-code)"
+            MATCH_LINES="${MATCH_LINES}
+* ${date} | ${league} | ${home} vs ${away} | ${score} | outcome=${outcome}"
+          done
 
           gh pr create \
             --title "chore(match): update match results ${DATE}" \
-            --body "$BODY" \
+            --body "## Match results ready for review
+
+The following matches were resolved and are ready to be applied to the database.
+**Review the results below and merge to apply them.**
+${MATCH_LINES}
+
+Outcome codes: \`v\` = defender wins, \`d\` = draw, \`s\` = challenger wins (title changes hands).
+
+Generated with [Claude Code](https://claude.com/claude-code)" \
             --base main \
             --head "$BRANCH" \
             --label "match-result"
