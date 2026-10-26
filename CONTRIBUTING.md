@@ -85,6 +85,26 @@ docs: update CHANGELOG for v1.2.0
 | `NEXT_PUBLIC_BASE_URL` | Canonical base URL used for client-side fetch calls |
 | `POSTGRES_URL` | Vercel Postgres connection string |
 
+## Dependency Update Strategy
+
+Dependabot is configured to open PRs monthly for `npm` packages under `perennial-leagues/`. The workflow for handling those PRs is:
+
+| Bump type | Action |
+|---|---|
+| **Patch** (`x.x.N`) | Merge immediately if CI is green — no manual review needed |
+| **Minor** (`x.N.0`) | Skim the changelog; merge if CI is green and no breaking notes |
+| **Major** (`N.0.0`) | Read migration guide, test locally, update any affected code before merging |
+
+**Security alerts** (Dependabot or `npm audit`) are treated as bugs and addressed within 48 hours regardless of bump type.
+
+> **Known exception:** `postcss` (high) is bundled inside `next@15.x` and cannot be fixed without upgrading to Next.js 16. CI uses `--audit-level=critical` until that upgrade is scheduled.
+
+When merging a dependency PR, use commit type `chore(deps)`:
+
+```
+chore(deps): bump next from 15.1.0 to 15.2.0
+```
+
 ## Changelog
 
 `CHANGELOG.md` follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and is updated manually alongside significant milestones.
