@@ -38,6 +38,11 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+          # Delete stale remote branch from a previous run if it exists
+          git push origin --delete "$BRANCH" 2>/dev/null || true
+          # Close any open PR for this branch so we can re-open cleanly
+          gh pr close "$BRANCH" --delete-branch 2>/dev/null || true
+
           git checkout -b "$BRANCH"
           git add .github/pending-results/
           git commit -m "chore(match): add pending results for ${DATE}
