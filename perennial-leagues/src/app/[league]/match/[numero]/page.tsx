@@ -3,7 +3,7 @@ import Match from "../match";
 import ErrorBoundary from "@/app/components/ErrorBoundary";
 import normalizeTeamName from "@/app/utils/namesMap";
 
-const Page = async ({params,}: {params: Promise<{ numero: number, league: string}>}) => {
+const Page = async ({params,}: {params: Promise<{ numero: string, league: string}>}) => {
 
     const host = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'; // URL di base
 

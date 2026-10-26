@@ -26,6 +26,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Audit dependencies
+        # --audit-level=critical: one bundled postcss high inside next@15.x
+        # cannot be fixed without upgrading to Next.js 16 (breaking change).
+        run: npm audit --audit-level=critical --omit=dev
+
       - name: Type-check
         run: npx tsc --noEmit
 

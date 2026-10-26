@@ -3,12 +3,12 @@
 import { db } from "@vercel/postgres";
 import { NextResponse } from 'next/server';
 
-export async function GET(request: Request, {params,}: {params: Promise<{ league: string, numero: number }>}) {
+export async function GET(request: Request, {params,}: {params: Promise<{ league: string, numero: string }>}) {
 
+    const {numero: numeroStr, league = "serie_a"} = await params;
+    const numero = Number(numeroStr);
 
-    const {numero, league = "serie_a"} = await params;
-  
-    if (numero === undefined || isNaN(numero)) {
+    if (!numeroStr || isNaN(numero)) {
       return NextResponse.json({ error: 'Parametro numero mancante o non valido' }, { status: 400 });
     }
 

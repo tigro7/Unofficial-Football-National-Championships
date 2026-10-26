@@ -4,9 +4,9 @@ import { db } from "@vercel/postgres";
 import { NextResponse } from 'next/server';
 //import { Summary } from "@/app/lib/definitions";
 
-export async function GET(request: Request, {params,}: {params: Promise<{ data: string, league: string }>}) {
+export async function GET(request: Request, {params,}: {params: Promise<{ numero: string, league: string }>}) {
 
-    const {data, league = "serie_a"} = (await params);
+    const { numero: data, league = "serie_a" } = (await params);
 
     if (data === undefined || data === '') {
       return NextResponse.json({ error: 'Parametro data mancante o non valido' }, { status: 400 });

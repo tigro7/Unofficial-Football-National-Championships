@@ -4,7 +4,7 @@ import { db } from "@vercel/postgres";
 import { NextResponse } from 'next/server';
 //import { Summary } from "@/app/lib/definitions";
 
-export async function GET(request: Request, {params,}: {params: Promise<{ detentore: string, sfidante: string, numero: number, league: string}>}) {
+export async function GET(request: Request, {params,}: {params: Promise<{ detentore: string, sfidante: string, numero: string, league: string}>}) {
 
     const { detentore, sfidante, numero, league = "serie_a"} = await params;
   
