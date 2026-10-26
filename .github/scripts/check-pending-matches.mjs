@@ -28,6 +28,7 @@ const OUTPUT_DIR = join(ROOT, '.github', 'pending-results');
 
 const UFNC_BASE_URL = process.env.UFNC_BASE_URL?.replace(/\/$/, '');
 const FD_API_KEY = process.env.FOOTBALL_DATA_API_KEY;
+const ONLY_LEAGUE = process.env.LEAGUE ?? null;
 
 if (!UFNC_BASE_URL) { console.error('UFNC_BASE_URL is required'); process.exit(1); }
 if (!FD_API_KEY) { console.error('FOOTBALL_DATA_API_KEY is required'); process.exit(1); }
@@ -116,6 +117,8 @@ async function main() {
   const resolved = [];
 
   for (const [ufncLeague, leagueConfig] of Object.entries(config.leagues)) {
+    if (ONLY_LEAGUE && ufncLeague !== ONLY_LEAGUE) continue;
+
     const { code, teams: leagueAliases } = leagueConfig;
 
     // Fetch all matches for this league from UFNC
@@ -234,11 +237,12 @@ async function main() {
   const resultsFound = resolved.length > 0;
 
   if (resultsFound) {
-    mkdirSync(OUTPUT_DIR, { recursive: true });
     for (const result of resolved) {
-      const filename = `${result.data}-${result.league}.json`;
-      writeFileSync(join(OUTPUT_DIR, filename), JSON.stringify(result, null, 2) + '\n');
-      console.log(`Written: .github/pending-results/${filename}`);
+      const leagueDir = join(OUTPUT_DIR, result.league);
+      mkdirSync(leagueDir, { recursive: true });
+      const filename = `${result.data}.json`;
+      writeFileSync(join(leagueDir, filename), JSON.stringify(result, null, 2) + '\n');
+      console.log(`Written: .github/pending-results/${result.league}/${filename}`);
     }
   }
 

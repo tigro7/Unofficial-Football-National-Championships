@@ -20,62 +20,90 @@ jobs:
         with:
           node-version: 22
 
-      - name: Fetch results from football-data.org
-        id: check
-        env:
-          UFNC_BASE_URL: ${{ vars.UFNC_BASE_URL }}
-          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
-        run: node .github/scripts/check-pending-matches.mjs
-
-      - name: Open PR with resolved results
-        if: steps.check.outputs.results_found == 'true'
+      - name: Per-league check and PR creation
         env:
           GH_TOKEN: ${{ github.token }}
+          UFNC_BASE_URL: ${{ vars.UFNC_BASE_URL }}
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
         run: |
-          DATE=$(date -u +%Y-%m-%d)
-          BRANCH="match-results/${DATE}"
+          set -euo pipefail
 
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Delete stale remote branch from a previous run if it exists
-          git push origin --delete "$BRANCH" 2>/dev/null || true
-          # Close any open PR for this branch so we can re-open cleanly
-          gh pr close "$BRANCH" --delete-branch 2>/dev/null || true
+          DATE=$(date -u +%Y-%m-%d)
+          ANY_PR=false
 
-          git checkout -b "$BRANCH"
-          git add .github/pending-results/
-          git commit -m "chore(match): add pending results for ${DATE}
+          for league in serie_a premier_league liga; do
+            echo ""
+            echo "=== ${league} ==="
 
-          Co-Authored-By: Claude <noreply@anthropic.com>"
-          git push origin "$BRANCH"
+            # Skip if an open PR already exists for this league
+            OPEN=$(gh pr list --state open --json headRefName \
+              --jq "[.[] | select(.headRefName | startswith(\"match-results/${league}/\"))] | length")
+            if [ "$OPEN" -gt 0 ]; then
+              echo "${league}: open PR already exists — skipping"
+              continue
+            fi
 
-          MATCH_LINES=""
-          for f in .github/pending-results/*.json; do
-            league=$(jq -r '.league' "$f")
-            home=$(jq -r '.home' "$f")
-            away=$(jq -r '.away' "$f")
-            score=$(jq -r '.risultato' "$f")
-            outcome=$(jq -r '.outcome' "$f")
-            date=$(jq -r '.data' "$f")
-            MATCH_LINES="${MATCH_LINES}"$'\n'"* ${date} | ${league} | ${home} vs ${away} | ${score} | outcome=${outcome}"
+            # Run the script for this league only
+            LEAGUE_OUTPUT=$(mktemp)
+            LEAGUE=$league GITHUB_OUTPUT=$LEAGUE_OUTPUT \
+              node .github/scripts/check-pending-matches.mjs || true
+            FOUND=$(grep -c "results_found=true" "$LEAGUE_OUTPUT" || true)
+            rm -f "$LEAGUE_OUTPUT"
+
+            if [ "$FOUND" -eq 0 ]; then
+              echo "${league}: no new results found"
+              continue
+            fi
+
+            BRANCH="match-results/${league}/${DATE}"
+
+            # Delete stale remote branch/PR from a previous failed run if present
+            gh pr close "$BRANCH" 2>/dev/null || true
+            git push origin --delete "$BRANCH" 2>/dev/null || true
+
+            git checkout -b "$BRANCH"
+            git add ".github/pending-results/${league}/"
+            git commit -m "chore(match): add ${league} results for ${DATE}
+
+            Co-Authored-By: Claude <noreply@anthropic.com>"
+            git push origin "$BRANCH"
+
+            MATCH_LINES=""
+            for f in ".github/pending-results/${league}/"*.json; do
+              home=$(jq -r '.home' "$f")
+              away=$(jq -r '.away' "$f")
+              score=$(jq -r '.risultato' "$f")
+              outcome=$(jq -r '.outcome' "$f")
+              mdate=$(jq -r '.data' "$f")
+              MATCH_LINES="${MATCH_LINES}"$'\n'"* ${mdate} | ${home} vs ${away} | ${score} | outcome=${outcome}"
+            done
+
+            cat > "/tmp/pr-body-${league}.md" <<PRBODY
+## Match results ready for review — ${league}
+
+The following match was resolved and is ready to be applied to the database.
+**Review the result below and merge to apply it.**
+${MATCH_LINES}
+
+Outcome codes: \`v\` = defender wins, \`d\` = draw, \`s\` = challenger wins (title changes hands).
+
+Generated with [Claude Code](https://claude.com/claude-code)
+PRBODY
+
+            gh pr create \
+              --title "chore(match): ${league} results ${DATE}" \
+              --body-file "/tmp/pr-body-${league}.md" \
+              --base main \
+              --head "$BRANCH" \
+              --label "match-result"
+
+            ANY_PR=true
+
+            # Return to main for the next league
+            git checkout main
           done
 
-          cat > /tmp/pr-body.md <<PRBODY
-          ## Match results ready for review
-
-          The following matches were resolved and are ready to be applied to the database.
-          **Review the results below and merge to apply them.**
-          ${MATCH_LINES}
-
-          Outcome codes: \`v\` = defender wins, \`d\` = draw, \`s\` = challenger wins (title changes hands).
-
-          Generated with [Claude Code](https://claude.com/claude-code)
-          PRBODY
-
-          gh pr create \
-            --title "chore(match): update match results ${DATE}" \
-            --body-file /tmp/pr-body.md \
-            --base main \
-            --head "$BRANCH" \
-            --label "match-result"
+          echo "Done. Any PRs opened: ${ANY_PR}"

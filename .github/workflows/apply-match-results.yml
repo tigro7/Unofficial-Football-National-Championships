@@ -21,8 +21,9 @@ jobs:
         with:
           # Checkout the merge commit on main so we have the result JSON files
           ref: main
+          fetch-depth: 2   # need HEAD~1 to diff against
 
-      - name: Apply each result file
+      - name: Apply each result file added by this merge
         env:
           UFNC_BASE_URL: ${{ vars.UFNC_BASE_URL }}
           AUTOMATION_SECRET: ${{ secrets.AUTOMATION_SECRET }}
@@ -31,7 +32,15 @@ jobs:
           UFNC_BASE_URL="${UFNC_BASE_URL%/}"  # strip any trailing slash
           FAILED=0
 
-          for f in .github/pending-results/*.json; do
+          # Only process files that were added by this specific merge commit
+          mapfile -t FILES < <(git diff HEAD~1 HEAD --name-only --diff-filter=A -- '.github/pending-results/')
+
+          if [ "${#FILES[@]}" -eq 0 ]; then
+            echo "No new pending-results files in this merge — nothing to apply."
+            exit 0
+          fi
+
+          for f in "${FILES[@]}"; do
             [ -f "$f" ] || continue
 
             league=$(jq -r '.league' "$f")
