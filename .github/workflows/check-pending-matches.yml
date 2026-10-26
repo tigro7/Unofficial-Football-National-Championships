@@ -53,8 +53,9 @@ jobs:
             score=$(jq -r '.risultato' "$f")
             outcome=$(jq -r '.outcome' "$f")
             date=$(jq -r '.data' "$f")
+            LINE="* ${date} | ${league} | ${home} vs ${away} | ${score} | outcome=${outcome}"
             MATCH_LINES="${MATCH_LINES}
-* ${date} | ${league} | ${home} vs ${away} | ${score} | outcome=${outcome}"
+            ${LINE}"
           done
 
           gh pr create \
