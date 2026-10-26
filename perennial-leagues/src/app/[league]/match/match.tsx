@@ -9,7 +9,6 @@ import {
   faCrown,
   faTrophy,
   faCalendar,
-  faFlag,
   faHandshake,
   faShieldHalved,
   faCircleArrowLeft,
@@ -32,10 +31,11 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
   league: string
 }) => {
   
-    const iconHome = matchInfo.detentore === teamHome.name ? faCrown : matchInfo.detentore === teamAway.name && matchInfo.outcome === 's' ? faFlag : null;
-    const iconAway = matchInfo.detentore === teamAway.name ? faCrown : matchInfo.detentore === teamHome.name && matchInfo.outcome === 's' ? faFlag : null;
+    const titleHolderAfter = matchInfo.outcome === 's' ? matchInfo.sfidante : matchInfo.detentore;
+    const iconHome = teamHome.name === titleHolderAfter ? faCrown : null;
+    const iconAway = teamAway.name === titleHolderAfter ? faCrown : null;
     const iconMatch = matchInfo.outcome === 'd' ? faHandshake : matchInfo.outcome === 's' ? faTrophy : matchInfo.outcome === 'v' ? faShieldHalved : faCalendar;
-    const iconTitle = matchInfo.outcome === 'd' ? `Draw (${matchInfo.detentore} still reigns)` : matchInfo.outcome === 's' ? `Won by ${matchInfo.detentore}` : matchInfo.outcome === 'v' ? `Defended by ${matchInfo.detentore}` : 'Scheduled';
+    const iconTitle = matchInfo.outcome === 'd' ? `Draw (${matchInfo.detentore} still reigns)` : matchInfo.outcome === 's' ? `Stolen by ${matchInfo.sfidante}` : matchInfo.outcome === 'v' ? `Defended by ${matchInfo.detentore}` : 'Scheduled';
     const iconColor = matchInfo.outcome === 's' ? 'gold' : '';
 
     const [iconStats, setStats] = useState([]);
