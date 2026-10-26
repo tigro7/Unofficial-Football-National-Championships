@@ -16,8 +16,10 @@ function createFakeClient(responders: [RegExp, Row[] | Row[][]][] = [], queued =
 
   // These stats queries are dereferenced as `rows[0]` without a guard, so they
   // need at least one row for updateStats to run to completion.
+  // NOTE: the Decade Dominator regex is deliberately specific to avoid matching
+  // the Dynasty Builder CTE which also contains DISTINCT ON (decade).
   const defaults: [RegExp, Row[]][] = [
-    [/SELECT DISTINCT ON \(decade\)/, [{ data: "2020-01-01", detentore: "Juventus", regni: 3, numero: 1 }]],
+    [/DISTINCT ON \(decade\)\s+decade, d\.detentore/, [{ data: "2020-01-01", detentore: "Juventus", regni: 3, numero: 1 }]],
     [/ORDER BY long\.durata DESC/, [{ data: "2020-01-01", detentore: "Juventus", durata: 10, numero: 1 }]],
     [/ORDER BY short\.durata ASC/, [{ data: "2020-01-01", detentore: "Juventus", durata: 10, numero: 1 }]],
   ];
@@ -240,6 +242,96 @@ describe("updateStats", () => {
       const b2b = find(/INSERT INTO stats[^]*'Back to Back'/);
       expect(b2b).toHaveLength(1);
       expect(b2b[0].values).toEqual(["Juventus", DATA, LEAGUE, 3, 77]);
+    });
+
+    it("records 'Back to Back' when team reclaims the title within 30 days (days variant)", async () => {
+      const { client, find } = createFakeClient([
+        [/MIN\(t2\.data - t1\.data\) AS wait_time/, [{ wait_time: 15, numero: 80 }]],
+      ]);
+      await run(client, { outcome: "s" });
+      const b2b = find(/INSERT INTO stats[^]*'Back to Back'/);
+      expect(b2b).toHaveLength(1);
+      expect(b2b[0].values).toEqual(["Juventus", DATA, LEAGUE, 15, 80]);
+    });
+
+    it("updates an existing Decade Dominator record rather than inserting", async () => {
+      const { client, find } = createFakeClient([
+        // existence check: SELECT * FROM stats WHERE league = ? AND statistica = ?
+        [/SELECT \* FROM stats WHERE league = \? AND statistica = \?/, [{ statistica: "Decade Dominator 2020" }]],
+      ]);
+      await run(client, { outcome: "s" });
+      // should UPDATE, not INSERT for decade dominator
+      const updates = find(/UPDATE stats SET data = \?, squadra = \?, valore = \?, numero = \?/);
+      expect(updates.some((c) => c.values.some((v) => String(v).startsWith("Decade Dominator")))).toBe(true);
+      // and NOT insert for decade dominator
+      expect(find(/INSERT INTO stats/).filter((c) => c.values.some((v) => String(v).startsWith("Decade Dominator")))).toHaveLength(0);
+    });
+
+    it("records a 'Title Avenger' stat when the team wins back the title it previously lost", async () => {
+      const { client, find } = createFakeClient([
+        [/AS record_count/, [{ detentore: "Juventus", data: DATA, league: LEAGUE, sfidante: "Milan", numero: 90, record_count: 2 }]],
+      ]);
+      await run(client, { outcome: "s" });
+      const avenger = find(/INSERT INTO stats/).filter((c) => c.values.some((v) => String(v).startsWith("Title Avenger")));
+      expect(avenger).toHaveLength(1);
+      expect(avenger[0].values).toEqual(["Juventus", DATA, LEAGUE, "Title Avenger vs Milan", 2, 90]);
+    });
+
+    it("records a 'Sleeping Giant' stat when a team wins after a 10-year absence", async () => {
+      const { client, find } = createFakeClient([
+        [/as sleep_duration/, [{ detentore: "Juventus", data: DATA, league: LEAGUE, numero: 95, sleep_duration: 4200 }]],
+      ]);
+      await run(client, { outcome: "s" });
+      const sg = find(/INSERT INTO stats[^]*'Sleeping Giant'/);
+      expect(sg).toHaveLength(1);
+      expect(sg[0].values).toEqual(["Juventus", DATA, LEAGUE, 4200, 95]);
+    });
+
+    it("records a 'Newbie' stat on a team's very first match appearance", async () => {
+      const { client, find } = createFakeClient([
+        // The Newbie CTE query has 'Newbie' as a SELECT literal — regex matches it
+        [/'Newbie', m\.numero/, [{ squadra: "Juventus", data: DATA, league: LEAGUE, numero: 5 }]],
+      ]);
+      await run(client, { outcome: "s" });
+      const newbie = find(/INSERT INTO stats[^]*'Newbie'/);
+      expect(newbie).toHaveLength(1);
+      expect(newbie[0].values).toEqual(["Juventus", DATA, LEAGUE, 5]);
+    });
+
+    it("always deletes and re-inserts Stronghold, Consolation Prize, and King Slayer stats", async () => {
+      const { client, find } = createFakeClient();
+      await run(client, { outcome: "s" });
+      expect(find(/statistica LIKE 'Stronghold%'/)).toHaveLength(1);
+      expect(find(/statistica LIKE 'Consolation Prize%'/)).toHaveLength(1);
+      expect(find(/statistica LIKE 'King Slayer%'/)).toHaveLength(1);
+    });
+
+    it("updates an existing Legacy Run record rather than inserting", async () => {
+      const { client, find } = createFakeClient([
+        [/AS tier FROM squadre WHERE regni > 10/, [{ detentore: "Juventus", data: DATA, numero: 1, regni: 20, tier: "Bronze" }]],
+        [/statistica LIKE 'Legacy Run%'/, [{ squadra: "Juventus" }]],
+      ]);
+      await run(client, { outcome: "s" });
+      expect(find(/UPDATE stats SET data = \?, statistica = \?/).some((c) => c.values.includes("Legacy Run Bronze"))).toBe(true);
+      expect(find(/INSERT INTO stats/).filter((c) => c.values.includes("Legacy Run Bronze"))).toHaveLength(0);
+    });
+
+    it("inserts a Dynasty Builder 'Class of' stat when no record exists for the decade", async () => {
+      const { client, find } = createFakeClient([
+        // unique signature for the Dynasty Builder outer query
+        [/sum AS durata, matches\.league/, [{ detentore: "Juventus", data: DATA, league: LEAGUE, durata: 500, numero: 50, MAX: DATA }]],
+      ]);
+      await run(client, { outcome: "s" });
+      const dynasty = find(/INSERT INTO stats/).filter((c) => c.values.some((v) => String(v).startsWith("Class of")));
+      expect(dynasty).toHaveLength(1);
+    });
+
+    it("brand-new team (first time in DB) also receives the 'Millenial' stat on first steal", async () => {
+      // No responder → teamFromDB has rowCount === 0 (team is brand-new)
+      const { client, find } = createFakeClient();
+      await run(client, { outcome: "s", holder: "Atalanta" });
+      const millenial = find(/INSERT INTO stats[^]*'Millenial'/);
+      expect(millenial).toHaveLength(1);
     });
   });
 });

@@ -232,7 +232,7 @@ const updateStats = async (
     //10. millenial/boomer
     //se boomer rimuovi stats, se non sono presenti regni aggiunti millenial, aggiungi anche Newbie, in quanto è il primo regno
     await client.sql`DELETE FROM stats WHERE league = ${league} AND squadra = ${detentoreName} AND statistica LIKE 'Boomer'`;
-    if (teamFromDB?.rows[0]?.regni === 0) {
+    if ((teamFromDB?.rowCount === 0) || (teamFromDB?.rows[0]?.regni === 0)) {
         await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, numero) VALUES (${detentoreName}, ${data}, ${league}, 'Millenial', ${numero})`;
     }
 
