@@ -156,7 +156,9 @@ describe("updateStats", () => {
     expect(insert.values).toEqual(["Parma", LEAGUE]);
   });
 
-  it("records a 'Millenial' stat for a holder who had no previous reigns", async () => {
+  it("records a 'Millenial' stat for a holder who had no previous reigns (first title in the DB, any year)", async () => {
+    // NOTE: statsCalc.tsx fires Millenial whenever regni===0, regardless of year.
+    // The year≥2000 guard only exists in recalc-compute.ts (in-memory recalc).
     const { client, find } = createFakeClient([
       [/SELECT \* FROM squadre WHERE squadra = \?/, [{ regni: 0, durata: 0, difese: 0, sfide: 3 }]],
     ]);
@@ -332,6 +334,37 @@ describe("updateStats", () => {
       await run(client, { outcome: "s", holder: "Atalanta" });
       const millenial = find(/INSERT INTO stats[^]*'Millenial'/);
       expect(millenial).toHaveLength(1);
+    });
+
+    it("updates the 'Shortest Reign' stat after every match", async () => {
+      const { client, find } = createFakeClient();
+      await run(client, { outcome: "s" });
+      const [update] = find(/statistica = 'Shortest Reign'/);
+      expect(update.text).toMatch(/UPDATE stats SET/);
+      // 'Shortest Reign' is a string literal in SQL, not a bound param.
+      // Bound params: data, detentore, league, durata, numero, league
+      expect(update.values[1]).toBe("Juventus"); // detentore
+      expect(update.values[2]).toBe(LEAGUE);     // league
+    });
+
+    it("updates an existing All-Time Rivals record when the pair has ≥5 steals", async () => {
+      const { client, find } = createFakeClient([
+        [/all_time/, [{ detentore: "Juventus", data: DATA, numero: 1, sfidante: "Milan", tot: 7 }]],
+        // existence check: rivals already exist
+        [/statistica = \? AND squadra = \?/, [{ squadra: "Juventus" }]],
+      ]);
+      await run(client, { outcome: "s" });
+      const updates = find(/UPDATE stats SET data = \?, valore = \?, numero = \?/);
+      expect(updates.some((c) => c.values.includes("All Time Rival vs Milan"))).toBe(true);
+      expect(find(/INSERT INTO stats/).filter((c) => c.values.includes("All Time Rival vs Milan"))).toHaveLength(0);
+    });
+
+    it("does not emit All-Time Rivals when the pair has fewer than 5 steals", async () => {
+      const { client, find } = createFakeClient([
+        [/all_time/, []],
+      ]);
+      await run(client, { outcome: "s" });
+      expect(find(/All Time Rival/).concat(find(/all_time/))).toHaveLength(1); // only the SELECT itself
     });
   });
 });
