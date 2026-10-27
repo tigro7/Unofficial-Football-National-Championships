@@ -147,13 +147,11 @@ async function main() {
       continue;
     }
 
-    // Current champion: sfidante if they stole the title, otherwise detentore
-    const currentChampion = lastCompleted.outcome === 's'
-      ? lastCompleted.sfidante
-      : lastCompleted.detentore;
+    // detentore always stores the winner/current champion after the match (see match.tsx convention).
+    const currentChampion = lastCompleted.detentore;
 
     const lastMatchDate = lastCompleted.data;
-    console.log(`${ufncLeague}: current champion is "${currentChampion}" (last match: ${lastMatchDate}, outcome=${lastCompleted.outcome})`);
+    console.log(`${ufncLeague}: current champion is "${currentChampion}" (last match: ${lastMatchDate}, outcome=${lastCompleted.outcome}, detentore=${lastCompleted.detentore})`);
 
     // Compute the day after the last recorded match
     const afterDate = new Date(lastMatchDate);
