@@ -27,18 +27,21 @@ async function main() {
         await client.query('BEGIN');
 
         for (const s of squadre) {
+            // INSERT new teams (e.g. challengers-only with no prior DB row), UPDATE existing ones.
+            // Colors are only set on INSERT; existing rows keep their DB colors.
             await client.sql`
-                UPDATE squadre
-                SET regni        = ${s.regni},
-                    durata       = ${s.durata},
-                    media        = ${s.media},
-                    difese       = ${s.difese},
-                    media_difese = ${s.media_difese},
-                    sfide        = ${s.sfide}
-                WHERE squadra = ${s.squadra} AND league = ${league}
+                INSERT INTO squadre (squadra, regni, durata, media, difese, media_difese, sfide, colore_primario, colore_secondario, league)
+                VALUES (${s.squadra}, ${s.regni}, ${s.durata}, ${s.media}, ${s.difese}, ${s.media_difese}, ${s.sfide}, ${s.colore_primario}, ${s.colore_secondario}, ${league})
+                ON CONFLICT (squadra) DO UPDATE SET
+                    regni        = EXCLUDED.regni,
+                    durata       = EXCLUDED.durata,
+                    media        = EXCLUDED.media,
+                    difese       = EXCLUDED.difese,
+                    media_difese = EXCLUDED.media_difese,
+                    sfide        = EXCLUDED.sfide
             `;
         }
-        console.log(`squadre updated`);
+        console.log(`squadre upserted`);
 
         await client.sql`DELETE FROM stats WHERE league = ${league}`;
 
