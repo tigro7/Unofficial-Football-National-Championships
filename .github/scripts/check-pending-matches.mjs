@@ -55,18 +55,26 @@ function seasonLabel(dateStr) {
 /**
  * Tries to match a UFNC team name against a football-data.org team object.
  * Returns true if the FDO team's name or shortName matches any alias in the config.
+ *
+ * TLA is matched exactly only — never as a substring — to avoid false positives
+ * like "manchester city".includes("che") matching Chelsea's TLA "CHE".
  */
 function teamMatches(ufncName, fdoTeam, leagueAliases) {
   const aliases = leagueAliases[ufncName] ?? [ufncName];
-  const fdoNames = [
+  const fdoFullNames = [
     fdoTeam.name?.toLowerCase(),
     fdoTeam.shortName?.toLowerCase(),
-    fdoTeam.tla?.toLowerCase(),
   ].filter(Boolean);
+  const fdoTla = fdoTeam.tla?.toLowerCase();
 
   for (const alias of aliases) {
     const a = alias.toLowerCase();
-    if (fdoNames.some(n => n === a || n.includes(a) || a.includes(n))) {
+    // Substring match against name/shortName only (bidirectional)
+    if (fdoFullNames.some(n => n === a || n.includes(a) || a.includes(n))) {
+      return true;
+    }
+    // TLA: exact match only
+    if (fdoTla && fdoTla === a) {
       return true;
     }
   }
