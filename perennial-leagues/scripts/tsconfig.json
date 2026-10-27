@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "noEmit": true,
+    "paths": {
+      "@/*": ["../src/*"]
+    }
+  },
+  "include": ["./**/*.ts", "../src/app/utils/statsCalc.tsx"]
+}

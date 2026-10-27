@@ -525,11 +525,11 @@ const updateStats = async (
     const dinastyBuilderExist = await client.sql`SELECT * FROM stats WHERE league = ${league} AND statistica = ${dinastyStat}`;
     if (dinastyBuilder.rowCount && dinastyBuilder.rowCount > 0) {
         if (dinastyBuilderExist?.rowCount && dinastyBuilderExist.rowCount > 0) {
-            await client.sql`UPDATE stats SET data = ${dinastyBuilder.rows[0].MAX}, valore = ${dinastyBuilder.rows[0].durata}, squadra = ${dinastyBuilder.rows[0].detentore}, numero = ${dinastyBuilder.rows[0].numero}
+            await client.sql`UPDATE stats SET data = ${dinastyBuilder.rows[0].data}, valore = ${dinastyBuilder.rows[0].durata}, squadra = ${dinastyBuilder.rows[0].detentore}, numero = ${dinastyBuilder.rows[0].numero}
                                 WHERE league = ${league} AND statistica = ${dinastyStat}`;
         }else{
-            await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, numero) 
-            VALUES (${dinastyBuilder.rows[0].detentore}, ${dinastyBuilder.rows[0].MAX}, ${league}, ${dinastyStat}, ${dinastyBuilder.rows[0].durata}, ${dinastyBuilder.rows[0].numero})`;
+            await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, numero)
+            VALUES (${dinastyBuilder.rows[0].detentore}, ${dinastyBuilder.rows[0].data}, ${league}, ${dinastyStat}, ${dinastyBuilder.rows[0].durata}, ${dinastyBuilder.rows[0].numero})`;
         }
     }
 

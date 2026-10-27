@@ -1,5 +1,7 @@
 'use server'
 
+export const maxDuration = 300;
+
 import { db } from "@vercel/postgres";
 import { NextResponse } from 'next/server';
 import { getServerSession } from "next-auth";
@@ -41,9 +43,10 @@ export async function POST(request: Request, { params }: { params: Promise<{ lea
                 const m = matches[i];
                 const prev = i > 0 ? matches[i - 1] : null;
                 const previousDuration = prev?.durata ?? 0;
-                const previousDate = prev?.data ?? null;
+                const previousDate = prev?.data ? new Date(prev.data).toISOString().split('T')[0] : null;
+                const dataStr = new Date(m.data).toISOString().split('T')[0];
                 const updatedPreviousDuration = previousDuration + (
-                    new Date(m.data).getDate() - (previousDate ? new Date(previousDate).getDate() : 0)
+                    new Date(dataStr).getDate() - (previousDate ? new Date(previousDate).getDate() : 0)
                 );
                 const durata = m.outcome !== 's' ? updatedPreviousDuration : 0;
 
@@ -53,7 +56,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ lea
                     m.detentore, m.sfidante,
                     m.risultato, m.outcome,
                     previousDuration, updatedPreviousDuration, durata,
-                    m.data, m.numero
+                    dataStr, m.numero
                 );
             }
 
