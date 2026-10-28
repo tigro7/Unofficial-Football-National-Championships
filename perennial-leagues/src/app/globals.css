@@ -217,6 +217,40 @@ thead.bg-tertiary{
   box-shadow: none;
 }
 
+.section {
+  background: var(--background);
+  border-radius: 0.5rem;
+  padding: var(--margin-xxl);
+  margin-bottom: var(--margin-xl);
+  box-shadow: 0 0.25rem 1.25rem var(--tertiary);
+}
+
+.dark .section {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.section .card, .section div.container {
+  box-shadow: none;
+  border: 1px solid var(--tertiary);
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--secondary);
+  margin-bottom: var(--margin-sm);
+  display: block;
+}
+
+.section-header {
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  margin-bottom: var(--margin-md);
+}
+
 .card .btn-container{
   margin-top: var(--margin-xl);
   margin-bottom: var(--margin-lg);

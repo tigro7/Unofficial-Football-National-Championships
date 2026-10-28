@@ -59,44 +59,44 @@ const HomePage = () => {
                 <span className='text-secondary'>UFNC</span> tracks championships
                 like boxing titles
             </h3>
+            <ol className="par w-full lg:w-1/2 mt-[var(--margin-md)] flex flex-col gap-[var(--margin-sm)] list-none">
+                <li className="text-primary"><span className="text-secondary font-bold mr-[var(--margin-sm)]">Reigning Champion</span>One team holds the title at all times</li>
+                <li className="text-primary"><span className="text-secondary font-bold mr-[var(--margin-sm)]">Challenges</span>Beat the holder away and the title is yours</li>
+                <li className="text-primary"><span className="text-secondary font-bold mr-[var(--margin-sm)]">Defenses</span>Keep the crown and you might get some perks</li>
+            </ol>
             <span className="par w-full lg:w-1/2 text-primary mt-[var(--margin-md)] block">
                 Track every reign, defense, and challenge across multiple leagues.
                 <Link href={`https://www.ufwc.co.uk/`} target='_blank' className='link-secondary ml-[var(--margin-sm)]'>
                     Inspired by UFWC
                 </Link>
             </span>
-            <ol className="par w-full lg:w-1/2 mt-[var(--margin-md)] flex flex-col gap-[var(--margin-sm)] list-none">
-                <li className="text-primary"><span className="text-secondary font-bold mr-[var(--margin-sm)]">01</span>One team holds the title at all times</li>
-                <li className="text-primary"><span className="text-secondary font-bold mr-[var(--margin-sm)]">02</span>Beat the holder away — and the title is yours</li>
-                <li className="text-primary"><span className="text-secondary font-bold mr-[var(--margin-sm)]">03</span>Draw or lose — the champion keeps the belt</li>
-            </ol>
-            <span className='w-full lg:w-1/2 mt-[var(--margin-big)] block'>
-                <Button buttonLink={`/${lastMatchLeague}/match/${lastMatchNumber}`} buttonText='Last match' primary className='mr-1' />
-                <Button buttonLink={`/${lastMatchLeague}/team/${reigningChampion}`} buttonText={isLoading ? 'Crowning a champ...' : reigningChampion ? `${reigningChampion} is the reigning champ` : 'Uh oh! Something is missing...'} primary={false} className='hidden lg:inline' />
-            </span>
-            <span className='w-full lg:w-1/2 mt-[var(--margin-md)] block lg:hidden'>
-                <Button buttonLink={`/${lastMatchLeague}/team/${reigningChampion}`} buttonText={isLoading ? 'Crowning a champ...' : reigningChampion ? `${reigningChampion} is the reigning champ` : 'Uh oh! Something is missing...'} primary={false} />
-            </span>
-            <div className="flex flex-wrap justify-between w-full mt-[var(--margin-huge)] gap-y-[var(--margin-big)]">
-                <Card 
-                    imageSrc='/italian_card.png' title={normalizeLeagueName('serie_a')} 
-                    description={getLeagueDesc('serie_a')}
-                    buttonText='Explore' buttonLink='/serie_a' 
-                />
-                <Card 
-                    imageSrc='/english_card.png' title={normalizeLeagueName('premier_league')} 
-                    description={getLeagueDesc('premier_league')}
-                    buttonText='Explore' buttonLink='/premier_league'
-                />
-                <Card imageSrc='/spanish_card.png' title={normalizeLeagueName('laliga')} description={getLeagueDesc('laliga')} buttonText='...' buttonLink='/' />
+            <div className='w-full lg:w-1/2 mt-[var(--margin-big)] flex flex-col sm:flex-row gap-[var(--margin-sm)]'>
+                <Button buttonLink={`/${lastMatchLeague}/match/${lastMatchNumber}`} buttonText='Last match' primary className='w-full sm:w-auto text-center' />
+                <Button buttonLink={`/${lastMatchLeague}/team/${reigningChampion}`} buttonText={isLoading ? 'Crowning a champ...' : reigningChampion ? `${reigningChampion} is the reigning champ` : 'Uh oh! Something is missing...'} primary={false} className='w-full sm:w-auto text-center' />
             </div>
-            <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)] gap-y-[var(--margin-big)]">
-                <Card imageSrc='/card_background.png' title='Blog' description='Read all the latest news and announcements. Stay up to the date on all future developments and check out cool stories about recent and past challenges.' buttonText='Read More' buttonLink='/blog' />
-                <Card imageSrc='/card_background.png' title='About UFNC' description='What is this all about? Who is the mad man behind this? Is there anything I need to understand before diving in?' buttonText='Find out' buttonLink='/about' />
-                {/*
-                    <Card imageSrc='/card_background.png' title='Title 6' description='Description 6' buttonText='Button 6' buttonLink='/link6' />
-                */}
-            </div>
+            <section className="section mt-[var(--margin-big)]">
+                <span className="section-label">Leagues</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[var(--margin-lg)]">
+                    <Card
+                        imageSrc='/italian_card.png' title={normalizeLeagueName('serie_a')}
+                        description={getLeagueDesc('serie_a')}
+                        buttonText='Explore' buttonLink='/serie_a'
+                    />
+                    <Card
+                        imageSrc='/english_card.png' title={normalizeLeagueName('premier_league')}
+                        description={getLeagueDesc('premier_league')}
+                        buttonText='Explore' buttonLink='/premier_league'
+                    />
+                    <Card imageSrc='/spanish_card.png' title={normalizeLeagueName('laliga')} description={getLeagueDesc('laliga')} buttonText='...' buttonLink='/' />
+                </div>
+            </section>
+            <section className="section">
+                <span className="section-label">Discover</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-[var(--margin-lg)]">
+                    <Card imageSrc='/card_background.png' title='Blog' description='Read all the latest news and announcements. Stay up to the date on all future developments and check out cool stories about recent and past challenges.' buttonText='Read More' buttonLink='/blog' />
+                    <Card imageSrc='/card_background.png' title='About UFNC' description='What is this all about? Who is the mad man behind this? Is there anything I need to understand before diving in?' buttonText='Find out' buttonLink='/about' />
+                </div>
+            </section>
         </main>  
     );
 };
