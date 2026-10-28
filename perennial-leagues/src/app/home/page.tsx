@@ -60,7 +60,6 @@ const HomePage = () => {
                 like boxing titles
             </h3>
             <span className="par w-full lg:w-1/2 text-primary mt-[var(--margin-md)] block">
-                One team holds the title. The only way to claim it is to beat the current holder — a draw or a loss keeps the belt with them.
                 Track every reign, defense, and challenge across multiple leagues.
                 <Link href={`https://www.ufwc.co.uk/`} target='_blank' className='link-secondary ml-[var(--margin-sm)]'>
                     Inspired by UFWC
