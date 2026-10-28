@@ -11,7 +11,7 @@ import { writeFileSync } from 'fs';
 import { resolve } from 'path';
 import updateStats from '../src/app/utils/statsCalc';
 
-const league = process.argv[1] || 'serie_a';
+const league = process.argv[2] || 'serie_a';
 const BATCH_SIZE = 100;
 
 async function main() {

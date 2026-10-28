@@ -102,8 +102,8 @@ function computeStats(matches: Match[], colorsMap: Map<string, { primary: string
             const c = colorsMap.get(name);
             squadreMap.set(name, {
                 squadra: name, regni: 0, durata: 0, media: 0,
-                colore_primario: c?.primary ?? '000000',
-                colore_secondario: c?.secondary ?? 'FFFFFF',
+                colore_primario: c?.primary ?? '#000000',
+                colore_secondario: c?.secondary ?? '#FFFFFF',
                 league, difese: 0, media_difese: 0, sfide: 0,
             });
         }
