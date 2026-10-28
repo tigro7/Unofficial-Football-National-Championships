@@ -140,15 +140,15 @@ const updateStats = async (
     console.info('shortestReign:', shortestReign.rowCount);
     
     //6. century club
-    const centuryClub = await client.sql`SELECT matches.detentore, MAX(matches.data) as data, MAX(matches.numero) as numero, matches.league, cen_club.durata, cen_club.tier FROM matches 
+    const centuryClub = await client.sql`SELECT matches.detentore, MAX(matches.data) as data, MAX(matches.numero) as numero, matches.league, cen_club.durata, cen_club.tier FROM matches
                                             JOIN (
                                                 SELECT squadra, league, durata,
                                                 CASE WHEN durata > 3650 THEN 'Gold'
                                                     WHEN durata > 1826 THEN 'Silver'
-                                                    ELSE 'Bronze' 
+                                                    ELSE 'Bronze'
                                                 END AS tier FROM squadre WHERE durata > 365) cen_club
-                                            ON matches.detentore = cen_club.squadra 
-                                            WHERE matches.detentore = ${detentoreName} AND matches.league = ${league}
+                                            ON matches.detentore = cen_club.squadra
+                                            WHERE matches.detentore = ${detentoreName} AND matches.league = ${league} AND matches.outcome IN ('v', 'd')
                                             GROUP BY matches.detentore, matches.league, cen_club.durata, cen_club.tier`;
     console.info('centuryClub:', centuryClub?.rowCount);
     if (centuryClub?.rowCount && centuryClub?.rowCount > 0) {
@@ -269,10 +269,10 @@ const updateStats = async (
                                                 WHEN regni > 50 THEN 'Gold'
                                                 WHEN regni > 25 THEN 'Silver'
                                                 WHEN regni > 15 THEN 'Bronze'
-                                                ELSE 'Iron' 
+                                                ELSE 'Iron'
                                             END AS tier FROM squadre WHERE regni > 10) iron
-                                            ON matches.detentore = iron.squadra 
-                                            WHERE matches.detentore = ${detentoreName} AND matches.league = ${league}
+                                            ON matches.detentore = iron.squadra
+                                            WHERE matches.detentore = ${detentoreName} AND matches.league = ${league} AND matches.outcome IN ('v', 'd')
                                             GROUP BY matches.detentore, matches.league, iron.regni, iron.tier`;
     console.info('legacyRun:', legacyRun?.rowCount);
     if (legacyRun?.rowCount && legacyRun?.rowCount > 0) {
