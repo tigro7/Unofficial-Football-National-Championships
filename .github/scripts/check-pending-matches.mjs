@@ -93,11 +93,10 @@ function mapOutcome(winner, detentore) {
 }
 
 /**
- * Fetches all finished matches from football-data.org for a competition
- * from dateFrom up to today.
+ * Fetches matches from football-data.org for a competition with arbitrary query params.
  */
-async function fetchFdoMatchesAfter(competitionCode, dateFrom) {
-  const url = `https://api.football-data.org/v4/competitions/${competitionCode}/matches?status=FINISHED&dateFrom=${dateFrom}&dateTo=${today}`;
+async function fetchFdoMatches(competitionCode, params) {
+  const url = `https://api.football-data.org/v4/competitions/${competitionCode}/matches?${new URLSearchParams(params)}`;
   const res = await fetch(url, {
     headers: { 'X-Auth-Token': FD_API_KEY },
   });
@@ -174,7 +173,7 @@ async function main() {
     // Small delay between API calls to stay within free-tier rate limit
     await new Promise(r => setTimeout(r, 6_500));
 
-    const fdoMatches = await fetchFdoMatchesAfter(code, dateFrom);
+    const fdoMatches = await fetchFdoMatches(code, { status: 'FINISHED', dateFrom, dateTo: today });
 
     // Filter to matches where the champion was home or away, sort by date ascending
     const championMatches = fdoMatches
@@ -186,6 +185,63 @@ async function main() {
 
     if (championMatches.length === 0) {
       console.log(`${ufncLeague}: no finished matches found for "${currentChampion}" after ${lastMatchDate}`);
+
+      // If there is already an unplayed (outcome='n') entry in the DB, nothing to do
+      const pendingExists = ufncMatches.some(m => m.outcome === 'n');
+      if (pendingExists) {
+        console.log(`${ufncLeague}: unplayed entry already in DB, skipping scheduled-fixture lookup`);
+        continue;
+      }
+
+      // Look up the champion's nearest upcoming fixture (up to 60 days ahead)
+      const sixtyDaysAhead = new Date(today);
+      sixtyDaysAhead.setDate(sixtyDaysAhead.getDate() + 60);
+      const dateTo = sixtyDaysAhead.toISOString().split('T')[0];
+
+      await new Promise(r => setTimeout(r, 6_500));
+      const scheduledMatches = await fetchFdoMatches(code, {
+        status: 'SCHEDULED,TIMED',
+        dateFrom: today,
+        dateTo,
+      });
+
+      const upcomingChampionMatches = scheduledMatches
+        .filter(m =>
+          teamMatches(currentChampion, m.homeTeam, leagueAliases) ||
+          teamMatches(currentChampion, m.awayTeam, leagueAliases)
+        )
+        .sort((a, b) => new Date(a.utcDate) - new Date(b.utcDate));
+
+      if (upcomingChampionMatches.length === 0) {
+        console.log(`${ufncLeague}: no upcoming fixture found for "${currentChampion}" in the next 60 days`);
+        continue;
+      }
+
+      const nextMatch = upcomingChampionMatches[0];
+      const nextMatchDate = nextMatch.utcDate.split('T')[0];
+
+      const ufncHome = Object.keys(leagueAliases).find(name =>
+        teamMatches(name, nextMatch.homeTeam, leagueAliases)
+      ) ?? (nextMatch.homeTeam.shortName ?? nextMatch.homeTeam.name);
+      const ufncAway = Object.keys(leagueAliases).find(name =>
+        teamMatches(name, nextMatch.awayTeam, leagueAliases)
+      ) ?? (nextMatch.awayTeam.shortName ?? nextMatch.awayTeam.name);
+
+      const championPosition = teamMatches(currentChampion, nextMatch.homeTeam, leagueAliases) ? 'home' : 'away';
+
+      const scheduledResult = {
+        league: ufncLeague,
+        home: ufncHome,
+        away: ufncAway,
+        data: nextMatchDate,
+        detentore: championPosition,
+        risultato: '',
+        outcome: 'n',
+        note: `${LEAGUE_DISPLAY_NAME[ufncLeague] ?? ufncLeague.replace(/_/g, ' ')} ${seasonLabel(nextMatchDate)}`,
+      };
+
+      console.log(`${ufncLeague}: next fixture for "${currentChampion}" is ${ufncHome} vs ${ufncAway} on ${nextMatchDate} (${championPosition})`);
+      resolved.push(scheduledResult);
       continue;
     }
 
