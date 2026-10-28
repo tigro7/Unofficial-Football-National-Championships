@@ -12,7 +12,7 @@ import { db } from '@vercel/postgres';
 import { writeFileSync } from 'fs';
 import { resolve } from 'path';
 
-const league = process.argv[2] || 'serie_a';
+const league = process.argv[1] || 'serie_a';
 
 // ---- types ----
 
@@ -102,8 +102,8 @@ function computeStats(matches: Match[], colorsMap: Map<string, { primary: string
             const c = colorsMap.get(name);
             squadreMap.set(name, {
                 squadra: name, regni: 0, durata: 0, media: 0,
-                colore_primario: c?.primary ?? '#000000',
-                colore_secondario: c?.secondary ?? '#FFFFFF',
+                colore_primario: c?.primary ?? '000000',
+                colore_secondario: c?.secondary ?? 'FFFFFF',
                 league, difese: 0, media_difese: 0, sfide: 0,
             });
         }
