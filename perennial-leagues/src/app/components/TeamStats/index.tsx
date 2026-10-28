@@ -61,7 +61,7 @@ const TeamStats = ({ stats, match = false } : {
                                 viewBox="0 0 90 90"
                             >
                                 {/* Cerchio per il testo */}
-                               <text fill="#333" fontSize="12" fontWeight="bold">
+                               <text fill="currentColor" fontSize="12" fontWeight="bold">
                                     <textPath
                                         href={`#curved-text-path-${index}`}
                                         startOffset="50%"
@@ -83,7 +83,7 @@ const TeamStats = ({ stats, match = false } : {
 
                             <p className="text-center text-xs">{valueProcessor ? valueProcessor(Number(stat.valore)) : stat.valore}</p>
 
-                            {rival && <div className="absolute top-4 text-xs bg-red-700 text-white rounded-full px-2 py-1">{rival}</div>}
+                            {rival && <div className="absolute top-4 text-xs bg-lost text-white rounded-full px-2 py-1">{rival}</div>}
                             {tier && <div className={`absolute top-4 text-xs ${tierColor} text-white rounded-full px-2 py-1`}>{tier}</div>}
                             {position && <div className={`absolute top-4 text-xs ${positionColor} text-white rounded-full px-2 py-1`}>{position}</div>}
         

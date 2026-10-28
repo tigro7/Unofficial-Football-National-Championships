@@ -13,13 +13,14 @@
 
 /* Modal Content */
 .modal {
-  background-color: #fff; /* White background */
+  background-color: var(--background);
+  color: var(--foreground);
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   min-width: 36%;
-  max-width: 80%; /* Adjust as needed */
-  max-height: fit-content; /* Adjust as needed */
+  max-width: 80%;
+  max-height: fit-content;
 }
 
 .modalBody{
@@ -50,7 +51,7 @@
   float: right;
   cursor: pointer;
   font-size: 16px;
-  color: #999;
+  color: var(--tertiary);
 }
 
 
@@ -69,12 +70,12 @@
 
 .modalContent input{
   border: none;
-  background-color: #fff;
+  background-color: var(--background);
   padding: 10px 15px;
   margin: 10px 5px;
   font-size: 14px;
   cursor: pointer;
-  color: #555;
+  color: var(--foreground);
   border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
@@ -82,17 +83,17 @@
 
 .modalContent button {
   border: none;
-  background-color: #fff;
+  background-color: var(--background);
   padding: 10px 15px;
   margin: 0 25%;
   font-size: 14px;
   cursor: pointer;
-  color: #555;
+  color: var(--foreground);
   border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
 }
 
 .modalContent button:hover {
-  background-color: #c0c0c0;
+  background-color: var(--tertiary);
 }

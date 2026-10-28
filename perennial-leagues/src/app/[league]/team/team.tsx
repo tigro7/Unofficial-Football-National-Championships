@@ -7,7 +7,6 @@ import TeamStats from "@/app/components/TeamStats";
 import { useEffect, useState } from "react";
 import normalizeLeagueName from "@/app/utils/leaguesMap";
 import LastFiveMatches from "@/app/components/LastFive";
-import { openSans } from "@/app/fonts";
 import TrophyTable from "@/app/components/TrophyTable";
 import VerticalTimelineChart from "@/app/components/VerticalTimelineChart";
 import { InfoProvider } from "@/contexts/InfoContext/InfoContext";
@@ -149,7 +148,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
                     {`${squadra.charAt(0).toUpperCase()}${squadra.slice(1)}`}
                   </h1>
                   <Link href={`/${league}`}>
-                    <h2 className={`text-2xl text-secondary ${openSans.className} !italic`}>
+                    <h2 className="text-2xl text-secondary italic">
                       {normalizeLeagueName(league)}
                     </h2>
                   </Link>

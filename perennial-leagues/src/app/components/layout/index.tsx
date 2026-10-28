@@ -70,7 +70,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </header>
         <nav className=" mb-[var(--margin-big)] lg:mb-[var(--margin-mega)]">
           {generateBreadcrumbs().map((breadcrumb, index) => (
-            <span key={index} className="text-gray-500">
+            <span key={index} className="text-tertiary">
               {breadcrumb}
               {index < generateBreadcrumbs().length - 1 && (
                 <FontAwesomeIcon icon={faChevronRight} className="mx-2" />
