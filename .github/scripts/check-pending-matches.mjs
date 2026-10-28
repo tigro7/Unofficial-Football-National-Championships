@@ -203,13 +203,17 @@ async function main() {
       teamMatches(name, fdoMatch.awayTeam, leagueAliases)
     ) ?? away;
 
-    // Idempotency: skip if this match is already in the UFNC DB
-    const alreadyRecorded = ufncMatches.some(m =>
+    // Idempotency: skip if this match is already in the UFNC DB with a resolved outcome.
+    // If it exists with outcome 'n' (not yet played), fall through and update it with the real result.
+    const existingMatch = ufncMatches.find(m =>
       m.home === ufncHome && m.away === ufncAway && m.data === matchDate
     );
-    if (alreadyRecorded) {
+    if (existingMatch && existingMatch.outcome !== 'n') {
       console.log(`${ufncLeague}: ${ufncHome} vs ${ufncAway} on ${matchDate} already in DB, skipping`);
       continue;
+    }
+    if (existingMatch) {
+      console.log(`${ufncLeague}: ${ufncHome} vs ${ufncAway} on ${matchDate} exists as unplayed (n) — will update with result`);
     }
 
     const { fullTime } = fdoMatch.score;

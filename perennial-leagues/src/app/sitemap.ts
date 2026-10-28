@@ -1,72 +1,55 @@
 import { MetadataRoute } from 'next';
-import { Squadra, BlogPost, Match } from './lib/definitions';
+import { db } from '@vercel/postgres';
+
+const leagues = ['serie_a', 'premier_league'];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = (process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000').replace(/\/$/, '') + '/';
-    const staticPages = [
-        '',
-        'about',
-        'blog',
-    ];
 
-    const fetchBlogPosts = async (): Promise<BlogPost[]> => {
-        try {
-            const response = await fetch(`${baseUrl}api/blog`);
-            const data = await response.json();
-            return Array.isArray(data) ? data : [];
-        } catch (error) {
-            console.error("Error fetching blog posts:", error);
-            return [];
-        }
-    };
+    const staticPages = ['', 'about', 'blog'];
 
-    const fetchTeams = async (league: string): Promise<Squadra[]> => {
-        try {
-            const response = await fetch(`${baseUrl}api/${league}/squadre`);
-            const data = await response.json();
-            return Array.isArray(data) ? data : [];
-        } catch (error) {
-            console.error("Error fetching teams:", error);
-            return [];
-        }
-    }
+    const client = await db.connect();
 
-    const leagues = ['serie_a', 'premier_league'];
-    let matchIds: Match[] = [];
-    for (const league of leagues) {
-        try {
-            const response = await fetch(`${baseUrl}api/${league}/matches`);
-            const matches = await response.json();
-            if (Array.isArray(matches)) matchIds = [...matchIds, ...matches];
-        } catch (error) {
-            console.error(`Error fetching matches for ${league}:`, error);
+    let matchRows: { numero: number; league: string }[] = [];
+    let teamRows: { squadra: string; league: string }[] = [];
+    let blogRows: { id: number }[] = [];
+
+    try {
+        for (const league of leagues) {
+            const [matches, teams] = await Promise.all([
+                client.sql<{ numero: number; league: string }>`
+                    SELECT numero, league FROM matches WHERE league = ${league} ORDER BY numero DESC LIMIT 100
+                `,
+                client.sql<{ squadra: string; league: string }>`
+                    SELECT squadra, league FROM squadre WHERE league = ${league}
+                `,
+            ]);
+            matchRows = [...matchRows, ...matches.rows];
+            teamRows = [...teamRows, ...teams.rows];
         }
+        const blog = await client.sql<{ id: number }>`SELECT id FROM blog ORDER BY id DESC`;
+        blogRows = blog.rows;
+    } catch (error) {
+        console.error('sitemap: DB query failed', error);
+    } finally {
+        client.release();
     }
-    let teamIds: Squadra[] = [];
-    for (const league of leagues) {
-        const teams = await fetchTeams(league);
-        teamIds = [...teamIds, ...teams];
-    }
-    const blogPosts: BlogPost[] = await fetchBlogPosts();
 
     const dynamicPages = [
         ...leagues.flatMap(league => [
             `${league}`,
             `${league}/timeline`,
-            `${league}/ranks`
+            `${league}/ranks`,
         ]),
-        ...matchIds.slice(0,100).map((match: Match) => `${match.league}/match/${match.numero}`),
-        ...teamIds.map((team: Squadra) => `${team.league}/team/${team.squadra}`),
-        ...blogPosts.map((post: BlogPost) => `blog/${post.id}`)
+        ...matchRows.map(m => `${m.league}/match/${m.numero}`),
+        ...teamRows.map(t => `${t.league}/team/${t.squadra}`),
+        ...blogRows.map(b => `blog/${b.id}`),
     ];
-    const pages = [...staticPages, ...dynamicPages];
 
-    const sitemap: MetadataRoute.Sitemap = pages.map((page) => ({
+    return [...staticPages, ...dynamicPages].map(page => ({
         url: `${baseUrl}${page}`,
         lastModified: new Date().toISOString(),
         changeFrequency: 'weekly',
         priority: 0.8,
     }));
-
-    return sitemap;
 }

@@ -388,6 +388,7 @@ const teamNormalizationMap: { [key: string]: string } = {
     "Maceratese": "",
     "Magenta": "",
     "Maglie": "",
+    "Man City": "Manchester City",
     "Manfredonia": "",
     "Manlio Cavagnaro": "",
     "Mantova": "",
