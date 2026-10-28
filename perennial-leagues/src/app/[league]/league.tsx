@@ -11,12 +11,13 @@ const League = ({league = 'serie_a'} : { league: string}) => {
     const [lastMatchNumber, setLastMatchNumber] = useState<string | null>(null);
     const [randomMatchNumber, setRandomMatchNumber] = useState<string | null>(null);
     const [reigningChampion, setReigningChampion] = useState<string | null>(null);
+    const [lastOutcome, setLastOutcome] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
-  
+
     useEffect(() => {
       const fetchNextMatch = async () => {
         try {
-            const host = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'; // URL di base
+            const host = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
             const response = await fetch(`${host}/api/${league}/matches/last`);
             const data = (await response.json())[0];
             setNextMatchNumber(data.numero);
@@ -25,13 +26,14 @@ const League = ({league = 'serie_a'} : { league: string}) => {
             const randMatch = Math.floor(Math.random() * Number(data.numero));
             setRandomMatchNumber(String(randMatch));
             setReigningChampion(data.detentore);
+            setLastOutcome(data.outcome);
         } catch (error) {
           console.error("Error fetching next match:", error);
         } finally {
           setIsLoading(false);
         }
       };
-  
+
       fetchNextMatch();
     }, [league]);
 
@@ -47,6 +49,14 @@ const League = ({league = 'serie_a'} : { league: string}) => {
               <Card imageSrc='/card_background.png' title={isLoading ? ('Reigning Champion') : reigningChampion ? (`Reigning Champion`) : ('No available Champion')} description='Bow to the reigning champion' buttonText={isLoading ? 'Loading...' : reigningChampion ? reigningChampion : 'Uh oh! Something is missing...'} buttonLink={reigningChampion ? `/${league}/team/${reigningChampion}` : "#"} />
               <Card imageSrc='/card_background.png' title='Stats & Stuff' description='Some geeky and nerdy charts and related stats.' buttonText='Dive in!' buttonLink={`/${league}/ranks`} />
             </div>
+            {!isLoading && reigningChampion && (lastOutcome === 'v' || lastOutcome === 'd' || lastOutcome === 'n') && (
+                <p className="par text-primary mt-[var(--margin-big)]">
+                    {lastOutcome === 'n'
+                        ? <>Next challenge coming up — <strong>{reigningChampion}</strong> is the defending title holder.</>
+                        : <>The title is intact — <strong>{reigningChampion}</strong> successfully defended in the last match.</>
+                    }
+                </p>
+            )}
             <MiniTimeline league={league} />
 
             <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)] gap-y-[var(--margin-big)]">

@@ -8,31 +8,32 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     const staticPages = ['', 'about', 'blog'];
 
-    const client = await db.connect();
-
     let matchRows: { numero: number; league: string }[] = [];
     let teamRows: { squadra: string; league: string }[] = [];
     let blogRows: { id: number }[] = [];
 
     try {
-        for (const league of leagues) {
-            const [matches, teams] = await Promise.all([
-                client.sql<{ numero: number; league: string }>`
-                    SELECT numero, league FROM matches WHERE league = ${league} ORDER BY numero DESC LIMIT 100
-                `,
-                client.sql<{ squadra: string; league: string }>`
-                    SELECT squadra, league FROM squadre WHERE league = ${league}
-                `,
-            ]);
-            matchRows = [...matchRows, ...matches.rows];
-            teamRows = [...teamRows, ...teams.rows];
+        const client = await db.connect();
+        try {
+            for (const league of leagues) {
+                const [matches, teams] = await Promise.all([
+                    client.sql<{ numero: number; league: string }>`
+                        SELECT numero, league FROM matches WHERE league = ${league} ORDER BY numero DESC LIMIT 100
+                    `,
+                    client.sql<{ squadra: string; league: string }>`
+                        SELECT squadra, league FROM squadre WHERE league = ${league}
+                    `,
+                ]);
+                matchRows = [...matchRows, ...matches.rows];
+                teamRows = [...teamRows, ...teams.rows];
+            }
+            const blog = await client.sql<{ id: number }>`SELECT id FROM blog ORDER BY id DESC`;
+            blogRows = blog.rows;
+        } finally {
+            client.release();
         }
-        const blog = await client.sql<{ id: number }>`SELECT id FROM blog ORDER BY id DESC`;
-        blogRows = blog.rows;
     } catch (error) {
         console.error('sitemap: DB query failed', error);
-    } finally {
-        client.release();
     }
 
     const dynamicPages = [

@@ -66,6 +66,11 @@ const HomePage = () => {
                     Inspired by UFWC
                 </Link>
             </span>
+            <ol className="par w-full lg:w-1/2 mt-[var(--margin-md)] flex flex-col gap-[var(--margin-sm)] list-none">
+                <li className="text-primary"><span className="text-secondary font-bold mr-[var(--margin-sm)]">01</span>One team holds the title at all times</li>
+                <li className="text-primary"><span className="text-secondary font-bold mr-[var(--margin-sm)]">02</span>Beat the holder away — and the title is yours</li>
+                <li className="text-primary"><span className="text-secondary font-bold mr-[var(--margin-sm)]">03</span>Draw or lose — the champion keeps the belt</li>
+            </ol>
             <span className='w-full lg:w-1/2 mt-[var(--margin-big)] block'>
                 <Button buttonLink={`/${lastMatchLeague}/match/${lastMatchNumber}`} buttonText='Last match' primary className='mr-1' />
                 <Button buttonLink={`/${lastMatchLeague}/team/${reigningChampion}`} buttonText={isLoading ? 'Crowning a champ...' : reigningChampion ? `${reigningChampion} is the reigning champ` : 'Uh oh! Something is missing...'} primary={false} className='hidden lg:inline' />
