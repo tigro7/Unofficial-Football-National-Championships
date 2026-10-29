@@ -5,6 +5,7 @@ import { NextResponse } from 'next/server';
 //import { Summary } from "@/app/lib/definitions";
 import { getServerSession } from "next-auth";
 import updateStats from "@/app/utils/statsCalc";
+import { resolveTeamName } from "@/app/utils/resolveTeamName";
 
 export async function GET(request: Request, {params,}: {params: Promise<{league: string}>}) {
 
@@ -39,12 +40,16 @@ export async function POST(request: Request, {params,}: {params: Promise<{league
 
     const { home, away, detentore, risultato, note, data, outcome } = await request.json();
 
-    const detentoreName = detentore == "home" ? home : away;
-    const sfidanteName = detentore == "home" ? away : home;
+    const rawDetentoreName = detentore == "home" ? home : away;
+    const rawSfidanteName = detentore == "home" ? away : home;
     const noteValue = note || league.replace(/_/g, " ");
 
     try {
         const client = await db.connect();
+
+        // Normalize team names: namesMap first, then DB aliases fallback
+        const detentoreName = await resolveTeamName(rawDetentoreName, league, client);
+        const sfidanteName = await resolveTeamName(rawSfidanteName, league, client);
 
         //per controllare se si tratta di update o insert, controlliamo se esiste già un match con le stesse squadre e outcome = n
 

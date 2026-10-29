@@ -2,6 +2,7 @@
 
 import { db } from "@vercel/postgres";
 import { NextResponse } from 'next/server';
+import { getServerSession } from "next-auth";
 
 export async function GET(request: Request, {params,}: {params: Promise<{ squadra: string, league: string}>}) {
 
@@ -33,6 +34,31 @@ export async function GET(request: Request, {params,}: {params: Promise<{ squadr
     
         client.release();
         return NextResponse.json(rows.rows, { status: 200 });
+    } catch (error) {
+        console.error('Errore durante l\'esecuzione della query:', error);
+        return NextResponse.json({ error: 'Errore durante l\'esecuzione della query' }, { status: 500 });
+    }
+}
+
+export async function PUT(request: Request, {params,}: {params: Promise<{ squadra: string, league: string}>}) {
+    const session = await getServerSession();
+    if (!session) {
+        return NextResponse.json({ error: 'Non autorizzato' }, { status: 401 });
+    }
+
+    const {squadra, league = "serie_a"} = await params;
+    const { aliases } = await request.json() as { aliases: string[] };
+
+    if (!Array.isArray(aliases)) {
+        return NextResponse.json({ error: 'aliases must be an array of strings' }, { status: 400 });
+    }
+
+    try {
+        const client = await db.connect();
+        const aliasesJson = JSON.stringify(aliases);
+        await client.sql`UPDATE squadre SET aliases = ${aliasesJson} WHERE LOWER(squadra) = ${squadra.toLowerCase()} AND league = ${league}`;
+        client.release();
+        return NextResponse.json({ squadra, aliases }, { status: 200 });
     } catch (error) {
         console.error('Errore durante l\'esecuzione della query:', error);
         return NextResponse.json({ error: 'Errore durante l\'esecuzione della query' }, { status: 500 });
