@@ -78,7 +78,8 @@ const TeamStats = ({ stats, match = false } : {
                                     aria-label={`Details about ${statLabel}`}
                                     aria-haspopup="dialog"
                                     className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-tertiary transition hover:bg-tertiary hover:text-foreground"
-                                    onClick={() => {
+                                    onClick={(e) => {
+                                        e.stopPropagation();
                                         setInfo({
                                             content: statInfo.title,
                                             title: stat.statistica,
