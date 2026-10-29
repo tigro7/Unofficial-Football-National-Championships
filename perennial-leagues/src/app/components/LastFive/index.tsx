@@ -60,45 +60,33 @@ const LastFiveMatches = ({
   }, [host]);
 
   return (
-    <div className="shadow-md rounded-md p-4 bg-background-dark">
-      <h2 className="text-left text-xl font-bold mb-4">Last 5 Title Matches</h2>
-      <div className="flex justify-end gap-2">
-        {[...matches].reverse().map((match, index) => {
-          const isLastMatch = index === 4;
-          const outcomeIcon = outcomeIcons(team, match.outcome, match.detentore);
-          const matchSuffix = `vs. ${team === match.detentore ? match.sfidante : match.detentore}`;
-          const matchTitle = match.outcome === 'd' ? `Draw (${match.detentore} extends reign)` : match.outcome === 's' ? `${team === match.detentore ? 'Won by' : 'Lost to'} ${match.detentore}` : `Defended by ${match.detentore}`;
+    <div className="grid grid-cols-5 gap-[var(--margin-sm)]">
+      {[...matches].reverse().map((match) => {
+        const opponent = team === match.detentore ? match.sfidante : match.detentore;
+        const outcomeIcon = outcomeIcons(team, match.outcome, match.detentore);
+        const opponentColors = colors?.[opponent] ?? { primary: '#000000', secondary: '#ffffff' };
 
-          return (
-            <Link href={`/${match.league}/match/${match.numero}`} key={match.numero}>
-              <div
-                className={ `relative text-center p-2 rounded-md cursor-pointer ${outcomeColors(team, match.outcome, match.detentore)} hover:hover-match transition-all flex flex-col items-center`}
-                title={`${new Date(match.data).toLocaleDateString()} - ${match.note} ${matchTitle} ${team === match.detentore ? matchSuffix : ''}`}
-              >
-                {isLastMatch && (
-                  <span className="absolute w-full -bottom-2 left-0 bg-bronze text-white text-xs px-2 py-1 rounded-full" />
-                )}
-                {outcomeIcon && (
-                  <FontAwesomeIcon
-                      icon={outcomeIcon}
-                      className="text-2xl mb-2"
-                  />
-                )}
-                {team !== match.detentore && (<div className='mb-8' />)}
-                {team === match.detentore && (
-                  <FontAwesomeIcon
-                      icon={faCrown}
-                      className="text-2xl mb-2"
-                      color='gold'
-                  />
-                )}
-                <p className='text-md font-black'>{match.risultato}</p>
-                <Jersey colors={colors ? colors[team === match.detentore ? match.sfidante : match.detentore] : {primary: "#000000", secondary: "#FFFFFF"}} icon={team === match.detentore ? null : "faCrown"} dimensions={"medium"}/>
-              </div>
-            </Link>
-          );
-        })}
-      </div>
+        return (
+          <Link
+            href={`/${match.league}/match/${match.numero}`}
+            key={match.numero}
+            className={`card p-[var(--margin-md)] flex flex-col items-center gap-[var(--margin-xs)] hover:hover-match transition-all ${outcomeColors(team, match.outcome, match.detentore)}`}
+          >
+            <div className="flex items-center gap-[var(--margin-xs)]">
+              {team === match.detentore && <FontAwesomeIcon icon={faCrown} className="text-sm" color="gold" />}
+              {outcomeIcon && <FontAwesomeIcon icon={outcomeIcon} className="text-lg" />}
+            </div>
+            <p className="sub font-black">{match.risultato || '—'}</p>
+            <Jersey
+              colors={opponentColors}
+              icon={team === match.detentore ? null : 'faCrown'}
+              dimensions="medium"
+            />
+            <p className="text-xs font-semibold text-center capitalize leading-tight">{opponent}</p>
+            <p className="text-xs text-center opacity-70">{new Date(match.data).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}</p>
+          </Link>
+        );
+      })}
     </div>
   );
 };

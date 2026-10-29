@@ -39,31 +39,42 @@ const League = ({league = 'serie_a'} : { league: string}) => {
 
     return (
         <>
-          <h3 className="h3 w-1/2">{normalizeLeagueName(league)}</h3>
+          <h3 className="h3 w-full lg:w-1/2">{normalizeLeagueName(league)}</h3>
           <title>{league} - UFNC</title>
-          <span className="par w-1/2 text-primary mt-[var(--margin-md)] block">
+          <span className="par w-full lg:w-1/2 text-primary mt-[var(--margin-md)] block">
             {getLeagueDesc(league)}
           </span>
-            <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)] gap-y-[var(--margin-big)]">
-              <Card imageSrc='/card_background.png' title='Titles Timeline' description='Unravel the full history of title contention' buttonText='Explore' buttonLink={`/${league}/timeline`} />
-              <Card imageSrc='/card_background.png' title={isLoading ? ('Reigning Champion') : reigningChampion ? (`Reigning Champion`) : ('No available Champion')} description='Bow to the reigning champion' buttonText={isLoading ? 'Loading...' : reigningChampion ? reigningChampion : 'Uh oh! Something is missing...'} buttonLink={reigningChampion ? `/${league}/team/${reigningChampion}` : "#"} />
-              <Card imageSrc='/card_background.png' title='Stats & Stuff' description='Some geeky and nerdy charts and related stats.' buttonText='Dive in!' buttonLink={`/${league}/ranks`} />
-            </div>
+
+          <section className="section mt-[var(--margin-big)]">
+            <span className="section-label">Explore</span>
             {!isLoading && reigningChampion && (lastOutcome === 'v' || lastOutcome === 'd' || lastOutcome === 'n') && (
-                <p className="par text-primary mt-[var(--margin-big)]">
+                <p className="par text-primary mb-[var(--margin-md)]">
                     {lastOutcome === 'n'
                         ? <>Next challenge coming up — <strong>{reigningChampion}</strong> is the defending title holder.</>
                         : <>The title is intact — <strong>{reigningChampion}</strong> successfully defended in the last match.</>
                     }
                 </p>
             )}
-            <MiniTimeline league={league} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[var(--margin-lg)]">
+              <Card imageSrc='/card_background.png' title='Titles Timeline' description='Unravel the full history of title contention' buttonText='Explore' buttonLink={`/${league}/timeline`} />
+              <Card imageSrc='/card_background.png' title={isLoading ? ('Reigning Champion') : reigningChampion ? (`Reigning Champion`) : ('No available Champion')} description='Bow to the reigning champion' buttonText={isLoading ? 'Loading...' : reigningChampion ? reigningChampion : 'Uh oh! Something is missing...'} buttonLink={reigningChampion ? `/${league}/team/${reigningChampion}` : "#"} />
+              <Card imageSrc='/card_background.png' title='Stats & Stuff' description='Some geeky and nerdy charts and related stats.' buttonText='Dive in!' buttonLink={`/${league}/ranks`} />
+            </div>
+          </section>
 
-            <div className="flex flex-wrap justify-between w-full mt-[var(--margin-big)] gap-y-[var(--margin-big)]">
+          <section className="section">
+            <span className="section-label">Matches</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[var(--margin-lg)]">
               <Card imageSrc='/card_background.png' title='Random Match' description="Let me pick an interesting match! (or a boring one, I'm a card description, not a football expert)" buttonText='Try your luck!' buttonLink={randomMatchNumber ? `/${league}/match/${randomMatchNumber}` : "#"} />
               <Card imageSrc='/card_background.png' title='Last Match' description="Was the last title challenge successful? Did the reigning champion manage to defend their title?" buttonText='Find out!' buttonLink={lastMatchNumber ? `/${league}/match/${lastMatchNumber}` : "#"} />
               <Card imageSrc='/card_background.png' title='Next Match' description="The next challenge is scheduled! Pick your favourite treat and join us in the stands." buttonText='Show me!' buttonLink={nextMatchNumber ? `/${league}/match/${nextMatchNumber}` : "#"} />
             </div>
+          </section>
+
+          <section className="section">
+            <span className="section-label">Recent History</span>
+            <MiniTimeline league={league} />
+          </section>
         </>
       );
 };

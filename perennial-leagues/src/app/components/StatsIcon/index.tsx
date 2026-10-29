@@ -12,7 +12,7 @@ const StatsIcon = ({ statName, statTitle} : {
                             statName.toLowerCase().includes("iron") ? "#43464B" : "#25424C";
     return (
         //gestisci il colore in base ai colori della squadra, tranne nel caso in cui in statName vi sia Iron, Bronze, Silver o Gold
-        <div className="stat-icon mb-2 text-gray-600">
+        <div className="stat-icon text-tertiary">
             <FontAwesomeIcon
                 icon={statsMap[icon].icon}
                 title={statTitle ? statTitle : statName}

@@ -1,7 +1,5 @@
 import StatsIcon from "../StatsIcon";
 import statsMap from "@/app/utils/statsMap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { useInfo } from "../../../contexts/InfoContext/InfoContext";
 import Link from "next/link";
 
@@ -18,103 +16,122 @@ const TeamStats = ({ stats, match = false } : {
   }) => {
 
     const { setInfo } = useInfo();
-    const tailGap = match ? "gap-2 portrait:gap-1" : "gap-4 portrait:gap-2";
 
     return (
-        <div className="team-stats-container m-4 w-full">
-            <div className={`stats-grid grid grid-cols-[repeat(auto-fit,minmax(150px,150px))] ${tailGap} justify-center items-center`}>
+        <div className="w-full">
+            <div className={match ? "flex flex-wrap justify-center gap-3" : "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4"}>
                 {stats.map((stat, index) => {
-                // Trova informazioni relative alla statistica
-                const statKey = Object.keys(statsMap).find((key) =>
-                    stat.statistica.toLowerCase().includes(key.toLowerCase())
-                ) || "Question Circle";
-                const statInfo = statsMap[statKey];
-                const valueProcessor = statInfo.valueProcessor;
-                const localeDate = new Date(stat.data).toLocaleDateString();
-                // eslint-disable-next-line react-hooks/rules-of-hooks
-                const rival = stat.statistica.split(" vs ") ? stat.statistica.split(" vs ")[1] : "";
-                const tier = stat.statistica.endsWith(" Gold") ? "Gold" : stat.statistica.endsWith(" Silver") ? "Silver" : stat.statistica.endsWith(" Bronze") ? "Bronze" : stat.statistica.endsWith(" Iron") ? "Iron" : "";
-                const tierColor = `bg-${tier.toLowerCase()}`;
-                const positionMatch = stat.statistica.match(/ (\d+)$/);
-                const position = positionMatch ? positionMatch[1] : null;
-                const positionColor = position == "1" ? "bg-gold" : position == "2" ? "bg-silver" : position == "3" ? "bg-bronze" : "bg-green-700";
+                    const statKey = Object.keys(statsMap).find((key) =>
+                        stat.statistica.toLowerCase().includes(key.toLowerCase())
+                    ) || "Question Circle";
+                    const statInfo = statsMap[statKey];
+                    const valueProcessor = statInfo.valueProcessor;
+                    const localeDate = new Date(stat.data).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 
-                return (
-                        <div
-                            key={index}
-                            className={`relative shadow-md flex flex-col items-center justify-center p-4 rounded-md bg-background-dark ${
-                                match ? "" : "hover:shadow-lg transition-shadow duration-300"
-                            }`}
-                            style={{
-                                width: "150px",
-                                height: "150px",
-                            }}
-                        >
-                            {/* Icona principale */}
-                            <div className="flex items-center justify-center w-20 h-20 bg-highlights rounded-full m-2 p-2 border-4 border-primary">
-                                <StatsIcon statName={stat.statistica} statTitle={statInfo.title} />
+                    const rivalParts = stat.statistica.split(" vs ");
+                    const rival = rivalParts.length > 1 ? rivalParts[1] : "";
+                    const tier = stat.statistica.endsWith(" Gold") ? "Gold"
+                        : stat.statistica.endsWith(" Silver") ? "Silver"
+                        : stat.statistica.endsWith(" Bronze") ? "Bronze"
+                        : stat.statistica.endsWith(" Iron") ? "Iron" : "";
+                    const positionMatch = stat.statistica.match(/ (\d+)$/);
+                    const position = positionMatch ? positionMatch[1] : null;
+                    const isDecade = (statKey === "Decade Dominator" || statKey === "Class of ") && position && position.length === 4;
+
+                    const statLabel = rival
+                        ? rivalParts[0]
+                        : tier
+                        ? stat.statistica.replace(` ${tier}`, "")
+                        : position
+                        ? stat.statistica.replace(` ${position}`, "")
+                        : stat.statistica;
+
+                    const renderBadge = () => {
+                        if (rival) return (
+                            <span className="achievement-badge rival-badge truncate max-w-[100px]">{rival}</span>
+                        );
+                        if (tier) {
+                            const cls: Record<string, string> = {
+                                Gold: "achievement-badge tier-gold",
+                                Silver: "achievement-badge tier-silver",
+                                Bronze: "achievement-badge tier-bronze",
+                                Iron: "achievement-badge tier-iron",
+                            };
+                            return <span className={cls[tier]}>{tier}</span>;
+                        }
+                        if (isDecade && position) return (
+                            <span className="achievement-badge decade-badge">{position}s</span>
+                        );
+                        if (position) return (
+                            <span className="achievement-badge rank-badge">#{position}</span>
+                        );
+                        return <div className="h-5" />;
+                    };
+
+                    return (
+                        <article key={index} className={`card bg-system flex flex-col p-3.5${match ? " w-[140px]" : ""}`}>
+                            {/* Top meta bar: badge left, info button right */}
+                            <div className="flex h-6 items-center justify-between gap-1">
+                                <div className="truncate min-w-0">{renderBadge()}</div>
+                                <button
+                                    type="button"
+                                    aria-label={`Details about ${statLabel}`}
+                                    aria-haspopup="dialog"
+                                    className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+                                    onClick={() => {
+                                        setInfo({
+                                            content: statInfo.title,
+                                            title: stat.statistica,
+                                            value: valueProcessor ? valueProcessor(Number(stat.valore)) : stat.valore,
+                                            longInfo: statInfo.longInfo
+                                                ?.replace("$squadra", stat.squadra)
+                                                .replace("$sfidante", rival)
+                                                .replace("$position", position || "")
+                                                .replace("$decade", position || "")
+                                                .replace("$value", stat.valore
+                                                    ? valueProcessor ? valueProcessor(Number(stat.valore)) : stat.valore.toString()
+                                                    : ""),
+                                            data: localeDate,
+                                        });
+                                    }}
+                                >
+                                    <svg className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                                    </svg>
+                                </button>
                             </div>
 
-                            {/* SVG per creare il cerchio con testo curvo */}
-                            <svg
-                                className="absolute w-16 h-16 top-16"
-                                viewBox="0 0 90 90"
-                            >
-                                {/* Cerchio per il testo */}
-                               <text fill="#333" fontSize="12" fontWeight="bold">
-                                    <textPath
-                                        href={`#curved-text-path-${index}`}
-                                        startOffset="50%"
-                                        textAnchor="middle"
-                                    >
-                                        {(rival && rival.length > 0) ? stat.statistica.split(" vs ")[0] : 
-                                            (tier && tier.length > 0) ? stat.statistica.replace(` ${tier}`, "") :
-                                            (position && position.length > 0) ? stat.statistica.replace(` ${position}`, "") :
-                                            stat.statistica}
-                                    </textPath>
-                                </text>
-                                <defs>
-                                    <path
-                                        id={`curved-text-path-${index}`}
-                                        d="M 0 0 A 1 1 0 0 0 90 0"
-                                    />
-                                </defs>
-                            </svg>
-
-                            <p className="text-center text-xs">{valueProcessor ? valueProcessor(Number(stat.valore)) : stat.valore}</p>
-
-                            {rival && <div className="absolute top-4 text-xs bg-red-700 text-white rounded-full px-2 py-1">{rival}</div>}
-                            {tier && <div className={`absolute top-4 text-xs ${tierColor} text-white rounded-full px-2 py-1`}>{tier}</div>}
-                            {position && <div className={`absolute top-4 text-xs ${positionColor} text-white rounded-full px-2 py-1`}>{position}</div>}
-        
-                            {/* Data */}
-                            {!match && (
-                                <Link href={`/${stat.league}/match/${stat.numero}`} className="absolute -bottom-3 text-xs bg-secondary text-white rounded-full px-2 py-1 cursor-pointer z-10">
-                                    <span>{localeDate}</span>
-                                </Link>
-                            )}
-                            {/* Nome detentore */}
-                            {match && 
-                                <div className="absolute -bottom-3 text-xs bg-secondary text-white rounded-full px-2 py-1 z-10">
-                                    <span>{stat.squadra}</span>
+                            {/* Medallion */}
+                            <div className="my-3 flex justify-center">
+                                <div className="achievement-medallion">
+                                    <StatsIcon statName={stat.statistica} statTitle={statInfo.title} />
                                 </div>
-                            }
-                        
-                            <FontAwesomeIcon
-                                icon={faInfoCircle}
-                                className="absolute bottom-2 right-2 text-xs text-primary cursor-pointer"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    setInfo({content: statInfo.title, 
-                                             title: stat.statistica, 
-                                             value: valueProcessor ? valueProcessor(Number(stat.valore)) : stat.valore, 
-                                             longInfo: statInfo.longInfo?.replace("$squadra", stat.squadra).replace("$sfidante", rival).replace("$position", position || "").replace("$decade", position || "")
-                                                                         .replace("$value", stat.valore ? valueProcessor ? valueProcessor(Number(stat.valore)) : stat.valore.toString() : ""),
-                                             data: localeDate,
-                                    });
-                                }}
-                            />
-                        </div>
+                            </div>
+
+                            {/* Name + stat value */}
+                            <div className="flex flex-col items-center text-center flex-1 justify-end">
+                                <h4 className="text-xs font-semibold text-foreground leading-tight line-clamp-2">
+                                    {statLabel}
+                                </h4>
+                                <span className="mt-0.5 text-[11px] text-tertiary font-medium">
+                                    {valueProcessor ? valueProcessor(Number(stat.valore)) : stat.valore}
+                                </span>
+
+                                <hr className="achievement-divider" />
+
+                                {!match ? (
+                                    <Link
+                                        href={`/${stat.league}/match/${stat.numero}`}
+                                        className="inline-flex items-center gap-0.5 text-[11px] font-medium text-tertiary hover:text-secondary transition-colors"
+                                    >
+                                        <span>{localeDate}</span>
+                                        <span className="text-[10px] leading-none" aria-hidden="true">↗</span>
+                                    </Link>
+                                ) : (
+                                    <p className="text-[11px] text-tertiary">{stat.squadra}</p>
+                                )}
+                            </div>
+                        </article>
                     );
                 })}
             </div>
