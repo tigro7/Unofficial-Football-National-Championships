@@ -6,6 +6,7 @@ import { ColumnDef, createColumnHelper, } from '@tanstack/react-table'
 import { useState } from 'react';
 import TeamLink from '@/app/components/TeamLink';
 import Link from 'next/link';
+import normalizeLeagueName from '@/app/utils/leaguesMap';
 
 type Squadra = {
   squadra: string, 
@@ -182,18 +183,20 @@ const Ranks = ({ squadre, stats, last, league = "serie_a"}: {squadre: Squadra[],
   }
               
   return(
-    <div className="container mx-auto bg-system min-h-screen flex flex-col items-center p-6">
+    <>
       <title>{league} - Stats & Stuff - UFNC</title>
-      <h3 className="h3 mb-8">Stats & Stuff</h3>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl mt-auto">
-        <TableComponent<Squadra> columns={columnsRegni} data={teams} title="Top teams by reigns" initialState={initialRegni} />
-        <TableComponent<Squadra> columns={columnsDurata} data={teams} title="Top teams by combined duration" initialState={initialDurata}/>
-        <TableComponent<Squadra> columns={columnsDifese} data={teams} title="Top teams by defenses" initialState={initialDifese}/>
-        <TableComponent<Squadra> columns={columnsSfide} data={teams} title="Top teams by challenges" initialState={initialSfide}/>
-        <TableComponent<Stats> columns={columnsStats} data={statistiche} title="Top teams by stats" initialState={initialStats}/>
-        <TableComponent<Ultimo> columns={columnsUltimo} data={last} title="Longest time without a title" initialState={initialUltimo}/>
-      </div>
-    </div>
+      <h3 className="h3 w-full lg:w-1/2">{normalizeLeagueName(league)} - Stats & Stuff</h3>
+      <section className="section mt-[var(--margin-big)]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-[var(--margin-lg)]">
+          <TableComponent<Squadra> columns={columnsRegni} data={teams} title="Top teams by reigns" initialState={initialRegni} />
+          <TableComponent<Squadra> columns={columnsDurata} data={teams} title="Top teams by combined duration" initialState={initialDurata}/>
+          <TableComponent<Squadra> columns={columnsDifese} data={teams} title="Top teams by defenses" initialState={initialDifese}/>
+          <TableComponent<Squadra> columns={columnsSfide} data={teams} title="Top teams by challenges" initialState={initialSfide}/>
+          <TableComponent<Stats> columns={columnsStats} data={statistiche} title="Top teams by stats" initialState={initialStats}/>
+          <TableComponent<Ultimo> columns={columnsUltimo} data={last} title="Longest time without a title" initialState={initialUltimo}/>
+        </div>
+      </section>
+    </>
   )
 
 }

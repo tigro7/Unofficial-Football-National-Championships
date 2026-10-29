@@ -19,7 +19,9 @@ const MiniTimeline = ({ league }: { league: string }) => {
             fetch(`${host}/api/${league}/regni`).then(r => r.json()),
             fetch(`${host}/api/${league}/squadre`).then(r => r.json()),
         ]).then(([reignData, squadreData]) => {
-            setRegni((reignData as Reign[]).slice(-20));
+            const oneYearAgo = new Date();
+            oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+            setRegni((reignData as Reign[]).filter(r => new Date(r.end) >= oneYearAgo));
             setColors(
                 (squadreData as { squadra: string; colore_primario: string; colore_secondario: string }[]).map(s => ({
                     squadra: s.squadra.toLowerCase(),
@@ -34,8 +36,10 @@ const MiniTimeline = ({ league }: { league: string }) => {
 
     const totalDays = regni.reduce((sum, r) => sum + reignDays(r), 0);
 
-    // unique teams present in these reigns, preserving last-seen order
-    const uniqueTeams = [...new Map(regni.map(r => [r.squadra, r])).values()];
+    // unique teams ordered by last appearance (so most recent teams survive slice(-8))
+    const uniqueTeams = [...regni].reverse().filter(
+        (r, i, arr) => arr.findIndex(x => x.squadra === r.squadra) === i
+    ).reverse();
 
     return (
         <div className="w-full mt-[var(--margin-big)]">
@@ -56,22 +60,25 @@ const MiniTimeline = ({ league }: { league: string }) => {
                             key={i}
                             href={`/${league}/team/${r.squadra}`}
                             title={`${r.squadra} · ${reignDays(r)} days`}
-                            style={{ width: `${pct}%`, backgroundColor: tc?.primary ?? '#666666', minWidth: '3px' }}
+                            style={{
+                                width: `${pct}%`,
+                                background: `repeating-linear-gradient(90deg, ${tc?.primary ?? '#666666'} 0px, ${tc?.primary ?? '#666666'} 6px, ${tc?.secondary ?? '#ffffff'} 6px, ${tc?.secondary ?? '#ffffff'} 12px)`,
+                                minWidth: '3px'
+                            }}
                             className="h-full transition-opacity hover:opacity-75"
                         />
                     );
                 })}
             </div>
 
-            {/* Legend — at most 8 unique teams to keep it compact */}
             <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-xs text-primary">
-                {uniqueTeams.slice(-8).map((r, i) => {
+                {uniqueTeams.map((r, i) => {
                     const tc = colors.find(c => c.squadra === r.squadra);
                     return (
                         <Link key={i} href={`/${league}/team/${r.squadra}`} className="flex items-center gap-1 hover:opacity-75">
                             <span
                                 className="inline-block w-3 h-3 rounded-sm flex-shrink-0"
-                                style={{ backgroundColor: tc?.primary ?? '#666666' }}
+                                style={{ background: `repeating-linear-gradient(90deg, ${tc?.primary ?? '#666666'} 0px, ${tc?.primary ?? '#666666'} 3px, ${tc?.secondary ?? '#ffffff'} 3px, ${tc?.secondary ?? '#ffffff'} 6px)` }}
                             />
                             <span className="capitalize">{r.squadra}</span>
                         </Link>

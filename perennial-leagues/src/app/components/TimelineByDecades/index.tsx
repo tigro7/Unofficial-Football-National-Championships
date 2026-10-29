@@ -35,8 +35,8 @@ const TimelineByDecades = ({ segments, league = "serie_a" }: {segments :{ start:
                 return (
                     <div key={index} className="mb-8">
                         {/* Titolo del segmento */}
-                        <h2 className="text-2xl font-semibold mb-4">
-                            {new Date(segment.start).getFullYear()} - {new Date(segment.end).getFullYear()}
+                        <h2 className="h4 mb-4">
+                            {new Date(segment.start).getFullYear()} – {new Date(segment.end).getFullYear()}
                         </h2>
 
                         {/* Timeline del segmento */}

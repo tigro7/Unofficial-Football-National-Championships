@@ -36,8 +36,8 @@ const TableComponent = <T,>({ columns, data, title, initialState }: TableCompone
     });
 
     return (
-        <div className="card bg-background-dark shadow-md flex flex-col items-center p-4 transition cursor-pointer">
-            <h3 className="text-lg font-semibold text-center mb-4">{title}</h3>
+        <div className="card bg-system flex flex-col items-center p-4">
+            <h3 className="par font-semibold text-center h-[4rem] flex items-center justify-center mb-2">{title}</h3>
             <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-tertiary">
                     {table.getHeaderGroups().map(headerGroup => (

@@ -165,6 +165,12 @@ thead.bg-tertiary{
 .sub{
   font-weight: 600;
   font-size: 1.75rem;
+  @media (min-width: 480px) and (max-width: 640px) {
+    font-size: 1rem;
+  }
+  @media (max-width: 480px) {
+    font-size: 0.75rem;
+  }
 }
 
 .par{
@@ -215,6 +221,40 @@ thead.bg-tertiary{
 
 .dark .card, .dark div.container{
   box-shadow: none;
+}
+
+.section {
+  background: var(--background);
+  border-radius: 0.5rem;
+  padding: var(--margin-xxl);
+  margin-bottom: var(--margin-xl);
+  box-shadow: 0 0.25rem 1.25rem var(--tertiary);
+}
+
+.dark .section {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.section .card, .section div.container {
+  box-shadow: none;
+  border: 1px solid var(--tertiary);
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--secondary);
+  margin-bottom: var(--margin-sm);
+  display: block;
+}
+
+.section-header {
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  margin-bottom: var(--margin-md);
 }
 
 .card .btn-container{
@@ -282,4 +322,71 @@ thead.bg-tertiary{
 
 .border-primary {
   border-color: var(--primary);
+}
+
+.achievement-medallion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 9999px;
+  background-color: var(--highlights);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+  transition: transform 200ms;
+}
+.dark .achievement-medallion {
+  background-color: #2e2e2e;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+.card:hover .achievement-medallion {
+  transform: scale(1.05);
+}
+
+/* Badge pills */
+.achievement-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  border: 1px solid;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+.achievement-badge.tier-gold   { background-color: #fffbeb; color: #78350f; border-color: #fcd34d; }
+.achievement-badge.tier-silver { background-color: #f4f4f5; color: #3f3f46; border-color: #d4d4d8; }
+.achievement-badge.tier-bronze { background-color: #fff7ed; color: #431407; border-color: #fed7aa; }
+.achievement-badge.tier-iron   { background-color: #334155; color: #f1f5f9; border-color: transparent; }
+.achievement-badge.rival-badge {
+  background-color: #f1f5f9; color: #334155; border-color: rgba(226, 232, 240, 0.8);
+  text-transform: capitalize; letter-spacing: normal; font-weight: 500;
+}
+.achievement-badge.decade-badge {
+  background-color: #064e3b; color: #d1fae5; border-color: transparent;
+  font-family: monospace; text-transform: none; letter-spacing: normal;
+}
+.achievement-badge.rank-badge {
+  background-color: #0f172a; color: #ffffff; border-color: transparent;
+  text-transform: none; letter-spacing: normal;
+}
+
+.dark .achievement-badge.tier-gold   { background-color: #451a03; color: #fcd34d; border-color: #92400e; }
+.dark .achievement-badge.tier-silver { background-color: #27272a; color: #d4d4d8; border-color: #52525b; }
+.dark .achievement-badge.tier-bronze { background-color: #431407; color: #fed7aa; border-color: #9a3412; }
+.dark .achievement-badge.tier-iron   { background-color: #1e293b; color: #cbd5e1; border-color: rgba(255,255,255,0.1); }
+.dark .achievement-badge.rival-badge { background-color: #1e293b; color: #94a3b8; border-color: rgba(255,255,255,0.08); }
+
+/* Achievement card divider */
+.achievement-divider {
+  width: 100%;
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  margin: 0.5rem 0;
+}
+.dark .achievement-divider {
+  border-top-color: rgba(255, 255, 255, 0.08);
 }
