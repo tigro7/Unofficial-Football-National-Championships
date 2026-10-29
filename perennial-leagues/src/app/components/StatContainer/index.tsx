@@ -36,7 +36,7 @@ const StatContainer = ({
         : color;
 
     return (
-        <div className={`card bg-system text-center p-[var(--margin-lg)] ${effectiveColor.startsWith("#") ? "" : `text-${effectiveColor}`} ${className}`}
+        <div className={`card bg-system text-center p-[var(--margin-lg)] ${effectiveColor.startsWith("#") ? "" : `text-${effectiveColor}`} ${['gold','silver','bronze'].includes(effectiveColor) ? 'font-bold' : ''} ${className}`}
             onClick={onClick}
             >
             <p className="text-xl font-semibold">{statName}</p>

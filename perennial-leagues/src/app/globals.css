@@ -16,11 +16,11 @@
   --margin-mega: 6.25rem;
   --margin-huge: 10rem;
   --margin-giga: 15rem;
-  --primary: #25424c;
-  --secondary: #43755f;
-  --secondary-not-accessible: #6da48f;
+  --primary: #2e3d45;
+  --secondary: #4a7a62;
+  --secondary-dark: #82c4a6;
   --tertiary: #c5cbc7;
-  --highlights: #fff0c2;
+  --highlights: #f5e8b0;
   --gold: #FFD700;
   --silver: #C0C0C0;
   --bronze: #CD7F32;
@@ -47,7 +47,7 @@ body.dark{
   --background: #171717;
   --foreground: #ededed;
   --primary: #c5cbc7;
-  --secondary: var(--secondary-not-accessible);
+  --secondary: var(--secondary-dark);
   background: var(--background);
 }
 
@@ -272,7 +272,7 @@ thead.bg-tertiary{
 }
 
 .matchWon{
-  background-color: var(--secondary-not-accessible);
+  background-color: var(--secondary-dark);
 }
 
 .dark .matchWon{
