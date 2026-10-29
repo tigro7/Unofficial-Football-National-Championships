@@ -145,8 +145,8 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
                     />
                   </h2>
                 </div>
-                <Link href={`/${league}/team/${teamHome.name}`} title={teamHome.name}>
-                  <Jersey colors={teamHome.colors} icon={iconHome} />
+                <Link href={`/${league}/team/${teamHome.name}`} title={teamHome.name} aria-label={teamHome.name}>
+                  <Jersey colors={teamHome.colors} icon={iconHome} ariaLabel={teamHome.name} />
                 </Link>
               </div>
 
@@ -176,8 +176,8 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
                     />
                   </h2>
                 </div>
-                <Link href={`/${league}/team/${teamAway.name}`} title={teamAway.name}>
-                  <Jersey colors={teamAway.colors} icon={iconAway} />
+                <Link href={`/${league}/team/${teamAway.name}`} title={teamAway.name} aria-label={teamAway.name}>
+                  <Jersey colors={teamAway.colors} icon={iconAway} ariaLabel={teamAway.name} />
                 </Link>
               </div>
             </div>

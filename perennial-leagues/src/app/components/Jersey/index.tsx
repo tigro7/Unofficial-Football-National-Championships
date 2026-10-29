@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { IconDefinition, SizeProp } from "@fortawesome/fontawesome-svg-core";
 
-const Jersey = ({ colors, icon, dimensions = "default" }: { colors: { primary: string; secondary: string;}, icon: string | IconDefinition | null, dimensions?: string}) => {
+const Jersey = ({ colors, icon, dimensions = "default", ariaLabel = "Team jersey" }: { colors: { primary: string; secondary: string;}, icon: string | IconDefinition | null, dimensions?: string, ariaLabel?: string}) => {
   const primaryColor = colors?.primary || "#000000"; // Default nero
   const secondaryColor = colors?.secondary || "#FFFFFF"; // Default bianco
   const iconColor = icon === 'faCrown' || (typeof icon !== 'string' && icon?.iconName == 'crown') ? 'gold' : 'white';
@@ -20,6 +20,8 @@ const Jersey = ({ colors, icon, dimensions = "default" }: { colors: { primary: s
 
   return (
     <div
+      role="img"
+      aria-label={ariaLabel}
       className={classString}
       style={{
         background: `linear-gradient(45deg, ${primaryColor} 50%, ${secondaryColor} 50%)`,

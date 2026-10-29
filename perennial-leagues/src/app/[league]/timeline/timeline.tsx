@@ -138,7 +138,7 @@ const Timeline = ({squadre, regni, startDate, league = "serie_a"}: {squadre: {sq
           <span className="section-label">Reigning Champion</span>
           <div className="flex flex-col items-center gap-[var(--margin-md)]">
             <p className="h3"><TeamLink league={league} teamName={actualChamp?.squadra || ''} /></p>
-            <Jersey colors={actualChamp?.colors || {primary: '#000000', secondary: '#ffffff'}} icon={null} />
+            <Jersey colors={actualChamp?.colors || {primary: '#000000', secondary: '#ffffff'}} icon={null} ariaLabel={actualChamp?.squadra} />
           </div>
         </section>
 
