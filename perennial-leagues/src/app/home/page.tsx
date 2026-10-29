@@ -60,9 +60,9 @@ const HomePage = () => {
                 like boxing titles
             </h3>
             <ol className="par w-full lg:w-1/2 mt-[var(--margin-md)] flex flex-col gap-[var(--margin-sm)] list-none">
-                <li className="text-primary"><span className="text-secondary font-bold mr-[var(--margin-sm)]">Reigning Champion</span>One team holds the title at all times</li>
-                <li className="text-primary"><span className="text-secondary font-bold mr-[var(--margin-sm)]">Challenges</span>Beat the holder away and the title is yours</li>
-                <li className="text-primary"><span className="text-secondary font-bold mr-[var(--margin-sm)]">Defenses</span>Keep the crown and you might get some perks</li>
+                <li className="text-primary">Won against the <span className="text-secondary font-bold mr-[var(--margin-sm)]">Reigning Champion</span>and the title is yours</li>
+                <li className="text-primary">You put up for <span className="text-secondary font-bold mr-[var(--margin-sm)]">Challenges</span>in every official match</li>
+                <li className="text-primary"><span className="text-secondary font-bold mr-[var(--margin-sm)]">Defend</span>the crown and you might get some perks</li>
             </ol>
             <span className="par w-full lg:w-1/2 text-primary mt-[var(--margin-md)] block">
                 Track every reign, defense, and challenge across multiple leagues.
