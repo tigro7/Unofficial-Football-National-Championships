@@ -48,7 +48,7 @@ body.dark{
   --foreground: #ededed;
   --primary: #c5cbc7;
   --secondary: var(--secondary-not-accessible);
-  background: #222222;
+  background: var(--background);
 }
 
 .bg-inverted {
@@ -85,7 +85,7 @@ body.dark{
 }
 
 .dark .bg-background-dark{
-  background-color: #222222;
+  background-color: var(--background);
 }
 
 .text-primary {
@@ -117,7 +117,7 @@ body.dark{
 }
 
 thead.bg-tertiary{
-  color: #171717;
+  color: var(--foreground);
 }
 
 .bg-highlights {
@@ -298,6 +298,30 @@ thead.bg-tertiary{
   .dark .hover-match{
     background-color: var(--iron);
   }
+}
+
+.bg-lost {
+  background-color: var(--lost);
+}
+
+.text-gold {
+  color: var(--gold);
+}
+
+.text-silver {
+  color: var(--silver);
+}
+
+.text-bronze {
+  color: var(--bronze);
+}
+
+.text-iron {
+  color: var(--iron);
+}
+
+.border-primary {
+  border-color: var(--primary);
 }
 
 .achievement-medallion {
