@@ -85,7 +85,7 @@ const DateSearch = () => {
                                 <span className="section-label">{normalizeLeagueName(league)}</span>
                                 {squadra ? (
                                     <div className="flex items-center gap-[var(--margin-md)]">
-                                        <Jersey colors={colors} icon={null} ariaLabel={squadra} dimensions="medium" />
+                                        <Jersey colors={colors} icon={null} dimensions="medium" />
                                         <div className="flex flex-col gap-[var(--margin-xs)]">
                                             <Link href={`/${league}/team/${squadra}`} className="h3 text-secondary capitalize hover:underline">
                                                 {squadra}

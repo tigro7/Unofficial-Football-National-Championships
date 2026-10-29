@@ -92,7 +92,7 @@ const HomePage = () => {
             </section>
             <section className="section">
                 <span className="section-label">Discover</span>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-[var(--margin-lg)]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[var(--margin-lg)]">
                     <Card imageSrc='/card_background.png' title='Blog' description='Read all the latest news and announcements. Stay up to the date on all future developments and check out cool stories about recent and past challenges.' buttonText='Read More' buttonLink='/blog' />
                     <Card imageSrc='/card_background.png' title='About UFNC' description='What is this all about? Who is the mad man behind this? Is there anything I need to understand before diving in?' buttonText='Find out' buttonLink='/about' />
                     <Card imageSrc='/card_background.png' title='Who reigned on…' description='Pick any date and discover who held the title across all leagues on that day.' buttonText='Explore' buttonLink='/date' />
