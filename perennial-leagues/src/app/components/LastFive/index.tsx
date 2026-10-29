@@ -81,6 +81,7 @@ const LastFiveMatches = ({
               colors={opponentColors}
               icon={team === match.detentore ? null : 'faCrown'}
               dimensions="medium"
+              ariaLabel={opponent}
             />
             <p className="text-xs font-semibold text-center capitalize leading-tight">{opponent}</p>
             <p className="text-xs text-center opacity-70">{new Date(match.data).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}</p>

@@ -60,6 +60,7 @@ const MiniTimeline = ({ league }: { league: string }) => {
                             key={i}
                             href={`/${league}/team/${r.squadra}`}
                             title={`${r.squadra} · ${reignDays(r)} days`}
+                            aria-label={`${r.squadra} · ${reignDays(r)} days`}
                             style={{
                                 width: `${pct}%`,
                                 background: `repeating-linear-gradient(90deg, ${tc?.primary ?? '#666666'} 0px, ${tc?.primary ?? '#666666'} 6px, ${tc?.secondary ?? '#ffffff'} 6px, ${tc?.secondary ?? '#ffffff'} 12px)`,

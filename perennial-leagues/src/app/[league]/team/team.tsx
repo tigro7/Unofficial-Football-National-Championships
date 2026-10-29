@@ -137,7 +137,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
       <div className="border-r-8 mt-[var(--margin-md)]" style={{ borderColor: colors.primary }}>
         <div className="border-r-8 p-4" style={{ borderColor: colors.secondary }}>
           <div className="flex items-center gap-[var(--margin-md)]">
-            <Jersey colors={colors} icon={reigningIcon} />
+            <Jersey colors={colors} icon={reigningIcon} ariaLabel={squadra} />
             <div className="flex flex-col gap-[var(--margin-xxs)]">
               <h1 className="h3">
                 {`${squadra.charAt(0).toUpperCase()}${squadra.slice(1)}`}
