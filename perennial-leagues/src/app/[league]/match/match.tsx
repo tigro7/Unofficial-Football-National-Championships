@@ -191,7 +191,7 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
 
             <div className="mt-[var(--margin-lg)]" />
             <div className="flex justify-center items-stretch gap-[var(--margin-lg)] portrait:hidden">
-              <TrophyTable titles={stats.teamHomeTitles} match={true} className="w-1/3 h-full" />
+              <TrophyTable titles={stats.teamHomeTitles} match={true} className="w-1/3" />
               <HeadToHead
                 home={stats.headToHead.home}
                 draw={stats.headToHead.draw}
@@ -199,7 +199,7 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
                 colorHome={teamHome.colors.primary === "#FFFFFF" ? teamHome.colors.secondary : teamHome.colors.primary}
                 colorAway={teamAway.colors.primary === "#FFFFFF" ? teamAway.colors.secondary : teamAway.colors.primary}
               />
-              <TrophyTable titles={stats.teamAwayTitles} match={true} className="w-1/3 h-full" />
+              <TrophyTable titles={stats.teamAwayTitles} match={true} className="w-1/3" />
             </div>
             <div className="landscape:hidden flex flex-col items-center gap-[var(--margin-md)]">
               <HeadToHead

@@ -23,7 +23,7 @@ const trophyTable = ({
                             <FontAwesomeIcon key={`trophy-${index}`} icon={faTrophy} size="2x" color="gold" />
                         ))}
                     </div>
-                    {match && <h3 className="text-lg font-semibold mt-4">{titles} Titles</h3>}
+                    {match && <h3 className="text-lg font-semibold mt-auto pt-4">{titles} Titles</h3>}
                 </div>
             }
         </>
