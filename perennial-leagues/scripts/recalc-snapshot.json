@@ -1,0 +1,7153 @@
+{
+  "league": "serie_a",
+  "capturedAt": "2026-10-30T09:23:39.474Z",
+  "matchesProcessed": 3932,
+  "squadre": [
+    {
+      "squadra": "Genoa",
+      "regni": 42,
+      "durata": 3271,
+      "media": 77,
+      "colore_primario": "AD1919",
+      "colore_secondario": "05232F",
+      "league": "serie_a",
+      "difese": 82,
+      "media_difese": 1.95,
+      "sfide": 90
+    },
+    {
+      "squadra": "Internazionale Torino",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Sampierdarenese",
+      "regni": 6,
+      "durata": 54,
+      "media": 9,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FFFFFF",
+      "league": "serie_a",
+      "difese": 6,
+      "media_difese": 1,
+      "sfide": 17
+    },
+    {
+      "squadra": "US Torinese",
+      "regni": 1,
+      "durata": 7,
+      "media": 7,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "B2FFFF",
+      "league": "serie_a",
+      "difese": 1,
+      "media_difese": 1,
+      "sfide": 4
+    },
+    {
+      "squadra": "Milan",
+      "regni": 59,
+      "durata": 5308,
+      "media": 89,
+      "colore_primario": "FB090B",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 291,
+      "media_difese": 4.93,
+      "sfide": 98
+    },
+    {
+      "squadra": "Mediolanum",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Juventus",
+      "regni": 68,
+      "durata": 3679,
+      "media": 54,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 398,
+      "media_difese": 5.85,
+      "sfide": 100
+    },
+    {
+      "squadra": "Andrea Doria",
+      "regni": 2,
+      "durata": 49,
+      "media": 24,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 6,
+      "media_difese": 3,
+      "sfide": 21
+    },
+    {
+      "squadra": "US Milanese",
+      "regni": 3,
+      "durata": 36,
+      "media": 12,
+      "colore_primario": "000000",
+      "colore_secondario": "FFFFFF",
+      "league": "serie_a",
+      "difese": 4,
+      "media_difese": 1.33,
+      "sfide": 19
+    },
+    {
+      "squadra": "Torino",
+      "regni": 54,
+      "durata": 1550,
+      "media": 28,
+      "colore_primario": "8A1E03",
+      "colore_secondario": "8A1E03",
+      "league": "serie_a",
+      "difese": 154,
+      "media_difese": 2.85,
+      "sfide": 111
+    },
+    {
+      "squadra": "Vicenza",
+      "regni": 13,
+      "durata": 246,
+      "media": 18,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 19,
+      "media_difese": 1.46,
+      "sfide": 34
+    },
+    {
+      "squadra": "Inter",
+      "regni": 59,
+      "durata": 2200,
+      "media": 37,
+      "colore_primario": "000000",
+      "colore_secondario": "010E80",
+      "league": "serie_a",
+      "difese": 202,
+      "media_difese": 3.42,
+      "sfide": 88
+    },
+    {
+      "squadra": "Venezia",
+      "regni": 10,
+      "durata": 447,
+      "media": 44,
+      "colore_primario": "101010",
+      "colore_secondario": "FF6B00",
+      "league": "serie_a",
+      "difese": 28,
+      "media_difese": 2.8,
+      "sfide": 28
+    },
+    {
+      "squadra": "Pro Vercelli",
+      "regni": 18,
+      "durata": 818,
+      "media": 45,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FFFFFF",
+      "league": "serie_a",
+      "difese": 55,
+      "media_difese": 3.06,
+      "sfide": 19
+    },
+    {
+      "squadra": "Ausonia",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 6
+    },
+    {
+      "squadra": "Piemonte",
+      "regni": 1,
+      "durata": 126,
+      "media": 126,
+      "colore_primario": "B0E0E6",
+      "colore_secondario": "800000",
+      "league": "serie_a",
+      "difese": 2,
+      "media_difese": 2,
+      "sfide": 4
+    },
+    {
+      "squadra": "Casale",
+      "regni": 5,
+      "durata": 434,
+      "media": 86,
+      "colore_primario": "000000",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 13,
+      "media_difese": 2.6,
+      "sfide": 18
+    },
+    {
+      "squadra": "Racing Libertas",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FF0000",
+      "colore_secondario": "FFFFFF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Hellas Verona",
+      "regni": 13,
+      "durata": 291,
+      "media": 22,
+      "colore_primario": "FFE74A",
+      "colore_secondario": "005395",
+      "league": "serie_a",
+      "difese": 35,
+      "media_difese": 2.69,
+      "sfide": 58
+    },
+    {
+      "squadra": "Lazio",
+      "regni": 43,
+      "durata": 918,
+      "media": 21,
+      "colore_primario": "87D8F7",
+      "colore_secondario": "FFFFFF",
+      "league": "serie_a",
+      "difese": 60,
+      "media_difese": 1.4,
+      "sfide": 107
+    },
+    {
+      "squadra": "Alessandria",
+      "regni": 14,
+      "durata": 58,
+      "media": 4,
+      "colore_primario": "808080",
+      "colore_secondario": "808080",
+      "league": "serie_a",
+      "difese": 8,
+      "media_difese": 0.57,
+      "sfide": 41
+    },
+    {
+      "squadra": "Savona",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 5
+    },
+    {
+      "squadra": "Vigor Torino",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "83D3F4",
+      "colore_secondario": "FFFFFF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Acqui",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Valenzana",
+      "regni": 1,
+      "durata": 28,
+      "media": 28,
+      "colore_primario": "FF0000",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 4,
+      "media_difese": 4,
+      "sfide": 5
+    },
+    {
+      "squadra": "Vercellese",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "EA2422",
+      "colore_secondario": "2B35B2",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Modena",
+      "regni": 11,
+      "durata": 80,
+      "media": 7,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 14,
+      "media_difese": 1.27,
+      "sfide": 29
+    },
+    {
+      "squadra": "Chiasso",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FF0000",
+      "colore_secondario": "003399",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Enotria",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "0E3193",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Pavia",
+      "regni": 2,
+      "durata": 21,
+      "media": 10,
+      "colore_primario": "00FFFF",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 2,
+      "media_difese": 1,
+      "sfide": 10
+    },
+    {
+      "squadra": "Atalanta",
+      "regni": 22,
+      "durata": 229,
+      "media": 10,
+      "colore_primario": "1E71B8",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 27,
+      "media_difese": 1.23,
+      "sfide": 84
+    },
+    {
+      "squadra": "Legnano",
+      "regni": 2,
+      "durata": 28,
+      "media": 14,
+      "colore_primario": "C8A2C8",
+      "colore_secondario": "C8A2C8",
+      "league": "serie_a",
+      "difese": 4,
+      "media_difese": 2,
+      "sfide": 14
+    },
+    {
+      "squadra": "Livorno",
+      "regni": 12,
+      "durata": 153,
+      "media": 12,
+      "colore_primario": "E52B50",
+      "colore_secondario": "E52B50",
+      "league": "serie_a",
+      "difese": 12,
+      "media_difese": 1,
+      "sfide": 43
+    },
+    {
+      "squadra": "Casteggio",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Saronno",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "B0E0E6",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Trevigliese",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "99CCFF",
+      "colore_secondario": "FFFFFF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Bentegodi Verona",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "000000",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Novese",
+      "regni": 3,
+      "durata": 211,
+      "media": 70,
+      "colore_primario": "B0E0E6",
+      "colore_secondario": "FFFFFF",
+      "league": "serie_a",
+      "difese": 13,
+      "media_difese": 4.33,
+      "sfide": 1
+    },
+    {
+      "squadra": "Pastore",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "0000CD",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 3
+    },
+    {
+      "squadra": "Petrarca",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "000000",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Aeronautica Torino",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Fanfulla",
+      "regni": 1,
+      "durata": 14,
+      "media": 14,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 2,
+      "media_difese": 2,
+      "sfide": 3
+    },
+    {
+      "squadra": "Udinese",
+      "regni": 15,
+      "durata": 291,
+      "media": 19,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 35,
+      "media_difese": 2.33,
+      "sfide": 55
+    },
+    {
+      "squadra": "Novara",
+      "regni": 6,
+      "durata": 35,
+      "media": 5,
+      "colore_primario": "00FFFF",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 6,
+      "media_difese": 1,
+      "sfide": 30
+    },
+    {
+      "squadra": "Lucchese",
+      "regni": 12,
+      "durata": 42,
+      "media": 3,
+      "colore_primario": "FF0000",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 6,
+      "media_difese": 0.5,
+      "sfide": 16
+    },
+    {
+      "squadra": "SPAL",
+      "regni": 15,
+      "durata": 222,
+      "media": 14,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "0096ea",
+      "league": "serie_a",
+      "difese": 23,
+      "media_difese": 1.53,
+      "sfide": 36
+    },
+    {
+      "squadra": "Brescia",
+      "regni": 15,
+      "durata": 333,
+      "media": 22,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 18,
+      "media_difese": 1.2,
+      "sfide": 45
+    },
+    {
+      "squadra": "Padova",
+      "regni": 19,
+      "durata": 486,
+      "media": 25,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 25,
+      "media_difese": 1.32,
+      "sfide": 35
+    },
+    {
+      "squadra": "Virtus Bologna",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Bologna",
+      "regni": 41,
+      "durata": 1021,
+      "media": 24,
+      "colore_primario": "A21C26",
+      "colore_secondario": "1A2F48",
+      "league": "serie_a",
+      "difese": 105,
+      "media_difese": 2.56,
+      "sfide": 98
+    },
+    {
+      "squadra": "Derthona",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Mantova",
+      "regni": 9,
+      "durata": 130,
+      "media": 14,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 17,
+      "media_difese": 1.89,
+      "sfide": 20
+    },
+    {
+      "squadra": "Cremonese",
+      "regni": 4,
+      "durata": 14,
+      "media": 3,
+      "colore_primario": "808285",
+      "colore_secondario": "ed1c24",
+      "league": "serie_a",
+      "difese": 2,
+      "media_difese": 0.5,
+      "sfide": 23
+    },
+    {
+      "squadra": "Parma",
+      "regni": 8,
+      "durata": 157,
+      "media": 19,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "1B4094",
+      "league": "serie_a",
+      "difese": 10,
+      "media_difese": 1.25,
+      "sfide": 32
+    },
+    {
+      "squadra": "Reggiana",
+      "regni": 4,
+      "durata": 129,
+      "media": 32,
+      "colore_primario": "800000",
+      "colore_secondario": "800000",
+      "league": "serie_a",
+      "difese": 21,
+      "media_difese": 5.25,
+      "sfide": 8
+    },
+    {
+      "squadra": "Napoli",
+      "regni": 59,
+      "durata": 1793,
+      "media": 30,
+      "colore_primario": "12A0D7",
+      "colore_secondario": "003C82",
+      "league": "serie_a",
+      "difese": 169,
+      "media_difese": 2.86,
+      "sfide": 98
+    },
+    {
+      "squadra": "Pistoiese",
+      "regni": 3,
+      "durata": 21,
+      "media": 7,
+      "colore_primario": "FFA500",
+      "colore_secondario": "FFA500",
+      "league": "serie_a",
+      "difese": 3,
+      "media_difese": 1,
+      "sfide": 10
+    },
+    {
+      "squadra": "Fiumana",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FF0000",
+      "colore_secondario": "FFFF00",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 3
+    },
+    {
+      "squadra": "Fiorentina",
+      "regni": 57,
+      "durata": 991,
+      "media": 17,
+      "colore_primario": "482E92",
+      "colore_secondario": "482E92",
+      "league": "serie_a",
+      "difese": 115,
+      "media_difese": 2.02,
+      "sfide": 87
+    },
+    {
+      "squadra": "Biellese",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 4
+    },
+    {
+      "squadra": "Pro Patria",
+      "regni": 4,
+      "durata": 48,
+      "media": 12,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 5,
+      "media_difese": 1.25,
+      "sfide": 25
+    },
+    {
+      "squadra": "Triestina",
+      "regni": 18,
+      "durata": 137,
+      "media": 7,
+      "colore_primario": "FF0000",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 18,
+      "media_difese": 1,
+      "sfide": 33
+    },
+    {
+      "squadra": "Roma",
+      "regni": 60,
+      "durata": 1746,
+      "media": 29,
+      "colore_primario": "8E1F2F",
+      "colore_secondario": "F0BC42",
+      "league": "serie_a",
+      "difese": 162,
+      "media_difese": 2.7,
+      "sfide": 92
+    },
+    {
+      "squadra": "Bari",
+      "regni": 19,
+      "durata": 326,
+      "media": 17,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 33,
+      "media_difese": 1.74,
+      "sfide": 48
+    },
+    {
+      "squadra": "Palermo",
+      "regni": 21,
+      "durata": 326,
+      "media": 15,
+      "colore_primario": "FFC0CB",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 29,
+      "media_difese": 1.38,
+      "sfide": 51
+    },
+    {
+      "squadra": "Catania",
+      "regni": 6,
+      "durata": 164,
+      "media": 27,
+      "colore_primario": "FF0000",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 11,
+      "media_difese": 1.83,
+      "sfide": 31
+    },
+    {
+      "squadra": "Pisa",
+      "regni": 12,
+      "durata": 1196,
+      "media": 99,
+      "colore_primario": "000000",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 43,
+      "media_difese": 3.58,
+      "sfide": 22
+    },
+    {
+      "squadra": "Messina",
+      "regni": 6,
+      "durata": 52,
+      "media": 8,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FFFF00",
+      "league": "serie_a",
+      "difese": 7,
+      "media_difese": 1.17,
+      "sfide": 9
+    },
+    {
+      "squadra": "Ancona",
+      "regni": 7,
+      "durata": 28,
+      "media": 4,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 4,
+      "media_difese": 0.57,
+      "sfide": 12
+    },
+    {
+      "squadra": "Spezia",
+      "regni": 7,
+      "durata": 43,
+      "media": 6,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "99834a",
+      "league": "serie_a",
+      "difese": 6,
+      "media_difese": 0.86,
+      "sfide": 16
+    },
+    {
+      "squadra": "Taranto",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FF0000",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 13
+    },
+    {
+      "squadra": "Vigevano",
+      "regni": 1,
+      "durata": 21,
+      "media": 21,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "B0E0E6",
+      "league": "serie_a",
+      "difese": 2,
+      "media_difese": 2,
+      "sfide": 2
+    },
+    {
+      "squadra": "Sanremese",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Salernitana",
+      "regni": 4,
+      "durata": 150,
+      "media": 37,
+      "colore_primario": "681A12",
+      "colore_secondario": "681A12",
+      "league": "serie_a",
+      "difese": 18,
+      "media_difese": 4.5,
+      "sfide": 7
+    },
+    {
+      "squadra": "Pescara",
+      "regni": 6,
+      "durata": 63,
+      "media": 10,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 10,
+      "media_difese": 1.67,
+      "sfide": 21
+    },
+    {
+      "squadra": "Siena",
+      "regni": 2,
+      "durata": 66,
+      "media": 33,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 9,
+      "media_difese": 4.5,
+      "sfide": 10
+    },
+    {
+      "squadra": "Sampdoria",
+      "regni": 32,
+      "durata": 609,
+      "media": 19,
+      "colore_primario": "1B5497",
+      "colore_secondario": "C21718",
+      "league": "serie_a",
+      "difese": 67,
+      "media_difese": 2.09,
+      "sfide": 79
+    },
+    {
+      "squadra": "Como",
+      "regni": 8,
+      "durata": 104,
+      "media": 13,
+      "colore_primario": "114169",
+      "colore_secondario": "114169",
+      "league": "serie_a",
+      "difese": 14,
+      "media_difese": 1.75,
+      "sfide": 40
+    },
+    {
+      "squadra": "Treviso",
+      "regni": 2,
+      "durata": 14,
+      "media": 7,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "B0E0E6",
+      "league": "serie_a",
+      "difese": 2,
+      "media_difese": 1,
+      "sfide": 11
+    },
+    {
+      "squadra": "Marzotto",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "B2FFFF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Cagliari",
+      "regni": 13,
+      "durata": 223,
+      "media": 17,
+      "colore_primario": "002350",
+      "colore_secondario": "AD002A",
+      "league": "serie_a",
+      "difese": 29,
+      "media_difese": 2.23,
+      "sfide": 70
+    },
+    {
+      "squadra": "Monza",
+      "regni": 4,
+      "durata": 20,
+      "media": 5,
+      "colore_primario": "EC173A",
+      "colore_secondario": "FFFFFF",
+      "league": "serie_a",
+      "difese": 3,
+      "media_difese": 0.75,
+      "sfide": 14
+    },
+    {
+      "squadra": "Talmone Torino",
+      "regni": 1,
+      "durata": 21,
+      "media": 21,
+      "colore_primario": "7B1C20",
+      "colore_secondario": "7B1C20",
+      "league": "serie_a",
+      "difese": 3,
+      "media_difese": 3,
+      "sfide": 4
+    },
+    {
+      "squadra": "Lecco",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "0000FF",
+      "colore_secondario": "B0E0E6",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 9
+    },
+    {
+      "squadra": "Foggia",
+      "regni": 2,
+      "durata": 14,
+      "media": 7,
+      "colore_primario": "FF0000",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 2,
+      "media_difese": 1,
+      "sfide": 18
+    },
+    {
+      "squadra": "Cosenza",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FF0000",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 7
+    },
+    {
+      "squadra": "Prato",
+      "regni": 3,
+      "durata": 28,
+      "media": 9,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 4,
+      "media_difese": 1.33,
+      "sfide": 8
+    },
+    {
+      "squadra": "Potenza",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FF0000",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Varese",
+      "regni": 6,
+      "durata": 112,
+      "media": 18,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 12,
+      "media_difese": 2,
+      "sfide": 23
+    },
+    {
+      "squadra": "Catanzaro",
+      "regni": 7,
+      "durata": 35,
+      "media": 5,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 4,
+      "media_difese": 0.57,
+      "sfide": 15
+    },
+    {
+      "squadra": "Reggina",
+      "regni": 2,
+      "durata": 14,
+      "media": 7,
+      "colore_primario": "E52B50",
+      "colore_secondario": "E52B50",
+      "league": "serie_a",
+      "difese": 1,
+      "media_difese": 0.5,
+      "sfide": 6
+    },
+    {
+      "squadra": "Ternana",
+      "regni": 3,
+      "durata": 169,
+      "media": 56,
+      "colore_primario": "FF0000",
+      "colore_secondario": "008000",
+      "league": "serie_a",
+      "difese": 14,
+      "media_difese": 4.67,
+      "sfide": 5
+    },
+    {
+      "squadra": "Perugia",
+      "regni": 7,
+      "durata": 211,
+      "media": 30,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 15,
+      "media_difese": 2.14,
+      "sfide": 6
+    },
+    {
+      "squadra": "Cesena",
+      "regni": 3,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 30
+    },
+    {
+      "squadra": "Ascoli",
+      "regni": 11,
+      "durata": 209,
+      "media": 19,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 29,
+      "media_difese": 2.64,
+      "sfide": 19
+    },
+    {
+      "squadra": "Avellino",
+      "regni": 12,
+      "durata": 193,
+      "media": 16,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "008000",
+      "league": "serie_a",
+      "difese": 15,
+      "media_difese": 1.25,
+      "sfide": 19
+    },
+    {
+      "squadra": "Brindisi",
+      "regni": 2,
+      "durata": 8,
+      "media": 4,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 1,
+      "media_difese": 0.5,
+      "sfide": 3
+    },
+    {
+      "squadra": "Lecce",
+      "regni": 6,
+      "durata": 61,
+      "media": 10,
+      "colore_primario": "FFF200",
+      "colore_secondario": "ED1B23",
+      "league": "serie_a",
+      "difese": 8,
+      "media_difese": 1.33,
+      "sfide": 28
+    },
+    {
+      "squadra": "Rimini",
+      "regni": 4,
+      "durata": 175,
+      "media": 43,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 22,
+      "media_difese": 5.5,
+      "sfide": 9
+    },
+    {
+      "squadra": "Sambenedettese",
+      "regni": 1,
+      "durata": 7,
+      "media": 7,
+      "colore_primario": "FF0000",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 1,
+      "media_difese": 1,
+      "sfide": 7
+    },
+    {
+      "squadra": "Matera",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Nocerina",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FF0000",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Campobasso",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FF0000",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Monopoli",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "008000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Empoli",
+      "regni": 11,
+      "durata": 346,
+      "media": 31,
+      "colore_primario": "00579C",
+      "colore_secondario": "FFFFFF",
+      "league": "serie_a",
+      "difese": 30,
+      "media_difese": 2.73,
+      "sfide": 17
+    },
+    {
+      "squadra": "Arezzo",
+      "regni": 5,
+      "durata": 255,
+      "media": 51,
+      "colore_primario": "E52B50",
+      "colore_secondario": "E52B50",
+      "league": "serie_a",
+      "difese": 16,
+      "media_difese": 3.2,
+      "sfide": 9
+    },
+    {
+      "squadra": "Piacenza",
+      "regni": 4,
+      "durata": 27,
+      "media": 6,
+      "colore_primario": "FF0000",
+      "colore_secondario": "FFFFFF",
+      "league": "serie_a",
+      "difese": 5,
+      "media_difese": 1.25,
+      "sfide": 3
+    },
+    {
+      "squadra": "Centese",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Barletta",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Licata",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 0
+    },
+    {
+      "squadra": "Fidelis Andria",
+      "regni": 2,
+      "durata": 10,
+      "media": 5,
+      "colore_primario": "0093FD",
+      "colore_secondario": "FFFDF6",
+      "league": "serie_a",
+      "difese": 2,
+      "media_difese": 1,
+      "sfide": 5
+    },
+    {
+      "squadra": "Ravenna",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Acireale",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "800000",
+      "colore_secondario": "800000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 5
+    },
+    {
+      "squadra": "Fano",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "800000",
+      "colore_secondario": "800000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 6
+    },
+    {
+      "squadra": "Pontedera",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "800000",
+      "colore_secondario": "800000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 7
+    },
+    {
+      "squadra": "Sandonà",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "B0E0E6",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 3
+    },
+    {
+      "squadra": "Vis Pesaro",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 3
+    },
+    {
+      "squadra": "Baracca",
+      "regni": 2,
+      "durata": 14,
+      "media": 7,
+      "colore_primario": "000000",
+      "colore_secondario": "FFFFFF",
+      "league": "serie_a",
+      "difese": 1,
+      "media_difese": 0.5,
+      "sfide": 3
+    },
+    {
+      "squadra": "Massese",
+      "regni": 1,
+      "durata": 7,
+      "media": 7,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 1,
+      "media_difese": 1,
+      "sfide": 4
+    },
+    {
+      "squadra": "Giorgione",
+      "regni": 1,
+      "durata": 63,
+      "media": 63,
+      "colore_primario": "FF0000",
+      "colore_secondario": "FFFFFF",
+      "league": "serie_a",
+      "difese": 7,
+      "media_difese": 7,
+      "sfide": 0
+    },
+    {
+      "squadra": "Tolentino",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "B00065",
+      "colore_secondario": "B00065",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 4
+    },
+    {
+      "squadra": "Forlì",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Mobilieri Ponsacco",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FF0000",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Sassari Torres",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "E50016",
+      "colore_secondario": "00224B",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 3
+    },
+    {
+      "squadra": "Iperzola",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FF0000",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Maceratese",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 3
+    },
+    {
+      "squadra": "Tempio",
+      "regni": 1,
+      "durata": 14,
+      "media": 14,
+      "colore_primario": "00FFFF",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 1,
+      "media_difese": 1,
+      "sfide": 1
+    },
+    {
+      "squadra": "Castel San Pietro",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Viterbese",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Teramo",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 5
+    },
+    {
+      "squadra": "Viareggio",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 7
+    },
+    {
+      "squadra": "Montevarchi",
+      "regni": 1,
+      "durata": 56,
+      "media": 56,
+      "colore_primario": "FF0000",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 7,
+      "media_difese": 7,
+      "sfide": 7
+    },
+    {
+      "squadra": "Carpi",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Alzano Virescit",
+      "regni": 1,
+      "durata": 34,
+      "media": 34,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 4,
+      "media_difese": 4,
+      "sfide": 5
+    },
+    {
+      "squadra": "AlbinoLeffe",
+      "regni": 7,
+      "durata": 262,
+      "media": 37,
+      "colore_primario": "529BDF",
+      "colore_secondario": "0051A0",
+      "league": "serie_a",
+      "difese": 17,
+      "media_difese": 2.43,
+      "sfide": 9
+    },
+    {
+      "squadra": "Borgosesia",
+      "regni": 1,
+      "durata": 7,
+      "media": 7,
+      "colore_primario": "800000",
+      "colore_secondario": "800000",
+      "league": "serie_a",
+      "difese": 1,
+      "media_difese": 1,
+      "sfide": 2
+    },
+    {
+      "squadra": "Cremapergo",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Pro Sesto",
+      "regni": 3,
+      "durata": 80,
+      "media": 26,
+      "colore_primario": "4077CC",
+      "colore_secondario": "FFFFFF",
+      "league": "serie_a",
+      "difese": 12,
+      "media_difese": 4,
+      "sfide": 3
+    },
+    {
+      "squadra": "Fiorenzuola",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FF0000",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Montichiari",
+      "regni": 1,
+      "durata": 7,
+      "media": 7,
+      "colore_primario": "FF0000",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 2,
+      "media_difese": 2,
+      "sfide": 1
+    },
+    {
+      "squadra": "Brescello",
+      "regni": 1,
+      "durata": 148,
+      "media": 148,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 10,
+      "media_difese": 10,
+      "sfide": 2
+    },
+    {
+      "squadra": "Carrarese",
+      "regni": 2,
+      "durata": 7,
+      "media": 3,
+      "colore_primario": "00FFFF",
+      "colore_secondario": "FFFF00",
+      "league": "serie_a",
+      "difese": 1,
+      "media_difese": 0.5,
+      "sfide": 6
+    },
+    {
+      "squadra": "Lumezzane",
+      "regni": 3,
+      "durata": 24,
+      "media": 8,
+      "colore_primario": "FF0000",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 4,
+      "media_difese": 1.33,
+      "sfide": 7
+    },
+    {
+      "squadra": "Cittadella",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "800000",
+      "colore_secondario": "800000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 5
+    },
+    {
+      "squadra": "Meda",
+      "regni": 1,
+      "durata": 21,
+      "media": 21,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 3,
+      "media_difese": 3,
+      "sfide": 3
+    },
+    {
+      "squadra": "Rondinella",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 3
+    },
+    {
+      "squadra": "Castelnuovo",
+      "regni": 3,
+      "durata": 17,
+      "media": 5,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 3,
+      "media_difese": 1,
+      "sfide": 1
+    },
+    {
+      "squadra": "Sangiovannese",
+      "regni": 1,
+      "durata": 10,
+      "media": 10,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 2,
+      "media_difese": 2,
+      "sfide": 3
+    },
+    {
+      "squadra": "Aglianese",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "000000",
+      "colore_secondario": "008000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Palmese",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "73CDAD",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Benevento",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 6
+    },
+    {
+      "squadra": "Latina",
+      "regni": 2,
+      "durata": 7,
+      "media": 3,
+      "colore_primario": "000000",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 2,
+      "media_difese": 1,
+      "sfide": 0
+    },
+    {
+      "squadra": "Tivoli",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "E52B50",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Igea Virtus",
+      "regni": 1,
+      "durata": 14,
+      "media": 14,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 2,
+      "media_difese": 2,
+      "sfide": 2
+    },
+    {
+      "squadra": "Lodigiani",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "0000FF",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Ragusa",
+      "regni": 2,
+      "durata": 8,
+      "media": 4,
+      "colore_primario": "00FFFF",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 1,
+      "media_difese": 0.5,
+      "sfide": 1
+    },
+    {
+      "squadra": "Cavese",
+      "regni": 2,
+      "durata": 7,
+      "media": 3,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 1,
+      "media_difese": 0.5,
+      "sfide": 2
+    },
+    {
+      "squadra": "Melfi",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "008000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Isernia",
+      "regni": 1,
+      "durata": 35,
+      "media": 35,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "B0E0E6",
+      "league": "serie_a",
+      "difese": 4,
+      "media_difese": 4,
+      "sfide": 1
+    },
+    {
+      "squadra": "Gela",
+      "regni": 1,
+      "durata": 4,
+      "media": 4,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 1,
+      "media_difese": 1,
+      "sfide": 2
+    },
+    {
+      "squadra": "Frosinone",
+      "regni": 5,
+      "durata": 165,
+      "media": 33,
+      "colore_primario": "FFDD00",
+      "colore_secondario": "004393",
+      "league": "serie_a",
+      "difese": 21,
+      "media_difese": 4.2,
+      "sfide": 9
+    },
+    {
+      "squadra": "Giugliano",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Castel di Sangro",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Vittoria",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 3
+    },
+    {
+      "squadra": "Rutigliano",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "800000",
+      "colore_secondario": "800000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 0
+    },
+    {
+      "squadra": "Vigor Lamezia",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "008000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Grosseto",
+      "regni": 2,
+      "durata": 20,
+      "media": 10,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 3,
+      "media_difese": 1.5,
+      "sfide": 4
+    },
+    {
+      "squadra": "Manfredonia",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "B0E0E6",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Chievo Verona",
+      "regni": 6,
+      "durata": 111,
+      "media": 18,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 15,
+      "media_difese": 2.5,
+      "sfide": 13
+    },
+    {
+      "squadra": "Martina Franca",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Sansovino",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFA500",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 3
+    },
+    {
+      "squadra": "Poggibonsi",
+      "regni": 1,
+      "durata": 3,
+      "media": 3,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 1,
+      "media_difese": 1,
+      "sfide": 1
+    },
+    {
+      "squadra": "Bellaria",
+      "regni": 1,
+      "durata": 21,
+      "media": 21,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 4,
+      "media_difese": 4,
+      "sfide": 2
+    },
+    {
+      "squadra": "Giulianova",
+      "regni": 2,
+      "durata": 14,
+      "media": 7,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 2,
+      "media_difese": 1,
+      "sfide": 0
+    },
+    {
+      "squadra": "Rovigo",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "00FFFF",
+      "colore_secondario": "FFFFFF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 3
+    },
+    {
+      "squadra": "Bassano Virtus",
+      "regni": 1,
+      "durata": 14,
+      "media": 14,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 2,
+      "media_difese": 2,
+      "sfide": 2
+    },
+    {
+      "squadra": "Cuoiopelli",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "FF0000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Gubbio",
+      "regni": 1,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FF0000",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Mezzocorona",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "008000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 2
+    },
+    {
+      "squadra": "Portogruaro",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "800000",
+      "colore_secondario": "800000",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "San Marino",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFFFF",
+      "colore_secondario": "00FFFF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Sangiustese",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "D70000",
+      "colore_secondario": "00008B",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Sassuolo",
+      "regni": 5,
+      "durata": 32,
+      "media": 6,
+      "colore_primario": "00A752",
+      "colore_secondario": "000000",
+      "league": "serie_a",
+      "difese": 4,
+      "media_difese": 0.8,
+      "sfide": 28
+    },
+    {
+      "squadra": "Juve Stabia",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FFFF00",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Sudtirol-Alto Adige",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FF251D",
+      "colore_secondario": "FFFFFF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 1
+    },
+    {
+      "squadra": "Crotone",
+      "regni": 0,
+      "durata": 0,
+      "media": 0,
+      "colore_primario": "FF0000",
+      "colore_secondario": "0000FF",
+      "league": "serie_a",
+      "difese": 0,
+      "media_difese": 0,
+      "sfide": 5
+    }
+  ],
+  "stats": [
+    {
+      "squadra": "Genoa",
+      "data": "1898-05-07",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1
+    },
+    {
+      "squadra": "Ginnastica Torino",
+      "data": "1898-05-07",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1
+    },
+    {
+      "squadra": "Genoa",
+      "data": "1898-05-07",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2
+    },
+    {
+      "squadra": "Internazionale Torino",
+      "data": "1898-05-07",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2
+    },
+    {
+      "squadra": "Sampierdarenese",
+      "data": "1900-04-07",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 4
+    },
+    {
+      "squadra": "US Torinese",
+      "data": "1900-04-21",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 5
+    },
+    {
+      "squadra": "Milan",
+      "data": "1901-03-16",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 6
+    },
+    {
+      "squadra": "Mediolanum",
+      "data": "1902-02-08",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 8
+    },
+    {
+      "squadra": "Genoa",
+      "data": "1902-04-12",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 4,
+      "numero": 11
+    },
+    {
+      "squadra": "Genoa",
+      "data": "1902-04-12",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Milan",
+      "valore": 0,
+      "numero": 11
+    },
+    {
+      "squadra": "Juventus",
+      "data": "1903-04-12",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 12
+    },
+    {
+      "squadra": "Andrea Doria",
+      "data": "1905-02-04",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 14
+    },
+    {
+      "squadra": "US Milanese",
+      "data": "1905-03-17",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 17
+    },
+    {
+      "squadra": "Torino",
+      "data": "1907-03-08",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 30
+    },
+    {
+      "squadra": "Vicenza",
+      "data": "1907-05-08",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 34
+    },
+    {
+      "squadra": "Inter",
+      "data": "1909-01-08",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 37
+    },
+    {
+      "squadra": "Venezia",
+      "data": "1909-02-20",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 43
+    },
+    {
+      "squadra": "Pro Vercelli",
+      "data": "1909-04-03",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 44
+    },
+    {
+      "squadra": "Ausonia",
+      "data": "1909-11-26",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 49
+    },
+    {
+      "squadra": "Piemonte",
+      "data": "1911-03-04",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 71
+    },
+    {
+      "squadra": "Casale",
+      "data": "1911-10-14",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 82
+    },
+    {
+      "squadra": "Pro Vercelli",
+      "data": "1911-10-21",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 4,
+      "numero": 83
+    },
+    {
+      "squadra": "Racing Libertas",
+      "data": "1912-11-09",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 100
+    },
+    {
+      "squadra": "Genoa",
+      "data": "1913-02-22",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Milan",
+      "valore": 7,
+      "numero": 108
+    },
+    {
+      "squadra": "Hellas Verona",
+      "data": "1913-04-19",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 113
+    },
+    {
+      "squadra": "Lazio",
+      "data": "1913-06-01",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 116
+    },
+    {
+      "squadra": "Alessandria",
+      "data": "1913-10-11",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 117
+    },
+    {
+      "squadra": "Savona",
+      "data": "1913-10-18",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 118
+    },
+    {
+      "squadra": "Vigor Torino",
+      "data": "1913-12-13",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 125
+    },
+    {
+      "squadra": "Genoa",
+      "data": "1914-02-14",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Pro Vercelli",
+      "valore": 0,
+      "numero": 131
+    },
+    {
+      "squadra": "Acqui",
+      "data": "1914-10-03",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 144
+    },
+    {
+      "squadra": "Genoa",
+      "data": "1914-11-21",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 28,
+      "numero": 151
+    },
+    {
+      "squadra": "Valenzana",
+      "data": "1915-12-18",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 159
+    },
+    {
+      "squadra": "Vercellese",
+      "data": "1916-01-22",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 161
+    },
+    {
+      "squadra": "Modena",
+      "data": "1916-02-19",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 164
+    },
+    {
+      "squadra": "Juventus",
+      "data": "1916-03-11",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 14,
+      "numero": 168
+    },
+    {
+      "squadra": "Juventus",
+      "data": "1916-03-11",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Milan",
+      "valore": 0,
+      "numero": 168
+    },
+    {
+      "squadra": "Milan",
+      "data": "1916-04-29",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 3,
+      "numero": 171
+    },
+    {
+      "squadra": "Chiasso",
+      "data": "1919-10-11",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 172
+    },
+    {
+      "squadra": "Enotria",
+      "data": "1919-10-18",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 173
+    },
+    {
+      "squadra": "Pavia",
+      "data": "1919-10-25",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 174
+    },
+    {
+      "squadra": "Atalanta",
+      "data": "1919-11-01",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 175
+    },
+    {
+      "squadra": "Genoa",
+      "data": "1920-01-03",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Milan",
+      "valore": 0,
+      "numero": 182
+    },
+    {
+      "squadra": "Legnano",
+      "data": "1920-04-17",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 190
+    },
+    {
+      "squadra": "Livorno",
+      "data": "1920-06-20",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 195
+    },
+    {
+      "squadra": "Casteggio",
+      "data": "1920-10-23",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 196
+    },
+    {
+      "squadra": "Saronno",
+      "data": "1920-12-12",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 202
+    },
+    {
+      "squadra": "Trevigliese",
+      "data": "1921-01-15",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 206
+    },
+    {
+      "squadra": "Bentegodi Verona",
+      "data": "1921-04-16",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 212
+    },
+    {
+      "squadra": "Novese",
+      "data": "1921-11-19",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 217
+    },
+    {
+      "squadra": "Pastore",
+      "data": "1921-11-26",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 218
+    },
+    {
+      "squadra": "Petrarca",
+      "data": "1922-03-04",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 221
+    },
+    {
+      "squadra": "Aeronautica Torino",
+      "data": "1922-04-02",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 223
+    },
+    {
+      "squadra": "Fanfulla",
+      "data": "1922-04-09",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 224
+    },
+    {
+      "squadra": "Udinese",
+      "data": "1922-06-18",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 230
+    },
+    {
+      "squadra": "Novara",
+      "data": "1922-10-21",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 233
+    },
+    {
+      "squadra": "Lucchese",
+      "data": "1922-11-11",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 235
+    },
+    {
+      "squadra": "SPAL",
+      "data": "1922-11-18",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 236
+    },
+    {
+      "squadra": "Brescia",
+      "data": "1923-02-10",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 243
+    },
+    {
+      "squadra": "Padova",
+      "data": "1923-02-17",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 244
+    },
+    {
+      "squadra": "US Milanese",
+      "data": "1923-03-24",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 5145,
+      "numero": 247
+    },
+    {
+      "squadra": "Novese",
+      "data": "1923-04-21",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 4,
+      "numero": 250
+    },
+    {
+      "squadra": "US Milanese",
+      "data": "1923-05-05",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 4,
+      "numero": 252
+    },
+    {
+      "squadra": "Brescia",
+      "data": "1923-06-16",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs US Milanese",
+      "valore": 5,
+      "numero": 253
+    },
+    {
+      "squadra": "Virtus Bologna",
+      "data": "1923-10-06",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 254
+    },
+    {
+      "squadra": "Livorno",
+      "data": "1924-04-12",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 21,
+      "numero": 273
+    },
+    {
+      "squadra": "Bologna",
+      "data": "1924-12-27",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 285
+    },
+    {
+      "squadra": "Derthona",
+      "data": "1925-01-03",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 286
+    },
+    {
+      "squadra": "Mantova",
+      "data": "1925-04-04",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 294
+    },
+    {
+      "squadra": "Cremonese",
+      "data": "1925-10-10",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 302
+    },
+    {
+      "squadra": "Parma",
+      "data": "1925-10-17",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 303
+    },
+    {
+      "squadra": "Reggiana",
+      "data": "1926-01-23",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 311
+    },
+    {
+      "squadra": "Napoli",
+      "data": "1927-09-24",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 323
+    },
+    {
+      "squadra": "Torino",
+      "data": "1927-11-26",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 6020,
+      "numero": 330
+    },
+    {
+      "squadra": "Milan",
+      "data": "1928-06-23",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 4,
+      "numero": 352
+    },
+    {
+      "squadra": "Pistoiese",
+      "data": "1928-09-29",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 359
+    },
+    {
+      "squadra": "Fiumana",
+      "data": "1928-10-06",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 360
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "1928-10-20",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 361
+    },
+    {
+      "squadra": "Biellese",
+      "data": "1929-02-23",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 376
+    },
+    {
+      "squadra": "Pro Patria",
+      "data": "1929-10-19",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 391
+    },
+    {
+      "squadra": "Modena",
+      "data": "1929-11-02",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Genoa",
+      "valore": 58,
+      "numero": 393
+    },
+    {
+      "squadra": "Modena",
+      "data": "1929-11-02",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 4977,
+      "numero": 393
+    },
+    {
+      "squadra": "Triestina",
+      "data": "1930-01-04",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 400
+    },
+    {
+      "squadra": "Roma",
+      "data": "1930-01-11",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 401
+    },
+    {
+      "squadra": "Padova",
+      "data": "1930-03-15",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 4,
+      "numero": 408
+    },
+    {
+      "squadra": "Modena",
+      "data": "1930-04-19",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Juventus",
+      "valore": 6,
+      "numero": 412
+    },
+    {
+      "squadra": "Napoli",
+      "data": "1930-06-07",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 14,
+      "numero": 419
+    },
+    {
+      "squadra": "Bologna",
+      "data": "1931-09-19",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 4,
+      "numero": 457
+    },
+    {
+      "squadra": "Bari",
+      "data": "1931-09-26",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 458
+    },
+    {
+      "squadra": "Palermo",
+      "data": "1932-10-01",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 494
+    },
+    {
+      "squadra": "Bologna",
+      "data": "1932-12-03",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 5,
+      "numero": 501
+    },
+    {
+      "squadra": "Bologna",
+      "data": "1934-01-20",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Palermo",
+      "valore": 9,
+      "numero": 544
+    },
+    {
+      "squadra": "Napoli",
+      "data": "1934-02-17",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Bologna",
+      "valore": 17,
+      "numero": 547
+    },
+    {
+      "squadra": "Juventus",
+      "data": "1934-03-10",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Napoli",
+      "valore": 41,
+      "numero": 550
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "1935-05-18",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Bologna",
+      "valore": 5,
+      "numero": 587
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "1936-01-11",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 28,
+      "numero": 605
+    },
+    {
+      "squadra": "Bologna",
+      "data": "1936-02-01",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Fiorentina",
+      "valore": 10,
+      "numero": 608
+    },
+    {
+      "squadra": "Inter",
+      "data": "1936-02-08",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Bologna",
+      "valore": 59,
+      "numero": 609
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "1936-05-24",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 5,
+      "numero": 623
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "1936-10-03",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 5,
+      "numero": 629
+    },
+    {
+      "squadra": "Lazio",
+      "data": "1936-10-10",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Fiorentina",
+      "valore": 12,
+      "numero": 630
+    },
+    {
+      "squadra": "Catania",
+      "data": "1937-05-06",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 655
+    },
+    {
+      "squadra": "Pisa",
+      "data": "1937-05-08",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 656
+    },
+    {
+      "squadra": "Messina",
+      "data": "1937-05-26",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 658
+    },
+    {
+      "squadra": "Catania",
+      "data": "1937-06-05",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 21,
+      "numero": 660
+    },
+    {
+      "squadra": "Pro Vercelli",
+      "data": "1937-06-26",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 5,
+      "numero": 663
+    },
+    {
+      "squadra": "Ancona",
+      "data": "1937-09-25",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 667
+    },
+    {
+      "squadra": "Spezia",
+      "data": "1937-10-02",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 668
+    },
+    {
+      "squadra": "Pro Vercelli",
+      "data": "1937-10-09",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 28,
+      "numero": 669
+    },
+    {
+      "squadra": "Taranto",
+      "data": "1937-10-23",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 671
+    },
+    {
+      "squadra": "Vigevano",
+      "data": "1937-11-27",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 676
+    },
+    {
+      "squadra": "Sanremese",
+      "data": "1938-03-19",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 690
+    },
+    {
+      "squadra": "SPAL",
+      "data": "1938-11-12",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 4900,
+      "numero": 708
+    },
+    {
+      "squadra": "Salernitana",
+      "data": "1938-12-17",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 711
+    },
+    {
+      "squadra": "Triestina",
+      "data": "1939-02-18",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 5,
+      "numero": 721
+    },
+    {
+      "squadra": "Roma",
+      "data": "1939-04-06",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Triestina",
+      "valore": 0,
+      "numero": 727
+    },
+    {
+      "squadra": "Genoa",
+      "data": "1939-11-18",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Napoli",
+      "valore": 5,
+      "numero": 742
+    },
+    {
+      "squadra": "Novara",
+      "data": "1939-12-30",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 6111,
+      "numero": 747
+    },
+    {
+      "squadra": "Novara",
+      "data": "1940-05-25",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Inter",
+      "valore": 5,
+      "numero": 763
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "1942-10-24",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 5,
+      "numero": 838
+    },
+    {
+      "squadra": "Torino",
+      "data": "1942-11-07",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Fiorentina",
+      "valore": 3,
+      "numero": 840
+    },
+    {
+      "squadra": "Milan",
+      "data": "1942-11-21",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 28,
+      "numero": 842
+    },
+    {
+      "squadra": "Pescara",
+      "data": "1945-10-20",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 865
+    },
+    {
+      "squadra": "Siena",
+      "data": "1946-01-12",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 875
+    },
+    {
+      "squadra": "Pescara",
+      "data": "1946-02-16",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Napoli",
+      "valore": 0,
+      "numero": 879
+    },
+    {
+      "squadra": "Sampdoria",
+      "data": "1946-10-05",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 886
+    },
+    {
+      "squadra": "Torino",
+      "data": "1946-10-26",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 14,
+      "numero": 889
+    },
+    {
+      "squadra": "Alessandria",
+      "data": "1947-02-22",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 28,
+      "numero": 904
+    },
+    {
+      "squadra": "Vicenza",
+      "data": "1947-10-04",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 12180,
+      "numero": 925
+    },
+    {
+      "squadra": "Torino",
+      "data": "1947-10-11",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 21,
+      "numero": 926
+    },
+    {
+      "squadra": "Vicenza",
+      "data": "1947-11-15",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 4,
+      "numero": 930
+    },
+    {
+      "squadra": "Lucchese",
+      "data": "1948-01-31",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 3941,
+      "numero": 938
+    },
+    {
+      "squadra": "Lucchese",
+      "data": "1948-03-13",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 4,
+      "numero": 943
+    },
+    {
+      "squadra": "Salernitana",
+      "data": "1948-03-27",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 14,
+      "numero": 945
+    },
+    {
+      "squadra": "Atalanta",
+      "data": "1948-09-25",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Torino",
+      "valore": 57,
+      "numero": 960
+    },
+    {
+      "squadra": "Palermo",
+      "data": "1949-01-29",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 3773,
+      "numero": 982
+    },
+    {
+      "squadra": "Como",
+      "data": "1950-01-28",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1019
+    },
+    {
+      "squadra": "Venezia",
+      "data": "1950-05-06",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Roma",
+      "valore": 49,
+      "numero": 1032
+    },
+    {
+      "squadra": "Juventus",
+      "data": "1950-05-20",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 21,
+      "numero": 1034
+    },
+    {
+      "squadra": "Padova",
+      "data": "1951-12-08",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 4802,
+      "numero": 1085
+    },
+    {
+      "squadra": "Novara",
+      "data": "1952-03-01",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 4298,
+      "numero": 1095
+    },
+    {
+      "squadra": "Inter",
+      "data": "1952-05-31",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Juventus",
+      "valore": 30,
+      "numero": 1108
+    },
+    {
+      "squadra": "Pro Patria",
+      "data": "1952-06-21",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 7364,
+      "numero": 1111
+    },
+    {
+      "squadra": "Pro Patria",
+      "data": "1953-01-24",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Bologna",
+      "valore": 4,
+      "numero": 1129
+    },
+    {
+      "squadra": "Bologna",
+      "data": "1953-02-21",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 28,
+      "numero": 1133
+    },
+    {
+      "squadra": "SPAL",
+      "data": "1953-05-23",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 5306,
+      "numero": 1144
+    },
+    {
+      "squadra": "Treviso",
+      "data": "1954-10-30",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1186
+    },
+    {
+      "squadra": "Marzotto",
+      "data": "1954-11-20",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1189
+    },
+    {
+      "squadra": "Modena",
+      "data": "1954-12-11",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 6118,
+      "numero": 1190
+    },
+    {
+      "squadra": "Hellas Verona",
+      "data": "1954-12-18",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 6104,
+      "numero": 1191
+    },
+    {
+      "squadra": "Cagliari",
+      "data": "1955-02-05",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1197
+    },
+    {
+      "squadra": "Monza",
+      "data": "1955-04-02",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1204
+    },
+    {
+      "squadra": "Brescia",
+      "data": "1955-04-23",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 7154,
+      "numero": 1207
+    },
+    {
+      "squadra": "Milan",
+      "data": "1955-12-25",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 3,
+      "numero": 1224
+    },
+    {
+      "squadra": "SPAL",
+      "data": "1956-12-29",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 28,
+      "numero": 1259
+    },
+    {
+      "squadra": "Napoli",
+      "data": "1958-03-15",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 5,
+      "numero": 1306
+    },
+    {
+      "squadra": "Talmone Torino",
+      "data": "1958-06-22",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1318
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "1959-06-06",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Napoli",
+      "valore": 14,
+      "numero": 1360
+    },
+    {
+      "squadra": "Bari",
+      "data": "1960-04-09",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 4578,
+      "numero": 1390
+    },
+    {
+      "squadra": "Napoli",
+      "data": "1960-11-12",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Fiorentina",
+      "valore": 10,
+      "numero": 1407
+    },
+    {
+      "squadra": "Lecco",
+      "data": "1961-01-14",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1414
+    },
+    {
+      "squadra": "Milan",
+      "data": "1961-02-25",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 28,
+      "numero": 1421
+    },
+    {
+      "squadra": "Sampdoria",
+      "data": "1961-03-08",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 11,
+      "numero": 1424
+    },
+    {
+      "squadra": "Catania",
+      "data": "1961-05-06",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 8736,
+      "numero": 1432
+    },
+    {
+      "squadra": "Udinese",
+      "data": "1961-09-09",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Padova",
+      "valore": 26,
+      "numero": 1439
+    },
+    {
+      "squadra": "Venezia",
+      "data": "1962-03-10",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 4326,
+      "numero": 1465
+    },
+    {
+      "squadra": "Foggia",
+      "data": "1963-02-09",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1494
+    },
+    {
+      "squadra": "Cosenza",
+      "data": "1963-03-09",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1498
+    },
+    {
+      "squadra": "Lucchese",
+      "data": "1963-04-20",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 4725,
+      "numero": 1504
+    },
+    {
+      "squadra": "Bari",
+      "data": "1963-05-04",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 28,
+      "numero": 1506
+    },
+    {
+      "squadra": "Prato",
+      "data": "1963-09-21",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1515
+    },
+    {
+      "squadra": "Potenza",
+      "data": "1963-10-12",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1518
+    },
+    {
+      "squadra": "Mantova",
+      "data": "1964-01-18",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 14020,
+      "numero": 1531
+    },
+    {
+      "squadra": "Lazio",
+      "data": "1964-03-07",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 21,
+      "numero": 1538
+    },
+    {
+      "squadra": "Varese",
+      "data": "1964-09-19",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1554
+    },
+    {
+      "squadra": "Varese",
+      "data": "1964-10-24",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 28,
+      "numero": 1559
+    },
+    {
+      "squadra": "Messina",
+      "data": "1965-04-24",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 10192,
+      "numero": 1581
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "1965-08-29",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 1,
+      "numero": 1587
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "1965-08-29",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Genoa",
+      "valore": 0,
+      "numero": 1587
+    },
+    {
+      "squadra": "Bologna",
+      "data": "1967-04-15",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Juventus",
+      "valore": 0,
+      "numero": 1654
+    },
+    {
+      "squadra": "Juventus",
+      "data": "1967-06-03",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Bologna",
+      "valore": 0,
+      "numero": 1661
+    },
+    {
+      "squadra": "Catanzaro",
+      "data": "1968-09-15",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1698
+    },
+    {
+      "squadra": "Torino",
+      "data": "1969-01-18",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Varese",
+      "valore": 20,
+      "numero": 1713
+    },
+    {
+      "squadra": "Palermo",
+      "data": "1969-12-13",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Cagliari",
+      "valore": 10,
+      "numero": 1747
+    },
+    {
+      "squadra": "Reggina",
+      "data": "1971-08-29",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1801
+    },
+    {
+      "squadra": "Ternana",
+      "data": "1972-09-30",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1843
+    },
+    {
+      "squadra": "Torino",
+      "data": "1973-03-03",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Juventus",
+      "valore": 3,
+      "numero": 1861
+    },
+    {
+      "squadra": "Roma",
+      "data": "1973-03-17",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Torino",
+      "valore": 5,
+      "numero": 1863
+    },
+    {
+      "squadra": "Atalanta",
+      "data": "1973-06-03",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 4243,
+      "numero": 1873
+    },
+    {
+      "squadra": "Perugia",
+      "data": "1974-01-12",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1893
+    },
+    {
+      "squadra": "Cesena",
+      "data": "1974-01-23",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1895
+    },
+    {
+      "squadra": "Sampdoria",
+      "data": "1974-02-09",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Lazio",
+      "valore": 3,
+      "numero": 1898
+    },
+    {
+      "squadra": "Ascoli",
+      "data": "1974-04-06",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1907
+    },
+    {
+      "squadra": "Novara",
+      "data": "1974-04-13",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 7504,
+      "numero": 1908
+    },
+    {
+      "squadra": "Avellino",
+      "data": "1974-05-18",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1913
+    },
+    {
+      "squadra": "Brindisi",
+      "data": "1974-06-01",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1915
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "1975-05-29",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Torino",
+      "valore": 4,
+      "numero": 1953
+    },
+    {
+      "squadra": "Torino",
+      "data": "1975-06-19",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 21,
+      "numero": 1956
+    },
+    {
+      "squadra": "Torino",
+      "data": "1975-06-19",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Fiorentina",
+      "valore": 0,
+      "numero": 1956
+    },
+    {
+      "squadra": "Torino",
+      "data": "1975-11-15",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Napoli",
+      "valore": 0,
+      "numero": 1967
+    },
+    {
+      "squadra": "Como",
+      "data": "1976-03-20",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 8400,
+      "numero": 1983
+    },
+    {
+      "squadra": "Lecce",
+      "data": "1976-09-05",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 1993
+    },
+    {
+      "squadra": "Pescara",
+      "data": "1976-10-16",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 11186,
+      "numero": 1998
+    },
+    {
+      "squadra": "Rimini",
+      "data": "1977-02-05",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2013
+    },
+    {
+      "squadra": "Avellino",
+      "data": "1977-03-19",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Atalanta",
+      "valore": 3,
+      "numero": 2019
+    },
+    {
+      "squadra": "SPAL",
+      "data": "1977-03-26",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 4207,
+      "numero": 2020
+    },
+    {
+      "squadra": "Sambenedettese",
+      "data": "1977-04-23",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2024
+    },
+    {
+      "squadra": "Ascoli",
+      "data": "1978-01-28",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 14,
+      "numero": 2059
+    },
+    {
+      "squadra": "Bari",
+      "data": "1978-03-25",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 5397,
+      "numero": 2066
+    },
+    {
+      "squadra": "Udinese",
+      "data": "1979-06-08",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 6481,
+      "numero": 2113
+    },
+    {
+      "squadra": "Matera",
+      "data": "1979-08-26",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2117
+    },
+    {
+      "squadra": "Juventus",
+      "data": "1980-01-19",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 4,
+      "numero": 2138
+    },
+    {
+      "squadra": "Catanzaro",
+      "data": "1980-09-20",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 17,
+      "numero": 2159
+    },
+    {
+      "squadra": "Catanzaro",
+      "data": "1980-09-20",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Torino",
+      "valore": 0,
+      "numero": 2159
+    },
+    {
+      "squadra": "Perugia",
+      "data": "1980-10-25",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Catanzaro",
+      "valore": 2,
+      "numero": 2163
+    },
+    {
+      "squadra": "Pistoiese",
+      "data": "1980-11-22",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 18991,
+      "numero": 2165
+    },
+    {
+      "squadra": "Roma",
+      "data": "1981-05-28",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Juventus",
+      "valore": 15,
+      "numero": 2188
+    },
+    {
+      "squadra": "Roma",
+      "data": "1981-12-08",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 17,
+      "numero": 2202
+    },
+    {
+      "squadra": "Roma",
+      "data": "1981-12-08",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Inter",
+      "valore": 0,
+      "numero": 2202
+    },
+    {
+      "squadra": "Inter",
+      "data": "1981-12-23",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 15,
+      "numero": 2204
+    },
+    {
+      "squadra": "Inter",
+      "data": "1981-12-23",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Roma",
+      "valore": 0,
+      "numero": 2204
+    },
+    {
+      "squadra": "Nocerina",
+      "data": "1982-08-18",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2223
+    },
+    {
+      "squadra": "Campobasso",
+      "data": "1982-08-22",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2224
+    },
+    {
+      "squadra": "Pisa",
+      "data": "1982-08-29",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 16199,
+      "numero": 2225
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "1982-09-01",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 10,
+      "numero": 2226
+    },
+    {
+      "squadra": "Hellas Verona",
+      "data": "1982-10-23",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 3857,
+      "numero": 2234
+    },
+    {
+      "squadra": "Juventus",
+      "data": "1983-08-31",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 10,
+      "numero": 2269
+    },
+    {
+      "squadra": "Genoa",
+      "data": "1983-10-29",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 6720,
+      "numero": 2277
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "1984-01-21",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Torino",
+      "valore": 13,
+      "numero": 2287
+    },
+    {
+      "squadra": "Roma",
+      "data": "1984-03-31",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Inter",
+      "valore": 27,
+      "numero": 2297
+    },
+    {
+      "squadra": "Milan",
+      "data": "1984-10-13",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Roma",
+      "valore": 48,
+      "numero": 2318
+    },
+    {
+      "squadra": "Hellas Verona",
+      "data": "1985-05-18",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Avellino",
+      "valore": 3,
+      "numero": 2345
+    },
+    {
+      "squadra": "Monopoli",
+      "data": "1985-08-28",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2354
+    },
+    {
+      "squadra": "Avellino",
+      "data": "1985-11-30",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 4,
+      "numero": 2368
+    },
+    {
+      "squadra": "Empoli",
+      "data": "1986-01-29",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2376
+    },
+    {
+      "squadra": "Arezzo",
+      "data": "1986-03-01",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2382
+    },
+    {
+      "squadra": "Brescia",
+      "data": "1986-04-05",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 8449,
+      "numero": 2386
+    },
+    {
+      "squadra": "Avellino",
+      "data": "1986-09-13",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Fiorentina",
+      "valore": 6,
+      "numero": 2401
+    },
+    {
+      "squadra": "Piacenza",
+      "data": "1987-08-26",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2434
+    },
+    {
+      "squadra": "Centese",
+      "data": "1987-08-30",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2435
+    },
+    {
+      "squadra": "Napoli",
+      "data": "1988-01-09",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Fiorentina",
+      "valore": 12,
+      "numero": 2452
+    },
+    {
+      "squadra": "Messina",
+      "data": "1988-09-17",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 8533,
+      "numero": 2480
+    },
+    {
+      "squadra": "Cremonese",
+      "data": "1988-10-01",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 21868,
+      "numero": 2482
+    },
+    {
+      "squadra": "Barletta",
+      "data": "1988-10-22",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2485
+    },
+    {
+      "squadra": "Bari",
+      "data": "1988-11-26",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 3878,
+      "numero": 2490
+    },
+    {
+      "squadra": "Licata",
+      "data": "1989-02-25",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2501
+    },
+    {
+      "squadra": "Padova",
+      "data": "1989-03-04",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 9527,
+      "numero": 2502
+    },
+    {
+      "squadra": "Messina",
+      "data": "1989-03-24",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 27,
+      "numero": 2505
+    },
+    {
+      "squadra": "Reggina",
+      "data": "1989-04-22",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 5502,
+      "numero": 2509
+    },
+    {
+      "squadra": "Inter",
+      "data": "1990-02-24",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 28,
+      "numero": 2547
+    },
+    {
+      "squadra": "Sampdoria",
+      "data": "1990-12-29",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Inter",
+      "valore": 13,
+      "numero": 2570
+    },
+    {
+      "squadra": "Sampdoria",
+      "data": "1991-08-24",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 2,
+      "numero": 2593
+    },
+    {
+      "squadra": "Sampdoria",
+      "data": "1991-08-24",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Roma",
+      "valore": 0,
+      "numero": 2593
+    },
+    {
+      "squadra": "Foggia",
+      "data": "1993-05-15",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 11053,
+      "numero": 2657
+    },
+    {
+      "squadra": "Fidelis Andria",
+      "data": "1993-10-16",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2667
+    },
+    {
+      "squadra": "Ravenna",
+      "data": "1993-11-20",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2671
+    },
+    {
+      "squadra": "Acireale",
+      "data": "1993-11-27",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2672
+    },
+    {
+      "squadra": "Ancona",
+      "data": "1993-12-18",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 20090,
+      "numero": 2675
+    },
+    {
+      "squadra": "Monza",
+      "data": "1994-01-01",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 5698,
+      "numero": 2676
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "1994-01-08",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 29,
+      "numero": 2677
+    },
+    {
+      "squadra": "Cesena",
+      "data": "1994-01-15",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 3934,
+      "numero": 2678
+    },
+    {
+      "squadra": "Pescara",
+      "data": "1994-01-21",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 6208,
+      "numero": 2679
+    },
+    {
+      "squadra": "Lucchese",
+      "data": "1994-01-29",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 11235,
+      "numero": 2680
+    },
+    {
+      "squadra": "Cesena",
+      "data": "1994-02-12",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 22,
+      "numero": 2682
+    },
+    {
+      "squadra": "Palermo",
+      "data": "1994-04-01",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 5413,
+      "numero": 2688
+    },
+    {
+      "squadra": "Venezia",
+      "data": "1994-04-09",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 11529,
+      "numero": 2689
+    },
+    {
+      "squadra": "Pisa",
+      "data": "1994-05-21",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 4283,
+      "numero": 2695
+    },
+    {
+      "squadra": "Fano",
+      "data": "1996-09-14",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2700
+    },
+    {
+      "squadra": "Pontedera",
+      "data": "1996-09-21",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2701
+    },
+    {
+      "squadra": "Sandonà",
+      "data": "1996-09-28",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2702
+    },
+    {
+      "squadra": "Vis Pesaro",
+      "data": "1996-10-05",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2703
+    },
+    {
+      "squadra": "Triestina",
+      "data": "1996-10-12",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 12236,
+      "numero": 2704
+    },
+    {
+      "squadra": "Baracca",
+      "data": "1996-10-19",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2705
+    },
+    {
+      "squadra": "Massese",
+      "data": "1996-11-02",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2706
+    },
+    {
+      "squadra": "Giorgione",
+      "data": "1996-11-09",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2707
+    },
+    {
+      "squadra": "Tolentino",
+      "data": "1996-11-16",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2709
+    },
+    {
+      "squadra": "Forlì",
+      "data": "1996-12-14",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2711
+    },
+    {
+      "squadra": "Livorno",
+      "data": "1997-01-25",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 17885,
+      "numero": 2716
+    },
+    {
+      "squadra": "Ternana",
+      "data": "1997-02-08",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 6930,
+      "numero": 2718
+    },
+    {
+      "squadra": "Mobilieri Ponsacco",
+      "data": "1997-02-22",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2720
+    },
+    {
+      "squadra": "Triestina",
+      "data": "1997-03-08",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Baracca",
+      "valore": 5,
+      "numero": 2722
+    },
+    {
+      "squadra": "Sassari Torres",
+      "data": "1997-09-06",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2733
+    },
+    {
+      "squadra": "Iperzola",
+      "data": "1997-09-27",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2736
+    },
+    {
+      "squadra": "Maceratese",
+      "data": "1997-10-04",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2737
+    },
+    {
+      "squadra": "Tempio",
+      "data": "1997-10-11",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2738
+    },
+    {
+      "squadra": "Rimini",
+      "data": "1997-11-15",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 7462,
+      "numero": 2742
+    },
+    {
+      "squadra": "Castel San Pietro",
+      "data": "1997-12-13",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2745
+    },
+    {
+      "squadra": "Viterbese",
+      "data": "1997-12-20",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2746
+    },
+    {
+      "squadra": "Teramo",
+      "data": "1998-02-07",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2752
+    },
+    {
+      "squadra": "Viareggio",
+      "data": "1998-03-07",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2755
+    },
+    {
+      "squadra": "Montevarchi",
+      "data": "1998-08-23",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2768
+    },
+    {
+      "squadra": "Carpi",
+      "data": "1998-09-05",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2771
+    },
+    {
+      "squadra": "Modena",
+      "data": "1998-09-09",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 12611,
+      "numero": 2772
+    },
+    {
+      "squadra": "Alzano Virescit",
+      "data": "1998-09-12",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2774
+    },
+    {
+      "squadra": "Mantova",
+      "data": "1998-09-23",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 12667,
+      "numero": 2775
+    },
+    {
+      "squadra": "Pro Vercelli",
+      "data": "1998-09-26",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 22134,
+      "numero": 2776
+    },
+    {
+      "squadra": "AlbinoLeffe",
+      "data": "1998-10-03",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2777
+    },
+    {
+      "squadra": "Borgosesia",
+      "data": "1998-10-10",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2778
+    },
+    {
+      "squadra": "Cremapergo",
+      "data": "1998-10-24",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2780
+    },
+    {
+      "squadra": "Pro Sesto",
+      "data": "1998-11-21",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2783
+    },
+    {
+      "squadra": "Fiorenzuola",
+      "data": "1998-12-22",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2788
+    },
+    {
+      "squadra": "Alessandria",
+      "data": "1999-01-23",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 16170,
+      "numero": 2792
+    },
+    {
+      "squadra": "Spezia",
+      "data": "1999-05-29",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 21,
+      "numero": 2807
+    },
+    {
+      "squadra": "Spezia",
+      "data": "1999-05-29",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs AlbinoLeffe",
+      "valore": 0,
+      "numero": 2807
+    },
+    {
+      "squadra": "AlbinoLeffe",
+      "data": "1999-06-05",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 7,
+      "numero": 2808
+    },
+    {
+      "squadra": "AlbinoLeffe",
+      "data": "1999-06-05",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Spezia",
+      "valore": 0,
+      "numero": 2808
+    },
+    {
+      "squadra": "Montichiari",
+      "data": "1999-09-01",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2812
+    },
+    {
+      "squadra": "Brescello",
+      "data": "1999-09-15",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2815
+    },
+    {
+      "squadra": "Carrarese",
+      "data": "1999-10-02",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2818
+    },
+    {
+      "squadra": "SPAL",
+      "data": "1999-10-09",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 8176,
+      "numero": 2819
+    },
+    {
+      "squadra": "Lumezzane",
+      "data": "1999-10-23",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2821
+    },
+    {
+      "squadra": "Varese",
+      "data": "1999-11-27",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 11277,
+      "numero": 2825
+    },
+    {
+      "squadra": "Reggiana",
+      "data": "1999-12-11",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 25767,
+      "numero": 2827
+    },
+    {
+      "squadra": "Siena",
+      "data": "2000-01-05",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2830
+    },
+    {
+      "squadra": "Cittadella",
+      "data": "2000-03-04",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2838
+    },
+    {
+      "squadra": "Brescello",
+      "data": "2000-03-18",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2840
+    },
+    {
+      "squadra": "Brescia",
+      "data": "2000-08-17",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 4366,
+      "numero": 2851
+    },
+    {
+      "squadra": "Alzano Virescit",
+      "data": "2000-08-20",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2852
+    },
+    {
+      "squadra": "Como",
+      "data": "2000-12-22",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 5536,
+      "numero": 2872
+    },
+    {
+      "squadra": "Lumezzane",
+      "data": "2001-03-31",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2886
+    },
+    {
+      "squadra": "Montichiari",
+      "data": "2001-08-19",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2894
+    },
+    {
+      "squadra": "Meda",
+      "data": "2001-08-26",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2896
+    },
+    {
+      "squadra": "Rondinella",
+      "data": "2001-09-29",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2902
+    },
+    {
+      "squadra": "Castelnuovo",
+      "data": "2001-10-13",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2904
+    },
+    {
+      "squadra": "Castelnuovo",
+      "data": "2001-10-13",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2904
+    },
+    {
+      "squadra": "Valenzana",
+      "data": "2001-10-27",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2906
+    },
+    {
+      "squadra": "Biellese",
+      "data": "2002-01-05",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2915
+    },
+    {
+      "squadra": "Meda",
+      "data": "2002-01-12",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2916
+    },
+    {
+      "squadra": "Montevarchi",
+      "data": "2002-02-09",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2920
+    },
+    {
+      "squadra": "Sangiovannese",
+      "data": "2002-02-23",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2922
+    },
+    {
+      "squadra": "Prato",
+      "data": "2002-04-13",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2928
+    },
+    {
+      "squadra": "Aglianese",
+      "data": "2002-08-25",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2933
+    },
+    {
+      "squadra": "Treviso",
+      "data": "2002-09-07",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 17465,
+      "numero": 2936
+    },
+    {
+      "squadra": "Padova",
+      "data": "2002-10-12",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 4956,
+      "numero": 2942
+    },
+    {
+      "squadra": "Pro Patria",
+      "data": "2003-03-22",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 18319,
+      "numero": 2963
+    },
+    {
+      "squadra": "Brindisi",
+      "data": "2003-04-23",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2967
+    },
+    {
+      "squadra": "Palmese",
+      "data": "2003-05-24",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2969
+    },
+    {
+      "squadra": "Palmese",
+      "data": "2003-05-24",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2969
+    },
+    {
+      "squadra": "Fidelis Andria",
+      "data": "2003-08-17",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2970
+    },
+    {
+      "squadra": "Benevento",
+      "data": "2003-08-27",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2972
+    },
+    {
+      "squadra": "Latina",
+      "data": "2003-09-06",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2973
+    },
+    {
+      "squadra": "Latina",
+      "data": "2003-09-06",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2973
+    },
+    {
+      "squadra": "Tivoli",
+      "data": "2003-09-10",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2974
+    },
+    {
+      "squadra": "Igea Virtus",
+      "data": "2003-09-13",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2975
+    },
+    {
+      "squadra": "Lodigiani",
+      "data": "2003-09-20",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2976
+    },
+    {
+      "squadra": "Lodigiani",
+      "data": "2003-09-20",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2976
+    },
+    {
+      "squadra": "Ragusa",
+      "data": "2003-09-27",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2977
+    },
+    {
+      "squadra": "Ragusa",
+      "data": "2003-09-27",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2977
+    },
+    {
+      "squadra": "Cavese",
+      "data": "2003-10-04",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2978
+    },
+    {
+      "squadra": "Cavese",
+      "data": "2003-10-04",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2978
+    },
+    {
+      "squadra": "Melfi",
+      "data": "2003-10-11",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2979
+    },
+    {
+      "squadra": "Isernia",
+      "data": "2003-10-25",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2981
+    },
+    {
+      "squadra": "Isernia",
+      "data": "2003-10-25",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2981
+    },
+    {
+      "squadra": "Gela",
+      "data": "2003-11-15",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2983
+    },
+    {
+      "squadra": "Frosinone",
+      "data": "2003-12-13",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 2987
+    },
+    {
+      "squadra": "Frosinone",
+      "data": "2003-12-13",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2987
+    },
+    {
+      "squadra": "Giugliano",
+      "data": "2004-02-21",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2995
+    },
+    {
+      "squadra": "Castel di Sangro",
+      "data": "2004-02-28",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2996
+    },
+    {
+      "squadra": "Vittoria",
+      "data": "2004-03-20",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 2999
+    },
+    {
+      "squadra": "Rutigliano",
+      "data": "2004-04-09",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 3002
+    },
+    {
+      "squadra": "Rutigliano",
+      "data": "2004-04-09",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3002
+    },
+    {
+      "squadra": "Giugliano",
+      "data": "2004-04-17",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 3003
+    },
+    {
+      "squadra": "Igea Virtus",
+      "data": "2004-04-24",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 3004
+    },
+    {
+      "squadra": "Gela",
+      "data": "2004-08-25",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 3009
+    },
+    {
+      "squadra": "Vigor Lamezia",
+      "data": "2004-08-29",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3010
+    },
+    {
+      "squadra": "Sassari Torres",
+      "data": "2004-10-02",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 3016
+    },
+    {
+      "squadra": "Frosinone",
+      "data": "2004-10-09",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 28,
+      "numero": 3017
+    },
+    {
+      "squadra": "Grosseto",
+      "data": "2005-02-12",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3033
+    },
+    {
+      "squadra": "Pistoiese",
+      "data": "2005-02-19",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 8848,
+      "numero": 3035
+    },
+    {
+      "squadra": "Mantova",
+      "data": "2005-05-07",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 3,
+      "numero": 3044
+    },
+    {
+      "squadra": "Pavia",
+      "data": "2005-05-14",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 18501,
+      "numero": 3045
+    },
+    {
+      "squadra": "Mantova",
+      "data": "2005-06-11",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 28,
+      "numero": 3048
+    },
+    {
+      "squadra": "Mantova",
+      "data": "2005-06-11",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Pavia",
+      "valore": 0,
+      "numero": 3048
+    },
+    {
+      "squadra": "Grosseto",
+      "data": "2005-08-07",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 3050
+    },
+    {
+      "squadra": "Cagliari",
+      "data": "2005-08-14",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 5097,
+      "numero": 3051
+    },
+    {
+      "squadra": "Manfredonia",
+      "data": "2005-08-21",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3052
+    },
+    {
+      "squadra": "Milan",
+      "data": "2005-09-09",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 4563,
+      "numero": 3054
+    },
+    {
+      "squadra": "Sampdoria",
+      "data": "2005-09-17",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 4515,
+      "numero": 3055
+    },
+    {
+      "squadra": "Chievo Verona",
+      "data": "2005-09-24",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 3057
+    },
+    {
+      "squadra": "Chievo Verona",
+      "data": "2005-09-24",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3057
+    },
+    {
+      "squadra": "Messina",
+      "data": "2005-12-10",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 6105,
+      "numero": 3067
+    },
+    {
+      "squadra": "Roma",
+      "data": "2006-01-14",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 5333,
+      "numero": 3072
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2006-02-01",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Roma",
+      "valore": 152,
+      "numero": 3077
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2006-02-01",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 5835,
+      "numero": 3077
+    },
+    {
+      "squadra": "Martina Franca",
+      "data": "2006-08-19",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3094
+    },
+    {
+      "squadra": "Napoli",
+      "data": "2006-08-26",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 5831,
+      "numero": 3096
+    },
+    {
+      "squadra": "Piacenza",
+      "data": "2006-09-15",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 6579,
+      "numero": 3099
+    },
+    {
+      "squadra": "Genoa",
+      "data": "2006-09-22",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 8364,
+      "numero": 3101
+    },
+    {
+      "squadra": "Lecce",
+      "data": "2006-09-29",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 10954,
+      "numero": 3102
+    },
+    {
+      "squadra": "Piacenza",
+      "data": "2006-10-20",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 28,
+      "numero": 3105
+    },
+    {
+      "squadra": "Vicenza",
+      "data": "2007-03-02",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 14265,
+      "numero": 3122
+    },
+    {
+      "squadra": "Hellas Verona",
+      "data": "2007-03-24",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 7955,
+      "numero": 3126
+    },
+    {
+      "squadra": "Bologna",
+      "data": "2007-04-20",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 9505,
+      "numero": 3131
+    },
+    {
+      "squadra": "Sansovino",
+      "data": "2007-08-19",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3139
+    },
+    {
+      "squadra": "Sangiovannese",
+      "data": "2007-08-29",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 3140
+    },
+    {
+      "squadra": "Poggibonsi",
+      "data": "2007-09-12",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 3143
+    },
+    {
+      "squadra": "Poggibonsi",
+      "data": "2007-09-12",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3143
+    },
+    {
+      "squadra": "Bellaria",
+      "data": "2007-09-15",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3144
+    },
+    {
+      "squadra": "Giulianova",
+      "data": "2007-09-22",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 3145
+    },
+    {
+      "squadra": "Giulianova",
+      "data": "2007-09-22",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3145
+    },
+    {
+      "squadra": "Rovigo",
+      "data": "2007-09-29",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3146
+    },
+    {
+      "squadra": "Bellaria",
+      "data": "2007-10-20",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 3149
+    },
+    {
+      "squadra": "Bassano Virtus",
+      "data": "2007-10-27",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3150
+    },
+    {
+      "squadra": "Cuoiopelli",
+      "data": "2007-11-10",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3153
+    },
+    {
+      "squadra": "Gubbio",
+      "data": "2007-11-17",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 3154
+    },
+    {
+      "squadra": "Gubbio",
+      "data": "2007-11-17",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3154
+    },
+    {
+      "squadra": "Mezzocorona",
+      "data": "2008-01-16",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3161
+    },
+    {
+      "squadra": "Portogruaro",
+      "data": "2008-01-19",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3162
+    },
+    {
+      "squadra": "San Marino",
+      "data": "2008-03-21",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3174
+    },
+    {
+      "squadra": "Bassano Virtus",
+      "data": "2008-03-26",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 3175
+    },
+    {
+      "squadra": "Sambenedettese",
+      "data": "2008-08-17",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 3182
+    },
+    {
+      "squadra": "Sangiustese",
+      "data": "2008-08-24",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3183
+    },
+    {
+      "squadra": "Salernitana",
+      "data": "2008-08-25",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 19490,
+      "numero": 3184
+    },
+    {
+      "squadra": "Triestina",
+      "data": "2008-09-22",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 4209,
+      "numero": 3188
+    },
+    {
+      "squadra": "Bari",
+      "data": "2008-11-02",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 6784,
+      "numero": 3195
+    },
+    {
+      "squadra": "Cittadella",
+      "data": "2008-12-12",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 3201
+    },
+    {
+      "squadra": "Parma",
+      "data": "2008-12-18",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 5732,
+      "numero": 3202
+    },
+    {
+      "squadra": "Sassuolo",
+      "data": "2009-01-16",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3204
+    },
+    {
+      "squadra": "Ancona",
+      "data": "2009-02-05",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 5388,
+      "numero": 3207
+    },
+    {
+      "squadra": "Avellino",
+      "data": "2009-03-20",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 7870,
+      "numero": 3215
+    },
+    {
+      "squadra": "Palermo",
+      "data": "2009-12-12",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 5734,
+      "numero": 3245
+    },
+    {
+      "squadra": "Atalanta",
+      "data": "2010-02-06",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 7077,
+      "numero": 3252
+    },
+    {
+      "squadra": "Bari",
+      "data": "2010-03-06",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 28,
+      "numero": 3256
+    },
+    {
+      "squadra": "Lazio",
+      "data": "2010-09-25",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 7168,
+      "numero": 3272
+    },
+    {
+      "squadra": "Inter",
+      "data": "2011-01-05",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 7326,
+      "numero": 3285
+    },
+    {
+      "squadra": "Udinese",
+      "data": "2011-01-22",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 7896,
+      "numero": 3289
+    },
+    {
+      "squadra": "Lecce",
+      "data": "2011-05-07",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 15,
+      "numero": 3304
+    },
+    {
+      "squadra": "Genoa",
+      "data": "2011-09-17",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 5,
+      "numero": 3308
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2012-08-11",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 1,
+      "numero": 3345
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2012-08-11",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Napoli",
+      "valore": 0,
+      "numero": 3345
+    },
+    {
+      "squadra": "Inter",
+      "data": "2012-11-02",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Juventus",
+      "valore": 2,
+      "numero": 3356
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "2012-11-17",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 6888,
+      "numero": 3358
+    },
+    {
+      "squadra": "Juve Stabia",
+      "data": "2012-11-28",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3360
+    },
+    {
+      "squadra": "Torino",
+      "data": "2012-12-21",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 8007,
+      "numero": 3365
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2013-08-23",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 1,
+      "numero": 3386
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2013-08-23",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Sampdoria",
+      "valore": 0,
+      "numero": 3386
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2013-11-09",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 21,
+      "numero": 3397
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "2014-03-22",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Napoli",
+      "valore": 3,
+      "numero": 3417
+    },
+    {
+      "squadra": "Catania",
+      "data": "2014-05-03",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 18291,
+      "numero": 3424
+    },
+    {
+      "squadra": "Sudtirol-Alto Adige",
+      "data": "2014-08-17",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3427
+    },
+    {
+      "squadra": "Empoli",
+      "data": "2014-11-08",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 9541,
+      "numero": 3439
+    },
+    {
+      "squadra": "Parma",
+      "data": "2015-04-25",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 11,
+      "numero": 3464
+    },
+    {
+      "squadra": "Inter",
+      "data": "2016-03-02",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Juventus",
+      "valore": 6,
+      "numero": 3503
+    },
+    {
+      "squadra": "Inter",
+      "data": "2016-10-25",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Torino",
+      "valore": 3,
+      "numero": 3524
+    },
+    {
+      "squadra": "Sampdoria",
+      "data": "2016-10-29",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Inter",
+      "valore": 21,
+      "numero": 3525
+    },
+    {
+      "squadra": "Crotone",
+      "data": "2016-11-26",
+      "league": "serie_a",
+      "statistica": "Newbie",
+      "valore": null,
+      "numero": 3528
+    },
+    {
+      "squadra": "Lazio",
+      "data": "2017-01-31",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Inter",
+      "valore": 0,
+      "numero": 3538
+    },
+    {
+      "squadra": "Lazio",
+      "data": "2017-04-29",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 25,
+      "numero": 3552
+    },
+    {
+      "squadra": "Lazio",
+      "data": "2017-04-29",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Roma",
+      "valore": 0,
+      "numero": 3552
+    },
+    {
+      "squadra": "Napoli",
+      "data": "2017-05-19",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Fiorentina",
+      "valore": 38,
+      "numero": 3555
+    },
+    {
+      "squadra": "Napoli",
+      "data": "2018-04-21",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Juventus",
+      "valore": 0,
+      "numero": 3594
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "2018-04-28",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Napoli",
+      "valore": 2,
+      "numero": 3595
+    },
+    {
+      "squadra": "Genoa",
+      "data": "2018-08-25",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Empoli",
+      "valore": 20,
+      "numero": 3600
+    },
+    {
+      "squadra": "Sassuolo",
+      "data": "2018-09-01",
+      "league": "serie_a",
+      "statistica": "Millenial",
+      "valore": null,
+      "numero": 3601
+    },
+    {
+      "squadra": "SPAL",
+      "data": "2019-04-02",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 7080,
+      "numero": 3632
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2021-02-02",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 17,
+      "numero": 3703
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2021-02-02",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Inter",
+      "valore": 0,
+      "numero": 3703
+    },
+    {
+      "squadra": "Venezia",
+      "data": "2021-09-10",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 10016,
+      "numero": 3726
+    },
+    {
+      "squadra": "Spezia",
+      "data": "2021-09-18",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 5244,
+      "numero": 3727
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2021-09-21",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 25,
+      "numero": 3728
+    },
+    {
+      "squadra": "Sassuolo",
+      "data": "2021-10-26",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Juventus",
+      "valore": 25,
+      "numero": 3733
+    },
+    {
+      "squadra": "Hellas Verona",
+      "data": "2021-11-21",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 5333,
+      "numero": 3736
+    },
+    {
+      "squadra": "Cremonese",
+      "data": "2023-02-27",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 12560,
+      "numero": 3787
+    },
+    {
+      "squadra": "Napoli",
+      "data": "2023-05-20",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Inter",
+      "valore": 6,
+      "numero": 3801
+    },
+    {
+      "squadra": "Lazio",
+      "data": "2023-09-01",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Napoli",
+      "valore": 35,
+      "numero": 3806
+    },
+    {
+      "squadra": "Monza",
+      "data": "2023-10-01",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 10865,
+      "numero": 3810
+    },
+    {
+      "squadra": "Bologna",
+      "data": "2023-12-20",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 6088,
+      "numero": 3820
+    },
+    {
+      "squadra": "Empoli",
+      "data": "2024-05-25",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Roma",
+      "valore": 18,
+      "numero": 3845
+    },
+    {
+      "squadra": "Milan",
+      "data": "2025-01-02",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Juventus",
+      "valore": 47,
+      "numero": 3865
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2025-01-17",
+      "league": "serie_a",
+      "statistica": "Back to Back",
+      "valore": 15,
+      "numero": 3869
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2025-01-17",
+      "league": "serie_a",
+      "statistica": "Title Avenger vs Milan",
+      "valore": 0,
+      "numero": 3869
+    },
+    {
+      "squadra": "Como",
+      "data": "2025-02-22",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 8792,
+      "numero": 3874
+    },
+    {
+      "squadra": "Parma",
+      "data": "2025-05-24",
+      "league": "serie_a",
+      "statistica": "Sleeping Giant",
+      "valore": 3682,
+      "numero": 3887
+    },
+    {
+      "squadra": "Genoa",
+      "data": "2024-05-11",
+      "league": "serie_a",
+      "statistica": "Century Club Silver",
+      "valore": 3271,
+      "numero": 3843
+    },
+    {
+      "squadra": "Milan",
+      "data": "1906-04-20",
+      "league": "serie_a",
+      "statistica": "Decade Dominator 1900",
+      "valore": 2,
+      "numero": 25
+    },
+    {
+      "squadra": "Milan",
+      "data": "2026-03-07",
+      "league": "serie_a",
+      "statistica": "Century Club Gold",
+      "valore": 5308,
+      "numero": 3917
+    },
+    {
+      "squadra": "Genoa",
+      "data": "1916-04-15",
+      "league": "serie_a",
+      "statistica": "Decade Dominator 1910",
+      "valore": 6,
+      "numero": 170
+    },
+    {
+      "squadra": "Pro Vercelli",
+      "data": "1998-11-21",
+      "league": "serie_a",
+      "statistica": "Century Club Bronze",
+      "valore": 818,
+      "numero": 2783
+    },
+    {
+      "squadra": "Casale",
+      "data": "1932-03-05",
+      "league": "serie_a",
+      "statistica": "Century Club Bronze",
+      "valore": 434,
+      "numero": 478
+    },
+    {
+      "squadra": "Inter",
+      "data": "2026-02-27",
+      "league": "serie_a",
+      "statistica": "Century Club Silver",
+      "valore": 2200,
+      "numero": 3916
+    },
+    {
+      "squadra": "Juventus",
+      "data": "1929-11-16",
+      "league": "serie_a",
+      "statistica": "Decade Dominator 1920",
+      "valore": 4,
+      "numero": 395
+    },
+    {
+      "squadra": "Genoa",
+      "data": "2024-05-11",
+      "league": "serie_a",
+      "statistica": "Legacy Run Silver",
+      "valore": 42,
+      "numero": 3843
+    },
+    {
+      "squadra": "Napoli",
+      "data": "1939-11-04",
+      "league": "serie_a",
+      "statistica": "Decade Dominator 1930",
+      "valore": 11,
+      "numero": 741
+    },
+    {
+      "squadra": "Milan",
+      "data": "2026-03-07",
+      "league": "serie_a",
+      "statistica": "Legacy Run Gold",
+      "valore": 59,
+      "numero": 3917
+    },
+    {
+      "squadra": "Bologna",
+      "data": "2023-12-22",
+      "league": "serie_a",
+      "statistica": "Century Club Bronze",
+      "valore": 1021,
+      "numero": 3821
+    },
+    {
+      "squadra": "Pro Vercelli",
+      "data": "1998-11-21",
+      "league": "serie_a",
+      "statistica": "Legacy Run Bronze",
+      "valore": 18,
+      "numero": 2783
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2025-10-04",
+      "league": "serie_a",
+      "statistica": "Century Club Gold",
+      "valore": 3679,
+      "numero": 3894
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2025-10-04",
+      "league": "serie_a",
+      "statistica": "Legacy Run Gold",
+      "valore": 68,
+      "numero": 3894
+    },
+    {
+      "squadra": "Bologna",
+      "data": "2023-12-22",
+      "league": "serie_a",
+      "statistica": "Legacy Run Silver",
+      "valore": 41,
+      "numero": 3821
+    },
+    {
+      "squadra": "Napoli",
+      "data": "2025-02-14",
+      "league": "serie_a",
+      "statistica": "Legacy Run Gold",
+      "valore": 59,
+      "numero": 3873
+    },
+    {
+      "squadra": "Inter",
+      "data": "2026-02-27",
+      "league": "serie_a",
+      "statistica": "Legacy Run Gold",
+      "valore": 59,
+      "numero": 3916
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "2026-04-25",
+      "league": "serie_a",
+      "statistica": "Legacy Run Gold",
+      "valore": 57,
+      "numero": 3923
+    },
+    {
+      "squadra": "Torino",
+      "data": "1949-03-05",
+      "league": "serie_a",
+      "statistica": "Decade Dominator 1940",
+      "valore": 11,
+      "numero": 986
+    },
+    {
+      "squadra": "Roma",
+      "data": "2026-10-26",
+      "league": "serie_a",
+      "statistica": "Legacy Run Gold",
+      "valore": 60,
+      "numero": 3936
+    },
+    {
+      "squadra": "Torino",
+      "data": "2022-01-22",
+      "league": "serie_a",
+      "statistica": "Legacy Run Gold",
+      "valore": 54,
+      "numero": 3745
+    },
+    {
+      "squadra": "Lazio",
+      "data": "2026-04-03",
+      "league": "serie_a",
+      "statistica": "Legacy Run Silver",
+      "valore": 43,
+      "numero": 3920
+    },
+    {
+      "squadra": "Alessandria",
+      "data": "1999-01-23",
+      "league": "serie_a",
+      "statistica": "Legacy Run Iron",
+      "valore": 14,
+      "numero": 2792
+    },
+    {
+      "squadra": "Torino",
+      "data": "2022-01-22",
+      "league": "serie_a",
+      "statistica": "Century Club Bronze",
+      "valore": 1550,
+      "numero": 3745
+    },
+    {
+      "squadra": "Lazio",
+      "data": "2026-04-03",
+      "league": "serie_a",
+      "statistica": "Century Club Bronze",
+      "valore": 918,
+      "numero": 3920
+    },
+    {
+      "squadra": "Juventus",
+      "data": "1959-06-10",
+      "league": "serie_a",
+      "statistica": "Decade Dominator 1950",
+      "valore": 13,
+      "numero": 1361
+    },
+    {
+      "squadra": "Triestina",
+      "data": "2008-09-26",
+      "league": "serie_a",
+      "statistica": "Legacy Run Bronze",
+      "valore": 18,
+      "numero": 3189
+    },
+    {
+      "squadra": "Milan",
+      "data": "2025-01-02",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Juventus",
+      "valore": 10,
+      "numero": 3865
+    },
+    {
+      "squadra": "Padova",
+      "data": "2002-10-19",
+      "league": "serie_a",
+      "statistica": "Legacy Run Bronze",
+      "valore": 19,
+      "numero": 2943
+    },
+    {
+      "squadra": "Juventus",
+      "data": "1957-02-16",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Genoa",
+      "valore": 6,
+      "numero": 1266
+    },
+    {
+      "squadra": "Genoa",
+      "data": "1958-02-22",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Roma",
+      "valore": 5,
+      "numero": 1303
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2021-05-14",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Inter",
+      "valore": 10,
+      "numero": 3721
+    },
+    {
+      "squadra": "Napoli",
+      "data": "2025-02-14",
+      "league": "serie_a",
+      "statistica": "Century Club Bronze",
+      "valore": 1793,
+      "numero": 3873
+    },
+    {
+      "squadra": "Milan",
+      "data": "1968-11-02",
+      "league": "serie_a",
+      "statistica": "Decade Dominator 1960",
+      "valore": 10,
+      "numero": 1704
+    },
+    {
+      "squadra": "Sampdoria",
+      "data": "2021-11-26",
+      "league": "serie_a",
+      "statistica": "Legacy Run Silver",
+      "valore": 32,
+      "numero": 3737
+    },
+    {
+      "squadra": "Padova",
+      "data": "2002-10-19",
+      "league": "serie_a",
+      "statistica": "Century Club Bronze",
+      "valore": 486,
+      "numero": 2943
+    },
+    {
+      "squadra": "Bologna",
+      "data": "1968-11-23",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Milan",
+      "valore": 6,
+      "numero": 1707
+    },
+    {
+      "squadra": "Palermo",
+      "data": "2015-09-12",
+      "league": "serie_a",
+      "statistica": "Legacy Run Bronze",
+      "valore": 21,
+      "numero": 3475
+    },
+    {
+      "squadra": "Venezia",
+      "data": "2021-09-10",
+      "league": "serie_a",
+      "statistica": "Century Club Bronze",
+      "valore": 447,
+      "numero": 3726
+    },
+    {
+      "squadra": "Inter",
+      "data": "2021-01-16",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Juventus",
+      "valore": 9,
+      "numero": 3699
+    },
+    {
+      "squadra": "Bari",
+      "data": "2010-03-27",
+      "league": "serie_a",
+      "statistica": "Legacy Run Bronze",
+      "valore": 19,
+      "numero": 3260
+    },
+    {
+      "squadra": "SPAL",
+      "data": "2019-04-02",
+      "league": "serie_a",
+      "statistica": "Legacy Run Iron",
+      "valore": 15,
+      "numero": 3632
+    },
+    {
+      "squadra": "Roma",
+      "data": "2026-10-26",
+      "league": "serie_a",
+      "statistica": "Century Club Bronze",
+      "valore": 1746,
+      "numero": 3936
+    },
+    {
+      "squadra": "Vicenza",
+      "data": "2007-03-16",
+      "league": "serie_a",
+      "statistica": "Legacy Run Iron",
+      "valore": 13,
+      "numero": 3125
+    },
+    {
+      "squadra": "Juventus",
+      "data": "1967-06-03",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Bologna",
+      "valore": 5,
+      "numero": 1661
+    },
+    {
+      "squadra": "Napoli",
+      "data": "2017-05-19",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Fiorentina",
+      "valore": 8,
+      "numero": 3555
+    },
+    {
+      "squadra": "Inter",
+      "data": "2019-03-16",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Milan",
+      "valore": 7,
+      "numero": 3630
+    },
+    {
+      "squadra": "Torino",
+      "data": "1979-10-27",
+      "league": "serie_a",
+      "statistica": "Decade Dominator 1970",
+      "valore": 10,
+      "numero": 2126
+    },
+    {
+      "squadra": "Napoli",
+      "data": "2023-05-20",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Inter",
+      "valore": 6,
+      "numero": 3801
+    },
+    {
+      "squadra": "Lazio",
+      "data": "2026-03-14",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Milan",
+      "valore": 6,
+      "numero": 3918
+    },
+    {
+      "squadra": "Roma",
+      "data": "1975-02-15",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Bologna",
+      "valore": 5,
+      "numero": 1939
+    },
+    {
+      "squadra": "Torino",
+      "data": "2022-01-09",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Fiorentina",
+      "valore": 9,
+      "numero": 3743
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2006-02-01",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Roma",
+      "valore": 6,
+      "numero": 3077
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "1988-03-05",
+      "league": "serie_a",
+      "statistica": "Decade Dominator 1980",
+      "valore": 11,
+      "numero": 2462
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "2026-04-25",
+      "league": "serie_a",
+      "statistica": "Century Club Bronze",
+      "valore": 991,
+      "numero": 3923
+    },
+    {
+      "squadra": "Torino",
+      "data": "1988-03-02",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Napoli",
+      "valore": 6,
+      "numero": 2461
+    },
+    {
+      "squadra": "Roma",
+      "data": "1984-03-31",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Inter",
+      "valore": 5,
+      "numero": 2297
+    },
+    {
+      "squadra": "Atalanta",
+      "data": "2025-05-16",
+      "league": "serie_a",
+      "statistica": "Legacy Run Bronze",
+      "valore": 22,
+      "numero": 3886
+    },
+    {
+      "squadra": "Brescia",
+      "data": "2009-05-08",
+      "league": "serie_a",
+      "statistica": "Legacy Run Iron",
+      "valore": 15,
+      "numero": 3222
+    },
+    {
+      "squadra": "Avellino",
+      "data": "2009-04-17",
+      "league": "serie_a",
+      "statistica": "Legacy Run Iron",
+      "valore": 12,
+      "numero": 3218
+    },
+    {
+      "squadra": "Roma",
+      "data": "2014-01-21",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Juventus",
+      "valore": 6,
+      "numero": 3407
+    },
+    {
+      "squadra": "Sampdoria",
+      "data": "1993-04-16",
+      "league": "serie_a",
+      "statistica": "Decade Dominator 1990",
+      "valore": 5,
+      "numero": 2654
+    },
+    {
+      "squadra": "Sampdoria",
+      "data": "2021-11-26",
+      "league": "serie_a",
+      "statistica": "Century Club Bronze",
+      "valore": 609,
+      "numero": 3737
+    },
+    {
+      "squadra": "Ascoli",
+      "data": "1994-05-14",
+      "league": "serie_a",
+      "statistica": "Legacy Run Iron",
+      "valore": 11,
+      "numero": 2694
+    },
+    {
+      "squadra": "Pisa",
+      "data": "2009-03-16",
+      "league": "serie_a",
+      "statistica": "Century Club Bronze",
+      "valore": 1196,
+      "numero": 3214
+    },
+    {
+      "squadra": "Pisa",
+      "data": "2009-03-06",
+      "league": "serie_a",
+      "statistica": "Decade Dominator 2000",
+      "valore": 5,
+      "numero": 3212
+    },
+    {
+      "squadra": "Modena",
+      "data": "2001-03-25",
+      "league": "serie_a",
+      "statistica": "Legacy Run Iron",
+      "valore": 11,
+      "numero": 2885
+    },
+    {
+      "squadra": "Livorno",
+      "data": "2009-08-22",
+      "league": "serie_a",
+      "statistica": "Legacy Run Iron",
+      "valore": 12,
+      "numero": 3230
+    },
+    {
+      "squadra": "Lucchese",
+      "data": "2005-04-19",
+      "league": "serie_a",
+      "statistica": "Legacy Run Iron",
+      "valore": 12,
+      "numero": 3043
+    },
+    {
+      "squadra": "Pisa",
+      "data": "2009-03-16",
+      "league": "serie_a",
+      "statistica": "Legacy Run Iron",
+      "valore": 12,
+      "numero": 3214
+    },
+    {
+      "squadra": "Lazio",
+      "data": "2019-12-15",
+      "league": "serie_a",
+      "statistica": "Decade Dominator 2010",
+      "valore": 9,
+      "numero": 3657
+    },
+    {
+      "squadra": "Sampdoria",
+      "data": "2010-04-24",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Roma",
+      "valore": 5,
+      "numero": 3264
+    },
+    {
+      "squadra": "Udinese",
+      "data": "2023-12-29",
+      "league": "serie_a",
+      "statistica": "Legacy Run Iron",
+      "valore": 15,
+      "numero": 3822
+    },
+    {
+      "squadra": "Inter",
+      "data": "2015-01-21",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Sampdoria",
+      "valore": 5,
+      "numero": 3449
+    },
+    {
+      "squadra": "Genoa",
+      "data": "2015-09-26",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Milan",
+      "valore": 5,
+      "numero": 3478
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2017-11-30",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Napoli",
+      "valore": 5,
+      "numero": 3571
+    },
+    {
+      "squadra": "Napoli",
+      "data": "2025-01-24",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Juventus",
+      "valore": 7,
+      "numero": 3870
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "2022-04-09",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Napoli",
+      "valore": 6,
+      "numero": 3754
+    },
+    {
+      "squadra": "Cagliari",
+      "data": "2019-12-07",
+      "league": "serie_a",
+      "statistica": "Legacy Run Iron",
+      "valore": 13,
+      "numero": 3656
+    },
+    {
+      "squadra": "Lazio",
+      "data": "2019-03-30",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Inter",
+      "valore": 5,
+      "numero": 3631
+    },
+    {
+      "squadra": "Milan",
+      "data": "2020-06-27",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Roma",
+      "valore": 5,
+      "numero": 3671
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2025-08-23",
+      "league": "serie_a",
+      "statistica": "Decade Dominator 2020",
+      "valore": 9,
+      "numero": 3889
+    },
+    {
+      "squadra": "Hellas Verona",
+      "data": "2023-04-29",
+      "league": "serie_a",
+      "statistica": "Legacy Run Iron",
+      "valore": 13,
+      "numero": 3795
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2022-04-20",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Fiorentina",
+      "valore": 5,
+      "numero": 3756
+    },
+    {
+      "squadra": "Bologna",
+      "data": "2023-12-20",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Inter",
+      "valore": 5,
+      "numero": 3820
+    },
+    {
+      "squadra": "Roma",
+      "data": "2024-05-18",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Genoa",
+      "valore": 5,
+      "numero": 3844
+    },
+    {
+      "squadra": "Empoli",
+      "data": "2024-09-28",
+      "league": "serie_a",
+      "statistica": "Legacy Run Iron",
+      "valore": 11,
+      "numero": 3851
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "2026-04-12",
+      "league": "serie_a",
+      "statistica": "All Time Rival vs Lazio",
+      "valore": 5,
+      "numero": 3921
+    },
+    {
+      "squadra": "Milan",
+      "data": "2026-03-07",
+      "league": "serie_a",
+      "statistica": "Longest Reigning",
+      "valore": 5308,
+      "numero": 3917
+    },
+    {
+      "squadra": "Poggibonsi",
+      "data": "2007-09-15",
+      "league": "serie_a",
+      "statistica": "Shortest Reign",
+      "valore": 3,
+      "numero": 3144
+    },
+    {
+      "squadra": "Milan",
+      "data": "1993-03-13",
+      "league": "serie_a",
+      "statistica": "Stronghold Record 1",
+      "valore": 55,
+      "numero": 2649
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2012-05-12",
+      "league": "serie_a",
+      "statistica": "Stronghold Record 2",
+      "valore": 29,
+      "numero": 3343
+    },
+    {
+      "squadra": "Milan",
+      "data": "2021-01-02",
+      "league": "serie_a",
+      "statistica": "Stronghold Record 3",
+      "valore": 25,
+      "numero": 3695
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2018-04-17",
+      "league": "serie_a",
+      "statistica": "Stronghold Record 4",
+      "valore": 23,
+      "numero": 3593
+    },
+    {
+      "squadra": "Inter",
+      "data": "1921-05-21",
+      "league": "serie_a",
+      "statistica": "Stronghold Record 5",
+      "valore": 21,
+      "numero": 213
+    },
+    {
+      "squadra": "Roma",
+      "data": "1984-10-06",
+      "league": "serie_a",
+      "statistica": "Stronghold Record 6",
+      "valore": 21,
+      "numero": 2317
+    },
+    {
+      "squadra": "Rimini",
+      "data": "1998-04-25",
+      "league": "serie_a",
+      "statistica": "Stronghold Record 7",
+      "valore": 21,
+      "numero": 2762
+    },
+    {
+      "squadra": "Pro Vercelli",
+      "data": "1914-02-07",
+      "league": "serie_a",
+      "statistica": "Stronghold Record 8",
+      "valore": 20,
+      "numero": 130
+    },
+    {
+      "squadra": "Ascoli",
+      "data": "1978-01-07",
+      "league": "serie_a",
+      "statistica": "Stronghold Record 9",
+      "valore": 20,
+      "numero": 2056
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2019-01-26",
+      "league": "serie_a",
+      "statistica": "Stronghold Record 10",
+      "valore": 20,
+      "numero": 3621
+    },
+    {
+      "squadra": "Lecco",
+      "data": "2000-05-13",
+      "league": "serie_a",
+      "statistica": "Consolation Prize 1",
+      "valore": 9,
+      "numero": 2847
+    },
+    {
+      "squadra": "Pontedera",
+      "data": "1999-05-15",
+      "league": "serie_a",
+      "statistica": "Consolation Prize 2",
+      "valore": 7,
+      "numero": 2806
+    },
+    {
+      "squadra": "Ausonia",
+      "data": "1920-11-20",
+      "league": "serie_a",
+      "statistica": "Consolation Prize 3",
+      "valore": 6,
+      "numero": 200
+    },
+    {
+      "squadra": "Fano",
+      "data": "1998-08-30",
+      "league": "serie_a",
+      "statistica": "Consolation Prize 4",
+      "valore": 6,
+      "numero": 2770
+    },
+    {
+      "squadra": "Benevento",
+      "data": "2021-01-29",
+      "league": "serie_a",
+      "statistica": "Consolation Prize 5",
+      "valore": 6,
+      "numero": 3702
+    },
+    {
+      "squadra": "Teramo",
+      "data": "2008-02-16",
+      "league": "serie_a",
+      "statistica": "Consolation Prize 6",
+      "valore": 5,
+      "numero": 3167
+    },
+    {
+      "squadra": "Crotone",
+      "data": "2021-04-30",
+      "league": "serie_a",
+      "statistica": "Consolation Prize 7",
+      "valore": 5,
+      "numero": 3718
+    },
+    {
+      "squadra": "Tolentino",
+      "data": "1998-01-24",
+      "league": "serie_a",
+      "statistica": "Consolation Prize 8",
+      "valore": 4,
+      "numero": 2751
+    },
+    {
+      "squadra": "Pastore",
+      "data": "1923-01-20",
+      "league": "serie_a",
+      "statistica": "Consolation Prize 9",
+      "valore": 3,
+      "numero": 241
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2021-01-05",
+      "league": "serie_a",
+      "statistica": "King Slayer vs Milan",
+      "valore": 192,
+      "numero": 3696
+    },
+    {
+      "squadra": "Atalanta",
+      "data": "2019-01-30",
+      "league": "serie_a",
+      "statistica": "King Slayer vs Juventus",
+      "valore": 137,
+      "numero": 3622
+    },
+    {
+      "squadra": "Pro Vercelli",
+      "data": "1921-05-28",
+      "league": "serie_a",
+      "statistica": "King Slayer vs Inter",
+      "valore": 371,
+      "numero": 214
+    },
+    {
+      "squadra": "Milan",
+      "data": "1984-10-13",
+      "league": "serie_a",
+      "statistica": "King Slayer vs Roma",
+      "valore": 196,
+      "numero": 2318
+    },
+    {
+      "squadra": "Viterbese",
+      "data": "1998-05-02",
+      "league": "serie_a",
+      "statistica": "King Slayer vs Rimini",
+      "valore": 168,
+      "numero": 2763
+    },
+    {
+      "squadra": "Genoa",
+      "data": "1914-02-14",
+      "league": "serie_a",
+      "statistica": "King Slayer vs Pro Vercelli",
+      "valore": 315,
+      "numero": 131
+    },
+    {
+      "squadra": "Sampdoria",
+      "data": "1978-01-14",
+      "league": "serie_a",
+      "statistica": "King Slayer vs Ascoli",
+      "valore": 139,
+      "numero": 2057
+    },
+    {
+      "squadra": "US Milanese",
+      "data": "1923-05-05",
+      "league": "serie_a",
+      "statistica": "Boomer",
+      "valore": null,
+      "numero": 252
+    },
+    {
+      "squadra": "Piemonte",
+      "data": "1911-10-14",
+      "league": "serie_a",
+      "statistica": "Boomer",
+      "valore": null,
+      "numero": 82
+    },
+    {
+      "squadra": "Casale",
+      "data": "1932-03-05",
+      "league": "serie_a",
+      "statistica": "Boomer",
+      "valore": null,
+      "numero": 478
+    },
+    {
+      "squadra": "Andrea Doria",
+      "data": "1923-02-17",
+      "league": "serie_a",
+      "statistica": "Boomer",
+      "valore": null,
+      "numero": 244
+    },
+    {
+      "squadra": "US Torinese",
+      "data": "1921-06-11",
+      "league": "serie_a",
+      "statistica": "Boomer",
+      "valore": null,
+      "numero": 216
+    },
+    {
+      "squadra": "Novese",
+      "data": "1923-04-21",
+      "league": "serie_a",
+      "statistica": "Boomer",
+      "valore": null,
+      "numero": 250
+    },
+    {
+      "squadra": "Savona",
+      "data": "1923-04-28",
+      "league": "serie_a",
+      "statistica": "Boomer",
+      "valore": null,
+      "numero": 251
+    },
+    {
+      "squadra": "Vigevano",
+      "data": "1937-12-18",
+      "league": "serie_a",
+      "statistica": "Boomer",
+      "valore": null,
+      "numero": 678
+    },
+    {
+      "squadra": "Sanremese",
+      "data": "1938-03-19",
+      "league": "serie_a",
+      "statistica": "Boomer",
+      "valore": null,
+      "numero": 690
+    },
+    {
+      "squadra": "Fanfulla",
+      "data": "1938-11-05",
+      "league": "serie_a",
+      "statistica": "Boomer",
+      "valore": null,
+      "numero": 707
+    },
+    {
+      "squadra": "Genoa",
+      "data": "1901-03-16",
+      "league": "serie_a",
+      "statistica": "Class of 1890",
+      "valore": 1092,
+      "numero": 6
+    },
+    {
+      "squadra": "Genoa",
+      "data": "1906-03-02",
+      "league": "serie_a",
+      "statistica": "Class of 1900",
+      "valore": 1448,
+      "numero": 23
+    },
+    {
+      "squadra": "Milan",
+      "data": "1919-12-20",
+      "league": "serie_a",
+      "statistica": "Class of 1910",
+      "valore": 1834,
+      "numero": 181
+    },
+    {
+      "squadra": "Inter",
+      "data": "1928-05-12",
+      "league": "serie_a",
+      "statistica": "Class of 1920",
+      "valore": 501,
+      "numero": 350
+    },
+    {
+      "squadra": "Juventus",
+      "data": "1937-01-30",
+      "league": "serie_a",
+      "statistica": "Class of 1930",
+      "valore": 395,
+      "numero": 644
+    },
+    {
+      "squadra": "Fiorentina",
+      "data": "1949-01-01",
+      "league": "serie_a",
+      "statistica": "Class of 1940",
+      "valore": 1041,
+      "numero": 976
+    },
+    {
+      "squadra": "Juventus",
+      "data": "1959-11-07",
+      "league": "serie_a",
+      "statistica": "Class of 1950",
+      "valore": 895,
+      "numero": 1371
+    },
+    {
+      "squadra": "Milan",
+      "data": "1968-11-16",
+      "league": "serie_a",
+      "statistica": "Class of 1960",
+      "valore": 478,
+      "numero": 1706
+    },
+    {
+      "squadra": "Milan",
+      "data": "1979-11-10",
+      "league": "serie_a",
+      "statistica": "Class of 1970",
+      "valore": 475,
+      "numero": 2128
+    },
+    {
+      "squadra": "Roma",
+      "data": "1987-12-19",
+      "league": "serie_a",
+      "statistica": "Class of 1980",
+      "valore": 500,
+      "numero": 2449
+    },
+    {
+      "squadra": "Pisa",
+      "data": "1999-03-13",
+      "league": "serie_a",
+      "statistica": "Class of 1990",
+      "valore": 1050,
+      "numero": 2798
+    },
+    {
+      "squadra": "Mantova",
+      "data": "2007-01-12",
+      "league": "serie_a",
+      "statistica": "Class of 2000",
+      "valore": 212,
+      "numero": 3116
+    },
+    {
+      "squadra": "Juventus",
+      "data": "2019-01-26",
+      "league": "serie_a",
+      "statistica": "Class of 2010",
+      "valore": 925,
+      "numero": 3621
+    },
+    {
+      "squadra": "Napoli",
+      "data": "2025-02-14",
+      "league": "serie_a",
+      "statistica": "Class of 2020",
+      "valore": 436,
+      "numero": 3873
+    }
+  ]
+}

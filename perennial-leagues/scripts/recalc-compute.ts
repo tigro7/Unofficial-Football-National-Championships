@@ -11,6 +11,7 @@
 import { db } from '@vercel/postgres';
 import { writeFileSync } from 'fs';
 import { resolve } from 'path';
+import normalizeTeamName from '../src/app/utils/namesMap';
 
 const league = process.argv[1] || 'serie_a';
 
@@ -371,7 +372,12 @@ async function main() {
     let existingSquadre: SquadraState[];
     try {
         const mr = await client.sql`SELECT * FROM matches WHERE league = ${league} AND outcome != 'n' ORDER BY numero ASC`;
-        matches = mr.rows.map(r => ({ ...r, data: new Date(r.data).toISOString().split('T')[0] })) as Match[];
+        matches = mr.rows.map(r => ({
+            ...r,
+            data: new Date(r.data).toISOString().split('T')[0],
+            detentore: normalizeTeamName(r.detentore),
+            sfidante: normalizeTeamName(r.sfidante),
+        })) as Match[];
 
         const sr = await client.sql`SELECT * FROM squadre WHERE league = ${league}`;
         existingSquadre = sr.rows as SquadraState[];

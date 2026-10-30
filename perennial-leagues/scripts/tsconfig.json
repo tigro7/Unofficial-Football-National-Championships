@@ -8,5 +8,5 @@
       "@/*": ["../src/*"]
     }
   },
-  "include": ["./**/*.ts", "../src/app/utils/statsCalc.tsx"]
+  "include": ["./**/*.ts", "../src/app/utils/statsCalc.tsx", "../src/app/utils/namesMap.tsx"]
 }
