@@ -7,6 +7,50 @@ import { getServerSession } from "next-auth";
 import updateStats from "@/app/utils/statsCalc";
 import { resolveTeamName } from "@/app/utils/resolveTeamName";
 
+// ---- validation ----
+
+const VALID_OUTCOMES = new Set(['n', 'v', 's', 'd']);
+const SCORE_RE = /^\d+-\d+$/;
+
+function validateMatchPayload(body: Record<string, unknown>): { field: string; error: string } | null {
+    const { home, away, detentore, risultato, data, outcome } = body;
+
+    if (!home || typeof home !== 'string' || !home.trim())
+        return { field: 'home', error: 'home team name is required' };
+    if (!away || typeof away !== 'string' || !away.trim())
+        return { field: 'away', error: 'away team name is required' };
+    if (detentore !== 'home' && detentore !== 'away')
+        return { field: 'detentore', error: 'detentore must be "home" or "away"' };
+    if (!outcome || !VALID_OUTCOMES.has(outcome as string))
+        return { field: 'outcome', error: 'outcome must be one of: n, v, s, d' };
+
+    if (!data || typeof data !== 'string')
+        return { field: 'data', error: 'data is required' };
+    const parsed = new Date(data);
+    if (isNaN(parsed.getTime()))
+        return { field: 'data', error: 'data is not a valid date' };
+    if (parsed > new Date())
+        return { field: 'data', error: 'data must not be in the future' };
+
+    if (outcome !== 'n') {
+        if (!risultato || typeof risultato !== 'string' || !SCORE_RE.test(risultato))
+            return { field: 'risultato', error: 'risultato must be in "X-Y" format with non-negative integers' };
+        const [a, b] = risultato.split('-').map(Number);
+        if (a < 0 || b < 0)
+            return { field: 'risultato', error: 'score values must be non-negative' };
+    }
+
+    return null;
+}
+
+function getClientIp(request: Request): string {
+    return (
+        request.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
+        request.headers.get('x-real-ip') ??
+        'unknown'
+    );
+}
+
 export async function GET(request: Request, {params,}: {params: Promise<{league: string}>}) {
 
     const league = (await params).league || "serie_a";
@@ -38,10 +82,18 @@ export async function POST(request: Request, {params,}: {params: Promise<{league
         return NextResponse.json({ error: 'Non autorizzato' }, { status: 401 });
     }
 
-    const { home, away, detentore, risultato, note, data, outcome } = await request.json();
+    const body = await request.json();
+    const ip = getClientIp(request);
 
-    const rawDetentoreName = detentore == "home" ? home : away;
-    const rawSfidanteName = detentore == "home" ? away : home;
+    const validationError = validateMatchPayload(body);
+    if (validationError) {
+        console.warn('[match-validation] rejected', { ip, field: validationError.field, home: body.home, away: body.away, data: body.data });
+        return NextResponse.json({ error: validationError.error, field: validationError.field }, { status: 400 });
+    }
+
+    const { home, away, detentore, risultato, note, data, outcome } = body as Record<string, string>;
+    const rawDetentoreName = detentore === "home" ? home : away;
+    const rawSfidanteName = detentore === "home" ? away : home;
     const noteValue = note || league.replace(/_/g, " ");
 
     try {
@@ -50,6 +102,15 @@ export async function POST(request: Request, {params,}: {params: Promise<{league
         // Normalize team names: namesMap first, then DB aliases fallback
         const detentoreName = await resolveTeamName(rawDetentoreName, league, client);
         const sfidanteName = await resolveTeamName(rawSfidanteName, league, client);
+
+        // Warn if a resolved name is not yet in squadre (new team first appearance)
+        const knownTeams = await client.sql`SELECT squadra FROM squadre WHERE league = ${league}`;
+        const knownSet = new Set(knownTeams.rows.map((r) => r.squadra as string));
+        for (const name of [detentoreName, sfidanteName]) {
+            if (!knownSet.has(name)) {
+                console.warn('[match-validation] unknown team (new or unresolved)', { ip, team: name, raw: rawDetentoreName === name ? rawDetentoreName : rawSfidanteName, league });
+            }
+        }
 
         //per controllare se si tratta di update o insert, controlliamo se esiste già un match con le stesse squadre e outcome = n
 
