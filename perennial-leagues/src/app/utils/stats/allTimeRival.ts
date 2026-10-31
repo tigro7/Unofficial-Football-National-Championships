@@ -6,15 +6,12 @@ const allTimeRival: StatModule = {
     recalcDedup: (row: StatRow) => `All Time Rivals:${row.squadra}:${row.statistica}`,
 
     compute({ match: m, allMatches, league }: StatContext): StatResult | null {
-        if (m.outcome !== "s" && m.outcome !== "v") return null;
-        const winner = m.outcome === "s" ? m.sfidante : m.detentore;
-        const loser  = m.outcome === "s" ? m.detentore : m.sfidante;
+        if (m.outcome !== "s") return null;
         const rivalCount = allMatches.filter(x =>
-            (x.outcome === "s" && x.sfidante === winner && x.detentore === loser) ||
-            (x.outcome === "v" && x.detentore === winner && x.sfidante === loser)
+            x.outcome === "s" && x.sfidante === m.sfidante && x.detentore === m.detentore
         ).length;
         if (rivalCount < 5) return null;
-        return { rows: [{ squadra: winner, data: m.data, league, statistica: `All Time Rival vs ${loser}`, valore: rivalCount, numero: m.numero }] };
+        return { rows: [{ squadra: m.sfidante, data: m.data, league, statistica: `All Time Rival vs ${m.detentore}`, valore: rivalCount, numero: m.numero }] };
     },
 
     async persist(client: VercelPoolClient, league: string, { rows }: StatResult): Promise<void> {

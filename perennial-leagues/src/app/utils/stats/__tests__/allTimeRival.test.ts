@@ -33,7 +33,7 @@ describe("allTimeRival", () => {
         expect(result!.rows[0].statistica).toBe("All Time Rival vs TeamB");
     });
 
-    it("counts wins across both roles (mix of 's' and 'v')", () => {
+    it("doesn't count wins across both roles (mix of 's' and 'v')", () => {
         // TeamA wins: 3x as sfidante stealing from TeamB, 2x as detentore defending vs TeamB
         const matches = [
             makeMatch({ numero: 1, detentore: "TeamB", sfidante: "TeamA", outcome: "s" }),
@@ -44,9 +44,7 @@ describe("allTimeRival", () => {
         ];
         const ctx = buildCtx({ match: matches[4], allMatches: matches });
         const result = allTimeRival.compute(ctx);
-        expect(result).not.toBeNull();
-        expect(result!.rows[0].squadra).toBe("TeamA");
-        expect(result!.rows[0].valore).toBe(5);
+        expect(result).toBeNull();
     });
 
     it("upserts — valore increases with each additional win beyond 5", () => {
