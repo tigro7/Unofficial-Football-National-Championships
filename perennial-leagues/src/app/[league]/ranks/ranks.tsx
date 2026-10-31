@@ -7,6 +7,7 @@ import { useState } from 'react';
 import TeamLink from '@/app/components/TeamLink';
 import Link from 'next/link';
 import normalizeLeagueName from '@/app/utils/leaguesMap';
+import Card from '@/app/components/Card';
 
 type Squadra = {
   squadra: string, 
@@ -187,6 +188,10 @@ const Ranks = ({ squadre, stats, last, league = "serie_a"}: {squadre: Squadra[],
       <title>{league} - Stats & Stuff - UFNC</title>
       <h3 className="h3 w-full lg:w-1/2">{normalizeLeagueName(league)} - Stats & Stuff</h3>
       <section className="section mt-[var(--margin-big)]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-[var(--margin-lg)] mb-[var(--margin-lg)]">
+          <Card imageSrc='/card_background.png' title='Records' description='Stronghold Records and Decade Dominators — the teams that have held the title longest and ruled each era.' buttonText='View records' buttonLink={`/${league}/ranks/stronghold`} />
+          <Card imageSrc='/card_background.png' title='Never Reigned' description='Teams that have challenged for the title but have never managed to win it.' buttonText='View challengers' buttonLink={`/${league}/ranks/no-titles`} />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[var(--margin-lg)]">
           <TableComponent<Squadra> columns={columnsRegni} data={teams} title="Top teams by reigns" initialState={initialRegni} />
           <TableComponent<Squadra> columns={columnsDurata} data={teams} title="Top teams by combined duration" initialState={initialDurata}/>

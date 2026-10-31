@@ -3,16 +3,20 @@ import statsMap from "@/app/utils/statsMap";
 import { useInfo } from "../../../contexts/InfoContext/InfoContext";
 import Link from "next/link";
 
-const TeamStats = ({ stats, match = false } : {
-    stats: {
-        squadra: string;
-        data: string;
-        league: string;
-        statistica: string;
-        valore: string | null;
-        numero: number;
-      }[];
+type StatRow = {
+    squadra: string;
+    data: string;
+    league: string;
+    statistica: string;
+    valore: string | null;
+    numero: number;
+};
+
+const TeamStats = ({ stats, match = false, showTeam = false, getCardHref } : {
+    stats: StatRow[];
     match?: boolean;
+    showTeam?: boolean;
+    getCardHref?: (stat: StatRow) => string | undefined;
   }) => {
 
     const { setInfo } = useInfo();
@@ -68,6 +72,8 @@ const TeamStats = ({ stats, match = false } : {
                         return <div className="h-5" />;
                     };
 
+                    const cardHref = getCardHref?.(stat);
+
                     return (
                         <article key={index} className={`card bg-system flex flex-col p-3.5${match ? " w-[140px]" : ""}`}>
                             {/* Top meta bar: badge left, info button right */}
@@ -111,9 +117,15 @@ const TeamStats = ({ stats, match = false } : {
 
                             {/* Name + stat value */}
                             <div className="flex flex-col items-center text-center flex-1 justify-end">
-                                <h4 className="text-xs font-semibold text-foreground leading-tight line-clamp-2">
-                                    {statLabel}
-                                </h4>
+                                {cardHref ? (
+                                    <Link href={cardHref} className="text-xs font-semibold text-foreground leading-tight line-clamp-2 hover:text-primary transition-colors">
+                                        {statLabel} ↗
+                                    </Link>
+                                ) : (
+                                    <h4 className="text-xs font-semibold text-foreground leading-tight line-clamp-2">
+                                        {statLabel}
+                                    </h4>
+                                )}
                                 <span className="mt-0.5 text-[11px] text-tertiary font-medium">
                                     {valueProcessor ? valueProcessor(Number(stat.valore)) : stat.valore}
                                 </span>
@@ -121,13 +133,23 @@ const TeamStats = ({ stats, match = false } : {
                                 <hr className="achievement-divider" />
 
                                 {!match ? (
-                                    <Link
-                                        href={`/${stat.league}/match/${stat.numero}`}
-                                        className="inline-flex items-center gap-0.5 text-[11px] font-medium text-tertiary hover:text-secondary transition-colors"
-                                    >
-                                        <span>{localeDate}</span>
-                                        <span className="text-[10px] leading-none" aria-hidden="true">↗</span>
-                                    </Link>
+                                    <>
+                                        {showTeam && (
+                                            <Link
+                                                href={`/${stat.league}/team/${stat.squadra}`}
+                                                className="text-[11px] font-semibold text-foreground hover:text-primary transition-colors truncate max-w-full"
+                                            >
+                                                {stat.squadra}
+                                            </Link>
+                                        )}
+                                        <Link
+                                            href={`/${stat.league}/match/${stat.numero}`}
+                                            className="inline-flex items-center gap-0.5 text-[11px] font-medium text-tertiary hover:text-secondary transition-colors"
+                                        >
+                                            <span>{localeDate}</span>
+                                            <span className="text-[10px] leading-none" aria-hidden="true">↗</span>
+                                        </Link>
+                                    </>
                                 ) : (
                                     <p className="text-[11px] text-tertiary">{stat.squadra}</p>
                                 )}

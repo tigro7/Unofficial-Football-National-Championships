@@ -99,7 +99,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
         try {
           const response = await fetch(`/api/${league}/stats/${squadra}`);
           const data = await response.json();
-          setStats(data.filter((stat: { statistica: string; }) => stat.statistica !== "Newbie"));
+          setStats(data);
         } catch (error) {
           console.error("Errore nel caricamento delle statistiche", error);
         }
@@ -164,7 +164,14 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
 
       <section className="section">
         <span className="section-label">Achievements</span>
-        <TeamStats stats={iconStats} />
+        <TeamStats
+          stats={iconStats}
+          getCardHref={(stat) =>
+            (stat.statistica.includes("Stronghold") || stat.statistica.includes("Decade Dominator"))
+              ? `/${league}/ranks/stronghold`
+              : undefined
+          }
+        />
       </section>
 
       <section className="section">
