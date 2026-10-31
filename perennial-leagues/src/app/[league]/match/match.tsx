@@ -185,7 +185,15 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
             {/* Achievements */}
             {iconStats.length > 0 && (
               <div className="mt-[var(--margin-lg)]">
-                <TeamStats stats={iconStats} match={true} />
+                <TeamStats
+                  stats={iconStats}
+                  match={true}
+                  getCardHref={(stat) =>
+                    (stat.statistica.includes("Stronghold") || stat.statistica.includes("Decade Dominator"))
+                      ? `/${league}/ranks/stronghold`
+                      : undefined
+                  }
+                />
               </div>
             )}
 
