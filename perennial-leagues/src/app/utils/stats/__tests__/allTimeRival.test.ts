@@ -3,13 +3,8 @@ import allTimeRival from "../allTimeRival";
 import { buildCtx, makeMatch } from "./helpers";
 
 describe("allTimeRival", () => {
-    it("does not fire on draws", () => {
-        const ctx = buildCtx({ match: { outcome: "d" } });
-        expect(allTimeRival.compute(ctx)).toBeNull();
-    });
-
-    it("does not fire on unplayed matches", () => {
-        const ctx = buildCtx({ match: { outcome: "n" } });
+    it.each(["v", "d", "n"])("does not fire if outcome is not s", (outcome) => {
+        const ctx = buildCtx({ match: { outcome } });
         expect(allTimeRival.compute(ctx)).toBeNull();
     });
 
