@@ -58,6 +58,13 @@ jobs:
               continue
             fi
 
+            # The script regenerated a file identical to the committed one
+            # (e.g. a previous result was merged but not yet applied to the DB)
+            if [ -z "$(git status --porcelain ".github/pending-results/${league}/")" ]; then
+              echo "${league}: result files unchanged from main — nothing to commit"
+              continue
+            fi
+
             BRANCH="match-results/${league}/${DATE}"
 
             # Delete stale remote branch/PR from a previous failed run if present
