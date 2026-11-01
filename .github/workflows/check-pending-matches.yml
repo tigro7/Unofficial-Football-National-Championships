@@ -3,7 +3,8 @@ name: Check pending match results
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: '0 12/4 * * *'  
+    - cron: '59 11/4 * * *'  
+      timezone: 'Rome'
 jobs:
   check:
     name: Fetch results and open PR
