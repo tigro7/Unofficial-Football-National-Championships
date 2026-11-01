@@ -20,10 +20,3 @@ You need a Vercel Postgres database. Create one at [vercel.com](https://vercel.c
 The app is designed for Vercel. Push to `main` and Vercel deploys automatically once the project is connected via the dashboard.
 
 Required environment variables must be set in the Vercel project settings — see `.env.example` for the full list.
-
-## Storybook
-
-```bash
-cd perennial-leagues
-npm run storybook   # http://localhost:6006
-```
