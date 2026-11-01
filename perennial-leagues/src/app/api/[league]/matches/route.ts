@@ -29,8 +29,6 @@ function validateMatchPayload(body: Record<string, unknown>): { field: string; e
     const parsed = new Date(data);
     if (isNaN(parsed.getTime()))
         return { field: 'data', error: 'data is not a valid date' };
-    if (parsed > new Date())
-        return { field: 'data', error: 'data must not be in the future' };
 
     if (outcome !== 'n') {
         if (!risultato || typeof risultato !== 'string' || !SCORE_RE.test(risultato))
