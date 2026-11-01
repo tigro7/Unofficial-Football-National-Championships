@@ -17,10 +17,12 @@ type StatRow = {
 const Stronghold = ({
     stronghold,
     decadeDominator,
+    classOf,
     league,
 }: {
     stronghold: StatRow[];
     decadeDominator: StatRow[];
+    classOf: StatRow[];
     league: string;
 }) => {
     const withLeague = (rows: StatRow[]) => rows.map(r => ({ ...r, league }));
@@ -50,6 +52,15 @@ const Stronghold = ({
                     <p className="opacity-60">No decade dominator records yet.</p>
                 ) : (
                     <TeamStats stats={withLeague(decadeDominator)} showTeam />
+                )}
+            </section>
+
+            <section className="section">
+                <span className="section-label">Classes of</span>
+                {classOf.length === 0 ? (
+                    <p className="opacity-60">No class of records yet.</p>
+                ) : (
+                    <TeamStats stats={withLeague(classOf)} showTeam />
                 )}
             </section>
 
