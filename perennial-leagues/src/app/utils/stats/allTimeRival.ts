@@ -11,7 +11,7 @@ const allTimeRival: StatModule = {
             x.outcome === "s" && x.sfidante === m.sfidante && x.detentore === m.detentore
         ).length;
         if (rivalCount < 5) return null;
-        return { rows: [{ squadra: m.sfidante, data: m.data, league, statistica: `All Time Rival vs ${m.detentore}`, valore: rivalCount, numero: m.numero }] };
+        return { rows: [{ squadra: m.detentore, data: m.data, league, statistica: `All Time Rival vs ${m.sfidante}`, valore: rivalCount, numero: m.numero }] };
     },
 
     async persist(client: VercelPoolClient, league: string, { rows }: StatResult): Promise<void> {

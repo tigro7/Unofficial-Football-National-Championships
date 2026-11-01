@@ -21,16 +21,16 @@ describe("allTimeRival", () => {
         expect(allTimeRival.compute(ctx)).toBeNull();
     });
 
-    it("fires when TeamA (as sfidante) has beaten TeamB exactly 5 times", () => {
+    it("fires when TeamA (as detentore) has beaten TeamB exactly 5 times", () => {
         const matches = Array.from({ length: 5 }, (_, i) =>
             makeMatch({ numero: i + 1, detentore: "TeamB", sfidante: "TeamA", outcome: "s" })
         );
         const ctx = buildCtx({ match: matches[4], allMatches: matches });
         const result = allTimeRival.compute(ctx);
         expect(result).not.toBeNull();
-        expect(result!.rows[0].squadra).toBe("TeamA");
+        expect(result!.rows[0].squadra).toBe("TeamB");
         expect(result!.rows[0].valore).toBe(5);
-        expect(result!.rows[0].statistica).toBe("All Time Rival vs TeamB");
+        expect(result!.rows[0].statistica).toBe("All Time Rival vs TeamA");
     });
 
     it("doesn't count wins across both roles (mix of 's' and 'v')", () => {
