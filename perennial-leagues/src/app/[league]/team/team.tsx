@@ -167,7 +167,7 @@ const Squadra = ({squadra, stats, colors, regni, startDate, posizioni, league = 
         <TeamStats
           stats={iconStats}
           getCardHref={(stat) =>
-            (stat.statistica.includes("Stronghold") || stat.statistica.includes("Decade Dominator"))
+            (stat.statistica.includes("Stronghold") || stat.statistica.includes("Decade Dominator") || stat.statistica.includes("Class of"))
               ? `/${league}/ranks/stronghold`
               : undefined
           }

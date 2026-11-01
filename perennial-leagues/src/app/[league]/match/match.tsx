@@ -189,7 +189,7 @@ const Match = ({ matchInfo, teamHome, teamAway, stats, adjacents, league = "seri
                   stats={iconStats}
                   match={true}
                   getCardHref={(stat) =>
-                    (stat.statistica.includes("Stronghold") || stat.statistica.includes("Decade Dominator"))
+                    (stat.statistica.includes("Stronghold") || stat.statistica.includes("Decade Dominator") || stat.statistica.includes("Class of"))
                       ? `/${league}/ranks/stronghold`
                       : undefined
                   }
