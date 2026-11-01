@@ -6,28 +6,47 @@ const classOf: StatModule = {
     recalcDedup: (row: StatRow) => row.statistica,
 
     compute({ match: m, allMatches, league }: StatContext): StatResult | null {
-        const decade = Math.floor(new Date(m.data).getFullYear() / 10) * 10;
+        if (m.outcome === "n") return null;
+        const currentDecade = Math.floor(new Date(m.data).getUTCFullYear() / 10) * 10;
         const reigns = computeReigns(allMatches);
-        const dm = new Map<string, { totalDurata: number; lastData: string; lastNumero: number }>();
+        const decades = new Map<number, Map<string, StatRow>>();
         for (const r of reigns) {
-            const dec = Math.floor(new Date(r.inizioRegno).getFullYear() / 10) * 10;
-            if (dec !== decade) continue;
-            const ex = dm.get(r.detentore);
-            dm.set(r.detentore, {
-                totalDurata: (ex?.totalDurata ?? 0) + r.maxDurata,
-                lastData: r.fineRegno,
-                lastNumero: r.fineNumero,
-            });
+            const start = new Date(r.inizioRegno).getTime();
+            // durata is cumulative within a reign, not an additional duration per match.
+            const end = start + r.maxDurata * 86400000;
+            const firstDecade = Math.floor(new Date(start).getUTCFullYear() / 10) * 10;
+            for (let decade = firstDecade; decade <= currentDecade; decade += 10) {
+                const decadeStart = Date.UTC(decade, 0, 1);
+                const decadeEnd = Date.UTC(decade + 10, 0, 1);
+                if (decadeStart >= end) break;
+                const duration = Math.round((Math.min(end, decadeEnd) - Math.max(start, decadeStart)) / 86400000);
+                if (duration <= 0) continue;
+                let teams = decades.get(decade);
+                if (!teams) {
+                    teams = new Map<string, StatRow>();
+                    decades.set(decade, teams);
+                }
+                const previous = teams.get(r.detentore);
+                teams.set(r.detentore, {
+                    squadra: r.detentore,
+                    data: r.fineRegno,
+                    league,
+                    statistica: `Class of ${decade}`,
+                    valore: (previous?.valore ?? 0) + duration,
+                    numero: r.fineNumero,
+                });
+            }
         }
-        let best = { team: "", totalDurata: 0, lastData: "", lastNumero: 0 };
-        for (const [team, d] of dm) {
-            if (d.totalDurata > best.totalDurata) best = { team, ...d };
+        // Refresh earlier decades too: a match after January 1 can complete their totals.
+        const rows: StatRow[] = [];
+        for (const [, teams] of [...decades].sort(([a], [b]) => a - b)) {
+            let best: StatRow | undefined;
+            for (const row of teams.values()) {
+                if (!best || (row.valore ?? 0) > (best.valore ?? 0)) best = row;
+            }
+            if (best) rows.push(best);
         }
-        if (!best.team) return null;
-        const lm = allMatches.find(x => x.detentore === best.team && x.data === best.lastData);
-        if (!lm) return null;
-        const statistica = `Class of ${decade}`;
-        return { rows: [{ squadra: best.team, data: best.lastData, league, statistica, valore: best.totalDurata, numero: lm.numero }] };
+        return rows.length > 0 ? { rows } : null;
     },
 
     async persist(client: VercelPoolClient, league: string, { rows }: StatResult): Promise<void> {

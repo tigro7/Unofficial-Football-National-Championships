@@ -20,6 +20,22 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Stat tests
+
+Run the Class of tests with:
+
+```bash
+npm test -- src/app/utils/stats/__tests__/classOf.test.ts
+```
+
+Class of awards one stat per decade to the team with the most total title-holding
+days across its reigns. Cumulative match durations count only once per reign.
+Reigns spanning decades are split at January 1 (start inclusive, end exclusive),
+including leap days. Each played match recomputes winners for all elapsed decades
+so earlier totals are finalized even when a reign continues into a new decade.
+The row records the winning team's latest contributing reign's match date and
+number. Recalculation and live persistence overwrite the existing row per decade.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

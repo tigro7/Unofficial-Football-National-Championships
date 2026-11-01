@@ -396,6 +396,28 @@ describe("updateStats", () => {
       expect(dynasty).toHaveLength(1);
     });
 
+    it("updates existing Class of rows for both decades of a cross-decade reign", async () => {
+      const matches: Row[] = [
+        { ...CURR_MATCH, numero: 99, data: "2019-12-20", durata: 0 },
+        { ...CURR_MATCH, outcome: "v", durata: 1603 },
+      ];
+      const { client, find } = createFakeClient([
+        MATCHES(matches),
+        [/SELECT 1 FROM stats WHERE league = \? AND statistica = \?/, [{ squadra: "Milan" }]],
+      ]);
+      await run(client, { outcome: "v", updatedPreviousDuration: 1603 });
+      const updates = find(/UPDATE stats SET/).filter(c =>
+        c.values.some(v => String(v).startsWith("Class of"))
+      );
+      expect(updates.map(c => c.values)).toEqual([
+        [DATA, 12, "Juventus", 100, LEAGUE, "Class of 2010"],
+        [DATA, 1591, "Juventus", 100, LEAGUE, "Class of 2020"],
+      ]);
+      expect(find(/INSERT INTO stats/).filter(c =>
+        c.values.some(v => String(v).startsWith("Class of"))
+      )).toHaveLength(0);
+    });
+
     it("brand-new team (first time in DB) also receives the 'Millenial' stat on first steal", async () => {
       const atalantaMatch: Row = { ...CURR_MATCH, detentore: "Atalanta", home: "Atalanta" };
       const { client, find } = createFakeClient([MATCHES([atalantaMatch])]);
