@@ -32,11 +32,29 @@ jobs:
           UFNC_BASE_URL="${UFNC_BASE_URL%/}"  # strip any trailing slash
           FAILED=0
 
-          # Only process files that were added by this specific merge commit
-          mapfile -t FILES < <(git diff HEAD~1 HEAD --name-only --diff-filter=A -- '.github/pending-results/')
+          # Process files added by this merge, plus files modified from a
+          # not-yet-played placeholder (outcome "n") to a real result.
+          # A modified file whose previous outcome was not "n" is skipped:
+          # re-POSTing it would insert a duplicate match.
+          mapfile -t CHANGED < <(git diff HEAD~1 HEAD --name-status --diff-filter=AM -- '.github/pending-results/')
+
+          FILES=()
+          for line in "${CHANGED[@]}"; do
+            status="${line%%$'\t'*}"
+            path="${line#*$'\t'}"
+            if [ "$status" = "M" ]; then
+              prev=$(git show "HEAD~1:${path}" | jq -r '.outcome')
+              curr=$(jq -r '.outcome' "$path")
+              if [ "$prev" != "n" ] || [ "$curr" = "n" ]; then
+                echo "Skipping modified ${path} (outcome ${prev} → ${curr}): not a placeholder resolution."
+                continue
+              fi
+            fi
+            FILES+=("$path")
+          done
 
           if [ "${#FILES[@]}" -eq 0 ]; then
-            echo "No new pending-results files in this merge — nothing to apply."
+            echo "No applicable pending-results files in this merge — nothing to apply."
             exit 0
           fi
 
