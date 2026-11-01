@@ -165,11 +165,6 @@ async function main() {
     afterDate.setDate(afterDate.getDate() + 1);
     const dateFrom = afterDate.toISOString().split('T')[0];
 
-    if (dateFrom > today) {
-      console.log(`${ufncLeague}: no matches possible after today, skipping`);
-      continue;
-    }
-
     // Small delay between API calls to stay within free-tier rate limit
     await new Promise(r => setTimeout(r, 6_500));
 
