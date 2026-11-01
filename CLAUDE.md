@@ -16,8 +16,6 @@ All commands run from `perennial-leagues/`:
 npm run dev           # Start dev server (Next.js, port 3000)
 npm run build         # Production build
 npm run lint          # ESLint
-npm run storybook     # Storybook dev server (port 6006)
-npm run build-storybook
 ```
 
 There is no automated test suite.
@@ -69,7 +67,3 @@ NEXTAUTH_SECRET
 NEXT_PUBLIC_BASE_URL      # Used by client-side fetch calls
 POSTGRES_URL              # Provided by Vercel Postgres
 ```
-
-## Storybook
-
-Components under `src/app/components/` may have `.stories.tsx` files. Run `npm run storybook` to develop UI components in isolation.
