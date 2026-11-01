@@ -165,7 +165,9 @@ export async function POST(request: Request, {params,}: {params: Promise<{league
         }
 
         console.info(league, home, away, detentoreName, sfidanteName, risultato, outcome, previousDuration, updatedPreviousDuration, durata, data, numero);
-        updateStats(client, league, home, away, detentoreName, sfidanteName, risultato, outcome, previousDuration, updatedPreviousDuration, durata, data, numero);
+        // must be awaited: on serverless the function is frozen once the response is sent,
+        // and the client would be released while stat queries are still running
+        await updateStats(client, league, home, away, detentoreName, sfidanteName, risultato, outcome, previousDuration, updatedPreviousDuration, durata, data, numero);
 
         client.release();
         return NextResponse.json(rows.rows, { status: 200 });
