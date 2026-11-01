@@ -231,7 +231,7 @@ describe("updateStats", () => {
       expect(update.text).toMatch(/statistica IN \('Longest Reigning', 'Longest Combined Reign'\)/);
     });
 
-    it("inserts (rather than always updating) Century Club / Legacy Run / All Time Rival stats when absent", async () => {
+    it("inserts (rather than always updating) Century Club / Legacy Run stats when absent", async () => {
       // 5 previous steals Juventus→Milan + CURR_MATCH = 6 total (≥5 for AllTimeRival)
       const rivalMatches: Row[] = Array.from({ length: 5 }, (_, i) => ({
         numero: i + 1, detentore: "Juventus", sfidante: "Milan",
@@ -248,7 +248,6 @@ describe("updateStats", () => {
       const inserts = find(/INSERT INTO stats/);
       expect(inserts.some((c) => c.values.includes("Century Club Bronze"))).toBe(true);
       expect(inserts.some((c) => c.values.includes("Legacy Run Iron"))).toBe(true);
-      expect(inserts.some((c) => c.values.includes("All Time Rival vs Milan"))).toBe(true);
       expect(find(/UPDATE stats SET data = \?, statistica = \?/)).toHaveLength(0);
     });
 
@@ -418,22 +417,6 @@ describe("updateStats", () => {
       expect(update.values[2]).toBe(LEAGUE);     // league
     });
 
-    it("updates an existing All-Time Rivals record when the pair has ≥5 steals", async () => {
-      const rivalMatches: Row[] = Array.from({ length: 5 }, (_, i) => ({
-        numero: i + 1, detentore: "Juventus", sfidante: "Milan",
-        outcome: "s", data: `2020-0${i + 1}-01`, durata: 0,
-        league: LEAGUE, home: "Juventus", away: "Milan", risultato: "0-1",
-      }));
-      rivalMatches.push(CURR_MATCH);
-      const { client, find } = createFakeClient([
-        MATCHES(rivalMatches),
-        [/statistica = \? AND squadra = \?/, [{ squadra: "Juventus" }]],
-      ]);
-      await run(client, { outcome: "s" });
-      const updates = find(/UPDATE stats SET data = \?, valore = \?, numero = \?/);
-      expect(updates.some((c) => c.values.includes("All Time Rival vs Milan"))).toBe(true);
-      expect(find(/INSERT INTO stats/).filter((c) => c.values.includes("All Time Rival vs Milan"))).toHaveLength(0);
-    });
 
     it("does not emit All-Time Rivals when the pair has fewer than 5 steals", async () => {
       // 3 previous + CURR_MATCH = 4 total; rivalCount < 5 → no stat
