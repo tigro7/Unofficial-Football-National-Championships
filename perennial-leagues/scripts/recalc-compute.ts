@@ -15,7 +15,7 @@ import normalizeTeamName from "../src/app/utils/namesMap";
 import { ALL_STAT_MODULES, Match, SquadraState, StatContext, StatRow, computeReigns } from "../src/app/utils/stats";
 import boomer from "../src/app/utils/stats/boomer";
 
-const league = process.argv[2] || "serie_a";
+const league = process.argv[1] || "serie_a";
 
 // ---- helpers ----
 

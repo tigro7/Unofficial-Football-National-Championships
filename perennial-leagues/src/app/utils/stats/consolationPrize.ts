@@ -9,7 +9,7 @@ const consolationPrize: StatModule = {
         const noWinners = [...squadreMap.values()]
             .filter(s => s.regni === 0 && (s.sfide ?? 0) > 0)
             .sort((a, b) => (b.sfide ?? 0) - (a.sfide ?? 0))
-            .slice(0, 9);
+            .slice(0, 10);
         const rows: StatRow[] = [];
         noWinners.forEach((t, idx) => {
             const lm = [...allMatches].reverse().find(x => x.sfidante === t.squadra);
