@@ -26,7 +26,7 @@ const decadeDominator: StatModule = {
     },
 
     async persist(client: VercelPoolClient, league: string, { rows }: StatResult): Promise<void> {
-        for (const r of rows) {
+        await Promise.all(rows.map(async (r) => {
             const exists = await client.sql`SELECT 1 FROM stats WHERE league = ${league} AND statistica = ${r.statistica}`;
             if (exists.rowCount && exists.rowCount > 0) {
                 await client.sql`UPDATE stats SET data = ${r.data}, squadra = ${r.squadra}, valore = ${r.valore}, numero = ${r.numero}
@@ -35,7 +35,7 @@ const decadeDominator: StatModule = {
                 await client.sql`INSERT INTO stats (squadra, DATA, league, statistica, valore, numero)
                                  VALUES (${r.squadra}, ${r.data}, ${league}, ${r.statistica}, ${r.valore}, ${r.numero})`;
             }
-        }
+        }));
     },
 };
 
